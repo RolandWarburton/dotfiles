@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open konsole</name>
+	<unique-id>1569348424516534-1</unique-id>
+	<command>konsole --workdir %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>code</icon>
+	<name>Open with code</name>
+	<unique-id>1567462534274488-1</unique-id>
+	<command>code %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>libreoffice-writer</icon>
+	<name>soffice</name>
+	<unique-id>1568047521545713-1</unique-id>
+	<command>touch document.odt %f; soffice document.odt</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>

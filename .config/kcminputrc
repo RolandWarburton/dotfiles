@@ -1,0 +1,11 @@
+[Keyboard]
+KeyboardRepeating=0
+NumLock=1
+RepeatDelay=600
+RepeatRate=25
+
+[Mouse]
+XLbInptAccelProfileFlat=true
+XLbInptPointerAcceleration=-0.801
+cursorSize=24
+cursorTheme=breeze_cursors

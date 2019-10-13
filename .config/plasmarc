@@ -1,0 +1,14 @@
+[OSD]
+Enabled=true
+
+[PlasmaToolTips]
+Delay=0.7
+
+[Theme]
+name=default
+
+[Theme-plasmathemeexplorer]
+name=Sweet
+
+[Wallpapers]
+usersWallpapers=/home/roland/Documents/Pictures/wallpapers/lain.png,/home/roland/Documents/Pictures/wallpapers/wall.jpg,/home/roland/Documents/Pictures/wallpapers/wallpaper.jpg

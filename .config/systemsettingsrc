@@ -1,0 +1,21 @@
+[DownloadDialog Settings]
+Height 768=494
+Width 1366=700
+
+[KFileDialog Settings]
+Recent Files[$e]=swinburne.png,file:$HOME/Documents/Pictures/swinburne.png
+Recent URLs[$e]=file:$HOME/Documents/Pictures/
+detailViewIconSize=0
+
+[MainWindow]
+Height 1080=700
+Height 768=668
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABAAAAAK8AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1366=1024
+Width 1920=1024
+Window-Maximized 768x1366=true
+
+[PlasmaRunnerManager]
+LaunchCounts=
