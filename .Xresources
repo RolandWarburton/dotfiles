@@ -1,0 +1,58 @@
+!=======================
+! GLOBAL SETTINGS
+!=======================
+
+*foreground: rgb:a8/a8/a8
+*background: rgb:00/00/00
+
+!=======================
+! URXVT SETTINGS
+!=======================
+
+! do not scroll with output
+URxvt*scrollTtyKeypress: true
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+!No scrollbar
+URxvt.scrollBar: false
+
+!Max lines in the terminal window
+URxvt.saveLines: 1000
+
+! Scroll with the mouse wheel
+URxvt.scrollWithBuffer: true
+
+! Cursor blink on
+URxvt.cursorBlink: 1
+
+! Line spacing
+URxvt.lineSpace: 7
+
+!Font
+!URxvt.font: xft:DejaVu Sans Mono:pixelsize=13
+!URxvt.font: xft:Consolas-Regular:size=14
+URxvt.font: xft: SourceCodePro-Bold:size=10
+
+! ctrl+left and ctrl+right 
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
+
+! Make the meta key work. dont know if i need this
+URxvt*altSendsEscape: true
+
+! Copy paste
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.perl-ext-common: selection-to-clipboard
+
+!=======================
+! X SYSTEM SETTINGS
+!=======================
+
+! Antialias
+Xft.antialias: true
+

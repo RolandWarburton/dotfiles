@@ -1,4 +1,5 @@
 # For the benefit of emacs users: -*- shell-script -*-
+# pretty much just a fallback for me to use when setting up new window managers - Roland
 ###########################
 # xbindkeys configuration #
 ###########################
