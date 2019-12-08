@@ -4,64 +4,11 @@
   xsi:schemaLocation="http://openbox.org/">
   <menu id="root-menu" label="Applications">
     <item label="File Manager" icon="/home/roland/.config/obmenu-generator/icons/a384074033dfc3ebebb1a8a39d2be8a6.png"><action name="Execute"><command><![CDATA[thunar]]></command></action></item>
-    <item label="Terminal" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[urxvt]]></command></action></item>
-    <item label="Web Browser" icon="/home/roland/.config/obmenu-generator/icons/0fd14be8770af75716427df2c3a3194a.png"><action name="Execute"><command><![CDATA[xdg-open http://]]></command></action></item>
-    <item label="Run command" icon="/home/roland/.config/obmenu-generator/icons/75a67767299530cac90d76a36547c619.png"><action name="Execute"><command><![CDATA[gmrun]]></command></action></item>
+    <item label="Terminal" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[kitty]]></command></action></item>
   <separator label="Categories"/>
-  <menu id="0.749619153867574" icon="/home/roland/.config/obmenu-generator/icons/14ccfd60064d61cfc7da4145731d45f2.png" label="Accessories">
-    <item label="About Xfce" icon="/home/roland/.config/obmenu-generator/icons/68c1d2859d048b1c4fa60c7d168f6281.png"><action name="Execute"><command><![CDATA[xfce4-about]]></command></action></item>
-    <item label="Bulk Rename" icon="/home/roland/.config/obmenu-generator/icons/8ea1c0f2ad8f6dbfdd02894a2238e92e.png"><action name="Execute"><command><![CDATA[/usr/lib/Thunar/ThunarBulkRename]]></command></action></item>
-    <item label="Code - OSS" icon="/home/roland/.config/obmenu-generator/icons/41a4834d1a6de52190fa64cda9e600a2.png"><action name="Execute"><command><![CDATA[/usr/bin/code-oss --no-sandbox --unity-launch]]></command></action></item>
-    <item label="File Manager" icon="/home/roland/.config/obmenu-generator/icons/a384074033dfc3ebebb1a8a39d2be8a6.png"><action name="Execute"><command><![CDATA[exo-open --launch FileManager]]></command></action></item>
-    <item label="Terminal Emulator" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[exo-open --launch TerminalEmulator]]></command></action></item>
-    <item label="Thunar File Manager" icon="/home/roland/.config/obmenu-generator/icons/8ea1c0f2ad8f6dbfdd02894a2238e92e.png"><action name="Execute"><command><![CDATA[thunar]]></command></action></item>
-    <item label="Waterfall" icon=""><action name="Execute"><command><![CDATA[waterfall]]></command></action></item>
-  </menu>
-  <menu id="0.113713030561001" icon="/home/roland/.config/obmenu-generator/icons/0387ca745482e01491536375926426b7.png" label="Development">
-    <item label="Code - OSS" icon="/home/roland/.config/obmenu-generator/icons/41a4834d1a6de52190fa64cda9e600a2.png"><action name="Execute"><command><![CDATA[/usr/bin/code-oss --no-sandbox --unity-launch]]></command></action></item>
-    <item label="Electron" icon="/home/roland/.config/obmenu-generator/icons/321332a3098745618b46377bd6c4e8c7.png"><action name="Execute"><command><![CDATA[electron6]]></command></action></item>
-  </menu>
-  <menu id="0.706536426945728" icon="/home/roland/.config/obmenu-generator/icons/603671f8b1fb52aa225bd145c51f71b8.png" label="Graphics">
-    <item label="Flameshot" icon="/home/roland/.config/obmenu-generator/icons/fac444e8019475a4a96b498507533966.png"><action name="Execute"><command><![CDATA[flameshot]]></command></action></item>
-    <item label="GNU Image Manipulation Program" icon="/home/roland/.config/obmenu-generator/icons/031bb74f899b27dd0740011376599c7c.png"><action name="Execute"><command><![CDATA[gimp-2.10]]></command></action></item>
-  </menu>
-  <menu id="0.2970308671674" icon="" label="Multimedia">
-    <item label="PulseAudio Volume Control" icon="/home/roland/.config/obmenu-generator/icons/2eea2378cb3ea6ab5652225217137f86.png"><action name="Execute"><command><![CDATA[pavucontrol]]></command></action></item>
-    <item label="Qt V4L2 test Utility" icon="/home/roland/.config/obmenu-generator/icons/536fa375e9ddf3f93743c18aeecb4e9d.png"><action name="Execute"><command><![CDATA[qv4l2]]></command></action></item>
-    <item label="Qt V4L2 video capture utility" icon="/home/roland/.config/obmenu-generator/icons/536fa375e9ddf3f93743c18aeecb4e9d.png"><action name="Execute"><command><![CDATA[qvidcap]]></command></action></item>
-  </menu>
-  <menu id="0.00919251785406416" icon="/home/roland/.config/obmenu-generator/icons/5e2944a03dc82bfaea4f718d2d3f6083.png" label="Network">
-    <item label="Avahi SSH Server Browser" icon="/home/roland/.config/obmenu-generator/icons/419ef55a841cefa586a0fd69990410e4.png"><action name="Execute"><command><![CDATA[/usr/bin/bssh]]></command></action></item>
-    <item label="Avahi VNC Server Browser" icon="/home/roland/.config/obmenu-generator/icons/419ef55a841cefa586a0fd69990410e4.png"><action name="Execute"><command><![CDATA[/usr/bin/bvnc]]></command></action></item>
-    <item label="Chromium" icon="/home/roland/.config/obmenu-generator/icons/fe8cbaa1d5859e29b29c05e1c04ebc84.png"><action name="Execute"><command><![CDATA[/usr/bin/chromium]]></command></action></item>
-    <item label="Mail Reader" icon="/home/roland/.config/obmenu-generator/icons/6edfb0f70d214628e9bcfefedad8cfc6.png"><action name="Execute"><command><![CDATA[exo-open --launch MailReader]]></command></action></item>
-    <item label="Web Browser" icon="/home/roland/.config/obmenu-generator/icons/0fd14be8770af75716427df2c3a3194a.png"><action name="Execute"><command><![CDATA[exo-open --launch WebBrowser]]></command></action></item>
-    <item label="Zenmap (as root)" icon="/home/roland/.config/obmenu-generator/icons/a858a055e68ae09938be653c3eb99314.png"><action name="Execute"><command><![CDATA[/usr/share/zenmap/su-to-zenmap.sh]]></command></action></item>
-    <item label="Zenmap" icon="/home/roland/.config/obmenu-generator/icons/a858a055e68ae09938be653c3eb99314.png"><action name="Execute"><command><![CDATA[zenmap]]></command></action></item>
-  </menu>
-  <menu id="0.445534920305349" icon="/home/roland/.config/obmenu-generator/icons/f3696f59388a5c36c99c8356cd61c752.png" label="Settings">
-    <item label="ARandR" icon=""><action name="Execute"><command><![CDATA[arandr]]></command></action></item>
-    <item label="File Manager Settings" icon="/home/roland/.config/obmenu-generator/icons/a384074033dfc3ebebb1a8a39d2be8a6.png"><action name="Execute"><command><![CDATA[thunar-settings]]></command></action></item>
-    <item label="Openbox Configuration Manager" icon="/home/roland/.config/obmenu-generator/icons/61f3de6fd06f9847e869878302ba1980.png"><action name="Execute"><command><![CDATA[obconf]]></command></action></item>
-    <item label="Preferred Applications" icon="/home/roland/.config/obmenu-generator/icons/9778f46e9ec398491023f8c2794075c3.png"><action name="Execute"><command><![CDATA[exo-preferred-applications]]></command></action></item>
-  </menu>
-  <menu id="0.167619563077405" icon="/home/roland/.config/obmenu-generator/icons/d7f5bec41effc66a0e54da9f8b7d1ea9.png" label="System">
-    <item label="Avahi Zeroconf Browser" icon="/home/roland/.config/obmenu-generator/icons/419ef55a841cefa586a0fd69990410e4.png"><action name="Execute"><command><![CDATA[/usr/bin/avahi-discover]]></command></action></item>
-    <item label="Bulk Rename" icon="/home/roland/.config/obmenu-generator/icons/8ea1c0f2ad8f6dbfdd02894a2238e92e.png"><action name="Execute"><command><![CDATA[/usr/lib/Thunar/ThunarBulkRename]]></command></action></item>
-    <item label="Htop" icon="/home/roland/.config/obmenu-generator/icons/6d5025de601e5fac48d949891e17262b.png"><action name="Execute"><command><![CDATA[xterm -e 'htop']]></command></action></item>
-    <item label="kitty" icon="/home/roland/.config/obmenu-generator/icons/3dc7c416fb283ea6fd468686e6e4b73e.png"><action name="Execute"><command><![CDATA[kitty]]></command></action></item>
-    <item label="QTerminal drop down" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[qterminal --drop]]></command></action></item>
-    <item label="QTerminal" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[qterminal]]></command></action></item>
-    <item label="ranger" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[xterm -e 'ranger']]></command></action></item>
-    <item label="Thunar File Manager" icon="/home/roland/.config/obmenu-generator/icons/8ea1c0f2ad8f6dbfdd02894a2238e92e.png"><action name="Execute"><command><![CDATA[thunar]]></command></action></item>
-    <item label="UXTerm" icon="/home/roland/.config/obmenu-generator/icons/7c9f428f66b98fc4cd571182f645138b.png"><action name="Execute"><command><![CDATA[uxterm]]></command></action></item>
-    <item label="XTerm" icon="/home/roland/.config/obmenu-generator/icons/7c9f428f66b98fc4cd571182f645138b.png"><action name="Execute"><command><![CDATA[xterm]]></command></action></item>
-  </menu>
   <separator/>
-  <menu id="0.606296263443333" icon="/home/roland/.config/obmenu-generator/icons/36b57deda34c347e69eaed83ac7c8754.png" label="Advanced Settings">
-    <item label="Conky RC" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.conkyrc]]></command></action></item>
-    <item label="Tint2 Panel" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/tint2/tint2rc]]></command></action></item>
-  <menu id="0.959769148370842" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png" label="Obmenu-Generator">
+  <menu id="0.396924368179501" icon="/home/roland/.config/obmenu-generator/icons/36b57deda34c347e69eaed83ac7c8754.png" label="Advanced Settings">
+  <menu id="0.962059647168161" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png" label="Obmenu-Generator">
     <item label="Menu Schema" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/obmenu-generator/schema.pl]]></command></action></item>
     <item label="Menu Config" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/obmenu-generator/config.pl]]></command></action></item>
   <separator/>
@@ -73,7 +20,7 @@
   <separator/>
     <item label="Refresh cache" icon="/home/roland/.config/obmenu-generator/icons/0d3dfd63e106b9729536e30d9c695d7c.png"><action name="Execute"><command><![CDATA[obmenu-generator -d]]></command></action></item>
   </menu>
-  <menu id="0.671707524511248" icon="/home/roland/.config/obmenu-generator/icons/cbd33e85d4e0834359519a4e282b2aeb.png" label="Openbox">
+  <menu id="0.768096630732668" icon="/home/roland/.config/obmenu-generator/icons/cbd33e85d4e0834359519a4e282b2aeb.png" label="Openbox">
     <item label="Openbox Autostart" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/autostart]]></command></action></item>
     <item label="Openbox RC" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/rc.xml]]></command></action></item>
     <item label="Openbox Menu" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/menu.xml]]></command></action></item>

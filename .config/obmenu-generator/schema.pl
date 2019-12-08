@@ -32,24 +32,24 @@ our $SCHEMA = [
 
     #          COMMAND                 LABEL              ICON
     {item => ['thunar',       'File Manager', 'system-file-manager']},
-    {item => ['urxvt',            'Terminal',     'utilities-terminal']},
-    {item => ['xdg-open http://', 'Web Browser',  'web-browser']},
-    {item => ['gmrun',            'Run command',  'system-run']},
+    {item => ['kitty',            'Terminal',     'utilities-terminal']},
+    # {item => ['xdg-open http://', 'Web Browser',  'web-browser']},
+    # {item => ['gmrun',            'Run command',  'system-run']},
 
     {sep => 'Categories'},
 
     #          NAME            LABEL                ICON
-    {cat => ['utility',     'Accessories', 'applications-utilities']},
-    {cat => ['development', 'Development', 'applications-development']},
-    {cat => ['education',   'Education',   'applications-science']},
-    {cat => ['game',        'Games',       'applications-games']},
-    {cat => ['graphics',    'Graphics',    'applications-graphics']},
-    {cat => ['audiovideo',  'Multimedia',  'applications-multimedia']},
-    {cat => ['network',     'Network',     'applications-internet']},
-    {cat => ['office',      'Office',      'applications-office']},
-    {cat => ['other',       'Other',       'applications-other']},
-    {cat => ['settings',    'Settings',    'applications-accessories']},
-    {cat => ['system',      'System',      'applications-system']},
+    # {cat => ['utility',     'Accessories', 'applications-utilities']},
+    # {cat => ['development', 'Development', 'applications-development']},
+    # {cat => ['education',   'Education',   'applications-science']},
+    # {cat => ['game',        'Games',       'applications-games']},
+    # {cat => ['graphics',    'Graphics',    'applications-graphics']},
+    # {cat => ['audiovideo',  'Multimedia',  'applications-multimedia']},
+    # {cat => ['network',     'Network',     'applications-internet']},
+    # {cat => ['office',      'Office',      'applications-office']},
+    # {cat => ['other',       'Othear',       'applications-other']},
+    # {cat => ['settings',    'Settings',    'applications-accessories']},
+    # {cat => ['system',      'System',      'applications-system']},
 
     #             LABEL          ICON
     #{beg => ['My category',  'cat-icon']},
@@ -69,8 +69,8 @@ our $SCHEMA = [
     {beg => ['Advanced Settings', 'applications-engineering']},
 
       # Configuration files
-      {item => ["$editor ~/.conkyrc",              'Conky RC',    'text-x-generic']},
-      {item => ["$editor ~/.config/tint2/tint2rc", 'Tint2 Panel', 'text-x-generic']},
+      # {item => ["$editor ~/.conkyrc",              'Conky RC',    'text-x-generic']},
+      # {item => ["$editor ~/.config/tint2/tint2rc", 'Tint2 Panel', 'text-x-generic']},
 
       # obmenu-generator category
       {beg => ['Obmenu-Generator', 'accessories-text-editor']},

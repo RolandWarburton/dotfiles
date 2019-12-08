@@ -7,7 +7,7 @@
     <screen_edge_strength>25</screen_edge_strength>
   </resistance>
   <focus>
-    <focusNew>yes</focusNew>
+    <focusNew>no</focusNew>
     <!-- always try to focus new windows when they appear. other rules do
        apply -->
     <followMouse>no</followMouse>
@@ -343,27 +343,52 @@
     <!-- HalfLeftScreen -->
     <keybind key="W-Left">
       <action name="UnmaximizeFull"/>
-      <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <height>100%</height>
+        <width>50%</width>
+      </action>
     </keybind>
     <!-- HalfRightScreen -->
     <keybind key="W-Right">
-        <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>-0</x><y>0</y><height>100%</height><width>50%</width></action>
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>-0</x>
+        <y>0</y>
+        <height>100%</height>
+        <width>50%</width>
+      </action>
     </keybind>
     <!-- HalfUpperScreen -->
     <keybind key="W-Up">
-        <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>50%</height></action>
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>100%</width>
+        <height>50%</height>
+      </action>
     </keybind>
     <!-- HalfLowerScreen -->
     <keybind key="W-Down">
-        <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>0</x><y>-0</y><width>100%</width><height>50%</height></action>
+      <action name="UnmaximizeFull"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>-0</y>
+        <width>100%</width>
+        <height>50%</height>
+      </action>
     </keybind>
     <!-- HalfUpperScreen -->
     <keybind key="W-f">
-        <action name="Full"/>
-        <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>100%</height></action>
+      <action name="Full"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>100%</width>
+        <height>100%</height>
+      </action>
     </keybind>
   </keyboard>
   <mouse>

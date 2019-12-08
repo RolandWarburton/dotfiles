@@ -407,6 +407,8 @@ export WORDCHARS=${WORDCHARS/\/}
 [[ -s "$HOME/.zsh_aliases.local" ]] && source "$HOME/.zsh_aliases.local"
 alias p="sudo pacman"
 alias grep="grep --color"
+alias ls="ls -h --color" # (human readable): print things like 1mb, 2gb, 1tb...
+alias gut="git" # muh smol hands
 
 # Local configuration
 [[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
