@@ -15,5 +15,3 @@
 # If you want to use XFCE config tools...
 #
 #xfce-mcs-manager &
-/home/roland/.config/autostart/mouseConfig.sh
-/home/roland/.config/autostart/screens.sh
