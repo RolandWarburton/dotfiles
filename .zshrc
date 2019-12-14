@@ -15,10 +15,24 @@
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #export CLICOLOR=1
 
+export LC_ALL=C
+
+# https://wiki.archlinux.org/index.php/XDG_Base_Directory
+# Where user-specific configurations should be written (analogous to /etc)
+export XDG_DATA_HOME="${ZDOTDIR:-$HOME}/.local"
+# Where user-specific non-essential (cached) data should be written (analogous to /var/cache).
+export XDG_CACHE_HOME="${ZDOTDIR:-$HOME}/.cache"
+
+# move the .nv folder for OpenGL cache to better location. may not need due to above XDG_BASE dir fix
+# export __GL_SHADER_DISK_CACHE_PATH="${ZDOTDIR:-$HOME}/.cache"
 
 #
 # History
 #
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
 
 HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"    # The path to the history file.
 HISTSIZE=100000                           # The maximum number of events to save in the internal history.
@@ -162,6 +176,9 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 [[ -n "$terminfo[kcbt]" ]] && bindkey -M emacs "$terminfo[kcbt]" reverse-menu-complete
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
+
+# Fix the del key not working
+bindkey "\e[3~" delete-char
 
 # selection
 shift-arrow() {

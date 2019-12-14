@@ -6,3 +6,6 @@ xbindkeys -f /home/roland/.xbindkeysrc
 /home/roland/.config/autostart/mouseConfig.sh
 # set up the trackball
 /home/roland/.config/autostart/trackBall.sh
+echo 'loaded configs'
+
+#xrandr --output HDMI-1 --rotate left

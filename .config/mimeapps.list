@@ -1,14 +1,3 @@
 [Added Associations]
-x-scheme-handler/http=exo-web-browser.desktop;
-x-scheme-handler/https=exo-web-browser.desktop;
-application/octet-stream=code-oss.desktop;
+image/jpeg=lximage-qt.desktop;
 application/xml=code-oss.desktop;
-text/html=chromium.desktop;code-oss.desktop;
-image/gif=lximage-qt.desktop;sxiv.desktop;
-image/svg+xml=lximage-qt.desktop;
-video/x-matroska=smplayer.desktop;baka-mplayer.desktop;
-application/pdf=libreoffice-draw.desktop;
-
-[Default Applications]
-image/gif=sxiv.desktop
-inode/directory=thunar.desktop
