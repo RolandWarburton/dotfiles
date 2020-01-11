@@ -16,22 +16,34 @@
 #export CLICOLOR=1
 
 export LC_ALL=C
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export LANG=en_US.UTF-8
+export XDG_CONFIG_HOME="$HOME/.config"
+
+xrdb -merge ~/.Xresources
 
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
 # Where user-specific configurations should be written (analogous to /etc)
-export XDG_DATA_HOME="${ZDOTDIR:-$HOME}/.local"
+export XDG_DATA_HOME="$HOME/.local"
 # Where user-specific non-essential (cached) data should be written (analogous to /var/cache).
-export XDG_CACHE_HOME="${ZDOTDIR:-$HOME}/.cache"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # move the .nv folder for OpenGL cache to better location. may not need due to above XDG_BASE dir fix
 # export __GL_SHADER_DISK_CACHE_PATH="${ZDOTDIR:-$HOME}/.cache"
 
+export PYLINTHOME="${ZDOTDIR:-$HOME}/.local"
 #
 # History
 #
 
+# if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#   exec startx
+# fi
+
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
+  exec xinit
 fi
 
 HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"    # The path to the history file.
@@ -256,7 +268,8 @@ function set-prompt {
     fi
 
     # Define prompts.
-    PROMPT="${SSH_TTY:+$ssh_prefix}"'%{$fg_bold[blue]%}%~${vcs_info_msg_0_}%{$reset_color%}$_prompt_symbol '
+    # PROMPT="${SSH_TTY:+$ssh_prefix}"'%{$fg_bold[blue]%}%~${vcs_info_msg_0_}%{$reset_color%}$_prompt_symbol '
+    PROMPT="${SSH_TTY:+$ssh_prefix}"'%B%F{255}%n@%m%f %F{blue}%2~${vcs_info_msg_0_}%f%b$_prompt_symbol '
 }
 
 autoload -Uz promptinit && promptinit
@@ -494,3 +507,9 @@ unfunction load-extension \
            load-history-substring-search \
            fpath-prepend \
            set-prompt
+
+# Extensions
+# suggestion highlighting
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^@' autosuggest-accept # control space
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3B444B,bg=black,bold"

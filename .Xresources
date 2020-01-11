@@ -1,13 +1,28 @@
-!=======================
-! GLOBAL SETTINGS
-!=======================
+! Enable ctrl-shift-c and ctrl-shift-v in XTerm
+!XTerm*vt100.translations: #override \
+!    Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+!    Shift Ctrl <Key> V: insert-selection(CLIPBOARD)
 
-*foreground: rgb:a8/a8/a8
-*background: rgb:00/00/00
 
-!=======================
-! URXVT SETTINGS
-!=======================
+! =======================
+!	URxvt Config
+! =======================
+! Enable some plugins
+! clipboard is required for copy/paste
+! -removed tabbed
+URxvt.perl-ext-common:  default,clipboard
+
+! Hide tabs when you dont need them
+URxvt.tabbed.autohide: true
+
+!Disable the old keybinds for ctrl-shift-c and ctrl-shift-v
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+
+!Enable ctrl-shift-c and ctrl-shift-v
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 ! do not scroll with output
 URxvt*scrollTtyKeypress: true
@@ -15,25 +30,41 @@ URxvt*scrollTtyKeypress: true
 ! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
 URxvt*scrollWithBuffer: true
 
-!No scrollbar
-URxvt.scrollBar: false
-
-!Max lines in the terminal window
-URxvt.saveLines: 1000
-
-! Scroll with the mouse wheel
-URxvt.scrollWithBuffer: true
-
 ! Cursor blink on
-URxvt.cursorBlink: 1
+!URxvt.cursorBlink: 1
 
 ! Line spacing
-URxvt.lineSpace: 7
+!URxvt.lineSpace: 0
 
-!Font
-!URxvt.font: xft:DejaVu Sans Mono:pixelsize=13
-!URxvt.font: xft:Consolas-Regular:size=14
-URxvt.font: xft: SourceCodePro-Bold:size=10
+! Scrollback
+URxvt.saveLines: 200
+
+!rows and columns
+
+!padding
+!URxvt.internalBorder:  4
+
+!URxvt.dpi: 96
+
+!fade text on unfocus
+URxvt*fading:  15
+
+!Xft.antialias:  true
+Xft.dpi:        96
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+Xft.autohint:   false
+Xft.lcdfilter:  lcddefault
+
+!fonts
+URxvt.font: xft:Hack-Regular:style=regular:antialias=true:hinting=true
+!URxvt.font: xft:DejaVu Sans Mono:antialias=true:hinting=true
+!URxvt.font: xft: SourceCodePro-Bold:size=10
+!URxvt.letterSpace: 1
+!Urxvt.font: Liberation Mono:pixelsize=12:antialias=true:autohint=true
+!Urxvt.font: 'Liberation Mono':style=Regular:antialias=true:autohint=true
+!URxvt*font: xft:Fira Code:style=Retina:pixelsize=15:antialias=true:hinting=true
 
 ! ctrl+left and ctrl+right 
 URxvt.keysym.Control-Up:     \033[1;5A
@@ -41,13 +72,11 @@ URxvt.keysym.Control-Down:   \033[1;5B
 URxvt.keysym.Control-Left:   \033[1;5D
 URxvt.keysym.Control-Right:  \033[1;5C
 
-! Make the meta key work. dont know if i need this
-URxvt*altSendsEscape: true
-
-! Copy paste
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
-URxvt.perl-ext-common: selection-to-clipboard
+!No scrollbar
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.scrollBar_floating: false
+URxvt.scrollstyle: rxvt
 
 !=======================
 ! X SYSTEM SETTINGS
@@ -56,3 +85,36 @@ URxvt.perl-ext-common: selection-to-clipboard
 ! Antialias
 Xft.antialias: true
 
+!arc-dark theme
+*.background: #000
+!solarized
+!*.background: #383c4a
+*.foreground: #D2D2D2
+!black
+*color0: #383c4a
+*color8: #404552
+!red
+*color1: #9A4138
+*color9: #E7766B
+!green
+*color2: #4BEC90
+*color10: #3CBF75
+!yellow
+*color3: #D8D782
+*color11: #CFCD63
+!blue
+*color4: #5294e2
+*color12: #579CEF
+!magenta
+*color5: #CE50DD
+*color13: #E7766B
+!cyan
+*color6: #6BE5E7
+*color14: #90FDFF
+!white
+*color7: #CCCCCC
+*color15: #FFFFFF
+
+URxvt.cursorColor:      #e0e080
+URxvt.throughColor:     #8080f0
+URxvt.highlightColor:   #f0f0f0
