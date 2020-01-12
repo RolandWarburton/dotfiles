@@ -12,6 +12,9 @@
 ! -removed tabbed
 URxvt.perl-ext-common:  default,clipboard
 
+!Turn off the stupid yellow box popup
+URxvt.iso14755: false
+
 ! Hide tabs when you dont need them
 URxvt.tabbed.autohide: true
 
