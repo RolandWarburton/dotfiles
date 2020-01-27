@@ -22,8 +22,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
 
-xrdb -merge ~/.Xresources
-
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
 # Where user-specific configurations should be written (analogous to /etc)
 export XDG_DATA_HOME="$HOME/.local"
@@ -42,9 +40,9 @@ export PYLINTHOME="${ZDOTDIR:-$HOME}/.local"
 #   exec startx
 # fi
 
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec xinit
-fi
+#if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#  exec xinit
+#fi
 
 HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"    # The path to the history file.
 HISTSIZE=100000                           # The maximum number of events to save in the internal history.
@@ -437,8 +435,11 @@ export WORDCHARS=${WORDCHARS/\/}
 [[ -s "$HOME/.zsh_aliases.local" ]] && source "$HOME/.zsh_aliases.local"
 alias p="sudo pacman"
 alias grep="grep --color"
-alias ls="ls -h --color" # (human readable): print things like 1mb, 2gb, 1tb...
+alias ls="ls -h --color" # (-h human readable): print things like 1mb, 2gb, 1tb...
 alias gut="git" # muh smol hands
+alias ss="sudo systemctl"
+alias r="ranger"
+alias s="sudo"
 
 # Local configuration
 [[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
