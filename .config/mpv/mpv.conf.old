@@ -1,0 +1,23 @@
+# use high quality video output settings
+profile=gpu-hq
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+
+# add black bars
+no-keepaspect-window
+
+# scroll to seek 
+WHEEL_RIGHT      seek 10
+WHEEL_LEFT    seek -10
+
+# volume up and down
+UP	add volume 2
+DOWN	add volume -2
+
+#WHEEL_UP    add volume -2
+#WHEEL_DOWN   add volume 2
+
+9 add volume -2
+/ add volume -2
+0 add volume 2
+* add volume 2
