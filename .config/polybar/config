@@ -1,0 +1,54 @@
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+[colors]
+background = #121212
+foreground = #dfdfdf
+
+[bar/mybar]
+; Modules
+modules-right = date
+modules-left = enp
+; Misc Config
+enable-ipc = true
+separator = " | " 
+monitor = ${env:MONITOR:HDMI-0}
+font-0 = Hack:style=Regular;3
+font-1 = "Noto Color Emoji:scale=10;2:style=Regular;2"
+padding = 2
+; Bar size
+height = 25
+radius = 0
+background = ${colors.background}
+; Tray
+;tray-position = left 
+
+[module/date]
+type = internal/date
+interval = 1
+time = "%I:%M"
+time-alt = "%d %B %I:%M"
+format-prefix-foreground = ${colors.foreground}
+label = %date%%time%
+
+; Laptops with signal strength
+[module/wlp]
+type = internal/network
+interface = enp6s0
+format-connected = <ramp-signal> <label-connected>
+label-connected = %ifname% %downspeed%
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+; Desktops
+[module/enp]
+type = internal/network
+interface = enp6s0
+format-connected = <label-connected>
+label-connected = eth %{F#fff}✅ 
+label-status = %{F#f00}%✅%%{F-}%
