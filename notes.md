@@ -1,4 +1,4 @@
-# Rolands List of things that ive learnt about linux
+# Rolands List of Linux knowledge
 I aim to keep this list up to date with all the small gottchas and references to things ive picked up over time while working with linux.
 
 Topics that go off on a tangent that are '*good to know but not related to linux specifically*' are located at the bottom of the document under [non related linux things](https://gist.github.com/RolandWarburton/33a44ba246da577cee2f16da502d7464#non-related-linux-things).
@@ -9,6 +9,40 @@ DE: openbox\
 Shell: zsh\
 Terminal: kitty\
 Dots: [Dots!](https://github.com/RolandWarburton/dotfiles)
+
+# Getting Arch going
+This section is a loose collection of the steps i take when setting up my system from scratch. I expect these steps to become out of date very quick as i learn new faster/better ways of doing things as i continue learning.
+
+### Installing Arch
+Not going to explain this here :)
+
+Checklist of packages that i like to install during base package installation:
+- [x] base base-devel linux - *All required by default*
+- [x] nano - *Cries in not knowing vim*
+- [x] dhcpcd - *Arch doesnt come with any networking tools*
+- [x] openssh - *So i can ssh in after install*
+
+Creating the roland user:
+```
+useradd -g users -G wheel,storage,power -m roland
+```
+* Rolands primary group is users
+* His secondary groups are wheel(sudo),storage, and power
+* Create a home directory folder for Roland with ```-m``` 
+* Dont forget to allow roland (and other members of wheel) access to sudo by enabling access in ```/etc/sudoers```
+
+### Getting the desktop going
+After installing your WM/DE of choice copy startx config from ```/etc/X11/xinit/xinitrc``` to ```~/.xinitrc``` and then refer to [startx debugging](https://gist.github.com/RolandWarburton/33a44ba246da577cee2f16da502d7464#startX-debugging) because i dont think i have ever gotten startx to work first try without wanting to poke my eyes out.
+
+# Networking in arch
+See a list of networking devices with ```ip link```.
+
+### Set a static ip on an interface
+```ip addr add 192.168.1.1/24 dev enp5s0``` where enp5s0 is one of my networking devices.
+```ip addr del 192.168.1.1/24 dev enp5s0```  to remove it.
+
+### Set an interface from DOWN to UP
+```sudo ip link set dev wlp3s0 up``` where wlp3s0 is the name of the interface.
 
 # MIME
 ### What is MIME
@@ -84,6 +118,57 @@ You can install [thunar-volman](https://www.archlinux.org/packages/extra/x86_64/
 Though theres a way to add EXT3 and EXT4 volumes (linux) using [udisks2](https://wiki.archlinux.org/index.php/Udisks).*
 
 # Ricing linux
+### Set the background color like a real hackerman
+Dont use any programs to change your background color. When using an X display server you can simply append ```xsetroot -solid "#121212"``` to your xinitrc.
+Another way to do this is ```exec --no-startup-id xsetroot -solid "#121212"```
+
+### Set a desktop background (image) like a real hackerman
+This can be frustrating to figure out on some desktop environments (like openbox) where the background is set in a config file hidden somewhere.
+In Openbox's case you need to modify ```vim /usr/lib/openbox/openbox-autostart``` and comment out the code block from ```#Set a background color```.
+
+The lightest weight method (that supports dual screen) is to use [feh](https://www.archlinux.org/packages/extra/x86_64/feh/).
+Modify your ```~/.xinitrc``` to contain ```exec feh --bg-fill /home/roland/Media/Backgrounds/Catlesstail_portrait.png /home/roland/Media/Backgrounds Catlesstail.png &```.
+* Passing in seperate image paths to set multiple monitors.
+
+
+### Get all the emojis!
+* Install the correct packages for emojis ```sudo pacman -S noto-fonts-emoji```.
+* Then modify either ```/etc/fonts/local.conf``` for global font config or ```~/.config/fontconfig/fonts.conf``` for per user config. 
+* Create a config file to favour the font emoji.
+```
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+ <alias>
+   <family>sans-serif</family>
+   <prefer>
+     <family>Noto Sans</family>
+     <family>Noto Color Emoji</family>
+     <family>Noto Emoji</family>
+     <family>DejaVu Sans</family>
+   </prefer> 
+ </alias>
+
+ <alias>
+   <family>serif</family>
+   <prefer>
+     <family>Noto Serif</family>
+     <family>Noto Color Emoji</family>
+     <family>Noto Emoji</family>
+     <family>DejaVu Serif</family>
+   </prefer>
+ </alias>
+
+ <alias>
+  <family>monospace</family>
+  <prefer>
+    <family>Noto Mono</family>
+    <family>Noto Color Emoji</family>
+    <family>Noto Emoji</family>
+   </prefer>
+ </alias>
+</fontconfig>
+```
 ### Display a cool banner when logging in with SSH
 Modify */etc/issue.net* and write a cool message in there. then make sure banners are enabled.
 ``` 
@@ -94,8 +179,7 @@ Banner /etc/issue.net
 ### Display a cool login message when logging in with SSH
 Switch user to root and modify the bash scripts in ```/etc/update-motd.d/```. The number of the file indicate the order in which they are executed.
 
-### Moving config files to nicer locations
-#### Zsh stuff to ~/.config/zsh
+### Moving Zsh config files to nicer locations
 Configure the global variable $ZDOTDIR to change where zsh looks for its config files.
 ```
 /etc/zsh/zshenv
@@ -188,13 +272,21 @@ This is a broad topic on some neat tricks in navigating around linux.
 * Navigate to the folder you want. Press *S* (Shift+s) to cd to that location.
 * Type *exit* to go back into ranger. 
 
-# Image manipulation
+# Image/File manipulation
 ### Converting from gif to to image series
 ```convert target.gif -coalesce Frames/output_%02d.png```\
 -coalesce means *merge a sequence of images*
 
 ### Converting from image series to a gif
 ```convert -delay 20 fullBody_*.png -loop 0 fullBody.gif```.
+
+### TAR
+* Extract a file.tar.gz ```tar -xvzf file.tar.gz``` (e**X**tract, **V**erbose, **G**zip, **F**ile )
+* Extract a file.tar.gz the easier way ```gunzip file.tar.gz```
+* Extract a file.tar.gz to a location ```tar xvzf file.tar.gz -C /some/location/```
+* Extract a file.tar.bz2 ```tar xvjf file.tar.bz2``` (j for bz2)
+* Compress a file ```tar cvzf file.tar.gz```
+
 
 # Debian and apt based systems
 ### downloading a package from a source (16.04 xenial only).
@@ -329,7 +421,44 @@ By default X11 Forwarding is pretty slow.
 * use the -C tag to compress the connection. 
 * prevent timeout by editing ```~/.ssh/config``` and adding ```ForwardX11Timeout 1d``` (1 day).
 
+# Systemd
+* Control systemd units ```sudo systemctl [stop start restart status] myservice```
+* Example: ```sudo systemctl restart ssh```
+
+* See the log of systemd services ```journalctl```
+* See the log from this boot ```journalctl -b```
+* See the log of a specific unit ```journalctl -u myservice```
+
+### Creating Systemd service files
+These are... (fill me in)  
+ 
 # Terminal stuff
+### Connect to CISCO equipment through a terminal
+To connect to CISCO equipment through serial you can use minicom.
+To run minicom for CISCO equipment you need to configure your settings with ```minicom -s```
+1. Ensure you are using the correct serial device.
+List your devices with ```ls /dev``` and look for the correct device to use to communicate with. In my case my serial cables are rj45 -> usb. So i used /dev/ttyUSB0* as my serial device.
+2. Have the correct serial speed. And
+Turn Hardware Flow Control off in minicoms settings.
+
+To save the config use the *Save setup as dfl* option. dfl = default.
+
+Connect the the device by running ```minicom```. quit the connection with ```ctrl+a, q```.
+
+### What is the best terminal font?
+TTF-Hack :) \
+Also using FiraCode for font ligatures. Instructions [here](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions)
+
+### Copy and paste in URxvt
+install ```urxvt-perls``` then enable the clipboard pearl by adding ```URxvt.perl-ext-common:  clipboard``` to your ~/.Xresources (along with any other extensions you need)
+
+### Set default Lines and Columns
+Export the ```$Lines``` and ```$COLUMNS``` variables to set it for terminals who respect them (all of them more or less).
+The default on my computer was 50 lines * 112 columns
+
+Terminals that respect ```~/.Xresources``` can also be configured via ```TerminalName*geometry:  240x84```. 
+The defult for Xresources is 80 lines * 24 columns.
+
 ### Terminal key codes
 Its useful to know the keycodes when you are mapping buttons to do things.
 
@@ -355,22 +484,20 @@ You can export a new $TERM from the list above.
 
 ##### node modules: ```/usr/local/lib/node_modules```
 
-# SSH/FTP/SFTP stuff
-### Prevent timeout
-Use client AND server side configuration.\
-**Client:** ```echo "ServerAliveInterval 60" > ~/.ssh/config```.\
-**Server:** ```echo "ClientAliveInterval 120\nClientAliveCountMax 720" > /etc/ssh/sshd_config```.\
-Server makes client send 1 null packet every 120s a maximum of 720 times. 120*720=24 hours. 
-
+# Networking (Part One). File Transfer Protocols
 ### FTP Vs SFTP Vs SSHFS
 * FTP: Comes in the form of vsftpd. I use this on my VPS because its easier to set up and easier (but not as secure) to connect to.
 * SFTP: Comes in the form of OpenSSH. I use this on my main arch machine because its secure af (but harder to set up).
 * SSHFS: an extension for connecting to a SFTP server on the clients side that lets you mount the server as a network drive (thunar allows this)
 
-### Mounting a remote network through SSHFS
-##### SSHFS Vs SFTP
-* SFTP is a common protocol for graphical ftp clients such as filezilla or network drive mounting with Thunar.
+### Prevent timeout for SSH/FTP/SFTP sessions
+Use client AND server side configuration.\
+**Client:** ```echo "ServerAliveInterval 60" > ~/.ssh/config```.\
+**Server:** ```echo "ClientAliveInterval 120\nClientAliveCountMax 720" > /etc/ssh/sshd_config```.\
+Server makes client send 1 null packet every 120s a maximum of 720 times. 120*720=24 hours. 
 
+### SSHFS Vs SFTP
+* SFTP is a common protocol for graphical ftp clients such as filezilla or network drive mounting with Thunar.
 * SSHFS is easier to configure and more lightweight than using virtual file systems inside your graphical file manager. Instead you mound a drive over the command line.
 * SSHFS runs over SFTP and therefore you need port 22 open.
 * SSHFS also avoids having to create *sftp exclusive* users who are unnable to SSH into the server. for example:
@@ -382,6 +509,21 @@ AllowTcpForwarding no
 ForceCommand internal-sftp <- this command will only allow sftp
 ```
 
+### Transfer a file with FTP/SFTP
+1. Install UFW for an internet condom (though this isnt required)
+2. Install a FTP server. vsftpd is good :)
+3. Allow only some special local hosts ```/etc/hosts.allow``` should contain ```vsftpd: 192.168.0.0/255.255.255.0```.
+4. Set up ```anonymous_enable=NO``` and ```write_enable=YES``` on the host. no config required on the client.
+5. Start and stop ```vsftpd.service``` when you need FTP (emphasis on stopping it if you are too lazy to secure it like me)
+
+To transfer files you can initiate ftp or sftp by typing ```ftp destination-ip``` or ```sftp destination-ip```. The prompt will change to show you you are in ftp/sftp mode.
+* To Download a file to your machine (from the *destination-ip*) type ```get some-file.txt```.
+* To move a file from your machine (to the *destination-ip*) type ```put some-file.txt```.
+* To transfer multiple files or folders use ```-r``` and ```/*```. For example ```get /home/roland/folder/* /home/roland/local_location -r```
+### Securing VSFTPD (WIP)
+will do this later
+
+### SSHFS config
 1. Make sure port 22 is open on the server you are connecting to ```sudo ufw status``` and enable port 22 if needed with ```sudo ufw allow 22```. Also make sure you have the packages openssh, sshfs, openssh-server, and fuse.
 
 2. The next thing to do is make sure ```/etc/ssh/sshd_config``` contains the correct path to your sftp server. On my current system (ubuntu 18.04) the rule i have is ```Subsystem       sftp    /usr/lib/openssh/sftp-server```. A hint to finding the location is to use ```whereis sftp-server```.
@@ -395,38 +537,96 @@ Host TestServer
   IdentityFile /home/roland/.ssh/id_rsa
 ```
 
-4. To Mount the remote filesystem on your device run the command ```sshfs -F /home/roland/.ssh/config roland@45.77.236.124:/home/roland mount/```. Add
+To Mount the remote filesystem on your device run the command ```sshfs -F /home/roland/.ssh/config roland@45.77.236.124:/home/roland mount/```. Add
 ```-o debug``` to enable debugging information
 
-### Thunar Freezes when a NFS drive is connected
-Make sure ```nfs-utils``` is installed on the system. Once installed restart Thunar's daemon with ```thunar -q``` or kill it with ```sudo pkill thunar```.
-You can also try to unmount the drive with ```sudo umount -af -t nfs```
+# Networking (Part Two). Network File Systems (NFS)
+NFS allows you to create shared directories and do other stuff.
 
-### Cannot write to files on NFS
-This happens when an ftp connection is being used. this is unsecure so you cannot write. 
-However if you know you are using a secure connection it may be because of file permissions. The following steps are debug instructions to debug that.
-1. Create a folder to permit access to ```mkdir -p /home/myNFSFolder```
-2. assign your *sftp group* access to the folder ```sudo chgrp someGroup /home/myNFSFolder```
-3. Make the fodler writable ```sudo chmod 775 /home/myNFSFolder```
-4. Set the GID for all subfolders too ```sudo chmod g+s /home/myNFSFolder```
-Make sure the user is in the correct group with the ```groups 'username'`` command and add them if not. 
+### Create a shared directory
+1. Create a folder in ```/srv/nfs``` on the host machine ```mkdir -p /srv/nfs/test /mnt/test```. Make sure to ```chown``` anything inside the ```nfs/*``` folder with a user that isnt root otherwise you will be unnable to write anything on the client side.
+2. edit ```/etc/exports``` and add a line to export this file when you host a NFS server. 
+```
+#/etc/exports
+/srv/nfs        192.168.0.0/24(no_subtree_check,rw,sync,crossmnt,fsid=0)
+/srv/nfs/test	  192.168.0.0/24(no_subtree_check,rw,sync)
+```
+3. Then on your Client machine mount the NFS with ```sudo mount HOST_IP:/srv/nfs /mnt/```
 
-### Hardening SSH access
+### Network Boot live Arch ISO (PXE)
+The instructions on the [wiki](https://wiki.archlinux.org/index.php/PXE#Network) for this are confusing for noob users like myself. Here are my instructions.
+
+To network boot you will need
+1. A copy of the Arch ISO
+2. A DHCP and TFTP server ```dnsmasq```
+3. HTTP server to serve the ISO ```darkhttpd```
+4. A Network File System (NFS). This already comes with Arch.
+
+1. Make sure your host has a static IP. My host's IP is 192.168.0.10 (via ```hostname -i```)
+
+2. Per the instructions on the wiki. Mount the Arch ISO so its mounted file structure can be later copied to another location to serve it from.
+```
+mkdir -p /mnt/archiso
+sudo mount -o loop,ro archlinux-2020.01.01-x86_64.iso /mnt/archiso
+sudo mv -r /mnt/archiso/ /srv/pxearch
+```
+
+3. Using dnsmasq allows you to configure the networking (DHCP) for the client (darkhttpd actually serves the files) and facilitate files being transfered between the PXE host and client. **Dont forget to start** and check the status of ```dnsmasq.service``` when debugging.
+```
+# Config on arch wiki but slightly modified
+# /etc/dnsmasq.conf
+port=0
+interface=enp6s0
+bind-interfaces
+# This is the range of IP addresses that devices will get
+dhcp-range=192.168.0.50,192.168.0.150,12h
+# These files are relative to the location of the tftp-root (tftp is chrooted)
+dhcp-boot=/arch/boot/syslinux/lpxelinux.0
+dhcp-option-force=209,boot/syslinux/archiso.cfg
+dhcp-option-force=210,/arch/
+# This is my router
+dhcp-option-force=66,192.168.0.1
+enable-tftp
+# this is where we are serving the arch base files from.
+tftp-root=/srv/pxearch
+```
+
+4. For TFTP to work your system needs to know to *export* the location of the filesystem (/srv/pxearch). 
+* re-export these new settings with ```exportfs -rav```
+* Start the nfs server ```sudo systemctl start nfs-server```
+```
+/etc/exports
+/srv/pxearch  192.168.0.0/24(ro,no_subtree_check)
+```
+
+To transfer the filesystem from ```/srv/pxearch``` (or any other alt location) over you should use darkhttpd to transfer the file over http.
+Start by running ```sudo darkhttpd /srv/pxearch```
+
+##### Missing pxelinux.0 file error
+if you run into an error pened to me, it can be identified by looking at ```journalctl -u dnsmasq```.
+To solve this copy the file to its expected location ```sudo cp /mnt/archiso/arch/boot/syslinux/lpxelinux.0 /srv/pxelinux/pxelinux.0```
+
+# Networking (Part Three). SSH stuff
+### Hardening SSH access (WIP)
 limit connection attempts per minute ```sudo apt-get install ufw && sudo ufw limit OpenSSH```
 
 ### Log in with no password with SSH
 1. Generate a new rsa key with ```ssh-keygen```. Do not specify a password when asked.
 2. Add this key to the list of keys that ssh will ask when authenticating ```ssh-add ~/.ssh/id_nopass_rsa```. This list is a global list of possible ssh keys that your client will try against the server.
+3. Give correct file permissions. **700 on .ssh** and **640 on authorized_keys**.
 
 ### Debugging SSH
 ##### Connection closed by 45.77.236.124 port 22
 check the system time which is one of the MANY causes for this problem. (see *My Time and Date are all fucked up*)
 
+##### Connection hangs on - 'Connecting to a.b.c.d [a.b.c.d] port 22'
+check the system time which is one of the MANY causes for this problem. (see *My Time and Date are all fucked up*)
+
+
 # User account administration
 ### Add a user
-```sudo adduser roland```
-```sudo usermod -aG sudo roland```\
--aG **A**ppend the '*sudo*' **G**roup to the user.
+* ```sudo adduser roland```
+* ```sudo usermod -aG sudo roland``` -aG **A**ppend the '*sudo*' **G**roup to the user.
 
 ### List all users
 ```cat /etc/passwd```
@@ -444,9 +644,72 @@ check the system time which is one of the MANY causes for this problem. (see *My
 ```usermod -G sudo,sftp,anothergroup roland```
 
 # Generic issues
+### Difference between & and &&
+when you string commands together you have 2 options
+* ```command1 & command2```. command 1 is run in the background AND command2 runs at the same time
+* ```command1 && command2```. command1 has to be returned 0 (no errors) BEFORE command2 starts
+* ```command1; command2```. command1 will run THEN command2 will run after (sequential, waits for 1 to finish first)
+
+### Using grep in a shell script runs for each word individually
+```
+# The problem...
+mystring = "hello world"
+grep "bleh" ${mystring}
+
+# Output:
+"hello" => no matches found
+"world" => no matches found
+```
+This is solved by piping the string into grep like you would do on the command line. [Source](https://unix.stackexchange.com/questions/163810/grep-on-a-variable)
+```
+# The solution
+mystring = "hello world"
+echo ${mystring} | grep "hello"
+```
+
+
+### Cannot write to files on NFS when its mounted through Thunar
+This happens when an ftp connection is being used. this is unsecure so you cannot write. 
+However if you know you are using a secure connection it may be because of file permissions. The following steps are debug instructions to debug that.
+1. Create a folder to permit access to ```mkdir -p /home/myNFSFolder```
+2. assign your *sftp group* access to the folder ```sudo chgrp someGroup /home/myNFSFolder```
+3. Make the fodler writable ```sudo chmod 775 /home/myNFSFolder```
+4. Set the GID for all subfolders too ```sudo chmod g+s /home/myNFSFolder```
+Make sure the user is in the correct group with the ```groups 'username'`` command and add them if not. 
+
+### Thunar Freezes when a NFS drive is connected
+Make sure ```nfs-utils``` is installed on the system. Once installed restart Thunar's daemon with ```thunar -q``` or kill it with ```sudo pkill thunar```.
+You can also try to unmount the drive with ```sudo umount -af -t nfs```
+
+### Wireless network not working (driver issues)
+These steps are relevent when you run ```lshw -c network``` and your wireless card tells your either *\*-network UNCLAIMED* or *\*-network DISABLED*
+1. Install/re-install ```linux-firmware```.
+2. Observe the output of ```lshw -c network``` and it should display ```*-network DISABLED```. If not your driver is likely not supported as it was not contained in linux firmwares packages.
+3. Enable the network with ```sudo ip link set dev wlp3s0 up```. wlp3s0 is the name of my network card. You can also turn it on through some graphical interfaces such as [cmst](https://www.archlinux.org/packages/community/x86_64/cmst/)] for [connman](https://wiki.archlinux.org/index.php/ConnMan).
+
+### StartX Debugging
+##### xf86OpenConsole: Cannot open virtual console 1 (Permission denied)
+This is caused by switching user. in particular when you log in as root then switch user.
+To fix log out (or restart) then log back in as the user you want to run the startx command on.
+
+##### startx failed to set iopl for i/o operation not permitted
+Are you missing drivers? 
+I reinstalled ```xf86-video-vesa``` and installed ```xf86-video-intel``` (for my intel intergrated graphics laptop) and this solved startx not running.
+
+Also make sure that you have a .xinitrc in your home directory. there is an example one in ```/etc/X11/xinit/xinitrc```
+
 ### Remove old boot entries (created by boot managers)
 You can do this installed in the live media off a usb or in the full environment if you need to.
 Run ```efibootmgr``` to see the list of boot entries. and then ```efibootmgr -b #### -B``` -b to specify the boot id and -B to specify delete.
+
+### Cannot remove EFI boot entries (re-appearing entries)
+If you remove a boot entry as instructed above (Remove old boot entries) and reboot and it comes back.
+This may be due to a BIOS entry called *"reserve memory for uefi boot manager"*.
+
+As i understand it this option allows the boot entries to be stored in the firmware (NVRAM) rather then on the disk.
+This means that when UEFI starts, the boot process may be looking at the firmware first and see the list of addresses and load them into the EFI directory (usually in /boot). For example the entry for grub may load itself to ```EFI/GRUB/grubx64.efi```. Though when the *'reserve memory'* option is enabled and a boot entry is removed you will not be able to observe its '.efi' file being loaded. but will be able to observe its variable being loaded when running ```efibootmgr``` to list the boot entries that EFI knows about. 
+
+A Side effect/extra note is that your boot options list (pressing f12 to boot from a specific drive) will also not detect these hidden entries.
 
 ### How to image an iso to a usb (create bootable media)
 Use dd (data duplicator).
@@ -476,11 +739,11 @@ NODE however is not the latest version. update it by installing Node Version Man
 Once installed list avaliable versions with ```nvm ls-remote``` and install a version with ```nvm install x.x.x```.
 
 ### applications showing unrecognized characters (placeholders)
-**WIP i am yet to actually solve this.**\
-A first step to this problem is to install the noto-fonts package and supplicant packages.
-* Get the standard noto fonts package ```sudo pacman -S noto-fonts noto-fonts-emoji``` 
-* Chinese character support ```sudo pacman -S noto-fonts-cjk```
-
+Install the entire noto fonts package as a fallback for fonts. In particular ```noto-fonts-cjk``` for Chinese, Japanese, and Korean support.
+```
+noto-fonts-emoji noto-fonts-cjk noto-fonts noto-fonts-extra noto-fonts
+```
+Then run ```fc-cache -vf``` to refresh your fonts and then reboot.
 ### VSCode cant save stuff as sudo
 The regular official *code* package cannot do this according to the [wiki](https://wiki.archlinux.org/index.php/Visual_Studio_Code).
 You can solve this by installing the AUR binary version thats contains proprietary stuff from microsoft [here](https://aur.archlinux.org/packages/visual-studio-code-bin/). 
@@ -515,7 +778,7 @@ I think i solved this issue by changing my .xinitrc so that it uses dbus_launch 
 ```grep 'removed' /var/log/pacman.log```
 
 ### Boot stuck on ```Reached target graphical interface```
-This is an ongoing issue that i have had with my home computer. I havent solved it yet but here is what i have done so far.
+This is an ongoing issue that i have had with my home computer. I havent solved it (it solved itself) yet but here is what i have done so far.
 * Make journalctl log bigger. this avoids journalctl being *rotated* which can display when looking at the systemctl status of some process, ie. when it freezes and you ctrl+alt+f2 to look at the status of sddm to see what its doing. ```sudo journalctl --verify``` and ```journalctl --vacuum-size=200M``` to Delete old logs for debugging.
 * Install the *nvidia* package.
 
@@ -562,11 +825,17 @@ Furthermore there are a couple ways to check for open ports.
 ```sudo lsof -i -P -n | grep LISTEN```\
 ```sudo firewall-cmd --list-ports``` and ```sudo firewall-cmd --list-services```
 
-### Errors When connecting to a ssh host and you get these errors when trying to use nano (eg. nano a > error):
+### Errors When connecting to a ssh host and you get these errors when trying to use nano (eg. nano testfile > error):
 ```ERROR: /bin/sh: 1: /usr/bin/sensible-editor: not found```
 ```ERROR: Error opening terminal: xterm-kitty.```
 ```
 # Solution
+export TERM=xterm
+```
+
+### Backspace and Tab are spaces instead when in SSH 
+```
+# ~/.bashrc
 export TERM=xterm
 ```
 
@@ -597,11 +866,18 @@ Preserve the environment variables in my bash environment\
 ```someCommand | sudo -E bash **-**```\
 Substitute the result of someCommand into '-'
 
+# Workflow
+### Using VIM in VSCode
+I am still learning VIM. I am using the VIM [extension](https://github.com/VSCodeVim/Vim) for VSC.
+
+# VIM Notes
+Come back soon. I dont know enough vim to make this yet
+
 # Screen / multiplexing
 ### Screen Basics
 A screen is essentially another tab. The number that a screen is given when creating it is its PID. You can then search for the process by using htop and typing the PID number to jump to it.
 
-* Create a screen - 
+* Create a screen - ```screen -S myscreen```
 * List all screens - ```screen -ls```
 * Re-attach to a screen - ```screen -r 1234.myscreen```
 * Leave a screen (without deleting it) - ```ctrl+a, d``` while connected to the screen press *ctrl+a* at the same time, then let go of *ctrl+a* and press *d* 
@@ -758,6 +1034,7 @@ You can check for Key IDs with either *xev* or *xbindkeys -k*
 "sleep 0.2 && xdotool click 2"
     m:0x0 + b:10   (mouse)
 ```
+* Run the config with ```xbindkeys```
 
 ### Scroll with the trackball
 Set libinput Button Scrolling Button (283) to 9 *(9 is the mouse button number)*\
@@ -768,7 +1045,6 @@ Then set libinput Scroll Method Enabled (281) to 0, 0, 1\
 # Things to learn still
 - [ ] What's Polkit?
 - [ ] QT vs GTK. configs, what uses these (openbox with which one, or both?)
-- [ ] How to install an icon theme
 - [ ] MERN Vs LAMP. Pros of using MERN stack and its applications for my projects (folio site)
   - [ ] What is a style loader
 - [ ] What is conky?
@@ -780,14 +1056,21 @@ Then set libinput Scroll Method Enabled (281) to 0, 0, 1\
 - [ ] actually learn git properly
 - [ ] VIM keys and VIM in general
 - [ ] UEFI/EFI/BIOS booting and all that stuff
+- [ ] Learn how to network boot arch for the worlds biggest flex
+- [ ] Learn About GPG keys
+- [ ] lsof command
+  - [ ] maybe netstat (lsof can replace netstat but its good to know both)
+- [x] How to install an icon theme
 - [x] Debian/Ubuntu APT manager (should come back to this one again soon)
 - [x] Difference between ```sudo apt-get update``` and ```sudo apt update```
 
 # TODO
+- [ ] Create a GPG key for [signing github commits](https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification)
 - [ ] Why do some fonts (wide fonts in particular) become unicode squares D:
 - [ ] write some notes on the arch install process. short dotpoints for quick reference
 - [ ] Configure polybar
 - [ ] Create a script to toggle between scrolling and not scrolling for my trackball mouse to make it EVEN MOAR ERGO!
+- [x] Complete a runthrough of vimtutor
 - [x] Why did my @roland account on my test server lose the ability to CD into folders (occurred after applying 'Cannot write to files on NFS')
 - [x] Experiment with the python virtual environment
 - [x] Create a React / Express / Webpack boilerplate to better understand MERN
@@ -795,7 +1078,7 @@ Then set libinput Scroll Method Enabled (281) to 0, 0, 1\
 # Non related linux things
 
 # VS Code stuff
-##### Quick and dirty fix to reformat shitty brackets propper brackets
+##### Quick and dirty fix to reformat shitty brackets to propper brackets
 ```
 distusting() {
 
@@ -863,3 +1146,25 @@ This is not a required part of the NodeJS ecosystem, rather it is a quality of l
 Used to manager the version (or versions) of node that you have installed. You can manage (have downloaded) multiple versions of NodeJS but you can only use one. NVM enables this.
 * NVM is useful to upgrade your version of node to a modern edition when using distros that dont ship modern versions of NodeJS.
   * see *Updating NPM and NODE to latest versions*
+
+# LAMP Stuff
+### Kickstart apache2 server
+1. Install the apache2 package.
+2. Create website domain at ```/var/www/MYDOMAIN.com``` and chown it to the user.
+3. Configure ```/etc/apache2/sites-available/MYDOMAIN.com.conf``` with
+```
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName MYDOMAIN
+    ServerAlias www.MYDOMAIN.com
+    ServerAlias MYDOMAIN.com
+    DocumentRoot /var/www/MYDOMAIN
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+1. Add your site in ```/etc/apache2/apache2.conf``` with ```ServerName MYDOMAIN.com ```
+2. Disable the default site ```sudo a2dissite 000-default.conf```
+3. Enable your site ```sudo a2ensite MYDOMAIN.conf```
+4. Test that your config is good with ```sudo apache2ctl configtest```
+5. Then restart your apache service ```sudo systemctl restart apache2```
