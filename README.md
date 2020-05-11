@@ -12,5 +12,5 @@ My Current configuration:
 2. [Website (to be worked on)](http://45.77.236.124/)
 
 ## TODO List
-- [ ] Develop my site to make my linux notes more modular and searchable
+- [x] Develop my site to make my linux notes more modular and searchable ([here!](https://rolandw.dev/Notes/Linux))
 - [ ] Develop a shell script that installs these dot files
