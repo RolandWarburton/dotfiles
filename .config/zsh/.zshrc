@@ -22,6 +22,10 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
 
+#NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
 # Where user-specific configurations should be written (analogous to /etc)
 export XDG_DATA_HOME="$HOME/.local"
@@ -36,9 +40,9 @@ export PYLINTHOME="${ZDOTDIR:-$HOME}/.local"
 # History
 #
 
-# if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-#   exec startx
-# fi
+ if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+   exec startx
+ fi
 
 #if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #  exec xinit
@@ -303,6 +307,12 @@ if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
     unset _ssh_agent_env
 fi
 
+# Start the ssh-agent (above is zsh stock and doesnt work)
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
+
 #
 # Terminal
 #
@@ -440,6 +450,7 @@ alias gut="git" # muh smol hands
 alias ss="sudo systemctl"
 alias r="ranger"
 alias s="sudo"
+alias ssh='TERM=xterm ssh'
 
 # Local configuration
 [[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
@@ -513,4 +524,4 @@ unfunction load-extension \
 # suggestion highlighting
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^@' autosuggest-accept # control space
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3B444B,bg=black,bold"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#fafafa,bg=#586e75,bold"
