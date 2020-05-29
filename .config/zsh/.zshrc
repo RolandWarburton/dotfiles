@@ -443,14 +443,11 @@ export WORDCHARS=${WORDCHARS/\/}
 # Aliases
 [[ -s "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 [[ -s "$HOME/.zsh_aliases.local" ]] && source "$HOME/.zsh_aliases.local"
-alias p="sudo pacman"
-alias grep="grep --color"
-alias ls="ls -h --color" # (-h human readable): print things like 1mb, 2gb, 1tb...
-alias gut="git" # muh smol hands
-alias ss="sudo systemctl"
-alias r="ranger"
-alias s="sudo"
-alias ssh='TERM=xterm ssh'
+
+# put things you type into your clipboard
+function clip() {
+	eval "$(echo "$@")" | xclip -selection c
+}
 
 # Local configuration
 [[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
