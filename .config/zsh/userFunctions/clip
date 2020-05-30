@@ -1,0 +1,5 @@
+#!/bin/sh
+# put things you type into your clipboard
+function clip() {
+	eval "$(echo "$@")" | xclip -selection c
+}

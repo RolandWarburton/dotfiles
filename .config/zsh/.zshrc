@@ -15,38 +15,67 @@
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #export CLICOLOR=1
 
+
+
+
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+
+#
+#  _____                       _
+# | ____|_  ___ __   ___  _ __| |_ ___
+# |  _| \ \/ / '_ \ / _ \| '__| __/ __|
+# | |___ >  <| |_) | (_) | |  | |_\__ \
+# |_____/_/\_\ .__/ \___/|_|   \__|___/
+#           |_|
+#
+
+# Locale
 export LC_ALL=C
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# Language
 export LANG=en_US.UTF-8
-export XDG_CONFIG_HOME="$HOME/.config"
 
-#NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# https://wiki.archlinux.org/index.php/XDG_Base_Directory
 # Where user-specific configurations should be written (analogous to /etc)
 export XDG_DATA_HOME="$HOME/.local"
-# Where user-specific non-essential (cached) data should be written (analogous to /var/cache).
+export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # move the .nv folder for OpenGL cache to better location. may not need due to above XDG_BASE dir fix
-# export __GL_SHADER_DISK_CACHE_PATH="${ZDOTDIR:-$HOME}/.cache"
+export __GL_SHADER_DISK_CACHE_PATH="${ZDOTDIR:-$HOME}/.cache"
 
+# Theme GTK to Q
+# export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# Pylint for python
 export PYLINTHOME="${ZDOTDIR:-$HOME}/.local"
+
 #
-# History
+# __  __
+# \ \/ /___  _ __ __ _
+#  \  // _ \| '__/ _` |
+#  /  \ (_) | | | (_| |
+# /_/\_\___/|_|  \__, |
+#                |___/
 #
 
- if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-   exec startx
- fi
+# Start Xorg
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+	exec startx # startx wraps xinit, use startx in 99% of cases
+fi
 
-#if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-#  exec xinit
-#fi
+#
+#  _________  _   _   ____       _   _   _
+# |__  / ___|| | | | / ___|  ___| |_| |_(_)_ __   __ _ ___
+#   / /\___ \| |_| | \___ \ / _ \ __| __| | '_ \ / _` / __|
+#  / /_ ___) |  _  |  ___) |  __/ |_| |_| | | | | (_| \__ \
+# /____|____/|_| |_| |____/ \___|\__|\__|_|_| |_|\__, |___/
+#                                                |___/
+#
 
 HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"    # The path to the history file.
 HISTSIZE=100000                           # The maximum number of events to save in the internal history.
@@ -65,19 +94,32 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing non-existent history.
 
-#
-# Autoloading functions
-#
+# Change directory without cd
+setopt AUTO_CD
 
-function fpath-prepend {
-    [[ -d "$1" ]] && fpath=($1 $fpath)
-}
-fpath-prepend "/usr/local/share/zsh-completions"
-fpath-prepend "$HOME/.local/share/zsh-completions/src"
+# Interactive comments (like bash)
+setopt INTERACTIVE_COMMENTS
+
+# Correct commands
+setopt CORRECT
+
+# Make forward-word, backward-word etc. stop at path delimiter
+export WORDCHARS=${WORDCHARS/\/}
+
+# Print message if reboot is required
+[[ -o interactive && -f "/var/run/reboot-required" ]] && print "reboot required"
+
+# Local configuration
+[[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 #
-# Completion
-#
+#     _         _                                  _      _
+#    / \  _   _| |_ ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___
+#   / _ \| | | | __/ _ \ / __/ _ \| '_ ` _ \| '_ \| |/ _ \ __/ _ \
+#  / ___ \ |_| | || (_) | (_| (_) | | | | | | |_) | |  __/ ||  __/
+# /_/   \_\__,_|\__\___/ \___\___/|_| |_| |_| .__/|_|\___|\__\___|
+#                                           |_|
+# Mostly the defaults here
 
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
@@ -155,7 +197,7 @@ zstyle ':completion:*:history-words' menu yes
 # Environmental Variables
 zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
 
-# Populate hostname completion.
+# Populate hostname completion when you are connecting to ssh
 zstyle -e ':completion:*:hosts' hosts 'reply=(
   ${=${=${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) 2> /dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
   ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2> /dev/null))"}%%\#*}
@@ -185,111 +227,104 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' l
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^[-[:alnum:]]##(.[-[:alnum:]]##)##' '*@*'
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 
-# Bind Shift + Tab to go to the previous menu item.
-# kcbt might not be defined in all terminals
-[[ -n "$terminfo[kcbt]" ]] && bindkey -M emacs "$terminfo[kcbt]" reverse-menu-complete
-bindkey '^[[1;5C' emacs-forward-word
-bindkey '^[[1;5D' emacs-backward-word
+#  _  __          _     _           _
+# | |/ /___ _   _| |__ (_)_ __   __| |___
+# | ' // _ \ | | | '_ \| | '_ \ / _` / __|
+# | . \  __/ |_| | |_) | | | | | (_| \__ \
+# |_|\_\___|\__, |_.__/|_|_| |_|\__,_|___/
+#           |___/
+#
 
-# Fix the del key not working
+# Fix ctrl+left and ctrl+right
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+# Fix the del key
 bindkey "\e[3~" delete-char
 
-# selection
-shift-arrow() {
-  ((REGION_ACTIVE)) || zle set-mark-command
-  zle $1
-}
-shift-left() shift-arrow backward-char
-shift-right() shift-arrow forward-char
-zle -N shift-left
-zle -N shift-right
-
-bindkey $terminfo[kLFT] shift-left
-bindkey $terminfo[kRIT] shift-right
-
-# goto home and end
+# Fix home and end key
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 
-#
-# External Editor
-#
+# Push command A into buffer to type command B then get A back
+bindkey "^q" push-line-or-edit
 
+# selection
+# shift-arrow() {
+#   ((REGION_ACTIVE)) || zle set-mark-command
+#   zle $1
+#   echo "hello"
+# }
+# shift-left() shift-arrow backward-char
+# shift-right() shift-arrow forward-char
+# zle -N shift-left
+# zle -N shift-right
+
+# bindkey $terminfo[kLFT] shift-left
+# bindkey $terminfo[kRIT] shift-right
+
+
+#  _____      _                        _   _____    _ _ _
+# | ____|_  _| |_ ___ _ __ _ __   __ _| | | ____|__| (_) |_ ___  _ __
+# |  _| \ \/ / __/ _ \ '__| '_ \ / _` | | |  _| / _` | | __/ _ \| '__|
+# | |___ >  <| ||  __/ |  | | | | (_| | | | |__| (_| | | || (_) | |
+# |_____/_/\_\\__\___|_|  |_| |_|\__,_|_| |_____\__,_|_|\__\___/|_|
+#
 # Allow command line editing in an external editor.
+
 autoload -Uz edit-command-line
 zle -N edit-command-line
+bindkey "^E" edit-command-line
 
-bindkey -M emacs "\C-X\C-E" edit-command-line
+#  ____                            _   
+# |  _ \ _ __ ___  _ __ ___  _ __ | |_ 
+# | |_) | '__/ _ \| '_ ` _ \| '_ \| __|
+# |  __/| | | (_) | | | | | | |_) | |_ 
+# |_|   |_|  \___/|_| |_| |_| .__/ \__|
+#                           |_|        
+# Custom prompt. May be overwritten if im using powerline10k
 
-#
-# Prompt
-#
+# Enable the prompt string (specifically allow ${} in the prompt)
+setopt prompt_subst
 
-function _set-prompt-symbol {
-    local -r burger=$(print -n "\xF0\x9F\x8D\x94")
-    local -r coffee=$(print -n "\xE2\x98\x95")
-    local -r beer=$(print -n "\xF0\x9F\x8D\xBA")
-    local -r hour=$(strftime %-k $EPOCHSECONDS)
-    if (( $hour >= 8 && $hour < 16 )); then
-        # zsh may incorrectly determine the width of these characters when
-        # redrawing the prompt. Force width to be 2 as these characters are
-        # double-width
-        _prompt_symbol="%2{$coffee%}"
-    elif (( $hour >= 16 && $hour < 19 )); then
-        _prompt_symbol="%2{$burger%}"
-    else
-        _prompt_symbol="%2{$beer%}"
-    fi
+# vcs_info is a function that populates a variable for you. 
+# This variable can then be used inside your prompt to print information.
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+precmd() {
+	vcs_info
 }
 
-function set-prompt {
-    setopt LOCAL_OPTIONS
-    unsetopt XTRACE KSH_ARRAYS
-    prompt_opts=(cr percent subst)
+# * Style git information string
+# * formats = git when its not doing anything
+# * actionformats = when git is doing something (eg a merge or rebase)
+# %s The current version control system, like git or svn
+# %r The name of the root directory of the repository
+# %SThe current path relative to the repository root directory
+# %b Branch information, like master
+# %m In case of Git, show information about stashes
+# %u Show unstaged changes in the repository
+# %c Show staged changes in the repository 
+zstyle ':vcs_info:git*' formats "%b"
 
-    # Load required functions.
-    autoload -Uz add-zsh-hook vcs_info colors && colors
-
-    # Add hook for calling vcs_info before each command.
-    add-zsh-hook precmd vcs_info
-
-    # Set vcs_info parameters.
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:*' formats ' %F{red}%b%c%f'
-
-    # Prefix to use when connected through SSH
-    local -r ssh_prefix='%{$fg_bold[green]%}%n@%m%{$reset_color%}:'
-
-    # Display fancy symbol on darwin
-    _prompt_symbol='$'
-    if [[ "$OSTYPE" == darwin* && \
-              -z "$INSIDE_EMACS" && \
-              -z "$ALACRITTY_LOG" ]]; then
-        zmodload -F zsh/datetime b:strftime p:EPOCHSECONDS
-        add-zsh-hook precmd _set-prompt-symbol
-    fi
-
-    # Define prompts.
-    # PROMPT="${SSH_TTY:+$ssh_prefix}"'%{$fg_bold[blue]%}%~${vcs_info_msg_0_}%{$reset_color%}$_prompt_symbol '
-    PROMPT="${SSH_TTY:+$ssh_prefix}"'%B%F{255}%n@%m%f %F{blue}%2~${vcs_info_msg_0_}%f%b$_prompt_symbol '
-}
-
-autoload -Uz promptinit && promptinit
-
-case "$TERM" in
-    dumb)
-        prompt off
-        unsetopt ZLE
-        ;;
-    *)
-        setopt PROMPT_SUBST
-        set-prompt
-        ;;
-esac
+# * Actual prompt is defined here
+# %n $USERNAME
+# %M Full hostname
+# %m Partial hostname
+# %# Privilege mode
+# %2d Last 2 directories
+PROMPT='%n@%M %1d ${vcs_info_msg_0_}%# '
+# PROMPT="${SSH_TTY:+$ssh_prefix}"'%{$fg_bold[blue]%}%~${vcs_info_msg_0_}%{$reset_color%}$_prompt_symbol '
+# PROMPT="${SSH_TTY:+$ssh_prefix}"'%B%F{255}%n@%m%f %F{blue}%2~${vcs_info_msg_0_}%f%b$_prompt_symbol '
 
 #
-# SSH
-#
+#  ____ ____  _   _ 
+# / ___/ ___|| | | |
+# \___ \___ \| |_| |
+#  ___) |__) |  _  |
+# |____/____/|_| |_|
+#                 
+
 
 # Start ssh-agent if not started.
 if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
@@ -310,12 +345,16 @@ fi
 # Start the ssh-agent (above is zsh stock and doesnt work)
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
-  ssh-add
 fi
 
 #
-# Terminal
+# __        ___           _               
+# \ \      / (_)_ __   __| | _____      __
+#  \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / /
+#   \ V  V / | | | | | (_| | (_) \ V  V / 
+#    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/                                       
 #
+# Terminal window. Mostly defaults
 
 # Sets the terminal window title.
 function set-window-title {
@@ -408,9 +447,14 @@ case "$TERM" in
         ;;
 esac
 
-#
-# Emacs
-#
+
+#  _____                          
+# | ____|_ __ ___   __ _  ___ ___ 
+# |  _| | '_ ` _ \ / _` |/ __/ __|
+# | |___| | | | | | (_| | (__\__ \
+# |_____|_| |_| |_|\__,_|\___|___/
+# 
+# I dont use Emacs but its part of the default config so..
 
 # Tell Emacs about the current directory
 if [[ -n "$INSIDE_EMACS" ]]; then
@@ -421,41 +465,39 @@ if [[ -n "$INSIDE_EMACS" ]]; then
     print -P "\033AnSiTc %d"
 fi
 
-#
-# Misc
-#
 
-# Change directory without cd
-setopt AUTO_CD
+#     _    _ _                     
+#    / \  | (_) __ _ ___  ___  ___ 
+#   / _ \ | | |/ _` / __|/ _ \/ __|
+#  / ___ \| | | (_| \__ \  __/\__ \
+# /_/   \_\_|_|\__,_|___/\___||___/
+#                                 
 
-# Interactive comments (like bash)
-setopt INTERACTIVE_COMMENTS
-
-# Correct commands
-setopt CORRECT
-
-# Make forward-word, backward-word etc. stop at path delimiter
-export WORDCHARS=${WORDCHARS/\/}
-
-# Print message if reboot is required
-[[ -o interactive && -f "/var/run/reboot-required" ]] && print "reboot required"
-
-# Aliases
+# Load Aliases from config file
 [[ -s "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 [[ -s "$HOME/.zsh_aliases.local" ]] && source "$HOME/.zsh_aliases.local"
 
-# put things you type into your clipboard
-function clip() {
-	eval "$(echo "$@")" | xclip -selection c
+#  _____      _                 _                 
+# | ____|_  _| |_ ___ _ __  ___(_) ___  _ __  ___ 
+# |  _| \ \/ / __/ _ \ '_ \/ __| |/ _ \| '_ \/ __|
+# | |___ >  <| ||  __/ | | \__ \ | (_) | | | \__ \
+# |_____/_/\_\\__\___|_| |_|___/_|\___/|_| |_|___/
+#
+# ZSH brand extensions
+
+function fpath-prepend {
+    [[ -d "$1" ]] && fpath=($1 $fpath)
 }
 
-# Local configuration
-[[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+# Load ZSH function path modules
+fpath-prepend "/usr/local/share/zsh-completions"
+fpath-prepend "$HOME/.local/share/zsh-completions/src"
+fpath-prepend "$HOME/.config/zsh/userFunctions" # Load my own functions
 
-#
-# Extensions
-#
+# * Autoload userFunctions
+autoload clip
 
+# * ZSH default extensions
 function load-extension {
     for extension in "$@"; do
         if [[ -s "$extension" ]]; then
@@ -515,10 +557,30 @@ unfunction load-extension \
            load-syntax-highlighting \
            load-history-substring-search \
            fpath-prepend \
-           set-prompt
 
-# Extensions
-# suggestion highlighting
+#  ____  _             _           
+# |  _ \| |_   _  __ _(_)_ __  ___ 
+# | |_) | | | | |/ _` | | '_ \/ __|
+# |  __/| | |_| | (_| | | | | \__ \
+# |_|   |_|\__,_|\__, |_|_| |_|___/
+#                |___/          
+#    
+# Extensions that dont come with ZSH
+
+# * suggestion highlighting
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^@' autosuggest-accept # control space
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#fafafa,bg=#586e75,bold"
+
+# * Powerline10k
+source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
