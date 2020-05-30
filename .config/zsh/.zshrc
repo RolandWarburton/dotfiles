@@ -1,28 +1,3 @@
-## Lines configured by zsh-newuser-install
-#HISTFILE=~/.histfile
-#HISTSIZE=5000
-#SAVEHIST=5000
-#unsetopt beep
-## End of lines configured by zsh-newuser-install
-## The following lines were added by compinstall
-#zstyle :compinstall filename '/home/roland/.zshrc'
-
-#autoload -Uz compinit
-##compinit
-## End of lines added by compinstall
-##PROMPT='%M:%1~ %n%# '
-#PROMPT='[%n@%m %1~]# '
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#export CLICOLOR=1
-
-
-
-
-# NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-
 #
 #  _____                       _
 # | ____|_  ___ __   ___  _ __| |_ ___
@@ -570,12 +545,12 @@ unfunction load-extension \
 #    
 # Extensions that dont come with ZSH
 
-# * suggestion highlighting
+# * ===== suggestion highlighting ============================================
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^@' autosuggest-accept # control space
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#fafafa,bg=#586e75,bold"
 
-# * Powerline10k
+# * ===== Powerline10k =======================================================
 source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
@@ -587,3 +562,7 @@ source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# * ===== NVM ================================================================
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
