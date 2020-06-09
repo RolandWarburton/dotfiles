@@ -1,0 +1,19 @@
+#tabbrowser-arrowscrollbox {
+	--tab-min-width: 20px;
+}
+
+#titlebar {
+	/* the titlebar of tabs */
+}
+
+#tabbrowser-tabs {
+	/* container of tabs */
+}
+
+.tabbrowser-tab {
+	/* tab styles */
+}
+
+:root {
+	/* variables go here */
+}
