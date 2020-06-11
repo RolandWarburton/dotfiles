@@ -24,3 +24,15 @@ colors:
     magenta: '0xFF22FF'
     cyan:    '0x22FFFF'
     white:   '0xFFFFFF'
+
+  font:
+    normal:
+        family: Hack-Regular
+        style: Regular
+    bold:
+      family: Hack-Bold
+      style: Bold
+    Italic:
+      family: Hack-Italic
+      style: Italic
+
