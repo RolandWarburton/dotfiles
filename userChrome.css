@@ -1,19 +1,72 @@
-#tabbrowser-arrowscrollbox {
-	--tab-min-width: 20px;
+/* Tab width */
+.tabbrowser-tab[fadein]:not([pinned]) {
+	min-width: 10px !important;
 }
 
-#titlebar {
-	/* the titlebar of tabs */
+/* Tab selected */
+.tab-background-middle[selected="true"],
+.tabbrowser-tab[selected="true"],
+.tab-background-middle[selected="true"]:hover,
+.tabbrowser-tab[selected="true"]:hover {
+	background: #121212 !important;
+	color: #dedede !important;
 }
 
-#tabbrowser-tabs {
-	/* container of tabs */
+.tab-close-button {
+	display: none;
 }
 
-.tabbrowser-tab {
-	/* tab styles */
-}
+/* Tab hover */
+/* .tabbrowser-tab[selected="true"][pinned="true"]:hover,
+.tabbrowser-tab:not([pinned]):hover,
+.tabs-newtab-button:hover {
+	border-top: 0px !important;
+} */
 
-:root {
-	/* variables go here */
-}
+/* Tab line */
+/* .tabbrowser-tab *,
+.tabs-newtab-button * {
+	background: none !important;
+	-moz-appearance: none !important;
+} */
+
+/* .tabbrowser-arrowscrollbox {
+	background: #000 !important;
+} */
+
+/* URL bar */
+/* #urlbar,
+.searchbar-textbox,
+urlbar-container {
+	background-color: #fff !important;
+	color: #000 !important;
+	text-shadow: none !important;
+	border: 0px !important;
+	box-shadow: none !important;
+} */
+
+/* #nav-bar[id],
+#PersonalToolbar[id],
+#web-developer-toolbar[id],
+#navigator-toolbox[tabsontop="true"] > #nav-bar[id],
+#navigator-toolbox[tabsontop="true"]:not([customizing])
+	> #nav-bar[collapsed="true"][id]
+	+ toolbar,
+#navigator-toolbox[tabsontop="true"]:not([customizing])
+	> #nav-bar[collapsed="true"]
+	+ #customToolbars
+	+ #PersonalToolbar[id],
+#navigator-toolbox[tabsontop="false"] > #nav-bar[id],
+#navigator-toolbox[tabsontop="false"]:not([customizing])
+	> #nav-bar[collapsed="true"][id]
+	+ toolbar,
+#navigator-toolbox[tabsontop="false"]:not([customizing])
+	> #nav-bar[collapsed="true"]
+	+ #customToolbars
+	+ #PersonalToolbar[id] {
+	background-image: none !important;
+	background: #fff !important;
+	margin-top: 0px !important;
+	border-top: 0px !important;
+	border-bottom: 0px !important;
+} */
