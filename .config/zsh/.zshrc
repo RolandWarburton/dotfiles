@@ -16,7 +16,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Where user-specific configurations should be written (analogous to /etc)
-export XDG_DATA_HOME="$HOME/.local"
+export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
@@ -291,7 +291,7 @@ zstyle ':vcs_info:git*' formats "%b"
 # %m Partial hostname
 # %# Privilege mode
 # %2d Last 2 directories
-PROMPT='%n@%M %1d ${vcs_info_msg_0_}%# '
+#PROMPT='%n@%M %1d ${vcs_info_msg_0_}%# '
 # PROMPT="${SSH_TTY:+$ssh_prefix}"'%{$fg_bold[blue]%}%~${vcs_info_msg_0_}%{$reset_color%}$_prompt_symbol '
 # PROMPT="${SSH_TTY:+$ssh_prefix}"'%B%F{255}%n@%m%f %F{blue}%2~${vcs_info_msg_0_}%f%b$_prompt_symbol '
 
@@ -305,25 +305,35 @@ PROMPT='%n@%M %1d ${vcs_info_msg_0_}%# '
 
 
 # Start ssh-agent if not started.
-if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
-    # Set the path to the environment file if not set by another module.
-    _ssh_agent_env="${_ssh_agent_env:-${TMPDIR:-/tmp}/ssh-agent.env.$UID}"
+#if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
+#    # Set the path to the environment file if not set by another module.
+#    _ssh_agent_env="${_ssh_agent_env:-${TMPDIR:-/tmp}/ssh-agent.env.$UID}"
+#
+#    # Export environment variables.
+#    source "$_ssh_agent_env" 2> /dev/null
+#
+#    # Start ssh-agent if not started.
+#    if ! ps -U "$LOGNAME" -o pid,ucomm | grep -q -- "${SSH_AGENT_PID:--1} ssh-agent"; then
+#        eval "$(ssh-agent | sed '/^echo /d' | tee "$_ssh_agent_env")"
+#    fi
+#
+#    unset _ssh_agent_env
+#fi
 
-    # Export environment variables.
-    source "$_ssh_agent_env" 2> /dev/null
-
-    # Start ssh-agent if not started.
-    if ! ps -U "$LOGNAME" -o pid,ucomm | grep -q -- "${SSH_AGENT_PID:--1} ssh-agent"; then
-        eval "$(ssh-agent | sed '/^echo /d' | tee "$_ssh_agent_env")"
-    fi
-
-    unset _ssh_agent_env
-fi
+# Start the agent
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
 # Start the ssh-agent (above is zsh stock and doesnt work)
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
+#if [ -z "$SSH_AUTH_SOCK" ] ; then
+#  eval `ssh-agent -s`
+#fi
+
+# Add my nopass ssh key to the agent
+if [ -n "$SSH_AUTH_SOCK" ] ; then
+	eval `ssh-agent -s`
+	eval `ssh-add $HOME/.ssh/id_nopass_rsa`
 fi
+
 
 #
 # __        ___           _               
@@ -551,17 +561,39 @@ bindkey '^@' autosuggest-accept # control space
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#fafafa,bg=#586e75,bold"
 
 # * ===== Powerline10k =======================================================
-source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
+#source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+#[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+
+#powerline-daemon -q
+#. /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# powerline-shell pip package
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
 fi
+
 
 # * ===== NVM ================================================================
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
