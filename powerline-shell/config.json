@@ -19,8 +19,8 @@
 	"outer_padding": 20,
 	"dividers": "soft",
 	"cwd": {
-		"max_dir_size": 3,
-		"full_cwd": false
+		"max_depth": 3,
+		"full_cwd": true
 	},
 	"theme": "~/.config/powerline-shell/themes/default.py"
 }
