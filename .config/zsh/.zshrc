@@ -331,7 +331,7 @@ zstyle ':vcs_info:git*' formats "%b"
 # Add my nopass ssh key to the agent
 if [ -n "$SSH_AUTH_SOCK" ] ; then
 	eval `ssh-agent -s`
-	eval `ssh-add $HOME/.ssh/id_nopass_rsa`
+	eval `ssh-add -q $HOME/.ssh/id_nopass_rsa`
 fi
 
 
