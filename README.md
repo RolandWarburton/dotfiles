@@ -17,3 +17,4 @@ My Current configuration:
 
 * [x] Develop my site to make my linux notes more modular and searchable ([here!](https://blog.rolandw.dev/notes/linux))
 * [ ] Develop a shell script that installs these dot files
+
