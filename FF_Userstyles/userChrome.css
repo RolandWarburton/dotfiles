@@ -1,0 +1,27 @@
+/* Prevent scrolling */
+/* Tab width */
+.tabbrowser-tab[fadein]:not([pinned]) {
+	min-width: 10px !important;
+}
+
+.tab-close-button {
+	display: none;
+}
+
+* .tab-content {
+	overflow: hidden !important;
+	padding: 0px 3px !important;
+}
+
+tab-icon-image:not([pinned]) {
+	margin-inline-end: 0px !important;
+}
+
+tab-icon-image {
+	margin-inline: 6px !important;
+	/* margin: 0px !important; */
+}
+
+.tab-icon-image:not([pinned]) {
+	margin-inline-end: 6px !important;
+}
