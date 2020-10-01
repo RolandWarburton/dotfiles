@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://openbox.org/">
+  <menu id="root-menu" label="Applications">
+    <item label="File Manager" icon="/home/roland/.config/obmenu-generator/icons/a384074033dfc3ebebb1a8a39d2be8a6.png"><action name="Execute"><command><![CDATA[thunar]]></command></action></item>
+    <item label="Terminal" icon="/home/roland/.config/obmenu-generator/icons/4bba506b8ff42c4bfb64152ae0997ac9.png"><action name="Execute"><command><![CDATA[kitty]]></command></action></item>
+  <separator label="Categories"/>
+  <separator/>
+  <menu id="0.396924368179501" icon="/home/roland/.config/obmenu-generator/icons/36b57deda34c347e69eaed83ac7c8754.png" label="Advanced Settings">
+  <menu id="0.962059647168161" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png" label="Obmenu-Generator">
+    <item label="Menu Schema" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/obmenu-generator/schema.pl]]></command></action></item>
+    <item label="Menu Config" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/obmenu-generator/config.pl]]></command></action></item>
+  <separator/>
+    <item label="Generate a static menu" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png"><action name="Execute"><command><![CDATA[obmenu-generator -s -c]]></command></action></item>
+    <item label="Generate a static menu with icons" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png"><action name="Execute"><command><![CDATA[obmenu-generator -s -i -c]]></command></action></item>
+  <separator/>
+    <item label="Generate a dynamic menu" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png"><action name="Execute"><command><![CDATA[obmenu-generator -p]]></command></action></item>
+    <item label="Generate a dynamic menu with icons" icon="/home/roland/.config/obmenu-generator/icons/8ff4b3d65cf1c3a91431edca5430a860.png"><action name="Execute"><command><![CDATA[obmenu-generator -p -i]]></command></action></item>
+  <separator/>
+    <item label="Refresh cache" icon="/home/roland/.config/obmenu-generator/icons/0d3dfd63e106b9729536e30d9c695d7c.png"><action name="Execute"><command><![CDATA[obmenu-generator -d]]></command></action></item>
+  </menu>
+  <menu id="0.768096630732668" icon="/home/roland/.config/obmenu-generator/icons/cbd33e85d4e0834359519a4e282b2aeb.png" label="Openbox">
+    <item label="Openbox Autostart" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/autostart]]></command></action></item>
+    <item label="Openbox RC" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/rc.xml]]></command></action></item>
+    <item label="Openbox Menu" icon="/home/roland/.config/obmenu-generator/icons/605b74cc36ab459c82591cec402774b1.png"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/menu.xml]]></command></action></item>
+    <item label="Reconfigure Openbox" icon="/home/roland/.config/obmenu-generator/icons/cbd33e85d4e0834359519a4e282b2aeb.png"><action name="Execute"><command><![CDATA[openbox --reconfigure]]></command></action></item>
+  </menu>
+  </menu>
+  <separator/>
+    <item label="Lock" icon="/home/roland/.config/obmenu-generator/icons/4c8321a75ca583aed86fefc054a0d4cf.png"><action name="Execute"><command><![CDATA[xscreensaver-command -lock]]></command></action></item>
+    <item label="Exit" icon="/home/roland/.config/obmenu-generator/icons/00abd3c2943553016f5374573c69bd53.png"><action name="Exit"/></item>
+  </menu>
+</openbox_menu>
