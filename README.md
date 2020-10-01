@@ -11,7 +11,8 @@ My Current configuration:
 
 ## Resources
 
-1. [Linux Notes](https://gist.github.com/RolandWarburton/33a44ba246da577cee2f16da502d7464)
+1. [Linux Notes](https://blog.rolandw.dev/notes/linux/)
+2. [ZSH tidbits](http://zzapper.co.uk/zshtips.html)
 
 ## TODO List
 
