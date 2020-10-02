@@ -12,6 +12,7 @@ alias docker="sudo docker"
 alias docker-compose="sudo docker-compose"
 alias c="xclip -selection clipboard"
 alias df="df -h"
+alias swinvpn="sudo openconnect vpn.swin.edu.au --user=102106751 --passwd-on-stdin < /home/roland/passwords/swinburne.txt"
 alias pwdc="pwd | c"
 alias nopass="cat ~/.ssh/id_nopass_rsa.pub"
 alias mkhttp="python -m http.server"
@@ -61,3 +62,11 @@ hash -d systemd=/etc/systemd/system
 hash -d swinburne=$HOME/Documents/Swinburne
 hash -d projects=$HOME/Documents/Projects
 hash -d knowledge=$HOME/Documents/knowledge
+
+# Directory hashes for FreeBSD
+if freebsd-version 2> /dev/null
+then
+	echo "test"
+	hash -d etc=/usr/local/etc
+	hash -d var=/usr/local/var
+fi

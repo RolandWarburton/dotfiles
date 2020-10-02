@@ -23,7 +23,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=C
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
+export ZDOTDIR=$HOME
+export TERM=screen-256color
 export PATH=$HOME/bin:$PATH
 
 #  _  __          _     _           _
@@ -96,7 +97,7 @@ export EDITOR=$(which vim)
 # Xorg
 
 # Start Xorg
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+if [ -v  $DISPLAY  ] && systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     exec startx # startx wraps xinit, use startx in 99% of cases
 fi
 
