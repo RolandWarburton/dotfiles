@@ -17,6 +17,9 @@ alias pwdc="pwd | c"
 alias nopass="cat ~/.ssh/id_nopass_rsa.pub"
 alias mkhttp="python -m http.server"
 alias pubip="curl ifconfig.me"
+alias activate="source bin/activate"
+alias d=docker
+alias pspretty="docker ps --format '{{.ID}}\t\t{{.Names}}\t\t{{.Status}}\t\t{{.Networks}}'"
 
 # If LSD is installed then use those
 if which lsd >/dev/null
