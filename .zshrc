@@ -24,7 +24,7 @@ export LC_ALL=C
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export ZDOTDIR=$HOME
-export TERM=screen-256color
+# export TERM=screen-256color
 export PATH=$HOME/bin:$PATH
 
 #  _  __          _     _           _
@@ -35,13 +35,125 @@ export PATH=$HOME/bin:$PATH
 #           |___/
 # Keybinds
 
+# ? took all of these from the below link. saved my ass and fixed my keys not working in tmux!
+# https://github.com/RichiH/zshrc/blob/master/.zshrc
+if [[ "$TERM" != emacs ]]; then
+	[[ -z "$terminfo[kdch1]" ]]        || bindkey -M emacs "$terminfo[kdch1]"       delete-char
+	[[ -z "$terminfo[khome]" ]]        || bindkey -M emacs "$terminfo[khome]"       beginning-of-line
+	[[ -z "$terminfo[kend]"  ]]        || bindkey -M emacs "$terminfo[kend]"        end-of-line
+	[[ -z "$terminfo[kich1]" ]]        || bindkey -M emacs "$terminfo[kich1]"       overwrite-mode
+	[[ -z "$terminfo[kdch1]" ]]        || bindkey -M vicmd "$terminfo[kdch1]"       vi-delete-char
+	[[ -z "$terminfo[khome]" ]]        || bindkey -M vicmd "$terminfo[khome]"       vi-beginning-of-line
+	[[ -z "$terminfo[kend]"  ]]        || bindkey -M vicmd "$terminfo[kend]"        vi-end-of-line
+	[[ -z "$terminfo[kich1]" ]]        || bindkey -M vicmd "$terminfo[kich1]"       overwrite-mode
+
+	[[ -z "$terminfo[cuu1]"  ]]        || bindkey -M viins "$terminfo[cuu1]"        vi-up-line-or-history
+	[[ -z "$terminfo[cuf1]"  ]]        || bindkey -M viins "$terminfo[cuf1]"        vi-forward-char
+	[[ -z "$terminfo[kcuu1]" ]]        || bindkey -M viins "$terminfo[kcuu1]"       vi-up-line-or-history
+	[[ -z "$terminfo[kcud1]" ]]        || bindkey -M viins "$terminfo[kcud1]"       vi-down-line-or-history
+	[[ -z "$terminfo[kcuf1]" ]]        || bindkey -M viins "$terminfo[kcuf1]"       vi-forward-char
+	[[ -z "$terminfo[kcub1]" ]]        || bindkey -M viins "$terminfo[kcub1]"       vi-backward-char
+
+	# ncurses stuff
+	[[ "$terminfo[kcuu1]" == "O"* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" up-line-or-history
+	[[ "$terminfo[kcud1]" == "O"* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" down-line-or-history
+	[[ "$terminfo[kcuf1]" == "O"* ]] && bindkey -M viins "${terminfo[kcuf1]/O/[}" vi-forward-char
+	[[ "$terminfo[kcub1]" == "O"* ]] && bindkey -M viins "${terminfo[kcub1]/O/[}" vi-backward-char
+	[[ "$terminfo[khome]" == "O"* ]] && bindkey -M viins "${terminfo[khome]/O/[}" beginning-of-line
+	[[ "$terminfo[kend]"  == "O"* ]] && bindkey -M viins "${terminfo[kend]/O/[}"  end-of-line
+	[[ "$terminfo[khome]" == "O"* ]] && bindkey -M emacs "${terminfo[khome]/O/[}" beginning-of-line
+	[[ "$terminfo[kend]"  == "O"* ]] && bindkey -M emacs "${terminfo[kend]/O/[}"  end-of-line
+fi
+
+case "$TERM" in
+	linux)	# Linux console
+		bindkey '\e[1~'   beginning-of-line      # Home 
+		bindkey '\e[4~'   end-of-line            # End  
+		bindkey '\e[3~'   delete-char            # Del
+		bindkey '\e[2~'   overwrite-mode         # Insert  
+	;;
+	screen)
+		bindkey '\e[1~'   beginning-of-line      # Home
+		bindkey '\e[4~'   end-of-line            # End
+		bindkey '\e[3~'   delete-char            # Del
+		bindkey '\e[2~'   overwrite-mode         # Insert
+		bindkey '\e[7~'   beginning-of-line      # Home
+		bindkey '\e[8~'   end-of-line            # End
+		bindkey '\eOc'    forward-word           # ctrl cursor right
+		bindkey '\eOd'    backward-word          # ctrl cursor left
+		bindkey '\e[3~'   backward-delete-char   # This should not be necessary!
+	;;
+	rxvt)
+		bindkey '\e[7~'   beginning-of-line      # Home
+		bindkey '\e[8~'   end-of-line            # End
+		bindkey '\eOc'    forward-word           # ctrl cursor right
+		bindkey '\eOd'    backward-word          # ctrl cursor left
+		bindkey '\e[3~'   backward-delete-char   # This should not be necessary!
+		bindkey '\e[2~'   overwrite-mode         # Insert
+	;;
+	xterm*)
+		bindkey '\e[H'    beginning-of-line      # Home
+		bindkey '\e[F'    end-of-line            # End
+		bindkey '\e[3~'   delete-char            # Del
+		bindkey '\e[2~'   overwrite-mode         # Insert
+		bindkey "^[[5C"   forward-word           # ctrl cursor right
+		bindkey "^[[5D"   backward-word          # ctrl cursor left
+		bindkey "^[[1;5C" forward-word           # ctrl cursor right
+		bindkey "^[[1;5D" backward-word          # ctrl cursor left
+	;;
+	sun)
+		bindkey '\e[214z' beginning-of-line      # Home
+		bindkey '\e[220z' end-of-line            # End
+		bindkey '^J'      delete-char            # Del
+		bindkey '^H'      backward-delete-char   # Backspace
+		bindkey '\e[247z' overwrite-mode         # Insert
+	;;
+esac
+
+# bindkey -e; bindkey ' ' magic-space # do i want to use this, again?
+
+# look at http://www.michael-prokop.at/computer/config/.zsh/zsh_keybindings for a partial list of keys
+bindkey '^R'    history-incremental-search-backward   # ctrl-r
+bindkey '^t'    expand-or-complete-prefix
+bindkey "^[[5~" history-beginning-search-backward     # PgUp for history search
+bindkey '^[[6~' history-beginning-search-forward      # PgDown for history search
+bindkey '^[[3~' delete-char                           # Backsapce
+bindkey '^[[H'  beginning-of-line
+bindkey '^[[F'  end-of-line
+
+bindkey '^[#'   pound-insert                          # toggle a hash pound in front of the edit buffer and accept-line
+bindkey '^f'    push-line                             # push command, pop automagically after next <CR>
+#bindkey '^Z'    undo                                  # undo changes on zle
+bindkey -s '^B' " &\n"                                # run in background
+bindkey -s '^Z' "fg\n"                                # fetch background job into foreground
+
+# insert Unicode character
+autoload      insert-unicode-char
+zle -N        insert-unicode-char
+bindkey '^xi' insert-unicode-char
+
+# "ctrl-e D" to insert the actual datetime YYYY/MM
+              __insert-datetime-directory() { BUFFER="$BUFFER$(date '+%Y/%m')"; CURSOR=$#BUFFER; }
+zle -N        __insert-datetime-directory
+bindkey '^eD' __insert-datetime-directory
+
+# "ctrl-e d" to insert the actual datetime YYYY-MM-DD--hh-mm-ss-TZ
+              __insert-datetime-default() { BUFFER="$BUFFER$(date '+%F--%H-%M-%S-%Z')"; CURSOR=$#BUFFER; }
+zle -N        __insert-datetime-default
+bindkey '^ed' __insert-datetime-default
+
+# "ctrl-e w" to delete to prior whitespace
+autoload -U   delete-whole-word-match
+zle -N        delete-whole-word-match
+bindkey "^ew" delete-whole-word-match
+
+# "ctrl-e ." to insert last typed word again
+              __insert-last-typed-word() { zle insert-last-word -- 0 -1 };
+zle -N        __insert-last-typed-word;
+bindkey "^e." __insert-last-typed-word
+
 bindkey "$terminfo[kcuu1]" up-line-or-history # Up
 bindkey "$terminfo[kcud1]" down-line-or-history # Down
-
-if [[ "$TERM" != emacs ]]; then
-    [[ -z "$terminfo[khome]" ]] || bindkey -M emacs "$terminfo[khome]" beginning-of-line
-    [[ -z "$terminfo[kend]" ]] || bindkey -M emacs "$terminfo[kend]" end-of-line
-fi
 
 # Fix ctrl+left and ctrl+right
 bindkey "^[[1;5C" forward-word
@@ -50,21 +162,12 @@ bindkey "^[[1;5D" backward-word
 # Fix the del key
 bindkey "\e[3~" delete-char
 
-# selection
-shift-arrow() {
-  ((REGION_ACTIVE)) || zle set-mark-command
-  zle $1
-}
-for key  kcap seq        widget (
-    left  LFT $'\e[1;2D' backward-char
-    right RIT $'\e[1;2C' forward-char
-    up    ri  $'\e[1;2A' up-line-or-history
-    down  ind $'\e[1;2B' down-line-or-history
-  ) {
-  functions[shift-$key]="shift-arrow $widget"
-  zle -N shift-$key
-  bindkey ${terminfo[k$kcap]-$seq} shift-$key
-}
+# ! This is important for making HOME and END keys work - Roland
+bindkey '\e[1~'   beginning-of-line      # Home 
+bindkey '\e[4~'   end-of-line            # End  
+bindkey '\e[3~'   delete-char            # Del
+bindkey '\e[2~'   overwrite-mode         # Insert  
+
 #
 #  _____                       _
 # | ____|_  ___ __   ___  _ __| |_ ___
