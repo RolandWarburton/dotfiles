@@ -1,0 +1,52 @@
+#!/usr/bin/sh
+
+# Loop through arguments and process them
+for arg in "$@"; do
+	case $arg in
+	-w | --word)
+		WORD="$2"
+		shift # Remove argument name from processing
+		;;
+	*) ;;
+	esac
+done
+
+padBorder() {
+	# pad the border
+	for ((c = 0; c < $1; c++)); do
+		echo -ne "$2"
+	done
+}
+
+# length of the word
+STRLEN=$(echo -n $WORD | wc -m)
+# space on each side
+STRSPACE=$(($STRLEN / "2"))
+[[ "$STRSPACE" -gt "5" ]] && STRSPACE=5
+echo "$STRLEN"
+
+PADSPACE=0
+
+# If the word is ODD then it needs a pad to make it even
+ISODD=$(($STRLEN % 2))
+[[ "$ISODD" == "0" ]] && ODDPADD=1 || ODDPADD=0
+
+# ########################
+padBorder $(($STRSPACE + $STRLEN + $STRSPACE)) "#"
+printf "\n"
+
+# Dont print the end of the pad border if the string is short
+[[ "$STRLEN" -gt "2" ]] && printf "#" || printf ""
+
+padBorder $(($STRSPACE - 1)) " " # space the border out
+printf "$WORD"                   # print the word
+padBorder $(($STRSPACE - 1)) " " # space the border out
+
+# Dont print the end of the pad border if the string is short
+[[ "$STRLEN" -gt "2" ]] && printf "#" || printf ""
+
+printf "\n"
+padBorder $(($STRSPACE + $STRLEN + $STRSPACE)) "#"
+# ########################
+
+printf "\n"
