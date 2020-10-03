@@ -23,7 +23,6 @@ STRLEN=$(echo -n $WORD | wc -m)
 # space on each side
 STRSPACE=$(($STRLEN / "2"))
 [[ "$STRSPACE" -gt "5" ]] && STRSPACE=5
-echo "$STRLEN"
 
 PADSPACE=0
 
