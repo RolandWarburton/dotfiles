@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env sh
 
 FILELIST=""
 
@@ -9,7 +9,7 @@ done
 # Check the first path to see if its on the home path
 if [ "$1" == *"$HOME"* ]; then
 	# Its a file we can delete by promting
-	if zenity --question --width 250 --text="Delete:$FILELIST?"; then
+	if zenity --question --width 250 --text="Trash:$FILELIST?"; then
 		for var in "$@"; do
 			trash-put "$var"
 		done
