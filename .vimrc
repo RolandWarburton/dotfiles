@@ -45,6 +45,16 @@ else
     let &t_EI = "\e[2 q"
 endif
 
+" on debian 10, when inside tmux, it likes to set $TERM to screen-256color
+" Adding this fixes ctrl+arrow keys from not working by emulating the xterm keys
+" see //superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
 
 " Line Numbers
 set relativenumber
