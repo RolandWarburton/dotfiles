@@ -35,6 +35,17 @@ filetype plugin indent on " Used for triggering plugins for different filetypes
 " \___\___/|_| |_|_| |_|\__, |
 "                        |___/
 "
+
+" Fix block and line cursors inside tmux
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+    let &t_SI = "\e[5 q"
+    let &t_EI = "\e[2 q"
+endif
+
+
 " Line Numbers
 set relativenumber
 set nu
