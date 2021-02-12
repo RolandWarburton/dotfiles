@@ -18,4 +18,4 @@ dotbot -c ./install.conf.yaml
 
 * [x] Develop my site to make my linux notes more modular and searchable ([here!](https://blog.rolandw.dev/notes/linux))
 * [x] Develop a shell script that installs these dot files ([dotbot](https://github.com/anishathalye/dotbot))
-* [x] Create an "auto installer" for firefox that downloads it and places it in the right location etc
+* [ ] Create an "auto installer" for firefox that downloads it and places it in the right location etc
