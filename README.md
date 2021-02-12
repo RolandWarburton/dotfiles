@@ -2,10 +2,6 @@
 
 # Rolands Dotfiles
 
-```none
-curl https://raw.githubusercontent.com/RolandWarburton/dotfiles/master/install.sh | zsh
-```
-
 Install with dotbot.
 
 ```none
