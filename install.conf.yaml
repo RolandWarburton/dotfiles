@@ -11,6 +11,7 @@
     - ~/.config/gtk-3.0
     - ~/.config/fontconfig
     - ~/.config/autostart
+    - ~/.config/Thunar
 
 # Install the bare minimum
 - shell:
@@ -23,7 +24,8 @@
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
-    ~/.config/Thunar: .config/Thunar
+    ~/.config/Thunar/uca.xml:
+        path: Thunar/uca.xml
 
 ##──── xfce ──────────────────────────────────────────────────────────────────────────────
 - link:
@@ -98,3 +100,6 @@
     ~/.p10k.zsh:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .p10k.zsh
+
+- shell:
+    command: debianConfig.sh
