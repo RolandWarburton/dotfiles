@@ -1,14 +1,50 @@
 "flameshot gui"
-    m:0x0 + b:12   (mouse)
+    Print
+
+"flameshot gui --delay 3000"
+    shift + Print
 
 "sleep 0.2 && xdotool click 2"
     m:0x0 + b:10   (mouse)
 
-#"sleep 0.2 && xdotool click 5"
-#    m:0x0 + b:11   (mouse)
+"rofi -modi drun -show drun  -show-icons"
+    Alt + space
 
-#"for _ in {1..5}; do xdotool click 5; done"
-#   m:0x0 + b:11   (mouse)
+"xfce4-terminal"
+    control + alt + t
 
-"sleep 0.2 && xdotool click --clearmodifiers --repeat 10 --delay 0 5 mouseup --clearmodifiers 5"
-    m:0x0 + b:11   (mouse)
+"rofi -show ssh"
+    Alt + control + s
+
+"rofi -show window"
+    control + Tab
+
+"sudo pkill xbindkeys && xbindkeys"
+    control + alt + shift + r
+
+"jumpapp firefox"
+    control + shift + F1
+
+"jumpapp code"
+    control + shift + F2
+
+"jumpapp discord"
+    control + shift + F3
+
+"jumpapp alacritty"
+    control + shift + F4
+
+"redshift -0 4000k"
+    Mod4 + b
+
+"redshift -x"
+    Shift+Mod4 + b
+
+"printf warburtonroland@gmail.com | xclip -selection clipboard"
+    Alt + Shift + e
+
+"/home/roland/bin/swapMonitor -d left"
+    Mod4 + Left
+
+"/home/roland/bin/swapMonitor -d right"
+    Mod4 + Right
