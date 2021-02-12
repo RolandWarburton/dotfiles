@@ -1,0 +1,5 @@
+sftp://sftp/
+sftp://prod/
+sftp://devel/
+smb://store/backup/
+smb://store/cbarchive/

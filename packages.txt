@@ -1,0 +1,38 @@
+# Basics
+sudo
+xbindkeys
+xdotool
+htop
+tmux
+git
+xclip
+xsel
+
+# Connectivity
+fuse
+sshfs
+ssh
+gvfs-fuse
+cifs-utils
+smbclient
+gvfs-fuse
+gvfs-backends
+
+
+# CLI Tools
+ffmpeg
+fzf
+
+# Graphical software
+thunar
+flameshot
+pavucontrol
+audacity
+gcolor3
+obs-studio
+
+# DE theme related stuff
+lxappearance
+arc-theme
+papirus-icon-theme
+wmctrl

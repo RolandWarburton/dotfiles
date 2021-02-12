@@ -1,0 +1,100 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- create:
+    - ~/.config/xfce4
+    - ~/.config/nvim
+    - ~/.config/mpv
+    - ~/.config/gtk-3.0
+    - ~/.config/fontconfig
+    - ~/.config/autostart
+
+# Install the bare minimum
+- shell:
+    command: sudo apt install zsh
+    command: sudo apt install git
+    command: sudo apt install tmux
+    command: sudo apt install htop
+    command: sudo apt install fzf
+    
+
+##──── thunar ────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/Thunar: .config/Thunar
+
+##──── xfce ──────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/xfce4/panel:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/panel
+    ~/.config/xfce4/terminal:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/terminal
+    ~/.config/xfce4/xfconf:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf
+    ~/.config/xfce4/xfwm4:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfwm4
+
+##──── misc ──────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.tmux.conf: .tmux.conf
+    ~/.Xresources: .Xresources
+
+##──── vim ───────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/nvim/init.vim:
+        path: nvim/init.vim
+    ~/.vimrc: .vimrc
+
+##──── mpv ───────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/mpv/scripts:
+        path: mpv/scripts
+    ~/.config/mpv/input.conf:
+        path: mpv/input.conf
+    ~/.config/mpv/mpv.conf:
+        path: mpv/mpv.conf
+
+##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/gtk-3.0/settings.ini:
+        path: gtk-3.0/settings.ini
+
+##──── fonts ─────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/fontconfig/conf.d:
+        path: fontconfig/conf.d
+
+##──── autostart ─────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/autostart/mouseConfig.sh:
+        path: autostart/mouseConfig.sh
+    ~/.config/autostart/screenlayout.sh:
+        # i have 4 monitors but need to +1 for the "total count" line in xrandr
+        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
+        path: autostart/screenlayout.sh
+
+##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.xbindkeysrc: .xbindkeysrc
+
+##──── programming ───────────────────────────────────────────────────────────────────────
+- link:
+    ~/.prettierrc: .prettierrc
+
+##──── terminal ──────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.zshrc:
+        if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
+        path: .zshrc
+    ~/.zsh:
+        if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
+        path: .zsh
+    ~/.p10k.zsh:
+        if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
+        path: .p10k.zsh

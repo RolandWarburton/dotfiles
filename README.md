@@ -1,4 +1,4 @@
-![heading](https://github.com/RolandWarburton/dotfiles/raw/master/Media/2020-02-19_12-13.png  "heading")
+![heading](https://github.com/RolandWarburton/dotfiles/raw/master/Media/heading.png  "heading")
 
 # Rolands Dotfiles
 
@@ -6,12 +6,12 @@
 curl https://raw.githubusercontent.com/RolandWarburton/dotfiles/master/install.sh | zsh
 ```
 
-My Current configuration:
+Install with dotbot.
 
-* OS: Arch Linux
-* DE: openbox
-* Shell: zsh
-* Terminal: URXVT | Alacritty
+```none
+pip3 install dotbot
+dotbot -c ./install.conf.yaml
+```
 
 ## Resources
 
@@ -21,4 +21,4 @@ My Current configuration:
 ## TODO List
 
 * [x] Develop my site to make my linux notes more modular and searchable ([here!](https://blog.rolandw.dev/notes/linux))
-* [ ] Develop a shell script that installs these dot files
+* [x] Develop a shell script that installs these dot files ([dotbot](https://github.com/anishathalye/dotbot))
