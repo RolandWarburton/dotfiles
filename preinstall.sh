@@ -17,3 +17,9 @@ if ps -e | grep -E '^.* xfce4-session$' > /dev/null; then
 	sudo mkdir -p /usr/share/themes/empty/xfwm4/
 	sudo touch /usr/share/themes/empty/xfwm4/themerc # create an empty theme file
 fi
+
+
+##──── change shell to zsh ───────────────────────────────────────────────────────────────
+if which zsh; then
+	sudo usermod --shell $(which zsh) $USER
+fi

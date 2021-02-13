@@ -20,6 +20,8 @@ gvfs-backends
 # CLI Tools
 ffmpeg
 fzf
+curl
+dnsutils
 
 # Graphical software
 thunar

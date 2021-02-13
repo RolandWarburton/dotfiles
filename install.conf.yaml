@@ -18,13 +18,6 @@
     - ~/.config/Thunar
     - ~/.zkbd
 
-# Create an empty theme for xfce to use, this removes all window borders and decorations
-- create:
-    - /usr/share/themes/empty/xfwm4/
-
-- shell:
-    - touch /usr/share/themes/empty/xfwm4/themerc
-
 # Install the bare minimum
 - shell:
     command: sudo apt install zsh
