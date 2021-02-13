@@ -7,6 +7,12 @@ Install with dotbot.
 ```none
 export PATH=$PATH:$HOME/.local/bin
 pip3 install dotbot
+./preinstall.sh
+```
+
+or "refresh" existing config with
+
+```none
 dotbot -c ./install.conf.yaml
 ```
 

@@ -22,6 +22,7 @@ ffmpeg
 fzf
 curl
 dnsutils
+gawk
 
 # Graphical software
 thunar
@@ -41,10 +42,6 @@ wmctrl
 fonts-hack-otf
 fonts-noto
 fonts-noto-extra
-fonts-noto-hinted
-fonts-noto-mono
-fonts-noto-ui-extra
-fonts-noto-unhinted
 fonts-noto-cjk
 fonts-noto-cjk-extra
 fonts-noto-color-emoji
