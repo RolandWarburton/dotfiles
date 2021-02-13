@@ -3,6 +3,9 @@
 <channel name="xfce4-desktop" version="1.0">
   <property name="backdrop" type="empty">
     <property name="screen0" type="empty">
+    <!-- ===================================================================== -->
+    <!-- These are generic workspaces that will act as a fall back -->
+    <!-- ===================================================================== -->
       <property name="monitor0" type="empty">
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="0"/>
@@ -25,6 +28,9 @@
           <property name="last-image" type="string" value="/home/roland/.config/backgrounds/Catlesstail_1.png"/>
         </property>
       </property>
+      <!-- ===================================================================== -->
+      <!-- These are generic workspaces that will act as a fall back -->
+      <!-- ===================================================================== -->
       <property name="monitor1" type="empty">
        <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="0"/>
@@ -47,6 +53,9 @@
           <property name="last-image" type="string" value="/home/roland/.config/backgrounds/Catlesstail_1.png"/>
         </property>
       </property>
+      <!-- ===================================================================== -->
+      <!-- These workspaces are for my main desktop and include all the fancy backgrounds -->
+      <!-- ===================================================================== -->
       <property name="monitorDVI-D-0" type="empty">
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="1"/>
@@ -137,6 +146,9 @@
       </property>
     </property>
   </property>
+  <!-- ===================================================================== -->
+  <!-- These mainly yeet all the icons from the desktop to keep it clean -->
+  <!-- ===================================================================== -->
   <property name="desktop-icons" type="empty">
     <property name="file-icons" type="empty">
       <property name="show-filesystem" type="bool" value="false"/>
