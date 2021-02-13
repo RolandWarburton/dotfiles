@@ -1,0 +1,22 @@
+# Basics
+sudo
+zsh
+xbindkeys
+xdotool
+htop
+tmux
+git
+xclip
+xsel
+
+# Connectivity
+fuse
+ssh
+cifs-utils
+smbclient
+gvfs-backends
+
+
+# CLI Tools
+ffmpeg
+fzf

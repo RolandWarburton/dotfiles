@@ -11,12 +11,9 @@ xsel
 
 # Connectivity
 fuse
-sshfs
 ssh
-gvfs-fuse
 cifs-utils
 smbclient
-gvfs-fuse
 gvfs-backends
 
 

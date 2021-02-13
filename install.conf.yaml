@@ -2,7 +2,7 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ['~', '~/.config']
 
 - create:
     - ~/.config/xfce4/panel
@@ -17,6 +17,13 @@
     - ~/.config/autostart
     - ~/.config/Thunar
     - ~/.zkbd
+
+# Create an empty theme for xfce to use, this removes all window borders and decorations
+- create:
+    - /usr/share/themes/empty/xfwm4/
+
+- shell:
+    - touch /usr/share/themes/empty/xfwm4/themerc
 
 # Install the bare minimum
 - shell:
