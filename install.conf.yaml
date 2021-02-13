@@ -18,15 +18,6 @@
     - ~/.config/Thunar
     - ~/.zkbd
 
-# Install the bare minimum
-- shell:
-    command: sudo apt install zsh
-    command: sudo apt install git
-    command: sudo apt install tmux
-    command: sudo apt install htop
-    command: sudo apt install fzf
-    
-
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/Thunar/uca.xml:
