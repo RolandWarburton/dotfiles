@@ -32,15 +32,19 @@
     ~/.config/xfce4/panel:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: xfce4/panel
+        force: true
     ~/.config/xfce4/terminal:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: xfce4/terminal
+        force: true
     ~/.config/xfce4/xfconf:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: xfce4/xfconf
+        force: true
     ~/.config/xfce4/xfwm4:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: xfce4/xfwm4
+        force: true
 
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
 - link:
@@ -51,31 +55,40 @@
 - link:
     ~/.config/nvim/init.vim:
         path: nvim/init.vim
-    ~/.vimrc: .vimrc
+        force: true
+    ~/.vimrc:
+        path: .vimrc
+        force: true
 
 ##──── mpv ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/mpv/scripts:
         path: mpv/scripts
+        force: true
     ~/.config/mpv/input.conf:
         path: mpv/input.conf
+        force: true
     ~/.config/mpv/mpv.conf:
         path: mpv/mpv.conf
+        force: true
 
 ##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/gtk-3.0/settings.ini:
         path: gtk-3.0/settings.ini
+        force: true
 
 ##──── fonts ─────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/fontconfig/conf.d:
         path: fontconfig/conf.d
+        force: true
 
 ##──── autostart ─────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/autostart/mouseConfig.sh:
         path: autostart/mouseConfig.sh
+        force: true
     ~/.config/autostart/screenlayout.sh:
         # i have 4 monitors but need to +1 for the "total count" line in xrandr
         if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
@@ -83,23 +96,30 @@
 
 ##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
 - link:
-    ~/.xbindkeysrc: .xbindkeysrc
+    ~/.xbindkeysrc:
+        path: .xbindkeysrc
+        force: true
 
 ##──── programming ───────────────────────────────────────────────────────────────────────
 - link:
-    ~/.prettierrc: .prettierrc
+    ~/.prettierrc:
+        path: .prettierrc
+        force: true
 
 ##──── terminal ──────────────────────────────────────────────────────────────────────────
 - link:
     ~/.zshrc:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .zshrc
+        force: true
     ~/.zsh:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .zsh
+        force: true
     ~/.p10k.zsh:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .p10k.zsh
+        force: true
 
 - shell:
-    command: debianConfig.sh
+        command: debian:Config.sh
