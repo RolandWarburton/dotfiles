@@ -7,7 +7,7 @@
 - create:
     - ~/.config/xfce4/panel
     - ~/.config/xfce4/terminal
-    - ~/.config/xfce4/xfconf
+    - ~/.config/xfce4/xfconf/xfce-perchannel-xml
     - ~/.config/xfce4/xfwm4
     - ~/.config/nvim
     - ~/.config/mpv
