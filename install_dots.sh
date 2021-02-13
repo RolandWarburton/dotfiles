@@ -18,11 +18,6 @@ if ps -e | grep -E '^.* xfce4-session$' > /dev/null; then
 	sudo touch /usr/share/themes/empty/xfwm4/themerc # create an empty theme file
 fi
 
-##──── configure locales ─────────────────────────────────────────────────────────────────
-# ignore this for now
-# sudo sed -n "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen
-# sudo locale-gen
-
 ##──── change shell to zsh ───────────────────────────────────────────────────────────────
 if which zsh; then
 	# Download and install zplug
@@ -32,4 +27,5 @@ if which zsh; then
 	sudo usermod --shell $(which zsh) $USER
 fi
 
+# Then run dotbot
 dotbot -c install.conf.yaml
