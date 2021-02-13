@@ -95,14 +95,14 @@
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
-    Media/Catlesstail_1.png:
-        path: ~/.config/backgrounds/Catlesstail_1.png
+    ~/.config/backgrounds/Catlesstail_1.png:
+        path: Media/Catlesstail_1.png
         force: true
-    Media/Catlesstail_2.png:
-        path: ~/.config/backgrounds/Catlesstail_2.png
+    ~/.config/backgrounds/Catlesstail_2.png:
+        path: Media/Catlesstail_2.png
         force: true
-    Media/Catlesstail_3.png:
-        path: ~/.config/backgrounds/Catlesstail_3.png
+    ~/.config/backgrounds/Catlesstail_3.png:
+        path: Media/Catlesstail_3.png
         force: true
 
 ##──── vim ───────────────────────────────────────────────────────────────────────────────
