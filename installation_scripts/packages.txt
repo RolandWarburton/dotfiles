@@ -30,6 +30,7 @@ flameshot
 pavucontrol
 audacity
 obs-studio
+rofi
 
 # DE theme related stuff
 lxappearance
