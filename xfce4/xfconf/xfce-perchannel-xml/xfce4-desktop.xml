@@ -27,7 +27,7 @@
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="1"/>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/home/roland/Media/Backgrounds/Catlesstail_portrait_cat.png"/>
+          <property name="last-image" type="string" value="/home/roland/.config/backgrounds/Catlesstail_3.png"/>
         </property>
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="1"/>
@@ -49,7 +49,7 @@
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="1"/>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/home/roland/Media/Backgrounds/2.png"/>
+          <property name="last-image" type="string" value="/home/roland/.config/backgrounds/Catlesstail_2.png"/>
         </property>
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="1"/>
@@ -71,7 +71,7 @@
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="0"/>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/home/roland/Media/Backgrounds/Catlesstail.png"/>
+          <property name="last-image" type="string" value="/home/roland/.config/backgrounds/Catlesstail_1.png"/>
         </property>
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="0"/>
@@ -93,7 +93,7 @@
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="0"/>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/home/roland/Media/Backgrounds/Catlesstail.png"/>
+          <property name="last-image" type="string" value="/home/roland/.config/backgrounds/Catlesstail_1.png"/>
         </property>
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="0"/>
