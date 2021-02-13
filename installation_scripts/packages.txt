@@ -1,5 +1,6 @@
 # Basics
 sudo
+zsh
 xbindkeys
 xdotool
 htop
@@ -28,7 +29,6 @@ thunar
 flameshot
 pavucontrol
 audacity
-gcolor3
 obs-studio
 
 # DE theme related stuff
