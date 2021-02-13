@@ -9,6 +9,7 @@
     - ~/.config/xfce4/terminal
     - ~/.config/xfce4/xfconf/xfce-perchannel-xml
     - ~/.config/xfce4/xfwm4
+    - ~/.config/backgrounds
     - ~/.config/nvim
     - ~/.config/mpv
     - ~/.config/gtk-3.0
@@ -91,6 +92,18 @@
 - link:
     ~/.tmux.conf: .tmux.conf
     ~/.Xresources: .Xresources
+
+##──── desktop backgrounds ───────────────────────────────────────────────────────────────
+- link:
+    Media/Catlesstail_1.png:
+        path: ~/.config/backgrounds/Catlesstail_1.png
+        force: true
+    Media/Catlesstail_2.png:
+        path: ~/.config/backgrounds/Catlesstail_2.png
+        force: true
+    Media/Catlesstail_3.png:
+        path: ~/.config/backgrounds/Catlesstail_3.png
+        force: true
 
 ##──── vim ───────────────────────────────────────────────────────────────────────────────
 - link:
