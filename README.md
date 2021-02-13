@@ -5,7 +5,7 @@
 Install with dotbot.
 
 ```none
-export PATH=$PATH:$HOME/.local/.bin
+export PATH=$PATH:$HOME/.local/bin
 pip3 install dotbot
 dotbot -c ./install.conf.yaml
 ```
