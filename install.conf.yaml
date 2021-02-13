@@ -5,7 +5,10 @@
 - clean: ['~']
 
 - create:
-    - ~/.config/xfce4
+    - ~/.config/xfce4/panel
+    - ~/.config/xfce4/terminal
+    - ~/.config/xfce4/xfconf
+    - ~/.config/xfce4/xfwm4
     - ~/.config/nvim
     - ~/.config/mpv
     - ~/.config/gtk-3.0
@@ -27,23 +30,61 @@
     ~/.config/Thunar/uca.xml:
         path: Thunar/uca.xml
 
-##──── xfce ──────────────────────────────────────────────────────────────────────────────
+##──── xfce4 panel ───────────────────────────────────────────────────────────────────────
 - link:
-    ~/.config/xfce4/panel:
+    ~/.config/xfce4/panel/xfce4-clipman-actions.xml:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: xfce4/panel
+        path: xfce4/panel/xfce4-clipman-actions.xml
         force: true
-    ~/.config/xfce4/terminal:
+
+##──── xfce4 terminal ────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/xfce4/terminal/accels.scm:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: xfce4/terminal
+        path: xfce4/terminal/accels.scm
         force: true
-    ~/.config/xfce4/xfconf:
+    ~/.config/xfce4/terminal/terminalrc:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: xfce4/xfconf
+        path: xfce4/terminal/terminalrc
         force: true
-    ~/.config/xfce4/xfwm4:
+
+##──── xfce xfconf ───────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: xfce4/xfwm4
+        path: xfce4/xfconf/xfce-perchannel-xml/displays.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+        force: true
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         force: true
 
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
