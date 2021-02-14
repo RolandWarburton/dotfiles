@@ -4,11 +4,13 @@ if [ -n "$DISPLAY" ]; then
 	sed 's/#.*//' ./helper_scripts/packages.txt | xargs sudo apt install -y
 
 	# Install firefox
-	mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
-	wget -O /tmp/firefox/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
-	sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt # extract firefox to /opt
-	sudo cp applications/firefox.desktop /usr/share/applications # copy the desktop shortcut over for app launchers (like rofi) to read
-	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox # symlink the executable to the bin for CLI launching
+	if [! -d "/opt/firefox" ]
+		mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
+		wget -O /tmp/firefox/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
+		sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt # extract firefox to /opt
+		sudo cp applications/firefox.desktop /usr/share/applications # copy the desktop shortcut over for app launchers (like rofi) to read
+		sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox # symlink the executable to the bin for CLI launching
+	fi
 else
 	# CLI environment
 	sed 's/#.*//' ./helper_scripts/packagesCLI.txt | xargs sudo apt install -y
