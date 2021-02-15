@@ -17,6 +17,10 @@ bindkey "^[[3;5~" kill-word
 # bind "control + r"
 bindkey '^R'    history-incremental-search-backward
 
+# Press alt+v to go into full line editor
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # Bind pgup and pgdown to search up and down history
 # For example i run 3 commands: echo a, echo b, whoami
 # Then i type "echo " and press pgup, i will be given "echo b"
