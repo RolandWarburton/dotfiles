@@ -44,13 +44,3 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 #[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" up-line-or-history
 #[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" down-line-or-history
 
-# "ctrl-e d" to insert the actual datetime YYYY-MM-DD--hh-mm-ss-TZ
-__insert-datetime-default() { BUFFER="$BUFFER$(date '+%F--%H-%M-%S-%Z')"; CURSOR=$#BUFFER; }
-zle -N        __insert-datetime-default
-bindkey 'd' __insert-datetime-default
-
-# Edit line in vim
-#autoload edit-command-line; zle -N edit-command-line
-#bindkey '^e' edit-command-line # control + e
-#bindkey -M vicmd v edit-command-line # Whilst in vim-cmd mode, v will launch vim shell (instead of visual mode) 
-
