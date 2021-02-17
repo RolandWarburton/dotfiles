@@ -97,6 +97,5 @@
   ],
   "window.zoomLevel": -1,
   "debug.javascript.autoAttachFilter": "always",
-  "python.languageServer": "Pylance",
-  "prettier.configPath": "~/.prettierrc"
+  "python.languageServer": "Pylance"
 }
