@@ -49,13 +49,15 @@
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance5827;chromium.instance9563;firefox.instance2008;firefox.instance3305"/>
+      <property name="mpris-players" type="string" value="chromium.instance2014;chromium.instance2750;chromium.instance5827;chromium.instance9563;firefox.instance1788;firefox.instance1961;firefox.instance2008;firefox.instance2332;firefox.instance3225;firefox.instance3305;vlc"/>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-12" type="string" value="clock"/>
+    <property name="plugin-12" type="string" value="clock">
+      <property name="digital-format" type="string" value="%a %_d %b, %I:%M %p"/>
+    </property>
     <property name="plugin-1" type="string" value="actions"/>
   </property>
 </channel>
