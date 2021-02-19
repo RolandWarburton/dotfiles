@@ -9,4 +9,7 @@ xfce4-goodies
 exe-thumbnailer
 udiskie
 cifs-utils
-
+gparted
+fdisk
+gdisk
+gpart
