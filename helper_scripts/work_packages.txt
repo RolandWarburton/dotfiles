@@ -1,0 +1,12 @@
+# I need to use these packages to format USBs a lot
+thunar
+thunar-volman
+gvfs-bin
+gvfs-libs
+gvfs-common
+gvfs-daemons
+xfce4-goodies
+exe-thumbnailer
+udiskie
+cifs-utils
+
