@@ -30,6 +30,7 @@ source ~/.zsh/autocomplete.zsh
 source ~/.zsh/zsh_aliases
 source ~/.zsh/plugins.zsh
 source ~/.zsh/exports.zsh
+source ~/.zsh/ssh.zsh
 
 # Load in the nvm environment to manage node versions
 export NVM_DIR="$HOME/.nvm"
