@@ -4,7 +4,7 @@ if [ -n "$DISPLAY" ]; then
 	sed 's/#.*//' ./helper_scripts/packages.txt | xargs sudo apt install -y
 
 	# Install firefox
-	if [! -d "/opt/firefox" ]
+	if [ ! -d "/opt/firefox" ]; then
 		mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
 		wget -O /tmp/firefox/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
 		sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt # extract firefox to /opt
@@ -40,3 +40,4 @@ fi
 
 # Then run dotbot
 dotbot -c install.conf.yaml
+
