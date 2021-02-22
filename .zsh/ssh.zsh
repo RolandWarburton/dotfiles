@@ -1,11 +1,11 @@
+# This answer looks good but doesnt seem to work for me
 # https://unix.stackexchange.com/questions/90853/how-can-i-run-ssh-add-automatically-without-a-password-prompt
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent -s`
 
-    # Add my key with no password
-    [ -f ~/.ssh/id_nopass_rsa ] && ssh-add ~/.ssh/id_nopass_rsa
+# start the ssh agent because it always seems to wanna kill itself
+eval `ssh-agent -s` > /dev/null
 
-    # uncomment this to add ~/.ssh/id_rsa to the agent.
-    # If its password protected then it WILL prompt you for the password
-    # ssh-add
+# Add my nopass key if i have it on this system
+if [ -f "$HOME/.ssh/id_nopass_rsa" ]; then
+    ssh-add -q  ~/.ssh/id_nopass_rsa
 fi
+
