@@ -109,30 +109,36 @@
 ##──── mpv ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/mpv/scripts:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: mpv/scripts
         force: true
     ~/.config/mpv/input.conf:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: mpv/input.conf
         force: true
     ~/.config/mpv/mpv.conf:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: mpv/mpv.conf
         force: true
 
 ##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/gtk-3.0/settings.ini:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: gtk-3.0/settings.ini
         force: true
 
 ##──── fonts ─────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/fontconfig/conf.d:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: fontconfig/conf.d
         force: true
 
 ##──── autostart ─────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/autostart/mouseConfig.sh:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: autostart/mouseConfig.sh
         force: true
     ~/.config/autostart/screenlayout.sh:
@@ -149,6 +155,7 @@
 ##──── programming ───────────────────────────────────────────────────────────────────────
 - link:
     ~/.prettierrc:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .prettierrc
         force: true
 
