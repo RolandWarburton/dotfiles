@@ -192,15 +192,3 @@
     ~/.zkbd/xterm-:0.0:
         path: zkbd/xterm-:0.0
         force: true
-
-##──── VSCode ────────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/Code/User/settings.json:
-        if: dpkg -l | grep xserver
-        path: VSCode/settings.json
-        force: true
-    ~/.config/Code/User/keybindings.json:
-        if: dpkg -l | grep xserver
-        path: VSCode/keybindings.json
-        force: true
-
