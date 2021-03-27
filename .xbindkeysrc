@@ -1,3 +1,9 @@
+"google_speech -l en "$(xsel)""
+    control + shift + s
+
+"pkill google_speech & pkill sox"
+    control + shift + alt + s
+
 "flameshot gui"
     Print
 
