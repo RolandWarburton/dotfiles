@@ -22,7 +22,7 @@ alias pspretty="docker ps --format '{{.ID}}\t\t{{.Names}}\t\t{{.Status}}\t\t{{.N
 alias dockerclean="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm"
 alias passs="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass fzf" # https://github.com/ficoos/pass-fzf
 alias killport="fuser -k"
-alias pwdc = "pwd | c"
+alias pwdc="pwd | c"
 
 # If LSD is installed then use those
 if which lsd >/dev/null
