@@ -8,6 +8,10 @@ tmux
 git
 xclip
 xsel
+vim
+neovim
+x11-xserver-utils
+xinput
 
 # Connectivity
 fuse

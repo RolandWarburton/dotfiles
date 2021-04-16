@@ -80,6 +80,18 @@
         path: xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         force: true
 
+##──── autostart ─────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/autostart/screenLayout.desktop:
+        # I have 4 monitors but need to +1 it here
+        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
+        path: autostart/screenLayout.desktop
+        force: true
+    ~/.config/autostart/mouseConfig.desktop:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: autostart/mouseConfig.desktop
+        force: true
+
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.tmux.conf: .tmux.conf
@@ -134,17 +146,6 @@
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: fontconfig/conf.d
         force: true
-
-##──── autostart ─────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/autostart/mouseConfig.sh:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: autostart/mouseConfig.sh
-        force: true
-    ~/.config/autostart/screenlayout.sh:
-        # i have 4 monitors but need to +1 for the "total count" line in xrandr
-        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
-        path: autostart/screenlayout.sh
 
 ##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
 - link:
