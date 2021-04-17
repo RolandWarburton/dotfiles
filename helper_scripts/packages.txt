@@ -19,6 +19,9 @@ ssh
 cifs-utils
 smbclient
 gvfs-backends
+sshfs
+gvfs-common
+gvfs-fuse
 
 
 # CLI Tools

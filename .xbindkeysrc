@@ -16,6 +16,9 @@
 "rofi -modi drun -show drun  -show-icons"
     Alt + space
 
+"i3lock --color=121212"
+    control + alt + l
+
 "xfce4-terminal"
     control + alt + t
 
