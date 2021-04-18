@@ -1,0 +1,11 @@
+# Run the following from the directory that this file exists in.
+# sudo ln -s `pwd`/AndroidStudio.desktop /usr/share/applications/AndroidStudio.desktop
+[Desktop Entry]
+Version=2.2.3
+Type=Application
+Terminal=false
+Exec="/opt/Android/bin/studio.sh"
+Name=Android Studio
+Comment=Android Studio
+Categories=Programming;
+Icon=/opt/Android/bin/studio.png

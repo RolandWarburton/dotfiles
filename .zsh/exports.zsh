@@ -4,7 +4,7 @@ export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Android Studio
-export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_HOME=/opt/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
