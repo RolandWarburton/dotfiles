@@ -2,6 +2,9 @@ export PATH=/usr/bin/pip3:$PATH
 export LC_ALL="en_US.UTF-8"
 export EDITOR=vim
 
+# when using the mv command include hidden .files
+setopt glob_dots
+
 # run `zkbd` after booting to set your keybinds
 autoload zkbd
 
