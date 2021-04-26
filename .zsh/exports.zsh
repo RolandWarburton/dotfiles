@@ -11,5 +11,5 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Flutter
-export PATH="$PATH:`pwd`/flutter/bin"
+export PATH="$PATH:/opt/flutter/bin"
 export CHROME_EXECUTABLE=`which chromium`
