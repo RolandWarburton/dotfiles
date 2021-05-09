@@ -18,6 +18,27 @@
     - ~/.config/Thunar
     - ~/.zkbd
 
+##──── bin ───────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/bin/banner:
+        path: bin/banner
+    ~/bin/exportPasswords:
+        path: bin/exportPasswords
+    ~/bin/fcd.sh:
+        path: bin/fcd.sh
+    ~/bin/he:
+        path: bin/he
+    ~/bin/mouseConfig.sh:
+        path: bin/mouseConfig.sh
+    ~/bin/screenLayout.sh:
+        path: bin/screenLayout.sh
+    ~/bin/swapMonitor:
+            path: bin/swapMonitor
+    ~/bin/deletePrompt.sh:
+        path: bin/deletePrompt.sh
+    ~/bin/backup.sh:
+            path: bin/backup.sh
+
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/Thunar/uca.xml:
