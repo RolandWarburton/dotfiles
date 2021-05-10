@@ -21,6 +21,10 @@ alias d=docker
 alias pspretty="docker ps --format '{{.ID}}\t\t{{.Names}}\t\t{{.Status}}\t\t{{.Networks}}'"
 alias dockerclean="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm"
 alias passs="PASSWORD_STORE_ENABLE_EXTENSIONS=true pass fzf" # https://github.com/ficoos/pass-fzf
+alias killport="fuser -k"
+alias pwdc="pwd | c"
+alias tmuxssh='f() {ssh $1 -t /usr/bin/tmux a -t $2};f' # tmuxssh 192.168.0.10  sessionName
+alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest"
 
 # If LSD is installed then use those
 if which lsd >/dev/null

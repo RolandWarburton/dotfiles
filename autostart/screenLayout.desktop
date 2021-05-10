@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=screenLayout
+Comment=configure my desktop screen orientation layout
+Path=/home/roland/bin/screenLayout.sh
+Terminal=true
+Categories=tool;
+Hidden=true
+

@@ -1,0 +1,18 @@
+# Download Postman from here
+# https://www.postman.com/downloads/
+
+# symlink the executable to the bin for CLI launching
+# sudo ln -s /opt/Postman/Postman /usr/local/bin/Postman
+
+# copy the desktop shortcut over for app launchers (like rofi) to read
+# sudo cp Postman.desktop /usr/share/applications
+
+[Desktop Entry]
+Name=Postman
+Comment=Web Browser
+Exec=/opt/Postman/Postman
+Terminal=false
+Type=Application
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Categories=Network;api;API;
+StartupNotify=true

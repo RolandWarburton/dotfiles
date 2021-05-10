@@ -18,6 +18,27 @@
     - ~/.config/Thunar
     - ~/.zkbd
 
+##──── bin ───────────────────────────────────────────────────────────────────────────────
+- link:
+    ~/bin/banner:
+        path: bin/banner
+    ~/bin/exportPasswords:
+        path: bin/exportPasswords
+    ~/bin/fcd.sh:
+        path: bin/fcd.sh
+    ~/bin/he:
+        path: bin/he
+    ~/bin/mouseConfig.sh:
+        path: bin/mouseConfig.sh
+    ~/bin/screenLayout.sh:
+        path: bin/screenLayout.sh
+    ~/bin/swapMonitor:
+            path: bin/swapMonitor
+    ~/bin/deletePrompt.sh:
+        path: bin/deletePrompt.sh
+    ~/bin/backup.sh:
+            path: bin/backup.sh
+
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/Thunar/uca.xml:
@@ -80,6 +101,18 @@
         path: xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         force: true
 
+##──── autostart ─────────────────────────────────────────────────────────────────────────
+- link:
+    ~/.config/autostart/screenLayout.desktop:
+        # I have 4 monitors but need to +1 it here
+        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
+        path: autostart/screenLayout.desktop
+        force: true
+    ~/.config/autostart/mouseConfig.desktop:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
+        path: autostart/mouseConfig.desktop
+        force: true
+
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.tmux.conf: .tmux.conf
@@ -109,36 +142,31 @@
 ##──── mpv ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/mpv/scripts:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: mpv/scripts
         force: true
     ~/.config/mpv/input.conf:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: mpv/input.conf
         force: true
     ~/.config/mpv/mpv.conf:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: mpv/mpv.conf
         force: true
 
 ##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/gtk-3.0/settings.ini:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: gtk-3.0/settings.ini
         force: true
 
 ##──── fonts ─────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/fontconfig/conf.d:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: fontconfig/conf.d
         force: true
-
-##──── autostart ─────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/autostart/mouseConfig.sh:
-        path: autostart/mouseConfig.sh
-        force: true
-    ~/.config/autostart/screenlayout.sh:
-        # i have 4 monitors but need to +1 for the "total count" line in xrandr
-        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
-        path: autostart/screenlayout.sh
 
 ##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
 - link:
@@ -149,6 +177,7 @@
 ##──── programming ───────────────────────────────────────────────────────────────────────
 - link:
     ~/.prettierrc:
+        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .prettierrc
         force: true
 
@@ -192,15 +221,3 @@
     ~/.zkbd/xterm-:0.0:
         path: zkbd/xterm-:0.0
         force: true
-
-##──── VSCode ────────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/Code/User/settings.json:
-        if: dpkg -l | grep xserver
-        path: VSCode/settings.json
-        force: true
-    ~/.config/Code/User/keybindings.json:
-        if: dpkg -l | grep xserver
-        path: VSCode/keybindings.json
-        force: true
-

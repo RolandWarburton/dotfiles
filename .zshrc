@@ -2,6 +2,9 @@ export PATH=/usr/bin/pip3:$PATH
 export LC_ALL="en_US.UTF-8"
 export EDITOR=vim
 
+# when using the mv command include hidden .files
+setopt glob_dots
+
 # run `zkbd` after booting to set your keybinds
 autoload zkbd
 
@@ -37,3 +40,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Every time we cd log it to a file for fun
+chpwd()
+  echo "$(pwd)" >> "$HOME/.dirhist" && cat "$HOME/.dirhist" | tail -n 10 > "$HOME/.dirhist"

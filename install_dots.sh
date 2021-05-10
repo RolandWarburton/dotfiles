@@ -1,18 +1,28 @@
 ##──── Install packages ──────────────────────────────────────────────────────────────────
 if [ -n "$DISPLAY" ]; then
 	# full graphical environment
+	echo "Installing packages for GUI"
 	sed 's/#.*//' ./helper_scripts/packages.txt | xargs sudo apt install -y
 
 	# Install firefox
+	echo "Installing firefox"
 	if [ ! -d "/opt/firefox" ]; then
+		echo "Creating /tmp/firefox"
 		mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
+		echo "loading setup.bz2"
 		wget -O /tmp/firefox/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
+		echo "extracting..."
 		sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt # extract firefox to /opt
+		echo "copying firefox.desktop to /usr/share/applications"
 		sudo cp applications/firefox.desktop /usr/share/applications # copy the desktop shortcut over for app launchers (like rofi) to read
+		echo "linking executable for CLI launching"
 		sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox # symlink the executable to the bin for CLI launching
+	else
+		echo "Firefox is already installed in /opt/firefox"
 	fi
 else
 	# CLI environment
+	echo "Installing packages for CLI"
 	sed 's/#.*//' ./helper_scripts/packagesCLI.txt | xargs sudo apt install -y
 fi
 

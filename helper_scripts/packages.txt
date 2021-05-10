@@ -8,6 +8,10 @@ tmux
 git
 xclip
 xsel
+vim
+neovim
+x11-xserver-utils
+xinput
 
 # Connectivity
 fuse
@@ -15,6 +19,9 @@ ssh
 cifs-utils
 smbclient
 gvfs-backends
+sshfs
+gvfs-common
+gvfs-fuse
 
 
 # CLI Tools

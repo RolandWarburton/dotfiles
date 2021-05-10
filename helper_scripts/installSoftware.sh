@@ -2,6 +2,9 @@ if [ -n "$DISPLAY" ]; then
 	# full graphical environment
 	sed 's/#.*//' ./packages.txt | xargs sudo apt install -y
 
+	# CLI environment
+	sed 's/#.*//' ./helper_scripts/packagesCLI.txt | xargs sudo apt install -y
+
 	# Install firefox
 	if [ ! -d "/opt/firefox" ]; then
 		mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
@@ -15,7 +18,7 @@ if [ -n "$DISPLAY" ]; then
 	fi
 
 	# Install lsd (list files deluxe)
-	if ! command -v lsd; then
+	if ! command -v lsd > /dev/null; then
 		mkdir -p /tmp/lsd
 		wget -O /tmp/lsd/lsd.deb "https://github.com/Peltoche/lsd/releases/download/0.19.0/lsd_0.19.0_amd64.deb"
 		yes | sudo dpkg -i /tmp/lsd/lsd.deb
@@ -24,6 +27,16 @@ if [ -n "$DISPLAY" ]; then
 		echo "skipping: lsd is installed"
 	fi
 
-	# CLI environment
-	sed 's/#.*//' ./helper_scripts/packagesCLI.txt | xargs sudo apt install -y
+	# install jumpapp
+	if ! command -v jumpapp > /dev/null; then
+		sudo apt-get install build-essential debhelper git pandoc shunit2 -y
+		mkdir /tmp/jumpapp
+		cd /tmp/jumpapp
+		git clone https://github.com/mkropat/jumpapp.git
+		cd jumpapp
+		make deb
+		sudo dpkg -i jumpapp*all.deb
+	else
+		echo "skipping: jumpapp is installed"
+	fi
 fi

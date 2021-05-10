@@ -1,3 +1,9 @@
+"google_speech -l en "$(xsel)""
+    control + shift + s
+
+"pkill google_speech & pkill sox"
+    control + shift + alt + s
+
 "flameshot gui"
     Print
 
@@ -9,6 +15,9 @@
 
 "rofi -modi drun -show drun  -show-icons"
     Alt + space
+
+"i3lock --color=121212"
+    control + alt + l
 
 "xfce4-terminal"
     control + alt + t
