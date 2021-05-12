@@ -23,7 +23,6 @@ sshfs
 gvfs-common
 gvfs-fuse
 
-
 # CLI Tools
 ffmpeg
 fzf
@@ -53,3 +52,5 @@ fonts-noto-extra
 fonts-noto-cjk
 fonts-noto-cjk-extra
 fonts-noto-color-emoji
+ttf-unifont
+
