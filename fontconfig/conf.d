@@ -26,5 +26,11 @@
       <string>Noto Emoji</string>
     </edit>
   </match>
+  <match>
+    <test name="family"><string>Unifont</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+      <string>Unifont</string>
+    </edit>
+  </match>
 </fontconfig>
 
