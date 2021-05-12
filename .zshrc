@@ -40,6 +40,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# If we are runnign graphically then run startx
+# ! Temp disabled so i can gut xfce/lightdm and start from xinit only
+# [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
 # Every time we cd log it to a file for fun
 chpwd()
   echo "$(pwd)" >> "$HOME/.dirhist" && cat "$HOME/.dirhist" | tail -n 10 > "$HOME/.dirhist"
