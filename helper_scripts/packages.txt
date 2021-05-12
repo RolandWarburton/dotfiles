@@ -45,6 +45,7 @@ lxappearance
 arc-theme
 papirus-icon-theme
 wmctrl
+unclutter
 
 # Fonts
 fonts-hack-otf
