@@ -14,7 +14,7 @@ import subprocess
 import time
 
 
-def question(q): return input(q).lower().strip()[0] == "y" or question(q)
+def question(q): return input(q).lower().strip()[0] == "y" or False
 
 
 def disableDevice():
@@ -78,7 +78,7 @@ def execCommand(params):
     print('RETURN CODE', return_code)
 
 
-def main():
+def runSetup():
     # check required packages are installed
     if not preFlight(["xinput", "jumpapp"]):
         print("failed pre flight")
@@ -89,12 +89,13 @@ def main():
     # disable the keyboard
     disableDevice()
 
-    try:
-        # If we passed -y then don't bother asking if we want to generate a config
-        if sys.argv[1] == "-y":
-            generateConfig = True
-    except:
-        generateConfig = question("write config to /etc/actkbd ")
+    # If we passed -y then don't bother asking if we want to generate a config
+    generateConfig = False
+    if 1 < len(sys.argv) and sys.argv[1] == "-y":
+        generateConfig = True
+    else:
+        if not question("write config to /etc/actkbd "):
+            generateConfig = False
 
     if generateConfig:
         # Write the config
@@ -107,6 +108,10 @@ def main():
         # cmd = f"sudo cp {actkbdPath}/actkbd.conf /etc/actkbd.conf"
         cmd = ["sudo", "cp", f"{actkbdPath}/actkbd.conf", "/etc/actkbd.conf"]
         execCommand(cmd)
+
+
+def main():
+    runSetup()
 
 
 main()
