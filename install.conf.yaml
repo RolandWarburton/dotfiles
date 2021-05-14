@@ -38,6 +38,8 @@
         path: bin/deletePrompt.sh
     ~/bin/backup.sh:
             path: bin/backup.sh
+    ~/bin/lock.sh:
+            path: bin/lock.sh
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:

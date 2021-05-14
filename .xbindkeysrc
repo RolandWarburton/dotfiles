@@ -16,7 +16,7 @@
 "rofi -modi drun -show drun  -show-icons"
     Alt + space
 
-"i3lock --color=121212"
+"/home/roland/bin/lock.sh"
     control + alt + l
 
 "xfce4-terminal"
