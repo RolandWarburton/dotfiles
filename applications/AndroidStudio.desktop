@@ -4,8 +4,8 @@
 Version=2.2.3
 Type=Application
 Terminal=false
-Exec="/opt/Android/bin/studio.sh"
+Exec="/opt/android-studio/bin/studio.sh"
 Name=Android Studio
 Comment=Android Studio
 Categories=Programming;
-Icon=/opt/Android/bin/studio.png
+Icon=/opt/android-studio/bin/studio.png
