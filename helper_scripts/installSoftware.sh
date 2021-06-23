@@ -27,6 +27,17 @@ if [ -n "$DISPLAY" ]; then
 		echo "skipping: lsd is installed"
 	fi
 
+	# Install bat
+	if ! command -v bat > /dev/null; then
+		mkdir -p /tmp/bat
+		wget -O /tmp/bat/bat.deb "wget https://github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_amd64.deb"
+		yes | sudo dpkg -i /tmp/bat/bat.deb
+		rm -rf /tmp/bat
+	else
+		echo "skipping: bat is installed"
+	fi
+
+
 	# install jumpapp
 	if ! command -v jumpapp > /dev/null; then
 		sudo apt-get install build-essential debhelper git pandoc shunit2 -y
