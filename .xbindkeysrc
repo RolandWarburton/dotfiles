@@ -22,9 +22,6 @@
 "xfce4-terminal"
     control + alt + t
 
-"rofi -show ssh"
-    Alt + control + s
-
 "rofi -show window"
     control + Tab
 
