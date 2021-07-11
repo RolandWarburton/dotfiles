@@ -119,6 +119,7 @@
 - link:
     ~/.tmux.conf: .tmux.conf
     ~/.Xresources: .Xresources
+    ~/.gitconfig: .gitconfig
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
