@@ -40,6 +40,8 @@
             path: bin/backup.sh
     ~/bin/lock.sh:
             path: bin/lock.sh
+    ~/bin/xselSpeaker.sh:
+            path: bin/xselSpeaker.sh
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
