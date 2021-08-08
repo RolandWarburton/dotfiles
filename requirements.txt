@@ -30,7 +30,7 @@ galternatives==1.0.4
 greenlet==0.4.15
 grip==4.5.2
 hid-tools==0.2
-httplib2==0.11.3
+httplib2==0.19.0
 idna==2.6
 importlib-metadata==3.10.1
 isort==5.8.0
