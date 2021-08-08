@@ -1,0 +1,7 @@
+- link:
+      /etc/actkbd.conf:
+          path: ./actkbd.conf
+          force: true
+      /etc/ImageMagick-6/policy.xml:
+          path: ./etc/ImageMagick-6/policy.xml
+          force: true

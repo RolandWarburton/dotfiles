@@ -1,53 +1,58 @@
-##──── Install packages ──────────────────────────────────────────────────────────────────
-if [ -n "$DISPLAY" ]; then
-	# full graphical environment
-	echo "Installing packages for GUI"
-	sed 's/#.*//' ./helper_scripts/packages.txt | xargs sudo apt install -y
+#!/usr/bin/env bash
 
-	# Install firefox
-	echo "Installing firefox"
-	if [ ! -d "/opt/firefox" ]; then
-		echo "Creating /tmp/firefox"
-		mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
-		echo "loading setup.bz2"
-		wget -O /tmp/firefox/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
-		echo "extracting..."
-		sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt # extract firefox to /opt
-		echo "copying firefox.desktop to /usr/share/applications"
-		sudo cp applications/firefox.desktop /usr/share/applications # copy the desktop shortcut over for app launchers (like rofi) to read
-		echo "linking executable for CLI launching"
-		sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox # symlink the executable to the bin for CLI launching
-	else
-		echo "Firefox is already installed in /opt/firefox"
-	fi
-else
-	# CLI environment
-	echo "Installing packages for CLI"
-	sed 's/#.*//' ./helper_scripts/packagesCLI.txt | xargs sudo apt install -y
-fi
+# Exit on any error returned by any command
+# Disabled because dialog needs to capture returned 1 codes
+#set -e
 
-##──── Create empty xfce theme ───────────────────────────────────────────────────────────
-# Within xfce4/xfconf/xfce-perchanel-xml/xfwm4.xml there is a line that looks like this:
-# <property name="theme" type="string" value="empty"/>
-# value="empty" is reffering to the theme name in /usr/share/themes
+chmod 755 ./helper_scripts/modules/*
 
-# Check we are in an xfce session
-if ps -e | grep -E '^.* xfce4-session$' > /dev/null; then
-	sudo mkdir -p /usr/share/themes/empty/xfwm4/
-	sudo touch /usr/share/themes/empty/xfwm4/themerc # create an empty theme file
-fi
+# sudo ./helper_scripts/modules/01.locale_conf.sh
 
-##──── change shell to zsh ───────────────────────────────────────────────────────────────
-if which zsh; then
-	# Download and install zplug if its not installed
-	if [ ! -d "$HOME/.zplug" ]; then
-		/usr/bin/curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-	fi
+sed 's/#.*//' ./helper_scripts/packages.txt | xargs sudo apt install -y
 
-	# Set the shell
-	sudo usermod --shell $(which zsh) $USER
-fi
+# ===================================================================
+# prompt for installing CLI packages
+dialog --title  "Install CLI packages" --nocancel --no-kill \
+--yesno "Install CLI packages now?" 7 50
+
+# Get exit status
+RESPONSE=$?
+case $RESPONSE in
+   0) sed 's/#.*//' ./helper_scripts/packagesCLI.txt | xargs sudo apt install -y;;
+   1) echo "Skipping CLI.";;
+   255) echo "Skipping CLI.";;
+   *) echo "Skipping CLI.";;
+esac
+
+# ===================================================================
+# prompt for installing GUI packages
+dialog --title  "Install GUI packages" --nocancel --no-kill \
+--yesno "Install GUI packages now?" 7 50
+
+# Get exit status
+RESPONSE=$?
+case $RESPONSE in
+   0) sed 's/#.*//' ./helper_scripts/packagesGUI.txt | xargs sudo apt install -y;;
+   1) echo "Skipping GUI.";;
+   255) echo "Skipping GUI.";;
+   *) echo "Skipping GUI.";;
+esac
+
+# ===================================================================
+# prompt for installing software
+selections=$(dialog --checklist "Choose the options you want:" 0 0 2 "1" "firefox" "on" "2" "example" "on" 3>&1 1>&2 2>&3 3>&- )
+
+for sel in $selections; do
+    case $sel in
+       1) ./helper_scripts/software/firefox.sh;;
+       2) echo "placeholder";;
+    esac
+done
 
 # Then run dotbot
 dotbot -c install.conf.yaml
+
+# do some last config stuff
+./helper_scripts/modules/02.install_zplug.zsh
+./helper_scripts/modules/03.create_empty_gtk_theme.sh
 
