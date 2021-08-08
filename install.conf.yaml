@@ -21,27 +21,27 @@
 ##──── bin ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/bin/banner:
-        path: bin/banner
+        path: scripts/banner
     ~/bin/exportPasswords:
-        path: bin/exportPasswords
+        path: scripts/exportPasswords
     ~/bin/fcd.sh:
-        path: bin/fcd.sh
+        path: scripts/fcd.sh
     ~/bin/he:
-        path: bin/he
+        path: scripts/he
     ~/bin/mouseConfig.sh:
-        path: bin/mouseConfig.sh
+        path: scripts/mouseConfig.sh
     ~/bin/screenLayout.sh:
-        path: bin/screenLayout.sh
+        path: scripts/screenLayout.sh
     ~/bin/swapMonitor:
-            path: bin/swapMonitor
+        path: scripts/swapMonitor
     ~/bin/deletePrompt.sh:
-        path: bin/deletePrompt.sh
+        path: scripts/deletePrompt.sh
     ~/bin/backup.sh:
-            path: bin/backup.sh
+        path: scripts/backup.sh
     ~/bin/lock.sh:
-            path: bin/lock.sh
+        path: scripts/lock.sh
     ~/bin/xselSpeaker.sh:
-            path: bin/xselSpeaker.sh
+        path: scripts/xselSpeaker.sh
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
