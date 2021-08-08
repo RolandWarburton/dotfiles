@@ -5,7 +5,6 @@
 # exec feh --bg-fill /home/roland/Media/Backgrounds/Catlesstail_portrait.png /home/roland/Media/Backgrounds/Catlesstail.png &
 
 # Run this stuff
-sleep 1 && exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /home/roland/.config/autostart/mouseConfig.sh &
 /home/roland/.config/autostart/trackBall.sh &
 xrdb -merge ~/.Xresources &
@@ -13,7 +12,5 @@ xbindkeys -f ~/.xbindkeysrc &
 unclutter &
 clipit -d &
 flameshot &
-#dunst > /dev/null 2>&1 
 dunst &
-#exec i3
 exec startxfce4
