@@ -100,7 +100,7 @@ tldr==1.2.1
 toml==0.10.2
 typed-ast==1.4.3
 typing-extensions==3.7.4.3
-urllib3==1.24.1
+urllib3==1.26.5
 usb==0.0.83.dev0
 userpath==1.6.0
 virtualenv==20.4.7
