@@ -9,13 +9,23 @@ git
 xclip
 xsel
 
+# Programs
+neovim
+vim
+
+# languages
+python3
+npm
+
 # Connectivity
 fuse
 ssh
+sshfs
 cifs-utils
 smbclient
 gvfs-backends
-
+gvfs-common
+gvfs-fuse
 
 # CLI Tools
 ffmpeg

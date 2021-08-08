@@ -1,57 +1,22 @@
 # Basics
 sudo
 zsh
-xbindkeys
-xdotool
-htop
 tmux
 git
-xclip
-xsel
 vim
 neovim
-x11-xserver-utils
-xinput
+dialog
 
 # Connectivity
 fuse
 ssh
-cifs-utils
-smbclient
-gvfs-backends
 sshfs
-gvfs-common
-gvfs-fuse
+cifs-utils
 
 # CLI Tools
+htop
 ffmpeg
 fzf
 curl
 dnsutils
 gawk
-
-# Graphical software
-thunar
-flameshot
-pavucontrol
-audacity
-obs-studio
-rofi
-mpv
-
-# DE theme related stuff
-lxappearance
-arc-theme
-papirus-icon-theme
-wmctrl
-unclutter
-
-# Fonts
-fonts-hack-otf
-fonts-noto
-fonts-noto-extra
-fonts-noto-cjk
-fonts-noto-cjk-extra
-fonts-noto-color-emoji
-ttf-unifont
-
