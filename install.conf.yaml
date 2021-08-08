@@ -5,6 +5,7 @@
 - clean: ['~', '~/.config']
 
 - create:
+    - - ~/bin
     - ~/.config/xfce4/panel
     - ~/.config/xfce4/terminal
     - ~/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -47,6 +48,7 @@
 - link:
     ~/.config/Thunar/uca.xml:
         path: Thunar/uca.xml
+        force: true
 
 ##──── xfce4 panel ───────────────────────────────────────────────────────────────────────
 - link:
