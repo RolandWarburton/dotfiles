@@ -12,7 +12,7 @@ fi
 
 
 dev[0]="Logitech MX Master 3"
-#dev[1]="Razer Razer DeathAdder"
+dev[1]="Razer Razer DeathAdder"
 #dev[2]="ELECOM TrackBall Mouse HUGE TrackBall"
 
 
