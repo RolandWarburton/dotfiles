@@ -4,10 +4,9 @@
 
 ## Installing
 
-Set your path for python to read dotbot from and install dotbot (requires python3 and python3-pip).
-
 ```none
-export PATH=$PATH:$HOME/.local/bin
+sudo apt install python3 python3-pip python3-venv
+source venv/bin/activate
 pip3 install dotbot
 ```
 
