@@ -5,7 +5,7 @@
 - clean: ['~', '~/.config']
 
 - create:
-    - - ~/bin
+    - ~/bin
     - ~/.config/xfce4/panel
     - ~/.config/xfce4/terminal
     - ~/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -18,6 +18,7 @@
     - ~/.config/autostart
     - ~/.config/Thunar
     - ~/.zkbd
+    - ~/.nvm
 
 ##──── bin ───────────────────────────────────────────────────────────────────────────────
 - link:
