@@ -17,9 +17,21 @@ then
 	sudo cp -p /opt/firefox /opt/firefox.bak
 fi
 
-mkdir -p /tmp/firefox # create a temp location to store the downloaded binary
+# Create a temp location to store the downloaded binary
+mkdir -p /tmp/firefox
+
+# Download
 wget -O /tmp/firefox/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
-sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt # extract firefox to /opt
-sudo cp applications/firefox.desktop /usr/share/applications # copy the desktop shortcut over for app launchers (like rofi) to read
-sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox # symlink the executable to the bin for CLI launching
+
+# Extract firefox to /opt
+sudo tar -xf /tmp/firefox/FirefoxSetup.tar.bz2 --directory /opt
+
+# copy the desktop shortcut over for app launchers (like rofi) to read
+sudo cp applications/firefox.desktop /usr/share/applications
+
+# symlink the executable to the bin for CLI launching
+sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 sudo rm -rf /tmp/firefox
+
+# set up firefox as the default URL handler
+xdg-settings set default-web-browser firefox.desktop
