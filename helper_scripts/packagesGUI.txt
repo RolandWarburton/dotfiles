@@ -3,6 +3,7 @@ flameshot
 pavucontrol
 rofi
 mpv
+workrave
 
 # DE theme related stuff
 lxappearance
@@ -25,3 +26,4 @@ x11-xserver-utils
 xinput
 xclip
 xsel
+i3lock
