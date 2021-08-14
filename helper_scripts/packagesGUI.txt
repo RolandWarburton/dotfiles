@@ -27,3 +27,4 @@ xinput
 xclip
 xsel
 i3lock
+imagemagick
