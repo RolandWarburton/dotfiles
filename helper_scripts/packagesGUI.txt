@@ -4,6 +4,7 @@ pavucontrol
 rofi
 mpv
 workrave
+peek
 
 # DE theme related stuff
 lxappearance
