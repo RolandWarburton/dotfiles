@@ -125,6 +125,7 @@
     ~/.tmux.conf: .tmux.conf
     ~/.Xresources: .Xresources
     ~/.gitconfig: .gitconfig
+    ~/.xinitrc: .xinitrc
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
