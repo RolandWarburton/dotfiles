@@ -8,7 +8,6 @@ neovim
 dialog
 
 # Connectivity
-fuse
 ssh
 sshfs
 cifs-utils
