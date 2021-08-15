@@ -4,13 +4,15 @@
 # Start the background. Not needed for XFCE4
 # exec feh --bg-fill /home/roland/Media/Backgrounds/Catlesstail_portrait.png /home/roland/Media/Backgrounds/Catlesstail.png &
 
+# For liquidctl ensure that you have copied over the udev rules for a non root user to have permission running the command
+
 # Run this stuff
+liquidctl set fan speed 30 50 35 80 50 100 &
 /home/roland/.config/autostart/mouseConfig.sh &
 /home/roland/.config/autostart/trackBall.sh &
 xrdb -merge ~/.Xresources &
 xbindkeys -f ~/.xbindkeysrc &
 unclutter &
 clipit -d &
-flameshot &
 dunst &
 exec startxfce4
