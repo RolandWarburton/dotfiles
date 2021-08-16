@@ -122,10 +122,21 @@
 
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
 - link:
-    ~/.tmux.conf: .tmux.conf
-    ~/.Xresources: .Xresources
-    ~/.gitconfig: .gitconfig
-    ~/.xinitrc: .xinitrc
+    ~/.tmux.conf:
+        path: .tmux.conf
+        force: true
+    ~/.Xresources:
+        path: .Xresources
+        force: true
+    ~/.gitconfig:
+        path: .gitconfig
+        force: true
+    ~/.xinitrc:
+        path: .xinitrc
+        force: true
+    ~/.config/user-dirs.dirs:
+        path: user-dirs.dirs
+        force: true
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
