@@ -1,0 +1,15 @@
+# symlink the executable to the bin for CLI launching
+# sudo ln -s /opt/stoplight-studio-linux-x86_64.AppImage /usr/local/bin/stoplight
+
+# copy the desktop shortcut over for app launchers (like rofi) to read
+# sudo cp stoplight.desktop /usr/share/applications
+
+[Desktop Entry]
+Name=Stoplight
+Comment=OpenAPI Editor
+Exec=/opt/stoplight-studio-linux-x86_64.AppImage
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/Papirus-Dark/64x64/categories/8bitmmo.svg
+Categories=Network;api;API;
+StartupNotify=true
