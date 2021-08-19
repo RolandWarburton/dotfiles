@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# This script requires the corsair comamnder pro to be installed as a fan controller
+
+# Setting the fan speed can be done though liquidctl itself if you cant be bothered with pwmconfig
+# check out https://github.com/liquidctl/liquidctl for reading and setting fan speeds
+
+# Monitoring the fan speed can be done through either liquidctl, or though this repo which adds support for the fan controller
+# check out https://github.com/MisterZ42/corsair-cpro for kernel support
+
+liquidctl --match commander set fan1 speed "$1"
+liquidctl --match commander set fan2 speed "$1"
+liquidctl --match commander set fan3 speed "$1"
+liquidctl --match commander set fan4 speed "$1"

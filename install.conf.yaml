@@ -44,6 +44,8 @@
         path: scripts/lock.sh
     ~/bin/xselSpeaker.sh:
         path: scripts/xselSpeaker.sh
+    ~/bin/fanspeed:
+        path: scripts/fanspeed
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
