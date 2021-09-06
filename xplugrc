@@ -1,21 +1,47 @@
 #!/bin/bash
 
-# when connecting back to the desktop, wait for all the monitors to become available before configuring them
-if [ "$3" = "connected" ]; then
-    while [ "$(xrandr | grep 'connected' | wc -l)" -lt 4 ]; do
-        sleep 1
-    done
-    /home/roland/bin/mouseConfig.sh && \
-    /home/roland/screenLayout.sh
-    exit 0
+# Some classifications for the classis_type
+# 3 Desktop
+# 7 Tower
+# 9 Laptop
+# 10 Notebook
+# 13 All in One
+# 24 Sealed-Case PC
+
+# desktop
+if [ "$(cat /sys/class/dmi/id/chassis_type)" -eq 3 ]; then
+    # when connecting back to the desktop, wait for all the monitors to become available before configuring them
+    if [ "$3" = "connected" ]; then
+        while [ "$(xrandr | grep 'connected' | wc -l)" -lt 4 ]; do
+            sleep 1
+        done
+        /home/roland/bin/mouseConfig.sh && \
+        /home/roland/screenLayout.sh
+        exit 0
+    fi
+
+    # when you disconnect and move to the docked laptop. Reconfigure the monitors on the desktop
+    # if [ "$3" = "disconnected" ]; then
+    #     sleep 5 && \
+    #     /home/roland/screenLayout_x3.sh
+    #     exit 0
+    # fi
+
+    # Above does not actually need to be here, originally this was the script that was run when the the desktop was moving over to laptop mode
+    # xrandr --output DVI-D-0 --mode 1920x1080 --pos 1920x240 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x1080 --rotate normal --output DP-0 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate inverted --output HDMI-1 --off --output HDMI-2 --off --output HDMI-3 --off
 fi
 
-# when you disconnect and move to the docked laptop. Reconfigure the monitors on the desktop
-# if [ "$3" = "disconnected" ]; then
-#     sleep 5 && \
-#     /home/roland/screenLayout_x3.sh
-#     exit 0
-# fi
+# laptop
+if [ "$(cat /sys/class/dmi/id/chassis_type)" -eq 9 ]; then
+    # wait for more than 1 screen to be available before configuring them
+    if [ "$3" = "connected" ]; then
+        while [ "$(xrandr | grep 'connected' | wc -l)" -le 1 ]; do
+            sleep 1
+        done
+        /home/roland/bin/mouseConfig.sh && \
+        /home/roland/screenLayoutLaptop.sh
+        exit 0
+    fi
+fi
 
-# Above does not actually need to be here, originally this was the script that was run when the the desktop was moving over to laptop mode
-# xrandr --output DVI-D-0 --mode 1920x1080 --pos 1920x240 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x1080 --rotate normal --output DP-0 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate inverted --output HDMI-1 --off
+exit 1
