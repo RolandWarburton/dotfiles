@@ -34,6 +34,8 @@
         path: scripts/mouseConfig.sh
     ~/bin/screenLayout.sh:
         path: scripts/screenLayout.sh
+    ~/bin/screenLayoutLaptop.sh:
+        path: scripts/screenLayoutLaptop.sh
     ~/bin/swapMonitor:
         path: scripts/swapMonitor
     ~/bin/deletePrompt.sh:
@@ -140,7 +142,6 @@
         path: user-dirs.dirs
         force: true
     ~/.config/xplugrc:
-        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
         path: xplugrc
         force: true
 
