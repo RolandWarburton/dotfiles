@@ -139,6 +139,10 @@
     ~/.config/user-dirs.dirs:
         path: user-dirs.dirs
         force: true
+    ~/.config/xplugrc:
+        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
+        path: xplugrc
+        force: true
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
