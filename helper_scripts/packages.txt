@@ -6,6 +6,7 @@ git
 vim
 neovim
 dialog
+ssh-askpass
 
 # Connectivity
 ssh
@@ -19,3 +20,4 @@ fzf
 curl
 dnsutils
 gawk
+net-tools

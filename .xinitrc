@@ -7,12 +7,21 @@
 # For liquidctl ensure that you have copied over the udev rules for a non root user to have permission running the command
 
 # Run this stuff
-liquidctl set fan speed 30 50 35 80 50 100 &
+#export DESKTOP_SESSION=plasma &
+#dbus-launch gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg &
+#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK &
+#dbus-update-activation-environment --systemd DISPLAY &
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+#export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+liquidctl initialize all &
+liquidctl --match h150 set fan speed 20 50 30 80 40 100 &
 /home/roland/.config/autostart/mouseConfig.sh &
 /home/roland/.config/autostart/trackBall.sh &
 xrdb -merge ~/.Xresources &
 xbindkeys -f ~/.xbindkeysrc &
 unclutter &
 clipit -d &
-dunst &
+flameshot &
+#dunst &
+#exec dbus-launch --exit-with-session startxfce4
 exec startxfce4
