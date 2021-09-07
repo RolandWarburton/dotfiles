@@ -22,6 +22,6 @@ xbindkeys -f ~/.xbindkeysrc &
 unclutter &
 clipit -d &
 flameshot &
-#dunst &
-#exec dbus-launch --exit-with-session startxfce4
+dunst &
+xplugd &
 exec startxfce4
