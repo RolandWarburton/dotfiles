@@ -32,7 +32,7 @@ if [ "$(cat /sys/class/dmi/id/chassis_type)" -eq 3 ]; then
 fi
 
 # laptop
-if [ "$(cat /sys/class/dmi/id/chassis_type)" -eq 9 ]; then
+if [ "$(cat /sys/class/dmi/id/chassis_type)" -eq 10 ]; then
     # wait for more than 1 screen to be available before configuring them
     if [ "$3" = "connected" ]; then
         while [ "$(xrandr | grep 'connected' | wc -l)" -le 1 ]; do
