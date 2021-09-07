@@ -15,4 +15,5 @@ xbindkeys -f ~/.xbindkeysrc &
 unclutter &
 clipit -d &
 dunst &
+xplugd &
 exec startxfce4
