@@ -3,3 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = RolandWarburton
 	email = warburtonroland@gmail.com
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
+[credential "https://dev.azure.com"]
+	useHttpPath = true

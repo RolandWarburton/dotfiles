@@ -4,6 +4,9 @@
 "pkill aplay"
     control + shift + alt + s
 
+#"( flameshot &; ) && ( sleep 0.5s && flameshot gui )"
+#    Print
+
 "flameshot gui"
     Print
 

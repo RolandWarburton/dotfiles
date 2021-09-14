@@ -1,0 +1,15 @@
+# symlink the executable to the bin for CLI launching
+# sudo ln -s /opt/balenaEtcher.AppImage /usr/local/bin/balenaEtcher
+
+# copy the desktop shortcut over for app launchers (like rofi) to read
+# sudo cp balenaEtcher.desktop /usr/share/applications
+
+[Desktop Entry]
+Name=Balena Etcher
+Comment=USB Burner
+Exec=/opt/balenaEtcher.AppImage
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/Papirus-Dark/64x64/categories/iso-image-burn.svg
+Categories=Utility;ISO;Burner
+StartupNotify=true
