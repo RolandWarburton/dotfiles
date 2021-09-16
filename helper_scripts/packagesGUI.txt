@@ -27,5 +27,6 @@ x11-xserver-utils
 xinput
 xclip
 xsel
+autorandr
 i3lock
 imagemagick
