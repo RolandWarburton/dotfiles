@@ -9,7 +9,7 @@ img=$(mktemp /tmp/XXXXXXXX.png)
 import -window root $img
 
 # Pixelate the screenshot
-convert $img -scale 10% -scale 1000% $img
+convert $img -blur 0x2.5 $img
 
 # Run i3lock with custom background
 i3lock -i $img
