@@ -7,7 +7,7 @@
 #"( flameshot &; ) && ( sleep 0.5s && flameshot gui )"
 #    Print
 
-"flameshot gui"
+"screenshot.sh"
     Print
 
 "flameshot gui --delay 3000"
