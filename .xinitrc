@@ -1,8 +1,45 @@
 #!/bin/bash
 
-. /etc/X11/Xsession &
+#. /etc/X11/Xsession &
 
-echo "starting log $script" > /home/roland/log
+#echo "starting log $script" > /home/roland/log &
+
+#. /etc/X11/Xsession.d/20dbus_xdg-runtime
+#echo "ran 1" >> /home/roland/log &
+#. /etc/X11/Xsession.d/20vdpau-va-gl 
+#echo "ran 2" >> /home/roland/log &
+#. /etc/X11/Xsession.d/20x11-common_process-args
+#echo "ran 3" >> /home/roland/log &
+#. /etc/X11/Xsession.d/30x11-common_xresources
+#echo "ran 4" >> /home/roland/log &
+#. /etc/X11/Xsession.d/35x11-common_xhost-local
+#echo "ran 5" >> /home/roland/log &
+#. /etc/X11/Xsession.d/40x11-common_xsessionrc
+#echo "ran 6" >> /home/roland/log &
+#. /etc/X11/Xsession.d/50x11-common_determine-startup
+#echo "ran 7" >> /home/roland/log &
+#. /etc/X11/Xsession.d/55xfce4-session
+#echo "ran 8" >> /home/roland/log &
+#. /etc/X11/Xsession.d/75dbus_dbus-launch
+#echo "ran 9" >> /home/roland/log &
+#. /etc/X11/Xsession.d/90atk-adaptor
+#echo "ran 10" >> /home/roland/log &
+#. /etc/X11/Xsession.d/90gpg-agent
+#echo "ran 11" >> /home/roland/log &
+#. /etc/X11/Xsession.d/90qt-a11y
+#echo "ran 12" >> /home/roland/log &
+#. /etc/X11/Xsession.d/90unclutter
+#echo "ran 13" >> /home/roland/log &
+#. /etc/X11/Xsession.d/90x11-common_ssh-agent
+#echo "ran 14" >> /home/roland/log &
+#. /etc/X11/Xsession.d/90xbrlapi
+#echo "ran 15" >> /home/roland/log &
+#. /etc/X11/Xsession.d/95dbus_update-activation-env
+#echo "ran 16" >> /home/roland/log &
+
+# This one crashes for some reason
+#. /etc/X11/Xsession.d/99x11-common_start
+#echo "ran 17" >> /home/roland/log &
 
 # Run all system xinitrc shell scripts.
 xinitdir="/etc/X11/Xsession.d"
@@ -10,37 +47,26 @@ if [ -d "$xinitdir" ]; then
     for script in $xinitdir/*; do
         echo "Loading xinit script $script" >> /home/roland/log
         if [ -x "$script" -a ! -d "$script" ]; then
-            . "$script"
+            . "$script" &
+            echo "Loaded script" >> /home/roland/log
         fi
     done
 fi
 
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-#export SSH_AUTH_SOCK
-#export GPG_AGENT_INFO
-#export GNOME_KEYRING_CONTROL
-#export GNOME_KEYRING_PID
-
-#systemctl --user import-environment DISPLAY XAUTHORITY
-
-#DISPLAY=":0.0"
-#HOME="/home/roland"
-#XAUTHORITY="$HOME/.Xauthority"
-#export DISPLAY XAUTHORITY HOME
-
+flameshot &
+echo "Ran flameshot" >> /home/roland/log &
 xbindkeys &
+echo "Ran xbindkeys" >> /home/roland/log &
 screenLayout.sh &
+echo "Ran screenLayout" >> /home/roland/log &
 mosueConfig.sh &
+echo "Ran mouseConfig" >> /home/roland/log &
 dunst &
+echo "Ran dunst" >> /home/roland/log &
 
-# xfwm4 --daemon &
-#exec xfce4-session
-#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session startxfce4
-# exec dbus-launch --sh-syntax --exit-with-session startxfce4
-# exec dbus-launch --sh-syntax --exit-with-session gnome-shell
-# exec dbus-launch --exit-with-session gnome-shell
-
+# start xfce4
 xfwm4 --daemon &
 exec dbus-launch --exit-with-session xfce4-session
 
-#exec dbus-launch --exit-with-session startxfce4
+# the other way to start xfce4
+# exec dbus-launch --exit-with-session startxfce4
