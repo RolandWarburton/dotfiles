@@ -48,6 +48,8 @@
         path: scripts/xselSpeaker.sh
     ~/bin/fanspeed:
         path: scripts/fanspeed
+    ~/bin/screenshot.sh:
+        path: scripts/screenshot.sh
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
