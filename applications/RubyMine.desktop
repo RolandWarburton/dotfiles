@@ -1,0 +1,11 @@
+# Run the following from the directory that this file exists in.
+# sudo ln -s `pwd`/RubyMine.desktop /usr/share/applications/RubyMine.desktop
+[Desktop Entry]
+Version=2.2.3
+Type=Application
+Terminal=false
+Exec="/opt/RubyMine/bin/rubymine.sh"
+Name=Ruby Mine
+Comment=/opt/RubyMine/bin/rubymine.sh
+Categories=Programming;
+Icon=/opt/RubyMine/RMlogo.svg
