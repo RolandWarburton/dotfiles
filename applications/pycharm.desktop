@@ -1,0 +1,15 @@
+# symlink the executable to the bin for CLI launching
+# sudo ln -s /opt/pycharm/bin/pycharm.sh /usr/local/bin/pycharm
+
+# copy the desktop shortcut over for app launchers (like rofi) to read
+# sudo cp pycharm.desktop /usr/share/applications
+
+[Desktop Entry]
+Name=Pycharm
+Comment=JeyBrains Pycharm
+Exec=/opt/pycharm/bin/pycharm.sh
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/Papirus/64x64/apps/pycharm.svg
+Categories=IDE;
+StartupNotify=true
