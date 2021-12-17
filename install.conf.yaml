@@ -50,6 +50,8 @@
         path: scripts/fanspeed
     ~/bin/screenshot.sh:
         path: scripts/screenshot.sh
+    ~/bin/teleportMouse.sh:
+        path: scripts/teleportMouse.sh
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:

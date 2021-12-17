@@ -1,8 +1,23 @@
-"xselSpeaker.sh
-    control + shift + s
+# "xselSpeaker.sh"
+#     control + shift + s
 
-"pkill aplay"
-    control + shift + alt + s
+# "pkill aplay"
+#     control + shift + alt + s
+
+"sudo systemctl restart sddm"
+    Control + Control_R + Up + Down
+
+"teleportMouse.sh 'left'"
+    control + alt + shift + Left
+
+"teleportMouse.sh 'right'"
+    control + alt + shift + Right
+
+"teleportMouse.sh 'top'"
+    control + alt + shift + Up
+
+"teleportMouse.sh 'bottom'"
+    control + alt + shift + Down
 
 #"( flameshot &; ) && ( sleep 0.5s && flameshot gui )"
 #    Print
