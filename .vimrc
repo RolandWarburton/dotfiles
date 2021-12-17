@@ -23,3 +23,8 @@ map <esc>[1;5C <C-Right>
 imap <esc>[1;5D <C-Left>
 imap <esc>[1;5C <C-Right>
 
+" 2 space tabs
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
