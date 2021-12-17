@@ -32,4 +32,5 @@ ColorBackground=#38383c3c4a4a
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
+ColorPalette=rgb(0,0,0);rgb(192,58,58);rgb(0,170,0);rgb(170,85,0);rgb(72,72,198);rgb(170,0,170);rgb(0,170,170);rgb(170,170,170);rgb(85,85,85);rgb(255,85,85);rgb(85,255,85);rgb(255,255,85);rgb(85,85,255);rgb(255,85,255);rgb(85,255,255);rgb(255,255,255)
 
