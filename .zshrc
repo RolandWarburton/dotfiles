@@ -64,3 +64,6 @@ export NVM_DIR="$HOME/.nvm"
 # Every time we cd log it to a file for fun
 #chpwd()
   #echo "$(pwd)" >> "$HOME/.dirhist" && cat "$HOME/.dirhist" | tail -n 10 > "$HOME/.dirhist"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
