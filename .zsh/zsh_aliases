@@ -25,7 +25,7 @@ alias killport="fuser -k"
 alias pwdc="pwd | c"
 alias tmuxssh='f() {ssh $1 -t /usr/bin/tmux a -t $2};f' # tmuxssh 192.168.0.10  sessionName
 alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest"
-alias volls='f() {docker run -i -v=$1:/tmp/$1 busybox find /tmp/$1};f' # volls testvol
+alias volls='f() {docker run --rm -i -v=$1:/tmp/$1 busybox ls -l -R /tmp/$1};f' # volls testvol
 alias fcd='f() {cd $(find . -maxdepth 1 -type d | fzf)};f'
 
 # If LSD is installed then use those
