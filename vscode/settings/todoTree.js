@@ -26,6 +26,7 @@ export const todoTree = {
     "**/Gemfile.lock",
     "**/Rakefile",
     "**/*.rb",
+    "**/*.sh",
   ],
   "todo-tree.highlights.customHighlight": {
     breakpoint: {
