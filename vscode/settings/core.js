@@ -64,6 +64,8 @@ export const core = {
   "git.autofetch": true,
   // bracket pair colors
   "editor.guides.bracketPairs": false,
+  // Indent block highlighting color settings
+  "blockhighlight.background": ["200", "100", "255", ".06"],
   // ## Indentation Rules
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
