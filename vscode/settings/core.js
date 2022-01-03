@@ -4,7 +4,7 @@ export const core = {
   // How to handle untrusted files
   "security.workspace.trust.untrustedFiles": "open",
   // When opening files with quick open, do not preview them (just open them)
-  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreview": true,
   // Controls how suggestions are pre-selected when showing the suggest list
   // OPTIONS: first, recentlyUsed
   "editor.suggestSelection": "first",
