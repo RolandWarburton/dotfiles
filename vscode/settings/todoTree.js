@@ -27,6 +27,7 @@ export const todoTree = {
     "**/Rakefile",
     "**/*.rb",
     "**/*.sh",
+    "**/*.yaml",
   ],
   "todo-tree.highlights.customHighlight": {
     breakpoint: {
