@@ -27,6 +27,7 @@ export const todoTree = {
     "**/Rakefile",
     "**/*.rb",
     "**/*.sh",
+    "**/dockerfile",
     "**/*.yaml",
   ],
   "todo-tree.highlights.customHighlight": {
