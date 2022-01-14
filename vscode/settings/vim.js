@@ -17,4 +17,10 @@ export const vim = {
     // redo
     "C-r": false,
   },
+  "vim.normalModeKeyBindings": [
+    {
+      before: ["<C-n>"],
+      commands: [":nohl"],
+    },
+  ],
 };
