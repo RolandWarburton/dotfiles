@@ -19,6 +19,7 @@ export const vim = {
   },
   "vim.normalModeKeyBindings": [
     {
+      // ctrl + n: turn off highlighting
       before: ["<C-n>"],
       commands: [":nohl"],
     },
