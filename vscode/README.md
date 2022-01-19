@@ -30,6 +30,7 @@ shardulm94.trailing-spaces
 streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 Tyriar.lorem-ipsum
+usernamehw.errorlens
 vscode-icons-team.vscode-icons
 vscodevim.vim
 yzane.markdown-pdf
