@@ -4,8 +4,10 @@ export const vim = {
   "vim.handleKeys": {
     // ctrl + f
     "C-f": false,
-    // ctrl + w in normal mode (close window),
+    // ignore ctrl + w in normal mode (close window),
     "<C-w>": false,
+    // ignore ctrl + d in normal mode (down a page),
+    "<C-d>": false,
     // copy
     "C-c": false,
     // paste
