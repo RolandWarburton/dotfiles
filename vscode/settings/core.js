@@ -1,4 +1,6 @@
 export const core = {
+  // do not show the 'x' button on tabs
+  "workbench.editor.tabCloseButton": "off",
   // Set the zoom level
   "window.zoomLevel": -1,
   // How to handle untrusted files
