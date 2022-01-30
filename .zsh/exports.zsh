@@ -3,6 +3,10 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 
+# Go exports
+export GO_PATH=~/go
+export PATH=$PATH:/$GO_PATH/bin
+
 # Android Studio
 export ANDROID_HOME=/home/roland/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -17,4 +21,7 @@ export CHROME_EXECUTABLE=`which chromium`
 # Dart
 # Install from https://dart.dev/get-dart
 export PATH="$PATH:/usr/lib/dart/bin"
+
+# vivi
+export ADB_VENDOR_KEYS="$HOME/.ssh/adb" # chmod 600 this
 
