@@ -27,6 +27,7 @@ export const todoTree = {
     "**/Rakefile",
     "**/*.rb",
     "**/*.sh",
+    "**/.conf",
     "**/dockerfile",
     "**/*.yaml",
   ],
