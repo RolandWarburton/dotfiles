@@ -4,6 +4,9 @@
 # "pkill aplay"
 #     control + shift + alt + s
 
+"rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+    Alt + c
+
 "sudo systemctl restart sddm"
     Control + Control_R + Up + Down
 
