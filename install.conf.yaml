@@ -22,6 +22,8 @@
 
 ##──── bin ───────────────────────────────────────────────────────────────────────────────
 - link:
+    ~/bin/greenclip:
+        path: scripts/greenclip
     ~/bin/banner:
         path: scripts/banner
     ~/bin/exportPasswords:
