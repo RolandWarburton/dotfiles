@@ -1,9 +1,11 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
 	name = RolandWarburton
 	email = warburtonroland@gmail.com
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+[core]
+	autocrlf = input
+[init]
+  defaultBranch = master
+
