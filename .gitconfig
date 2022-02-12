@@ -8,4 +8,6 @@
 	autocrlf = input
 [init]
   defaultBranch = master
+[pull]
+  rebase = false
 
