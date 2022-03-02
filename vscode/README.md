@@ -57,7 +57,6 @@ Ruby stuff.
 
 ```none
 castwide.solargraph
-Dart-Code.dart-code
 miguel-savignano.ruby-symbols
 misogi.ruby-rubocop
 rebornix.ruby
@@ -69,6 +68,7 @@ wingrunr21.vscode-ruby
 Misc stuff.
 
 ```none
+Dart-Code.dart-code
 icrawl.discord-vscode
 James-Yu.latex-workshop
 ms-azuretools.vscode-docker
