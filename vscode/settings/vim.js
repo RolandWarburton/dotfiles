@@ -25,5 +25,15 @@ export const vim = {
       before: ["<C-n>"],
       commands: [":nohl"],
     },
+    {
+      // map B to beginning of line
+      before: ["B"],
+      after: ["^"]
+    },
+    {
+      // map E to beginning of line
+      before: ["E"],
+      after: ["$"]
+    }
   ],
 };
