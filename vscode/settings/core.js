@@ -1,4 +1,6 @@
 export const core = {
+  // change how line numbers are rendered to be relative
+  "editor.lineNumbers": "relative"
   // do not show the 'x' button on tabs
   "workbench.editor.tabCloseButton": "off",
   // Set the zoom level
