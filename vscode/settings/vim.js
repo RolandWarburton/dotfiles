@@ -33,7 +33,17 @@ export const vim = {
     {
       // map E to beginning of line
       before: ["E"],
-      after: ["$"]
+      after: ["g","_"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      before: ["B"],
+      after: ["^"]
+    },
+    {
+      before: ["E"],
+      after: ["g","_"]
     }
   ],
 };
