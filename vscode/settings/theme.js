@@ -2,7 +2,7 @@ export const theme = {
   // ## General Colors
   "workbench.colorCustomizations": {
     "editor.selectionHighlightBorder": "#00ff2a",
-    "editor.lineHighlightBackground": "#ffff00",
+    "editor.lineHighlightBackground": "#154E18",
     "editorLineNumber.activeForeground": "#000000",
     "editorCursor.foreground": "#ff0000",
     "list.focusBackground": "#ff000043",
