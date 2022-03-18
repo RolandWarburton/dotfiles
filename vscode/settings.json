@@ -6,9 +6,12 @@
     "markdown": true,
     "ruby": true
   },
+  "editor.lineNumbers": "relative",
+  "editor.renderLineHighlight": "gutter",
+  "workbench.editor.tabCloseButton": "off",
   "window.zoomLevel": -1,
   "security.workspace.trust.untrustedFiles": "open",
-  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreview": true,
   "editor.suggestSelection": "first",
   "editor.renderWhitespace": "all",
   "json.maxItemsComputed": 50000,
@@ -44,6 +47,12 @@
   ],
   "git.autofetch": true,
   "editor.guides.bracketPairs": false,
+  "blockhighlight.background": [
+    "200",
+    "100",
+    "255",
+    ".06"
+  ],
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
@@ -96,7 +105,8 @@
   "tabnine.experimentalAutoImports": true,
   "workbench.colorCustomizations": {
     "editor.selectionHighlightBorder": "#00ff2a",
-    "editor.lineHighlightBackground": "#1073cf2d",
+    "editor.lineHighlightBackground": "#ffff00",
+    "editorLineNumber.activeForeground": "#000000",
     "editorCursor.foreground": "#ff0000",
     "list.focusBackground": "#ff000043",
     "statusBar.noFolderBackground": "#af2828",
@@ -130,7 +140,11 @@
     "**/Gemfile",
     "**/Gemfile.lock",
     "**/Rakefile",
-    "**/*.rb"
+    "**/*.rb",
+    "**/*.sh",
+    "**/.conf",
+    "**/dockerfile",
+    "**/*.yaml"
   ],
   "todo-tree.highlights.customHighlight": {
     "breakpoint": {
@@ -245,12 +259,60 @@
   "vim.hlsearch": true,
   "vim.handleKeys": {
     "C-f": false,
+    "<C-w>": false,
+    "<C-d>": false,
     "C-c": false,
     "C-v": false,
     "C-x": false,
     "C-u": false,
     "C-r": false
   },
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "B"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "E"
+      ],
+      "after": [
+        "g",
+        "_"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "B"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "E"
+      ],
+      "after": [
+        "g",
+        "_"
+      ]
+    }
+  ],
   "cSpell.allowCompoundWords": true,
   "cSpell.enabledLanguageIds": [
     "asciidoc",
@@ -338,6 +400,7 @@
     "EPON",
     "errno",
     "esbenp",
+    "esbuild",
     "eslintignore",
     "exif",
     "exiftool",
@@ -373,6 +436,7 @@
     "hidg",
     "hidraw",
     "HKEY",
+    "hlsearch",
     "hmac",
     "horz",
     "hostnames",
@@ -421,6 +485,10 @@
     "libxslt",
     "liquidctl",
     "LMDS",
+    "lvextend",
+    "lvremove",
+    "lvrename",
+    "lvresize",
     "lxappearance",
     "Magick",
     "mapid",
@@ -457,6 +525,7 @@
     "nokey",
     "nonegotiate",
     "noprint",
+    "nothrow",
     "notifyd",
     "noto",
     "nslookup",
@@ -493,11 +562,13 @@
     "readonly",
     "reolink",
     "repos",
+    "resizefs",
     "rofi",
     "Rolands",
     "rolandw",
     "rsop",
     "RTSP",
+    "rubocop",
     "runme",
     "runuser",
     "rxvt",
@@ -560,11 +631,13 @@
     "xsel",
     "xset",
     "xsettings",
+    "xtype",
     "ya'll",
     "yeet",
     "ylabel",
     "ymax",
     "ymin",
+    "ytdl",
     "zkbd",
     "zplug"
   ],
