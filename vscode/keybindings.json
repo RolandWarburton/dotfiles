@@ -1,37 +1,88 @@
-// Place your key bindings in this file to override the defaultsauto[]
 [
+  // when creating a new file, this method creates it where the cursor is
   {
     "key": "ctrl+n",
     "command": "explorer.newFile",
     "when": "filesExplorerFocus"
   },
-  {
-    "key": "shift+ctrl+j",
-    "command": "list.focusPageDown",
-    "when": "listFocus && !inputFocus"
-  },
-  {
-    "key": "shift+ctrl+k",
-    "command": "list.focusPageUp",
-    "when": "listFocus && !inputFocus"
-  },
+  // toggle between editor and file tree
   {
     "command": "workbench.view.explorer",
     "key": "f1"
   },
+  // move current line up
   {
     "key": "meta+up",
     "command": "editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
   },
-  {
-    "key": "alt+up",
-    "command": "-editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
+  // move current line down
   {
     "key": "meta+down",
     "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  // this tab fixes copilot problems, especially with markdown (don't touch it)
+  {
+    "key": "tab",
+    "command": "markdown.extension.onTabKey",
+    "when": "editorTextFocus && !inlineSuggestionVisible && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'markdown'"
+  },
+  // i got too used to this method of pasting so this is an alias for ctrl+v
+  {
+    "key": "ctrl+shift+v",
+    "command": "editor.action.clipboardPasteAction"
+  },
+  // go to next symbol
+  {
+    "key": "f7",
+    "command": "editor.action.wordHighlight.next",
+    "when": "editorTextFocus && hasWordHighlights"
+  },
+  // go to previous symbol
+  {
+    "key": "shift+f7",
+    "command": "editor.action.wordHighlight.previous",
+    "when": "editorTextFocus && hasWordHighlights"
+  },
+  // open the references menu for a symbol
+  {
+    "key": "ctrl+shift+\\",
+    "command": "editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  // go to the definition for a symbol
+  {
+    "key": "ctrl+\\",
+    "command": "editor.action.revealDefinition"
+  },
+  // bookmarks =====================================================================================
+  // list bookmarks
+  {
+    "key": "ctrl+l",
+    "command": "bookmarks.list",
+    "when": "editorTextFocus"
+  },
+  // jump to next bookmark
+  {
+    "key": "ctrl+alt+j",
+    "command": "bookmarks.jumpToNext"
+  },
+  // jump to previous bookmark
+  {
+    "key": "ctrl+alt+k",
+    "command": "bookmarks.jumpToPrevious"
+  },
+  // create or remove a bookmark
+  {
+    "key": "ctrl+alt+b",
+    "command": "bookmarks.toggle"
+  },
+  // disable all these commands ====================================================================
+  // note that some of these commands are defaults that i have just un-binded because i dont want them
+  {
+    "key": "alt+up",
+    "command": "-editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
   },
   {
@@ -40,40 +91,9 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+alt+l",
-    "command": "bookmarks.list",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+alt+j",
-    "command": "bookmarks.jumpToPrevious",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+alt+j",
-    "command": "bookmarks.jumpToNext"
-  },
-  {
-    "key": "ctrl+alt+k",
-    "command": "bookmarks.jumpToPrevious"
-  },
-  {
-    "key": "ctrl+alt+b",
-    "command": "bookmarks.toggle"
-  },
-  {
-    "key": "tab",
-    "command": "markdown.extension.onTabKey",
-    "when": "editorTextFocus && !inlineSuggestionVisible && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'markdown'"
-  },
-  {
     "key": "tab",
     "command": "-markdown.extension.onTabKey",
     "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'markdown'"
-  },
-  {
-    "key": "ctrl+shift+v",
-    "command": "editor.action.clipboardPasteAction"
   },
   {
     "key": "f12",
@@ -85,21 +105,28 @@
     "command": "-workbench.action.splitEditor"
   },
   {
-    "key": "ctrl+\\",
-    "command": "editor.action.revealDefinition"
-  },
-  {
-    "key": "ctrl+shift+alt+=",
-    "command": "workbench.action.navigateForward"
-  },
-  {
     "key": "ctrl+shift+-",
     "command": "-workbench.action.navigateForward"
   },
   {
-    "key": "f7",
-    "command": "editor.action.wordHighlight.next",
-    "when": "editorTextFocus && hasWordHighlights"
+    "key": "shift+f12",
+    "command": "-editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-bookmarks.jumpToNext",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "-workbench.action.search.toggleQueryDetails",
+    "when": "inSearchEditor || searchViewletFocus"
   },
   {
     "key": "f7",
@@ -115,15 +142,5 @@
     "key": "ctrl+shift+\\",
     "command": "-workbench.action.terminal.focusTabs",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
-  },
-  {
-    "key": "ctrl+shift+\\",
-    "command": "editor.action.goToReferences",
-    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-  },
-  {
-    "key": "shift+f12",
-    "command": "-editor.action.goToReferences",
-    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   }
 ]
