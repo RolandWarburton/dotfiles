@@ -6,18 +6,18 @@
     "when": "filesExplorerFocus"
   },
   {
-      "key": "shift+ctrl+j",
-      "command": "list.focusPageDown",
-      "when": "listFocus && !inputFocus"
+    "key": "shift+ctrl+j",
+    "command": "list.focusPageDown",
+    "when": "listFocus && !inputFocus"
   },
   {
-      "key": "shift+ctrl+k",
-      "command": "list.focusPageUp",
-      "when": "listFocus && !inputFocus"
+    "key": "shift+ctrl+k",
+    "command": "list.focusPageUp",
+    "when": "listFocus && !inputFocus"
   },
   {
-      "command": "workbench.view.explorer",
-      "key": "f1"
+    "command": "workbench.view.explorer",
+    "key": "f1"
   },
   {
     "key": "meta+up",
