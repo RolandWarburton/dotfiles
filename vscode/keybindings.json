@@ -1,6 +1,25 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
   {
+    "key": "ctrl+n",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus"
+  },
+  {
+      "key": "shift+ctrl+j",
+      "command": "list.focusPageDown",
+      "when": "listFocus && !inputFocus"
+  },
+  {
+      "key": "shift+ctrl+k",
+      "command": "list.focusPageUp",
+      "when": "listFocus && !inputFocus"
+  },
+  {
+      "command": "workbench.view.explorer",
+      "key": "f1"
+  },
+  {
     "key": "meta+up",
     "command": "editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
@@ -21,28 +40,13 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "shift+alt+l",
-    "command": "-bookmarks.expandSelectionToNext",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "shift+alt+j",
-    "command": "-bookmarks.expandSelectionToPrevious",
-    "when": "editorTextFocus"
-  },
-  {
     "key": "ctrl+alt+l",
-    "command": "-bookmarks.jumpToNext",
+    "command": "bookmarks.list",
     "when": "editorTextFocus"
   },
   {
     "key": "ctrl+alt+j",
-    "command": "-bookmarks.jumpToPrevious",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+alt+k",
-    "command": "-bookmarks.toggle",
+    "command": "bookmarks.jumpToPrevious",
     "when": "editorTextFocus"
   },
   {
@@ -54,7 +58,7 @@
     "command": "bookmarks.jumpToPrevious"
   },
   {
-    "key": "ctrl+alt+h",
+    "key": "ctrl+alt+b",
     "command": "bookmarks.toggle"
   },
   {
@@ -70,11 +74,6 @@
   {
     "key": "ctrl+shift+v",
     "command": "editor.action.clipboardPasteAction"
-  },
-  {
-    "key": "unknown",
-    "command": "editor.action.revealDefinition",
-    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
   },
   {
     "key": "f12",
@@ -96,5 +95,35 @@
   {
     "key": "ctrl+shift+-",
     "command": "-workbench.action.navigateForward"
+  },
+  {
+    "key": "f7",
+    "command": "editor.action.wordHighlight.next",
+    "when": "editorTextFocus && hasWordHighlights"
+  },
+  {
+    "key": "f7",
+    "command": "-editor.action.wordHighlight.next",
+    "when": "editorTextFocus && hasWordHighlights"
+  },
+  {
+    "key": "ctrl+shift+\\",
+    "command": "-editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+\\",
+    "command": "-workbench.action.terminal.focusTabs",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+  },
+  {
+    "key": "ctrl+shift+\\",
+    "command": "editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  {
+    "key": "shift+f12",
+    "command": "-editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   }
 ]
