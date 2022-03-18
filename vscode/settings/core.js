@@ -1,6 +1,8 @@
 export const core = {
   // change how line numbers are rendered to be relative
   "editor.lineNumbers": "relative",
+  // render the lines background color (set in theme.js) to only show in the gutter
+  "editor.renderLineHighlight": "gutter",
   // do not show the 'x' button on tabs
   "workbench.editor.tabCloseButton": "off",
   // Set the zoom level
