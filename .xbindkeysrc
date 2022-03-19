@@ -3,9 +3,11 @@
 
 # "pkill aplay"
 #     control + shift + alt + s
+"cat $HOME/dotfiles/macros.txt | rofi -dmenu"
+   alt + m
 
 "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
-    Alt + c
+    Alt + shift + c
 
 "sudo systemctl restart sddm"
     Control + Control_R + Up + Down
@@ -22,8 +24,11 @@
 "teleportMouse.sh 'bottom'"
     control + alt + shift + Down
 
-#"( flameshot &; ) && ( sleep 0.5s && flameshot gui )"
-#    Print
+"flameshot gui"
+    Print
+
+"xfce4terminal"
+    control + alt + t
 
 "screenshot.sh"
     Print
