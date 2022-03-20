@@ -35,6 +35,7 @@ async function main(config: any) {
   const isPython3PipInstalled = (await $`python3 -m pip -V`.exitCode) === 0 ? true : false;
   const isDotbotInstalled = (await $`which dotbot`.exitCode) === 0 ? true : false;
   const isCurlInstalled = (await $`which curl`.exitCode) === 0 ? true : false;
+  const isZshInstalled = (await $`which zsh`.exitCode) === 0 ? true : false;
   logStatus('graphical environment', isGraphicalEnvironment);
   logStatus('Debian 11', isDebian11);
   logStatus('connected to internet', isConnectedToInternet);
@@ -42,6 +43,7 @@ async function main(config: any) {
   logStatus('python3 pip installed', isPython3PipInstalled);
   logStatus('dotbot installed', isDotbotInstalled);
   logStatus('curl installed', isCurlInstalled);
+  logStatus('zsh installed', isZshInstalled);
 
   let hasInstalledPackages = config?.progress?.hasInstalledPackages;
 
@@ -54,10 +56,15 @@ async function main(config: any) {
   }
 
   if (config?.apt?.upgradePackages) {
-    await $`apt-get upgrade -y`;
+    await $`sudo apt-get upgrade -y`;
   }
 
   $.verbose = false;
+
+  if (!isZshInstalled) {
+  console.log('Installing zsh');
+   await $`sudo apt-get -y install zsh`;
+  }
 
   // collect information about packages
   const packages = YAML.parse(readFileSync(resolve(__dirname, config.packages), 'utf8'));
@@ -97,9 +104,10 @@ async function main(config: any) {
     console.log('Installing dotbot');
     $.verbose = true;
     $.quote = (v) => v;
-    await $`apt install python3`;
-    await $`apt install python3-pip`;
+    await $`sudo apt install python3`;
+    await $`sudo apt install python3-pip`;
     await $`pip3 install dotbot`;
+    await $`export PATH=${homedir()}/.local/bin:$PATH`;
     $.quote = q;
     $.verbose = false;
   }
