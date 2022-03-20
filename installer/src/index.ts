@@ -62,8 +62,9 @@ async function main(config: any) {
   $.verbose = false;
 
   if (!isZshInstalled) {
-  console.log('Installing zsh');
-   await $`sudo apt-get -y install zsh`;
+    console.log('Installing zsh');
+    await $`sudo apt-get -y install zsh`;
+    await $`sudo chsh -s $(which zsh) $USER`;
   }
 
   // collect information about packages
@@ -107,13 +108,12 @@ async function main(config: any) {
     await $`sudo apt install python3`;
     await $`sudo apt install python3-pip`;
     await $`pip3 install dotbot`;
-    await $`export PATH=${homedir()}/.local/bin:$PATH`;
     $.quote = q;
     $.verbose = false;
   }
 
   $.quote = (v) => v;
-  const dotbotResult = await $`dotbot -c ${config.dotbotConfig}`;
+  const dotbotResult = await $`${homedir()}/.local/bin/dotbot -c ${config.dotbotConfig}`;
   console.log(`${chalk.bgGreen(`[DONE]`)} Dotbot finished with code ${dotbotResult.exitCode}`);
   $.quote = q;
 
