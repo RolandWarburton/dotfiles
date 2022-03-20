@@ -24,7 +24,6 @@ const logStatus = (msg: string, status: boolean) =>
   status
     ? console.log(chalk.bgGreen(`[YES]`) + ` ${msg}`)
     : console.log(chalk.bgRed(`[NO]`) + ` ${msg}`);
-// console.log(chalk.bgGreen(`[${status ? 'YES' : 'NO'}]`) + ' ' + msg);
 
 async function main(config: any) {
   console.log('Collecting information about the environment');
