@@ -5,33 +5,33 @@
 ## Installing
 
 ```none
-sudo apt install python3 python3-pip python3-venv
-source venv/bin/activate
-pip3 install dotbot
-```
+# config
+export USERNAME=roland
 
-Then run the installer. This will install packages from debian, run dotbot for the user dotfiles, and prompt you to install missing optional software.
+# as root
+apt update
+apt install git vim curl sudo
+localedef -i en_US -f UTF-8 en_US.UTF-8
+usermod -aG sudo $USERNAME
+reboot now
 
-```none
-./install_dots.sh
-```
+# as user
+mkdir $HOME/.ssh
+scp $USER@desktop:$HOME/.ssh/id_rsa $HOME/.ssh
+scp $USER@desktop:$HOME/.ssh/id_rsa.pub $HOME/.ssh
+chmod 600 $HOME/.ssh/id_rsa
+chmod 644 $HOME/.ssh/id_rsa.pub
+ssh-add ~/.ssh/id_rsa
+git clone git@github.com:rolandwarburton/dotfiles.git
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+source $HOME/.bashrc
+nvm install --lts
 
-Then run dotbot as the root user to link etc files.
-
-```none
-su -
-cd /home/roland/dotfiles
-source venv/bin/activate
-dotbot -c install.sudo.conf.yaml
-```
-
-Changes will not take full effect until you reboot, use `sudo reboot`.
-
-After rebooting your shell should be changed to zsh. Install zsh plugins now with.
-
-```none
-zplug load
-zplug install
+# as user
+cd dotfiles
+npm run install
+npm run build
+node bin/index.js
 ```
 
 ## Re-syncing dotfiles
