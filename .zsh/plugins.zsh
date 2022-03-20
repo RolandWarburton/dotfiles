@@ -3,9 +3,6 @@ source ~/.zplug/init.zsh
 # manage zplug by zplug
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-# manage zplug by zplug
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
 # make command auto suggestion based on history
 zplug "zsh-users/zsh-autosuggestions"
 # control space
