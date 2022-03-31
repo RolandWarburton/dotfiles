@@ -2,6 +2,7 @@
 [user]
 	name = RolandWarburton
 	email = warburtonroland@gmail.com
+	signingkey = 75E7D9F42B9C2764CAF87174B1132B17EC2146A1
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
 [core]
