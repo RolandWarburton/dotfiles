@@ -1,5 +1,6 @@
 set nocompatible
 syntax on
+
 let mapleader=','
 
 " soft tab 2 spaces
