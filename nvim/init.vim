@@ -29,3 +29,5 @@ map <esc>[1;5C <C-Right>
 imap <esc>[1;5D <C-Left>
 imap <esc>[1;5C <C-Right>
 
+nnoremap <C-s>% :Vexplore<cr>
+nnoremap <C-s>" :Hexplore<cr>
