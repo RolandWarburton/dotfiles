@@ -10,9 +10,9 @@ set nocompatible
 "endif
 syntax on
 
-" soft tab 4 spaces
-set shiftwidth=4
-set softtabstop=4
+" soft tab 2 spaces
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 " Fix home/end key in all modes (or at least works in uxrvt/zsh/tmux)
