@@ -8,6 +8,15 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
+set relativenumber
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'tpope/vim-commentary'
+  Plug 'ctrlpvim/ctrlp.vim'
+call plug#begin()
+
+call plug#end()
+
 " ctrl+s % and ctrl+s "
 nnoremap <C-s>% :Vexplore<cr>
 nnoremap <C-s>" :Hexplore<cr>
@@ -17,3 +26,6 @@ nnoremap <C-n> :noh<cr>
 
 "go to function definition
 nnoremap <C-\> gd
+
+" comment with vim-commentary (ctrl+/)
+nmap <C-_> gcc
