@@ -43,3 +43,4 @@ nmap <C-_> gcc
 
 " show the file name in the status bar
 set statusline+=%F
+
