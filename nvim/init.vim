@@ -23,8 +23,8 @@ call plug#end()
 let mapleader=','
 
 " ctrl+s % and ctrl+s "
-nnoremap <C-s>% :Vexplore<cr>
-nnoremap <C-s>" :Hexplore<cr>
+nnoremap <C-s>% :vsplit<cr>
+nnoremap <C-s>" :split<cr>
 
 " turn off regex highlighting
 nnoremap <C-n> :noh<cr>
@@ -41,3 +41,5 @@ nnoremap <C-\> gd
 " comment with vim-commentary (ctrl+/)
 nmap <C-_> gcc
 
+" show the file name in the status bar
+set statusline+=%F
