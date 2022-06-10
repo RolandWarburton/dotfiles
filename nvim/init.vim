@@ -1,31 +1,32 @@
 set nocompatible
-" Fix the cursor not going from block to line (works most of the time)
-"if exists('$TMUX')
-"    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-"    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-"else
-"    " it appears that this breaks neovim, however leave it for regular vim
-"    let &t_SI = "\e[5 q"
-"    let &t_EI = "\e[2 q"
-"endif
 syntax on
 
 " soft tab 4 spaces
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
-" Fix home/end key in all modes (or at least works in uxrvt/zsh/tmux)
-map <esc>OH <home>
-cmap <esc>OH <home>
-imap <esc>OH <home>
-map <esc>OF <end>
-cmap <esc>OF <end>
-imap <esc>OF <end>
+set relativenumber
 
-" Fix ctrl+arrow keys not working (or at least in urxvt/zsh/tmux)
-map <esc>[1;5D <C-Left>
-map <esc>[1;5C <C-Right>
-imap <esc>[1;5D <C-Left>
-imap <esc>[1;5C <C-Right>
+call plug#begin()
+  " NERD tree will be loaded on the first invocation of NERDTreeToggle command
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'tpope/vim-commentary'
+  Plug 'ctrlpvim/ctrlp.vim'
+call plug#end()
+
+let mapleader=','
+
+nnoremap <C-s>% :Vexplore<cr>
+nnoremap <C-s>" :Hexplore<cr>
+
+" turn off regex highlighting
+nnoremap <C-n> :noh<cr>
+
+" go to function definition
+nnoremap <C-\> gd
+
+" comment with vim-commentary (ctrl+/)
+nmap <C-_> gcc
 
