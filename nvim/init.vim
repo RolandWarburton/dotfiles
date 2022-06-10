@@ -14,6 +14,7 @@ call plug#begin()
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'tpope/vim-commentary'
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let mapleader=','
