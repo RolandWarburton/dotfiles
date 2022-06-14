@@ -1,0 +1,65 @@
+" to reload the vim config:
+" :source %:p
+
+set nocompatible
+syntax on
+
+let mapleader=','
+
+" soft tab 2 spaces
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+set relativenumber
+
+call plug#begin()
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'tpope/vim-commentary'
+  Plug 'ctrlpvim/ctrlp.vim'
+call plug#end()
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+
+" ctrl+s % and ctrl+s "
+nnoremap <C-s>% :Vexplore<cr>
+nnoremap <C-s>" :Hexplore<cr>
+
+" turn off regex highlighting
+nnoremap <C-n> :noh<cr>
+
+"go to function definition
+nnoremap <C-\> gd
+
+" comment with vim-commentary (ctrl+/)
+nmap <C-_> gcc
+
+" nerd tree
+nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <F2> call ToggleNerdTreeFocus()<CR>
+
+function! IsNerdTreeEnabled()
+    return exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+endfunction
+
+function! RunMe()
+  "f call feedkeys("^wp")
+  " call feedkeys("\<Cf-w>\<C-p>")
+  execute "normal! \<C-w>\<C-p>"
+  " normal <Ctrl-w><C-p>
+  " if !IsInNerdTree()
+    " normal <C-w><C-p>
+  " else
+    " call NERDTree.NERDTreeFocus<CR>
+  " endif
+endfunction
+
+function! IsInNerdTree()
+  return exists("b:NERDTree")
+endfunction
+

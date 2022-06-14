@@ -1,0 +1,73 @@
+-- vim.highlight.create("TrailingSpaces", {ctermbg: "red", guibg: "red"})
+-- vim.highlight.create("StatusLine", { ctermbg = "Red", ctermfg = 07 })
+
+require('core.settings')
+require('core.trailing')
+-- require('core.eol')
+require('core.space')
+require('core.color')
+require('keybindings.general')
+require('plugins')
+require('lsp.lsp')
+
+-- color scheme
+vim.cmd [[colorscheme darkplus]]
+
+-- overwrites
+-- get all colors with `:enew|pu=execute('hi')` or `:so $VIMRUNTIME/syntax/hitest.vim`
+-- vim.cmd [[highlight StatusLine ctermfg='white' ctermbg='black' guifg='#333333' guibg='#ffffff']]
+-- vim.cmd [[highlight DiagnosticVirtualTextError guifg='#F04E4A']]
+-- vim.cmd [[highlight DiagnosticUnderlineError·xxx·cterm=underline·gui=underline·guisp='#F04E4A']]
+
+-- vim lsp error and warning inline text
+vim.highlight.create("DiagnosticVirtualTextError", { guifg = '#ff0000' })
+
+vim.highlight.create("WarningMsg", { guifg = '#ff0000' })
+vim.highlight.create("LspDiagnosticsFloatingWarning", { guifg = '#ff0000' })
+vim.highlight.create("LspDiagnosticsSignWarning", { guifg = '#ff0000' })
+vim.highlight.create("LspDiagnosticsUnderlineWarning", { guifg = '#ff0000' })
+vim.highlight.create("LspDiagnosticsVirtualTextWarning", { guifg = '#ff0000' })
+vim.highlight.create("LspDiagnosticsWarning", { guifg = '#ff0000' })
+vim.highlight.create("DiagnosticVirtualTextWarning", { guifg = '#ff0000' })
+
+-- the active status line
+vim.highlight.create("StatusLine", { guifg = '#9D6BCD' })
+
+-- the inactive status line
+vim.highlight.create("StatusLineNC", { guifg = '#848484' })
+
+-- nvim tree
+require 'nvim-tree'.setup {}
+
+-- local util = require 'color.util'
+-- local theme = require 'color.theme'
+
+-- vim.o.background = 'dark'
+-- vim.g.colors_name = 'darkplus'
+
+-- util.load(theme)
+
+-- function _G.put(...)
+--   local objects = {}
+--   for i = 1, select('#', ...) do
+--     local v = select(i, ...)
+--     table.insert(objects, vim.inspect(v))
+--   end
+
+--   print(table.concat(objects, '\n'))
+--   return ...
+-- end
+
+-- vim.highlight.creatvim.cmd('hi SpecialKey=Red')
+
+
+-- vim.cmd('highlight RedundantSpaces ctermbg=red guibg=red')
+-- vim.cmd('match RedundantSpaces \/\s\+$/')
+-- vim.opt.list = true
+-- vim.cmd('set listchars+=trail:~')
+-- vim.cmd('hi SpecialKey=Red')
+-- vim.cmd('set listchar+=space:␣')
+
+-- QOL for
+
+-- open splits like tmux
