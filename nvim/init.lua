@@ -1,3 +1,7 @@
+-- Some useful help
+-- Check your nvim health: `:checkhealth`
+-- Inspect objects: `:lua print(vim.inspect(OBJECT))`
+
 -- vim.highlight.create("TrailingSpaces", {ctermbg: "red", guibg: "red"})
 -- vim.highlight.create("StatusLine", { ctermbg = "Red", ctermfg = 07 })
 
@@ -57,6 +61,11 @@ require 'nvim-tree'.setup {
       }
     }
   }
+}
+
+-- which key
+require("which-key").setup {
+  -- https://github.com/folke/which-key.nvim#%EF%B8%8F-configuration
 }
 
 -- Apply the basic terminal colors for the theme
