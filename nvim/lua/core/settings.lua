@@ -11,7 +11,11 @@ vim.opt.relativenumber = true
 -- shows better messages
 vim.opt.cmdheight = 1
 
+-- ruler
 vim.opt.colorcolumn = '100'
+
+-- timeout length
+vim.opt.timeoutlen = 300
 
 -- Fix comments (see :h fo-table and :h formatoptions)
 -- -= is subtracting the following values

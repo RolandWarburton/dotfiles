@@ -33,6 +33,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua" -- file tree
   use { 'junegunn/fzf', run = ":call fzf#install()" } -- vim fzf intergrations
   use { 'junegunn/fzf.vim' } -- vim fzf intergrations
+  use "folke/which-key.nvim" -- emacs-which-key clone
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
