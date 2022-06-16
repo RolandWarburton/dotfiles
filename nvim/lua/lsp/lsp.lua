@@ -1,5 +1,5 @@
 -- set the debug level for lsp
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("WARN")
 
 -- we need this for lsp servers
 local root_pattern = require("lspconfig").util.root_pattern
