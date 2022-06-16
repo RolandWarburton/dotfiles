@@ -31,6 +31,8 @@ return packer.startup(function(use)
   use "martinsione/darkplus.nvim" -- color scheme
   use "kyazdani42/nvim-web-devicons" -- for file icons
   use "kyazdani42/nvim-tree.lua" -- file tree
+  use { 'junegunn/fzf', run = ":call fzf#install()" } -- vim fzf intergrations
+  use { 'junegunn/fzf.vim' } -- vim fzf intergrations
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

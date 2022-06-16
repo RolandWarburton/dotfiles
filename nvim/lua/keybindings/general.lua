@@ -32,3 +32,13 @@ map('n', '<C-PageDown>', ':tabp<cr>', opts)
 -- note system clipboard copy is done in :h clipboard
 map('n', 'p', '"+p', opts)
 
+
+-- fzf.vim keybinds
+-- https://github.com/junegunn/fzf.vim/blob/master/README.md
+
+-- open command pallate (leader + p)
+map('n', '<Leader>p', ':Command<cr>', opts)
+
+-- open file search (ctrl + p)
+map('n', '<C>p', ':Files<cr>', opts)
+
