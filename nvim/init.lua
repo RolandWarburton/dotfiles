@@ -1,7 +1,3 @@
--- Some useful help
--- Check your nvim health: `:checkhealth`
--- Inspect objects: `:lua print(vim.inspect(OBJECT))`
-
 -- vim.highlight.create("TrailingSpaces", {ctermbg: "red", guibg: "red"})
 -- vim.highlight.create("StatusLine", { ctermbg = "Red", ctermfg = 07 })
 
@@ -63,14 +59,23 @@ require 'nvim-tree'.setup {
   }
 }
 
--- which key
-require("which-key").setup {
-  -- https://github.com/folke/which-key.nvim#%EF%B8%8F-configuration
-}
-
 -- Apply the basic terminal colors for the theme
 -- there are 15 colors, plus "terminal_color_foreground" and "terminal_color_background"
 vim.g.terminal_color_4          = '#569CD6'
+
+require('telescope').setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+  }
+}
+
+-- To get fzf loaded and working with telescope, you need to call load_extension('fzf')
+require('telescope').load_extension('fzf')
 
 -- local util = require 'color.util'
 -- local theme = require 'color.theme'
@@ -104,4 +109,3 @@ vim.g.terminal_color_4          = '#569CD6'
 -- QOL for
 
 -- open splits like tmux
-

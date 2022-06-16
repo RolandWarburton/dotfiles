@@ -25,16 +25,26 @@ end
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use {
+    "wbthomason/packer.nvim",
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }-- Have packer manage itself
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "neovim/nvim-lspconfig" -- enable LSP
   use "martinsione/darkplus.nvim" -- color scheme
   use "kyazdani42/nvim-web-devicons" -- for file icons
   use "kyazdani42/nvim-tree.lua" -- file tree
-  use { 'junegunn/fzf', run = ":call fzf#install()" } -- vim fzf intergrations
-  use { 'junegunn/fzf.vim' } -- vim fzf intergrations
-  use "folke/which-key.nvim" -- emacs-which-key clone
-
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
+    cmake --build build --config Release && \
+    cmake --install build --prefix build',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

@@ -1,3 +1,6 @@
+-- store some useful util helpers
+-- local currentFile = vim.cmd("echo expand('%:p')")
+local is
 
 -- Modes
 --   normal_mode       = "n",
@@ -32,13 +35,40 @@ map('n', '<C-PageDown>', ':tabp<cr>', opts)
 -- note system clipboard copy is done in :h clipboard
 map('n', 'p', '"+p', opts)
 
+-- map telescope fzf to appropriate ctrl+p to find files
+local isInGit = os.execute('git rev-parse --is-inside-work-tree')
+if isInGit == "true"then
+  map('n', '<C-p>', ':Telescope git_files<cr>', opts)
+else
+  map('n', '<C-p>', ':Telescope find_files<cr>', opts) -- careful with this on slow computers
+end
 
--- fzf.vim keybinds
--- https://github.com/junegunn/fzf.vim/blob/master/README.md
+-- fuzzy find vim commands
+map('n', '<Leader>p', ':Telescope commands<cr>', opts)
 
--- open command pallate (leader + p)
-map('n', '<Leader>p', ':Command<cr>', opts)
+-- mimic "Find active file in file explorer" in VSCode
+-- vim.cmd('command RevealFile NvimTreeFindFile')
+-- vim.cmd[[command! RevealFile v:lua.revealFileFoo()]]
 
--- open file search (ctrl + p)
-map('n', '<C>p', ':Files<cr>', opts)
+function _G.revealFileFoo()
+  local windowNumber = tostring(vim.cmd('echo winnr()'))
+  print(windowNumber)
+  print(windowNumber)
+  if windowNumber == '1' then
+    print('hello')
+  end
 
+  if tostring(windowNumber) == '1' then
+    vim.cmd('NvimTreeFindFile')
+    print('showing')
+  end
+
+  if windowNumber == '2' then
+    print('hiding')
+    vim.cmd('call win_gotoid(win_getid(2))')
+  end
+end
+
+
+-- map F1 to jump to file tree
+map('n', '<F1>', ':lua revealFileFoo()<cr>', opts)

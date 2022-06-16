@@ -11,11 +11,7 @@ vim.opt.relativenumber = true
 -- shows better messages
 vim.opt.cmdheight = 1
 
--- ruler
 vim.opt.colorcolumn = '100'
-
--- timeout length
-vim.opt.timeoutlen = 300
 
 -- Fix comments (see :h fo-table and :h formatoptions)
 -- -= is subtracting the following values
@@ -47,7 +43,7 @@ vim.opt.guifont = "Hack:h10"
 vim.opt.timeoutlen = 1000
 
 -- the width of the gutter numbers
-vim.opt.numberwidth = 4
+vim.opt.numberwidth = 8
 
 -- highlight the current line
 vim.opt.cursorline = true
