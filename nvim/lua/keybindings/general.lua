@@ -48,7 +48,7 @@ map('n', '<Leader>p', ':Telescope commands<cr>', opts)
 -- mimic "Find active file in file explorer" in VSCode
 function _G.revealFileJump()
   -- if currently on the nvim tree window
-  if vim.api.nvim_buf_get_name(0) == require'os'.getenv('HOME') .. '/NvimTree_1'  then
+  if string.find(vim.api.nvim_buf_get_name(0), 'NvimTree')  then
     -- move cursor back to the previous window
     local key = vim.api.nvim_replace_termcodes("<C-w>p", true, false, true)
     vim.api.nvim_feedkeys(key, 'n', false)
