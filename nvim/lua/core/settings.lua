@@ -45,6 +45,9 @@ vim.opt.timeoutlen = 1000
 -- the width of the gutter numbers
 vim.opt.numberwidth = 8
 
+-- allow use of mouse
+vim.opt.mouse = 'a'
+
 -- highlight the current line
 vim.opt.cursorline = true
 vim.highlight.create("CursorLine", {cterm='NONE', ctermbg='8', ctermfg='15'})   -- text row
