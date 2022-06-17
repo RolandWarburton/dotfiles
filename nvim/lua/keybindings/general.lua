@@ -1,6 +1,5 @@
 -- store some useful util helpers
 -- local currentFile = vim.cmd("echo expand('%:p')")
-local is
 
 -- Modes
 --   normal_mode       = "n",
@@ -47,28 +46,18 @@ end
 map('n', '<Leader>p', ':Telescope commands<cr>', opts)
 
 -- mimic "Find active file in file explorer" in VSCode
--- vim.cmd('command RevealFile NvimTreeFindFile')
--- vim.cmd[[command! RevealFile v:lua.revealFileFoo()]]
-
-function _G.revealFileFoo()
-  local windowNumber = tostring(vim.cmd('echo winnr()'))
-  print(windowNumber)
-  print(windowNumber)
-  if windowNumber == '1' then
-    print('hello')
-  end
-
-  if tostring(windowNumber) == '1' then
+function _G.revealFileJump()
+  -- if currently on the nvim tree window
+  if vim.api.nvim_buf_get_name(0) == require'os'.getenv('HOME') .. '/NvimTree_1'  then
+    -- move cursor back to the previous window
+    local key = vim.api.nvim_replace_termcodes("<C-w>p", true, false, true)
+    vim.api.nvim_feedkeys(key, 'n', false)
+  else
+    -- show or move the cursor to the file in the file tree
     vim.cmd('NvimTreeFindFile')
-    print('showing')
-  end
-
-  if windowNumber == '2' then
-    print('hiding')
-    vim.cmd('call win_gotoid(win_getid(2))')
   end
 end
 
 
 -- map F1 to jump to file tree
-map('n', '<F1>', ':lua revealFileFoo()<cr>', opts)
+map('n', '<F1>', ':lua revealFileJump()<cr>', opts)
