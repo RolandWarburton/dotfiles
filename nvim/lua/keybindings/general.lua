@@ -33,7 +33,6 @@ map('n', '<C-PageDown>', ':tabp<cr>', opts)
 -- paste from the system clipboard
 -- note system clipboard copy is done in :h clipboard
 map('n', 'p', '"+p', opts)
-
 -- map telescope fzf to appropriate ctrl+p to find files
 local isInGit = os.execute('git rev-parse --is-inside-work-tree')
 if isInGit == "true"then
@@ -60,6 +59,8 @@ function _G.revealFileJump()
       vim.cmd('NvimTreeOpen')
     else
       vim.cmd('NvimTreeFindFile')
+      -- set a custom name for the tree window
+      vim.api.nvim_set_option_value('statusline', 'NvimTree', {scope = 'local'})
     end
   end
 end
