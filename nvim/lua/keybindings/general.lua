@@ -54,10 +54,28 @@ function _G.revealFileJump()
     vim.api.nvim_feedkeys(key, 'n', false)
   else
     -- show or move the cursor to the file in the file tree
-    vim.cmd('NvimTreeFindFile')
+    -- check if a file is open
+    print(type(vim.fn.expand('%')))
+    if vim.fn.expand('%') == '' then
+      vim.cmd('NvimTreeOpen')
+    else
+      vim.cmd('NvimTreeFindFile')
+    end
   end
 end
 
-
 -- map F1 to jump to file tree
 map('n', '<F1>', ':lua revealFileJump()<cr>', opts)
+
+-- tab navigation
+map('n', '<Leader>t', ':tabnew<cr>', opts)
+map('n', '<Leader>1', '1gt', opts)
+map('n', '<Leader>2', '2gt', opts)
+map('n', '<Leader>3', '3gt', opts)
+map('n', '<Leader>4', '4gt', opts)
+map('n', '<Leader>5', '5gt', opts)
+map('n', '<Leader>6', '6gt', opts)
+map('n', '<Leader>7', '7gt', opts)
+map('n', '<Leader>8', '8gt', opts)
+map('n', '<Leader>9', '9gt', opts)
+
