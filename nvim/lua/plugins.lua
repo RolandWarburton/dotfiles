@@ -45,6 +45,12 @@ return packer.startup(function(use)
     cmake --install build --prefix build',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+  use {
+    'nvim-treesitter/nvim-treesitter'
+  -- to install new TS language support
+  -- :TSUpdateSync
+  -- :TSInstall typescript
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
