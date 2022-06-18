@@ -95,6 +95,18 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
+  },
+  -- https://github.com/p00f/nvim-ts-rainbow
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = 9999,
+    colors = {
+      -- vsc brackets colorizer 2 theme
+      "#EAC502",
+      "#DA70D6",
+      "#179CFB",
+    },
   }
 }
 
