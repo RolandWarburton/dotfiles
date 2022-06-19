@@ -54,6 +54,34 @@ return packer.startup(function(use)
   use {
     'p00f/nvim-ts-rainbow'
   }
+  use {'hrsh7th/nvim-cmp'}
+  use {'hrsh7th/cmp-buffer'} -- completions from buffers
+  use {'hrsh7th/cmp-path'} -- completions for files
+  use {'hrsh7th/cmp-nvim-lua'} -- neovim lua completions
+  use {'hrsh7th/cmp-nvim-lsp'} -- completions from lsp server
+  use {'hrsh7th/cmp-nvim-lsp-signature-help'} -- completions for function signatures
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function()
+    require('luasnip').config.set_config {
+      history = true,
+    }
+    require("luasnip.loaders.from_vscode").load {}
+    end
+  } -- snippets engine for nvim-cmp
+  use {'rafamadriz/friendly-snippets'} -- snippets collection for various languages
+  use {'windwp/nvim-autopairs'} -- close things like brackets
+  use {'tpope/vim-surround'} -- change quotes cs"'
+  use {
+    'AckslD/nvim-neoclip.lua',
+      requires = {
+       {'tami5/sqlite.lua', module = 'sqlite'},
+       {'nvim-telescope/telescope.nvim'},
+    }
+  }
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' } -- git intergrations
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- git diff for neogit
+  use { 'mhinz/vim-signify' } -- git gutter
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
