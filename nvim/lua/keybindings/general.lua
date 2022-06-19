@@ -79,3 +79,7 @@ map('n', '<Leader>7', '7gt', opts)
 map('n', '<Leader>8', '8gt', opts)
 map('n', '<Leader>9', '9gt', opts)
 
+-- open command history
+-- requires (neoclip, telescope)
+map('n', '<Leader>c', ':Telescope neoclip<cr>', opts)
+
