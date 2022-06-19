@@ -248,6 +248,14 @@ require'neoclip'.setup {
 -- load neoclip as an extension for telescope
 require'telescope'.load_extension'neoclip'
 
+-- neogit
+local neogit = require'neogit'
+neogit.setup {
+  intergrations = {
+    diffview = true
+  }
+}
+
 -- local util = require 'color.util'
 -- local theme = require 'color.theme'
 
