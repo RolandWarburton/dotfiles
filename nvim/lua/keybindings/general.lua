@@ -53,8 +53,7 @@ function _G.revealFileJump()
     vim.api.nvim_feedkeys(key, 'n', false)
   else
     -- show or move the cursor to the file in the file tree
-    -- check if a file is open
-    print(type(vim.fn.expand('%')))
+    -- check if a file is open (will be an empty string if no file is open)
     if vim.fn.expand('%') == '' then
       vim.cmd('NvimTreeOpen')
     else
