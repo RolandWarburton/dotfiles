@@ -255,6 +255,11 @@ neogit.setup {
     diffview = true
   }
 }
+-- load help
+local home = require'os'.getenv('HOME')
+local docsPath = home .. '/.config/nvim/doc'
+vim.cmd('helpt ' .. docsPath)
+
 
 -- local util = require 'color.util'
 -- local theme = require 'color.theme'

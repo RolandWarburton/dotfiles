@@ -1,0 +1,26 @@
+*lsp_install.txt*    For Vim version 7.4 Last change: 2014 October 8
+*lsp_install*
+*lsp_help*
+
+Rolands cheatsheet for installing LSP servers.
+
+===============================================================================
+CONTENTS
+
+    1. typescript........................................|lsp_install-typescript|
+    2. html..............................................|lsp_install-html|
+
+===============================================================================
+1. typescipt                                           *lsp_install-typescript*
+
+npm i -g typescript typescript-language-server eslint prettier
+
+sources:
+- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tsserver
+- https://github.com/typescript-language-server/typescript-language-server
+ 
+
+1. html                                                *lsp_install-typescript*
+
+npm i -g vscode-langservers-extracted
+
