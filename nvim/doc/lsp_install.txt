@@ -1,4 +1,4 @@
-*lsp_install.txt*    For Vim version 7.4 Last change: 2014 October 8
+*lsp_install.txt*    For NeoVim version 0.7 Last change: 2022 June 21
 *lsp_install*
 *lsp_help*
 
@@ -20,7 +20,14 @@ sources:
 - https://github.com/typescript-language-server/typescript-language-server
  
 
-1. html                                                *lsp_install-typescript*
+===============================================================================
+2. html                                                *lsp_install-html*
+2. css                                                 *lsp_install-html*
+2. json                                                *lsp_install-html*
 
 npm i -g vscode-langservers-extracted
+
+sources:
+- https://www.npmjs.com/package/vscode-langservers-extracted
+- https://github.com/hrsh7th/vscode-langservers-extracted
 
