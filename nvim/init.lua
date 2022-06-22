@@ -269,6 +269,18 @@ if not file_exists(home .. '/.config/nvim/doc/tags') then
   vim.cmd('helpt ' .. docsPath)
 end
 
+-- nvim-lint
+local lint = require'lint'
+lint.linters_by_fr = {
+  javascript = {'eslint'},
+  typescript = {'eslint'},
+  js = {'eslint'},
+  ts = {'eslint'}
+}
+
+lint.linters.eslint.cmd = '/home/roland/.config/nvm/versions/node/v17.9.0/bin/eslint /home/roland/Documents/projects/lint/src/index.ts --ext .ts'
+vim.cmd([[au BufEnter,InsertLeave * lua require('lint').try_lint()]])
+
 
 -- local util = require 'color.util'
 -- local theme = require 'color.theme'
