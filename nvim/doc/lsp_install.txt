@@ -21,9 +21,9 @@ sources:
  
 
 ===============================================================================
-2. html                                                *lsp_install-html*
-2. css                                                 *lsp_install-html*
-2. json                                                *lsp_install-html*
+1. html                                                *lsp_install-html*
+2. css                                                 *lsp_install-css*
+3. json                                                *lsp_install-json*
 
 npm i -g vscode-langservers-extracted
 
