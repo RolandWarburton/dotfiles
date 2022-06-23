@@ -38,7 +38,7 @@ local isInGit = os.execute('git rev-parse --is-inside-work-tree')
 if isInGit == "true"then
   map('n', '<C-p>', ':Telescope git_files<cr>', opts)
 else
-  map('n', '<C-p>', ':Telescope find_files<cr>', opts) -- careful with this on slow computers
+  map('n', '<C-p>', ':Telescope find_files hidden=true <cr>', opts) -- careful with this on slow computers
 end
 
 -- fuzzy find vim commands
