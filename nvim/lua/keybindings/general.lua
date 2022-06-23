@@ -80,7 +80,7 @@ map('n', '<Leader>8', '8gt', opts)
 map('n', '<Leader>9', '9gt', opts)
 
 -- open command history
--- requires (neoclip, telescope)
+-- requires neoclip, and telescope
 map('n', '<Leader>c', ':Telescope neoclip<cr>', opts)
 
 -- open git with just ":Git" command
