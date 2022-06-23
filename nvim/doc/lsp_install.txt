@@ -9,6 +9,8 @@ CONTENTS
 
     1. typescript........................................|lsp_install-typescript|
     2. html..............................................|lsp_install-html|
+    3. html..............................................|lsp_install-html|
+    r. html..............................................|lsp_install-html|
 
 ===============================================================================
 1. typescipt                                           *lsp_install-typescript*
@@ -21,9 +23,9 @@ sources:
  
 
 ===============================================================================
-1. html                                                *lsp_install-html*
-2. css                                                 *lsp_install-css*
-3. json                                                *lsp_install-json*
+2. html                                                *lsp_install-html*
+3. css                                                 *lsp_install-css*
+4. json                                                *lsp_install-json*
 
 npm i -g vscode-langservers-extracted
 
