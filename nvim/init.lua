@@ -285,7 +285,8 @@ local sources = {
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#eslint=
   diagnostics.eslint_d,
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#markdownlint=
-  null_ls.builtins.diagnostics.markdownlint}
+  null_ls.builtins.diagnostics.markdownlint
+}
 
 -- things that can be formatted
 local formatting ={
