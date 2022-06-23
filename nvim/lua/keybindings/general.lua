@@ -86,3 +86,6 @@ map('n', '<Leader>c', ':Telescope neoclip<cr>', opts)
 -- open git with just ":Git" command
 vim.api.nvim_create_user_command('Git', ':lua vim.api.nvim_command("Neogit")', {})
 
+-- create a custom command to "format the file"
+vim.api.nvim_create_user_command('FormatFile', ':lua vim.lsp.buf.formatting()<cr>', {})
+

@@ -82,7 +82,7 @@ return packer.startup(function(use)
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' } -- git intergrations
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- git diff for neogit
   use { 'mhinz/vim-signify' } -- git gutter
-  use { 'mfussenegger/nvim-lint' }
+  use { 'jose-elias-alvarez/null-ls.nvim' }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

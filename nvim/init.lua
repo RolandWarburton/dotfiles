@@ -272,17 +272,31 @@ if not file_exists(home .. '/.config/nvim/doc/tags') then
   vim.cmd('helpt ' .. docsPath)
 end
 
--- nvim-lint
-local lint = require'lint'
-lint.linters_by_fr = {
-  javascript = {'eslint'},
-  typescript = {'eslint'},
-  js = {'eslint'},
-  ts = {'eslint'}
+-- null-ls
+-- you can check if you have a linter installed for a language by running
+-- (for example to check eslint) :echo executable('eslint')
+-- 1 indicates it is present
+local null_ls = require'null-ls';
+local format = null_ls.builtins.formatting;
+local diagnostics = null_ls.builtins.diagnostics;
+
+-- things that can be linted
+local sources = {
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#eslint=
+  diagnostics.eslint_d,
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#markdownlint=
+  null_ls.builtins.diagnostics.markdownlint}
+
+-- things that can be formatted
+local formatting ={
+  format.eslint_d
 }
 
-lint.linters.eslint.cmd = '/home/roland/.config/nvm/versions/node/v17.9.0/bin/eslint /home/roland/Documents/projects/lint/src/index.ts --ext .ts'
-vim.cmd([[au BufEnter,InsertLeave * lua require('lint').try_lint()]])
+null_ls.setup({
+  debug = true,
+  sources = sources,
+  formatting = formatting
+})
 
 
 -- local util = require 'color.util'
