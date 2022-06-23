@@ -33,3 +33,16 @@ sources:
 - https://www.npmjs.com/package/vscode-langservers-extracted
 - https://github.com/hrsh7th/vscode-langservers-extracted
 
+===============================================================================
+5. markdown                                            *lsp_install-html*
+
+npm i -g markdownlint markdownlint-cli
+
+The last tested working version of markdownlint is 0.31.1
+
+The last tested working version of markdownlint-cli is 0.31.1
+
+sources:
+- https://github.com/DavidAnson/markdownlint
+- https://github.com/igorshubovych/markdownlint-cli
+
