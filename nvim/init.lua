@@ -285,7 +285,13 @@ local sources = {
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#eslint=
   diagnostics.eslint_d,
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#markdownlint=
-  null_ls.builtins.diagnostics.markdownlint
+  null_ls.builtins.diagnostics.markdownlint,
+  null_ls.builtins.diagnostics.vale.with({
+    args = function(params)
+      print(vim.fn.fnamemodify(params.bufname, ":e") .. 'test')
+      return { "--no-exit", "--output", "JSON", "--ext", ".", "--config", home .. "/.config/.vale.ini", vim.fn.expand('%:p')}
+    end
+  })
 }
 
 -- things that can be formatted
