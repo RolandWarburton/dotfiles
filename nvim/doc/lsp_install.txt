@@ -54,7 +54,7 @@ sources:
 Install vale using this command to install it.
 
 ```
-mkdir -p bin && \
+mkdir -p $HOME/bin && \
 wget -P $HOME/bin https://github.com/errata-ai/vale/releases/download/v2.18.0/vale_2.18.0_Linux_64-bit.tar.gz && \
 tar xf $HOME/bin/vale_2.18.0_Linux_64-bit.tar.gz && \
 rm $HOME/bin/vale_2.18.0_Linux_64-bit.tar.gz
@@ -73,6 +73,8 @@ Packages = proselint
 [*]
 BasedOnStyles = Vale, proselint
 ```
+
+Then run `vale --config $HOME/.config/.vale.ini sync`
 
 The last tested working version of vale is 2.18.0
 

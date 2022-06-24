@@ -56,3 +56,7 @@ vim.highlight.create("CursorLineNR", {cterm='NONE', ctermbg='8', ctermfg='15'}) 
 -- disable the close (X) button on vim tab line
 vim.cmd('set guioptions-=e')
 
+-- export a global variable to edit the dictionary
+local home = require'os'.getenv('HOME')
+vim.g.user_path_dict = home .. '/.config/styles/Vocab'
+
