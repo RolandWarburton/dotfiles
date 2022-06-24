@@ -96,3 +96,6 @@ vim.api.nvim_create_user_command('FormatFile', ':lua Lsp_formatting()<cr>', {})
 -- create a customn command to open nvim tree to vale vocal directory
 vim.api.nvim_create_user_command('EditDict', ':NvimTreeOpen /home/roland/.config<cr>', {})
 
+-- create a custom command to toggle format on save
+vim.api.nvim_create_user_command('ToggleFormatOnSave', ':lua Toggle_format_on_save()<cr>', {})
+

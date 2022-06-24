@@ -11,6 +11,7 @@ require('plugins')
 require('lsp.lsp')
 require('neovide.config')
 require('core.statusline')
+require('globals.globals')
 
 -- color scheme
 vim.cmd [[colorscheme darkplus]]
