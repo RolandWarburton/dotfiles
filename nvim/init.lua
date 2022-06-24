@@ -284,6 +284,7 @@ local diagnostics = null_ls.builtins.diagnostics;
 local sources = {
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#eslint=
   diagnostics.eslint_d,
+  format.eslint_d,
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#markdownlint=
   null_ls.builtins.diagnostics.markdownlint,
   null_ls.builtins.diagnostics.vale.with({
@@ -302,7 +303,7 @@ local formatting ={
 null_ls.setup({
   debug = true,
   sources = sources,
-  formatting = formatting
+  -- formatting = formatting
 })
 
 

@@ -87,7 +87,8 @@ map('n', '<Leader>c', ':Telescope neoclip<cr>', opts)
 vim.api.nvim_create_user_command('Git', ':lua vim.api.nvim_command("Neogit")', {})
 
 -- create a custom command to "format the file"
-vim.api.nvim_create_user_command('FormatFile', ':lua vim.lsp.buf.formatting()<cr>', {})
+-- vim.api.nvim_create_user_command('FormatFile', ':lua vim.lsp.buf.formatting()<cr>', {})
+vim.api.nvim_create_user_command('FormatFile', ':lua Lsp_formatting()<cr>', {})
 
 -- create a customn command to open nvim tree to vale vocal directory
 vim.api.nvim_create_user_command('EditDict', ':NvimTreeOpen /home/roland/.config<cr>', {})
