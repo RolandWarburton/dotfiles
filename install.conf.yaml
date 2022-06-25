@@ -192,23 +192,23 @@
     # Tested on XFCE Terminal
 - link:
     ~/.zkbd/alacritty-:0.0:
-        path: zkbd/alacritty-:0.0
+        path: .config/shell/zkbd/alacritty-:0.0
         force: true
     ~/.zkbd/screen-:0.0:
-        path: zkbd/screen-:0.0
+        path: .config/shell/zkbd/screen-:0.0
         force: true
     ~/.zkbd/xterm-kitty-:0.0:
-        path: zkbd/xterm-kitty-:0.0
+        path: .config/shell/zkbd/xterm-kitty-:0.0
         force: true
     ~/.zkbd/rxvt-unicode-:0.0:
-        path: zkbd/rxvt-unicode-:0.0
+        path: .config/shell/zkbd/rxvt-unicode-:0.0
         force: true
     ~/.zkbd/xterm-256color-:0.0:
-        path: zkbd/xterm-256color-:0.0
+        path: .config/shell/zkbd/xterm-256color-:0.0
         force: true
     ~/.zkbd/screen-256color-:0.0:
-        path: zkbd/screen-256color-:0.0
+        path: .config/shell/zkbd/screen-256color-:0.0
         force: true
     ~/.zkbd/xterm-:0.0:
-        path: zkbd/xterm-:0.0
+        path: .config/shell/zkbd/xterm-:0.0
         force: true
