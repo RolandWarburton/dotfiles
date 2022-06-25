@@ -102,3 +102,5 @@ vim.api.nvim_create_user_command('EditDict', ':NvimTreeOpen /home/roland/.config
 -- create a custom command to toggle format on save
 vim.api.nvim_create_user_command('ToggleFormatOnSave', ':lua Toggle_format_on_save()<cr>', {})
 
+-- create a custom command to rename symbols
+vim.api.nvim_create_user_command('RenameSymbol', ':lua vim.lsp.buf.rename()<cr>', {})
