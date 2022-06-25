@@ -195,7 +195,7 @@
         force: true
     ~/.p10k.zsh:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-        path: .p10k.zsh
+        path: .config/shell/.p10k.zsh
         force: true
 
 ##──── zkbd ──────────────────────────────────────────────────────────────────────────────
