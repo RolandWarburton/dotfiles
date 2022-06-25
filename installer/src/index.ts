@@ -182,6 +182,7 @@ async function main(config: any) {
     await $`sudo touch /usr/share/themes/empty/xfwm4/themerc`;
     await $`sudo apt-get -y install arc-theme`;
     await $`gsettings set org.gnome.desktop.interface gtk-theme "empty"`;
+    console.log(`${chalk.bgGreen('[DONE]')} Set theme`);
   }
 }
 
