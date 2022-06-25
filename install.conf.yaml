@@ -5,7 +5,6 @@
 - clean: ['~', '~/.config']
 
 - create:
-    - ~/bin
     - ~/.config/xfce4/panel
     - ~/.config/xfce4/terminal
     - ~/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -22,40 +21,8 @@
 
 ##──── bin ───────────────────────────────────────────────────────────────────────────────
 - link:
-    ~/bin/spawnDebugger:
-        path: scripts/spawnDebugger
-    ~/bin/greenclip:
-        path: scripts/greenclip
-    ~/bin/banner:
-        path: scripts/banner
-    ~/bin/exportPasswords:
-        path: scripts/exportPasswords
-    ~/bin/fcd.sh:
-        path: scripts/fcd.sh
-    ~/bin/he:
-        path: scripts/he
-    ~/bin/mouseConfig.sh:
-        path: scripts/mouseConfig.sh
-    ~/bin/screenLayout.sh:
-        path: scripts/screenLayout.sh
-    ~/bin/screenLayoutLaptop.sh:
-        path: scripts/screenLayoutLaptop.sh
-    ~/bin/swapMonitor:
-        path: scripts/swapMonitor
-    ~/bin/deletePrompt.sh:
-        path: scripts/deletePrompt.sh
-    ~/bin/backup.sh:
-        path: scripts/backup.sh
-    ~/bin/lock.sh:
-        path: scripts/lock.sh
-    ~/bin/xselSpeaker.sh:
-        path: scripts/xselSpeaker.sh
-    ~/bin/fanspeed:
-        path: scripts/fanspeed
-    ~/bin/screenshot.sh:
-        path: scripts/screenshot.sh
-    ~/bin/teleportMouse.sh:
-        path: scripts/teleportMouse.sh
+    ~/.local/scripts:
+        path: scripts
 
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
