@@ -102,22 +102,13 @@
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.tmux.conf:
-        path: .tmux.conf
-        force: true
-    ~/.Xresources:
-        path: .Xresources
+        path: .config/tmux/.tmux.conf
         force: true
     ~/.gitconfig:
         path: .gitconfig
         force: true
     ~/.xinitrc:
         path: .xinitrc
-        force: true
-    ~/.config/user-dirs.dirs:
-        path: user-dirs.dirs
-        force: true
-    ~/.config/xplugrc:
-        path: xplugrc
         force: true
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
@@ -180,7 +171,7 @@
 - link:
     ~/.prettierrc:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .prettierrc
+        path: .config/prettier/.prettierrc
         force: true
 
 ##──── terminal ──────────────────────────────────────────────────────────────────────────
