@@ -1,0 +1,5 @@
+lsp_help	lsp_install.txt	/*lsp_help*
+lsp_install	lsp_install.txt	/*lsp_install*
+lsp_install-html	lsp_install.txt	/*lsp_install-html*
+lsp_install-typescript	lsp_install.txt	/*lsp_install-typescript*
+lsp_install.txt	lsp_install.txt	/*lsp_install.txt*

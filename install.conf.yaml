@@ -167,12 +167,12 @@
 
 ##──── vim ───────────────────────────────────────────────────────────────────────────────
 - link:
-    ~/.config/nvim/init.vim:
-        path: nvim/init.vim
+    ~/.config/nvim:
+        path: nvim
         force: true
-    ~/.vimrc:
-        path: .vimrc
-        force: true
+#    ~/.vimrc:
+#        path: .vimrc
+#        force: true
 
 ##──── mpv ───────────────────────────────────────────────────────────────────────────────
 - link:

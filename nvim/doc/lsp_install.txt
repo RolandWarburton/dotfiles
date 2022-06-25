@@ -1,0 +1,90 @@
+*lsp_install.txt*    For NeoVim version 0.7 Last change: 2022 June 21
+*lsp_install*
+*lsp_help*
+
+Rolands cheatsheet for installing LSP servers.
+
+Formatting and linting is provided by jose-elias-alvarez/null-ls.nvim (github).
+
+===============================================================================
+CONTENTS
+
+    1. typescript........................................|lsp_install-typescript|
+    2. html..............................................|lsp_install-html|
+    3. css...............................................|lsp_install-css|
+    4. json..............................................|lsp_install-json|
+    5. markdown..........................................|lsp_install-markdown|
+    6. vale..............................................|lsp_install-vale|
+
+===============================================================================
+1. typescipt                                           *lsp_install-typescript*
+
+npm i -g typescript typescript-language-server eslint_d @fsouza/prettierd
+
+Typescript supports rich linting and formatting through eslint_d and prettierd.
+
+The language server is provided by typescript-language-server.
+
+sources:
+- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tsserver
+- https://github.com/typescript-language-server/typescript-language-server
+- https://github.com/mantoni/eslint_d.js
+- https://github.com/fsouza/prettierd
+ 
+
+===============================================================================
+2. html                                                *lsp_install-html*
+3. css                                                 *lsp_install-css*
+4. json                                                *lsp_install-json*
+
+npm i -g vscode-langservers-extracted
+
+sources:
+- https://www.npmjs.com/package/vscode-langservers-extracted
+- https://github.com/hrsh7th/vscode-langservers-extracted
+
+===============================================================================
+5. markdown                                            *lsp_install-html*
+
+npm i -g markdownlint markdownlint-cli
+
+Also see *vale* config.
+
+The last tested working version of markdownlint is 0.31.1
+
+The last tested working version of markdownlint-cli is 0.31.1
+
+sources:
+- https://github.com/DavidAnson/markdownlint
+- https://github.com/igorshubovych/markdownlint-cli
+
+===============================================================================
+6. vale                                                *lsp_install-html*
+
+Install vale using this command to install it.
+
+```
+mkdir -p $HOME/bin && \
+wget -P $HOME/bin https://github.com/errata-ai/vale/releases/download/v2.18.0/vale_2.18.0_Linux_64-bit.tar.gz && \
+tar xf $HOME/bin/vale_2.18.0_Linux_64-bit.tar.gz && \
+rm $HOME/bin/vale_2.18.0_Linux_64-bit.tar.gz
+```
+
+then create the config. `touch $HOME/.config/.vale.ini` and run `vale sync`.
+
+```none
+StylesPath = styles
+
+MinAlertLevel = suggestion
+Vocab = Base
+
+Packages = proselint
+
+[*]
+BasedOnStyles = Vale, proselint
+```
+
+Then run `vale --config $HOME/.config/.vale.ini sync`
+
+The last tested working version of vale is 2.18.0
+

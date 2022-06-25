@@ -1,3 +1,4 @@
 # Ignore xfce files that are not important
 /xfce4/**/thunar.xml
 node_modules
+tags
