@@ -48,14 +48,19 @@ vim.highlight.create("StatusLineNC", { guifg = '#848484' })
 
 -- nvim tree
 require 'nvim-tree'.setup {
+  update_cwd = true,
   view = {
     mappings = {
       custom_only = false,
       list = {
-        -- custom mappings go here
+        -- custom mappings go here :help nvim-tree-mappings
         -- https://github.com/kyazdani42/nvim-tree.lua#mappings
+
         -- ctrl + n create file (add trailing / to create directory)
         { key = {"<C-n>" }, action = "create", mode = "n"},
+
+        -- move the root directory to the currently selected one
+        { key = { "<C-]>", "<2-RightMouse>" },    action = "cd" }
       }
     }
   }
