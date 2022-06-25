@@ -86,6 +86,9 @@ map('n', '<Leader>c', ':Telescope neoclip<cr>', opts)
 -- open last telescope command, preserving state
 map('n', '<Leader>r', ':Telescope resume<cr>', opts)
 
+-- live grep
+map('n', '<Leader>g', ':Telescope live_grep<cr>', opts)
+
 -- open git with just ":Git" command
 vim.api.nvim_create_user_command('Git', ':lua vim.api.nvim_command("Neogit")', {})
 
