@@ -292,7 +292,30 @@ local sources = {
   diagnostics.eslint_d,
   format.eslint_d,
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#markdownlint=
-  null_ls.builtins.diagnostics.markdownlint,
+  null_ls.builtins.diagnostics.markdownlint.with({
+    args = function(params)
+      return {"--stdin", "--config", "/home/roland/.markdownlint.json"}
+    end
+  }),
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#prettier=
+  null_ls.builtins.formatting.prettierd.with({
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "css",
+      "scss",
+      "less",
+      "html",
+      "json",
+      "jsonc",
+      "yaml",
+      "graphql",
+      "handlebars"
+    }
+  }),
   null_ls.builtins.diagnostics.vale.with({
     args = function(params)
       print(vim.fn.fnamemodify(params.bufname, ":e") .. 'test')
