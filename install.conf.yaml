@@ -25,7 +25,7 @@
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/Thunar/uca.xml:
-        path: Thunar/uca.xml
+        path: .config/Thunar/uca.xml
         force: true
 
 ##──── xfce4 panel ───────────────────────────────────────────────────────────────────────
