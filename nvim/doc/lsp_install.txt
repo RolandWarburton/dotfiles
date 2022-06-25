@@ -4,22 +4,32 @@
 
 Rolands cheatsheet for installing LSP servers.
 
+Formatting and linting is provided by jose-elias-alvarez/null-ls.nvim (github).
+
 ===============================================================================
 CONTENTS
 
     1. typescript........................................|lsp_install-typescript|
     2. html..............................................|lsp_install-html|
-    3. html..............................................|lsp_install-html|
-    4. html..............................................|lsp_install-html|
+    3. css...............................................|lsp_install-css|
+    4. json..............................................|lsp_install-json|
+    5. markdown..........................................|lsp_install-markdown|
+    6. vale..............................................|lsp_install-vale|
 
 ===============================================================================
 1. typescipt                                           *lsp_install-typescript*
 
-npm i -g typescript typescript-language-server eslint prettier
+npm i -g typescript typescript-language-server eslint_d @fsouza/prettierd
+
+Typescript supports rich linting and formatting through eslint_d and prettierd.
+
+The language server is provided by typescript-language-server.
 
 sources:
 - https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tsserver
 - https://github.com/typescript-language-server/typescript-language-server
+- https://github.com/mantoni/eslint_d.js
+- https://github.com/fsouza/prettierd
  
 
 ===============================================================================
