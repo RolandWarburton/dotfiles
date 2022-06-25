@@ -316,9 +316,9 @@ local sources = {
       "handlebars"
     }
   }),
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#vale
   null_ls.builtins.diagnostics.vale.with({
     args = function(params)
-      print(vim.fn.fnamemodify(params.bufname, ":e") .. 'test')
       return { "--no-exit", "--output", "JSON", "--ext", ".", "--config", home .. "/.config/.vale.ini", vim.fn.expand('%:p')}
     end
   })
