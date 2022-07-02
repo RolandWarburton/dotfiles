@@ -54,7 +54,7 @@
 ##──── vim ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/nvim:
-        path: nvim
+        path: .config/nvim
         force: true
 #    ~/.vimrc:
 #        path: .vimrc
@@ -92,7 +92,7 @@
 ##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
 - link:
     ~/.xbindkeysrc:
-        path: .xbindkeysrc
+        path: .config/xbindkeys/.xbindkeysrc
         force: true
 
 ##──── programming ───────────────────────────────────────────────────────────────────────
