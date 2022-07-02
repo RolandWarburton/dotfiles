@@ -42,13 +42,13 @@
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
     ~/.config/backgrounds/Catlesstail_1.png:
-        path: Media/Catlesstail_1.png
+        path: .local/Media/Catlesstail_1.png
         force: true
     ~/.config/backgrounds/Catlesstail_2.png:
-        path: Media/Catlesstail_2.png
+        path: .local/Media/Catlesstail_2.png
         force: true
     ~/.config/backgrounds/Catlesstail_3.png:
-        path: Media/Catlesstail_3.png
+        path: .local/Media/Catlesstail_3.png
         force: true
 
 ##──── vim ───────────────────────────────────────────────────────────────────────────────
