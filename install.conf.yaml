@@ -78,8 +78,7 @@
 ##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/gtk-3.0/settings.ini:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: gtk-3.0/settings.ini
+        path: .config/gtk-3.0/settings.ini
         force: true
 
 ##──── fonts ─────────────────────────────────────────────────────────────────────────────
