@@ -2,6 +2,11 @@
 
 # Rolands Dotfiles
 
+```none
+git submodule init
+git submodule update
+```
+
 ## Installing
 
 ```none
