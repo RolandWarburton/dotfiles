@@ -17,7 +17,7 @@
 ##──── thunar ────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/Thunar/uca.xml:
-        path: .config/Thunar/uca.xml
+        path: .config/thunar/uca.xml
         force: true
 
 ##──── xfce xfconf ───────────────────────────────────────────────────────────────────────
