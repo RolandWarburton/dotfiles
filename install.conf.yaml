@@ -5,15 +5,7 @@
 - clean: ['~', '~/.config']
 
 - create:
-    - ~/.config/xfce4
-    - ~/.config/xfce4/xfconf
-    - ~/.config/backgrounds
-    - ~/.config/nvim
-    - ~/.config/mpv
-    - ~/.config/gtk-3.0
-    - ~/.config/fontconfig
-    - ~/.config/autostart
-    - ~/.config/Thunar
+    - ~/.config/xfce4/xfconf/xfce-perchannel-xml
     - ~/.zkbd
     - ~/.nvm
 
@@ -28,73 +20,11 @@
         path: .config/Thunar/uca.xml
         force: true
 
-##──── xfce4 panel ───────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/xfce4/panel/xfce4-clipman-actions.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/panel/xfce4-clipman-actions.xml
-        force: true
-
-##──── xfce4 terminal ────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/xfce4/terminal/accels.scm:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/terminal/accels.scm
-        force: true
-    ~/.config/xfce4/terminal/terminalrc:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/terminal/terminalrc
-        force: true
-
 ##──── xfce xfconf ───────────────────────────────────────────────────────────────────────
 - link:
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfce4/xfconf/xfce-perchannel-xml/displays.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
-        force: true
     ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-        force: true
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: .config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-        force: true
-
-##──── autostart ─────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/autostart/screenLayout.desktop:
-        # I have 4 monitors but need to +1 it here
-        if: '[ `xrandr --listmonitors | wc -l` = 5 ]'
-        path: autostart/screenLayout.desktop
-        force: true
-    ~/.config/autostart/mouseConfig.desktop:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: autostart/mouseConfig.desktop
         force: true
 
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
