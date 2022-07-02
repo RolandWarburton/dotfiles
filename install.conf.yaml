@@ -64,15 +64,15 @@
 - link:
     ~/.config/mpv/scripts:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: mpv/scripts
+        path: .config/mpv/scripts
         force: true
     ~/.config/mpv/input.conf:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: mpv/input.conf
+        path: .config/mpv/input.conf
         force: true
     ~/.config/mpv/mpv.conf:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: mpv/mpv.conf
+        path: .config/mpv/mpv.conf
         force: true
 
 ##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
