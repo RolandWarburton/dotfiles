@@ -81,13 +81,6 @@
         path: .config/gtk-3.0/settings.ini
         force: true
 
-##──── fonts ─────────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/fontconfig/conf.d:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
-        path: fontconfig/conf.d
-        force: true
-
 ##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
 - link:
     ~/.xbindkeysrc:
