@@ -5,8 +5,8 @@ export PATH=$PATH:$HOME/.local/scripts
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Go exports
-export GOROOT=$HOME/.local/go
-export PATH=$PATH:/$GOROOT/bin
+export GOPATH=$HOME/.local/go/pkg
+export PATH=$PATH:/$GOPATH/bin
 
 # Android Studio
 export ANDROID_HOME=/home/roland/Android/Sdk
