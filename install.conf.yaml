@@ -98,7 +98,7 @@
 - link:
     ~/.zshrc:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-        path: .zshrc
+        path: .config/shell/.zshrc
         force: true
     ~/.zsh:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'

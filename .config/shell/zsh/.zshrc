@@ -67,3 +67,5 @@ export NVM_DIR="$HOME/.nvm"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+-e 
+alias luamake=/home/roland/.local/lsp/lua-language-server/3rd/luamake/luamake
