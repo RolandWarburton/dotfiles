@@ -49,7 +49,7 @@ setopt SHARE_HISTORY
 source ~/environment.zsh
 source ~/.zsh/bindings.zsh
 source ~/.zsh/autocomplete.zsh
-source ~/.zsh/zsh_aliases
+source ~/.zsh/aliases.zsh
 source ~/.zsh/plugins.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/ssh.zsh
