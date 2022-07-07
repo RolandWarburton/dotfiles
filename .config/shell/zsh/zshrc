@@ -1,16 +1,5 @@
-export PATH=/usr/bin/pip3:$PATH
-export LC_ALL="en_US.UTF-8"
-export EDITOR=vim
-
-# https://wiki.archlinux.org/title/Xfce#SSH_agents
-xfconf-query -c xfce4-session -p /startup/ssh-agent/type -n -t string -s ssh-agent
-# start the keyring
-# https://wiki.archlinux.org/title/GNOME/Keyring#--start_step
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
-
+# export PATH=/usr/bin/pip3:$PATH export LC_ALL="en_US.UTF-8"
+export EDITOR=nvim
 
 # when using the mv command include hidden .files
 setopt glob_dots
@@ -30,22 +19,12 @@ autoload compinit -i
 # WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
 
-# Set the theme for p10k
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
 # Use a history file to persist history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 setopt SHARE_HISTORY
-
-# keyring stuff idk
-#eval $(gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
-#export SSH_AUTH_SOCK
-
-eval "$(starship init zsh)"
 
 # Import all the things
 source ~/.zsh/environment.zsh
@@ -64,8 +43,7 @@ export NVM_DIR="$HOME/.nvm"
 # If we are runnign graphically then run startx
 # [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-# Every time we cd log it to a file for fun
-#chpwd()
-  #echo "$(pwd)" >> "$HOME/.dirhist" && cat "$HOME/.dirhist" | tail -n 10 > "$HOME/.dirhist"
-
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+eval "$(starship init zsh)"
+
