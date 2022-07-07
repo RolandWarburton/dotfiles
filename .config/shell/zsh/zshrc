@@ -67,6 +67,3 @@ export NVM_DIR="$HOME/.nvm"
   #echo "$(pwd)" >> "$HOME/.dirhist" && cat "$HOME/.dirhist" | tail -n 10 > "$HOME/.dirhist"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
--e 
-alias luamake=/home/roland/.local/lsp/lua-language-server/3rd/luamake/luamake
