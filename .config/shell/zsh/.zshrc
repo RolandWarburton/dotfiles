@@ -46,7 +46,7 @@ setopt SHARE_HISTORY
 #export SSH_AUTH_SOCK
 
 # Import all the things
-source ~/environment.zsh
+source ~/.zsh/environment.zsh
 source ~/.zsh/bindings.zsh
 source ~/.zsh/autocomplete.zsh
 source ~/.zsh/aliases.zsh
