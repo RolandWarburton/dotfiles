@@ -4,6 +4,9 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
 export XDG_CONFIG_HOME=$HOME/.config
 
+# Starship config
+export STARSHIP_CONFIG=$HOME/.config/starship.toml
+
 # Go exports
 export GOPATH=$HOME/.local/go/pkg
 export PATH=$PATH:/$GOPATH/bin

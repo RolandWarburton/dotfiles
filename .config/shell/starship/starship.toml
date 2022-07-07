@@ -1,0 +1,12 @@
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# format prompt
+format = "$directory$character"
+right_format = "$all"
+
+# configure directory module
+[directory]
+truncation_length = 8
+truncate_to_repo = true
+

@@ -15,7 +15,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "wfxr/forgit", use:forgit.plugin.zsh
 
 # powerline10k
-zplug romkatv/powerlevel10k, as:theme, depth:1
+# zplug romkatv/powerlevel10k, as:theme, depth:1
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

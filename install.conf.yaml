@@ -104,9 +104,9 @@
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .config/shell/zsh
         force: true
-    ~/.p10k.zsh:
+    ~/.config/starship.toml:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-        path: .config/shell/.p10k.zsh
+        path: .config/shell/starship/starship.toml
         force: true
 
 ##──── zkbd ──────────────────────────────────────────────────────────────────────────────

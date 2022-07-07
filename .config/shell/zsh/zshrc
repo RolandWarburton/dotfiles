@@ -45,6 +45,8 @@ setopt SHARE_HISTORY
 #export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 #export SSH_AUTH_SOCK
 
+eval "$(starship init zsh)"
+
 # Import all the things
 source ~/.zsh/environment.zsh
 source ~/.zsh/bindings.zsh
