@@ -14,8 +14,8 @@ dotbot -c ./install.conf.yaml
 ## Resources
 
 * [Linux Notes](https://blog.rolandw.dev/notes/linux/)
-* [ZSH tidbits](http://zzapper.co.uk/zshtips.html)
-* [Starship](https://starship.rs/config/)
+* [ZSH Tidbits](http://zzapper.co.uk/zshtips.html)
+* [Starship Documentation](https://starship.rs/config/)
 
 ## TODO List
 
