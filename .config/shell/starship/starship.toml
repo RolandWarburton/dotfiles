@@ -10,3 +10,14 @@ right_format = "$all"
 truncation_length = 8
 truncate_to_repo = true
 
+
+# this only show up when in SSH (ssh_only)
+[hostname]
+ssh_only = true
+format = "[$hostname](red) "
+
+# this only show up when in SSH (show_always)
+[username]
+style_user = "yellow"
+format = "[$user]($style)[@](blue)"
+show_always = false
