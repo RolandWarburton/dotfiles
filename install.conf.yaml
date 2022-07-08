@@ -56,9 +56,6 @@
     ~/.config/nvim:
         path: .config/nvim
         force: true
-#    ~/.vimrc:
-#        path: .vimrc
-#        force: true
 
 ##──── mpv ───────────────────────────────────────────────────────────────────────────────
 - link:
