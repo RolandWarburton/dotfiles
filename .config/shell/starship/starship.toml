@@ -10,10 +10,6 @@ right_format = "$all"
 truncation_length = 8
 truncate_to_repo = true
 
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
-
 # this only show up when in SSH (ssh_only)
 [hostname]
 ssh_only = true
@@ -24,3 +20,20 @@ format = "[$hostname](red) "
 style_user = "yellow"
 format = "[$user]($style)[@](blue)"
 show_always = false
+
+# Disable all packages for things i use
+[golang]
+disabled = true
+
+[ruby]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[lua]
+disabled = true
+
+# disable package versions
+[package]
+disabled = true
