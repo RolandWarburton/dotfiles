@@ -8,8 +8,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export STARSHIP_CONFIG=$HOME/.config/starship.toml
 
 # Go exports
+# https://go.dev/doc/install
 export GOPATH=$HOME/.local/go/pkg
-export PATH=$PATH:/$GOPATH/bin
+export PATH=$PATH:/$HOME/.local/go/bin
 
 # Android Studio
 export ANDROID_HOME=/home/roland/Android/Sdk
