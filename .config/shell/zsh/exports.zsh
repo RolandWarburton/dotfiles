@@ -11,6 +11,7 @@ export STARSHIP_CONFIG=$HOME/.config/starship.toml
 # https://go.dev/doc/install
 export GOPATH=$HOME/.local/go/pkg
 export PATH=$PATH:/$HOME/.local/go/bin
+export PATH=$PATH:/$HOME/.local/go/pkg/bin
 
 # Android Studio
 export ANDROID_HOME=/home/roland/Android/Sdk
