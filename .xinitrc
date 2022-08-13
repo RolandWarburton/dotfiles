@@ -1,3 +1,2 @@
 #!/bin/bash
-
-exec openbox-session
+echo "not complete"
