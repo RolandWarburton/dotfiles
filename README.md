@@ -1,4 +1,4 @@
-![heading](https://github.com/RolandWarburton/dotfiles/raw/master/Media/heading.png  "heading")
+![heading](.local/Media/heading2.png)
 
 # Rolands Dotfiles
 
