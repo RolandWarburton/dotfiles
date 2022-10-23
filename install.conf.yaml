@@ -13,32 +13,25 @@
 - link:
     ~/.tmux.conf:
         path: .config/tmux/.tmux.conf
-        force: true
     ~/.gitconfig:
         path: .gitconfig
-        force: true
     ~/.xinitrc:
         path: .xinitrc
-        force: true
 
 ##──── programming ───────────────────────────────────────────────────────────────────────
 - link:
     ~/.prettierrc:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/prettier/.prettierrc
-        force: true
 
 ##──── terminal ──────────────────────────────────────────────────────────────────────────
 - link:
     ~/.zshrc:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .config/shell/zsh/zshrc
-        force: true
     ~/.zsh:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .config/shell/zsh
-        force: true
     ~/.config/starship.toml:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .config/shell/starship/starship.toml
-        force: true

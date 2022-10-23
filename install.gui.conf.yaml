@@ -5,53 +5,43 @@
 - link:
     ~/.config/Thunar/uca.xml:
         path: .config/thunar/uca.xml
-        force: true
 
 ##──── xfce xfconf ───────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-        force: true
 
 ##──── desktop backgrounds ───────────────────────────────────────────────────────────────
 - link:
     ~/.config/backgrounds/Catlesstail_1.png:
         path: .local/Media/Catlesstail_1.png
-        force: true
     ~/.config/backgrounds/Catlesstail_2.png:
         path: .local/Media/Catlesstail_2.png
-        force: true
     ~/.config/backgrounds/Catlesstail_3.png:
         path: .local/Media/Catlesstail_3.png
-        force: true
 
 ##──── mpv ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/mpv/scripts:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/mpv/scripts
-        force: true
     ~/.config/mpv/input.conf:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/mpv/input.conf
-        force: true
     ~/.config/mpv/mpv.conf:
         if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/mpv/mpv.conf
-        force: true
 
 ##──── gtk-3.0 ───────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/gtk-3.0/settings.ini:
         path: .config/gtk-3.0/settings.ini
-        force: true
 
 ##──── xbindkeys ─────────────────────────────────────────────────────────────────────────
 - link:
     ~/.xbindkeysrc:
         path: .config/xbindkeys/.xbindkeysrc
-        force: true
 
 ##──── zkbd ──────────────────────────────────────────────────────────────────────────────
     # zkbd keybindings - Run `zkbd` if you need to regenerate them
@@ -59,22 +49,15 @@
 - link:
     ~/.zkbd/alacritty-:0.0:
         path: .config/shell/zkbd/alacritty-:0.0
-        force: true
     ~/.zkbd/screen-:0.0:
         path: .config/shell/zkbd/screen-:0.0
-        force: true
     ~/.zkbd/xterm-kitty-:0.0:
         path: .config/shell/zkbd/xterm-kitty-:0.0
-        force: true
     ~/.zkbd/rxvt-unicode-:0.0:
         path: .config/shell/zkbd/rxvt-unicode-:0.0
-        force: true
     ~/.zkbd/xterm-256color-:0.0:
         path: .config/shell/zkbd/xterm-256color-:0.0
-        force: true
     ~/.zkbd/screen-256color-:0.0:
         path: .config/shell/zkbd/screen-256color-:0.0
-        force: true
     ~/.zkbd/xterm-:0.0:
         path: .config/shell/zkbd/xterm-:0.0
-        force: true
