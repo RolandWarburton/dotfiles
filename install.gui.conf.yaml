@@ -1,7 +1,3 @@
-- defaults:
-    link:
-      relink: true
-
 - create:
     - ~/.config/xfce4/xfconf/xfce-perchannel-xml
 
