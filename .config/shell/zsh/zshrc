@@ -43,7 +43,6 @@ export NVM_DIR="$HOME/.nvm"
 # If we are runnign graphically then run startx
 # [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 eval "$(starship init zsh)"
-
