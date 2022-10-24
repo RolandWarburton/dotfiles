@@ -1,0 +1,63 @@
+
+- name: install packages for building neovim
+  apt: 
+    update_cache: yes
+    pkg:
+      - luarocks
+      - build-essential
+      - cmake
+      - fzf
+
+- name: check if nvim deb is downloaded
+  stat:
+    path: /tmp/nvim-linux64.deb
+  register: nvim_deb_stat
+
+- name: download neovim
+  get_url:
+    url: https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb
+    dest: /tmp/nvim-linux64.deb
+    mode: '0755'
+    group: roland
+    owner: roland
+  register: nvim_downloaded
+  when: nvim_deb_stat.stat.islnk is not defined # the file does not exist
+
+- name: install neovim
+  apt:
+    deb: /tmp/nvim-linux64.deb
+  register: nvim_install
+  when: nvim_downloaded is defined
+
+- name: clone neovim config
+  become_user: '{{username}}'
+  git:
+    repo: git@github.com:rolandwarburton/nvim.conf.git
+    dest: /home/{{username}}/.config/nvim
+    accept_hostkey: yes
+    track_submodules: yes
+    recursive: yes
+    version: master
+    force: yes
+    key_file: /home/{{username}}/.ssh/id_github # on the remote host
+
+- name: check if inifile is installed
+  shell:
+    cmd: luarocks show inifile
+  register: inifile_show_installed
+  changed_when: false
+  failed_when: false
+
+- name: install luarock inifile
+  shell:
+    cmd: luarocks install inifile
+  register: inifile_install
+  failed_when: not inifile_install.stdout is search('inifile.*is now installed in')
+  changed_when: not inifile_install.stdout is search('inifile.*is now installed in')
+  when: inifile_show_installed.stdout is search('cannot find package inifile')
+
+- name: install neovim packages
+  become_user: '{{username}}'
+  shell:
+    cmd: zsh -c 'source /home/{{username}}/.zshrc && ~/.config/nvim/install-nvim-headless.sh'
+  changed_when: false # cant find a good way of doing this

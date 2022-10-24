@@ -1,0 +1,5 @@
+- hosts: workstations
+  become: true
+  roles:
+    - ./roles/setup
+    - ./roles/neovim
