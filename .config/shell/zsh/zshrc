@@ -8,7 +8,10 @@ setopt glob_dots
 setopt share_history
 
 # run `zkbd` after booting to set your keybinds
-autoload zkbd
+if [[ ! -a ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
+  autoload zkbd
+fi
+
 
 # load the completions system on $fpath and ignore all insecure files and directories
 # insecure = files that dont belong to root or you
