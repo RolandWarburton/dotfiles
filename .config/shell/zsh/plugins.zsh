@@ -1,17 +1,12 @@
-source ~/.zplug/init.zsh
-
-# manage zplug by zplug
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+source "${HOME}/.zgen/zgen.zsh"
 
 # make command auto suggestion based on history
-zplug "zsh-users/zsh-autosuggestions"
+zgen load "zsh-users/zsh-autosuggestions"
 # control space
 bindkey '^@' autosuggest-accept 
 
 # command line syntax highlight
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zgen load "zsh-users/zsh-syntax-highlighting"
 
 # interative git commands
-zplug "wfxr/forgit", use:forgit.plugin.zsh
-
-zplug load
+zgen load 'wfxr/forgit'
