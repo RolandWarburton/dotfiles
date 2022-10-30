@@ -47,17 +47,5 @@
     # zkbd keybindings - Run `zkbd` if you need to regenerate them
     # Tested on XFCE Terminal
 - link:
-    ~/.zkbd/alacritty-:0.0:
-        path: .config/shell/zkbd/alacritty-:0.0
-    ~/.zkbd/screen-:0.0:
-        path: .config/shell/zkbd/screen-:0.0
-    ~/.zkbd/xterm-kitty-:0.0:
-        path: .config/shell/zkbd/xterm-kitty-:0.0
-    ~/.zkbd/rxvt-unicode-:0.0:
-        path: .config/shell/zkbd/rxvt-unicode-:0.0
-    ~/.zkbd/xterm-256color-:0.0:
-        path: .config/shell/zkbd/xterm-256color-:0.0
-    ~/.zkbd/screen-256color-:0.0:
-        path: .config/shell/zkbd/screen-256color-:0.0
-    ~/.zkbd/xterm-:0.0:
-        path: .config/shell/zkbd/xterm-:0.0
+    ~/.zkbd:
+        path: .config/shell/zkbd
