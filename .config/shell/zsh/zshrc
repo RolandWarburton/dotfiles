@@ -38,11 +38,6 @@ source ~/.zsh/exports.zsh
 source ~/.zsh/plugins.zsh
 source ~/.zsh/ssh.zsh
 
-# Load in the nvm environment to manage node versions
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # If we are runnign graphically then run startx
 # [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
