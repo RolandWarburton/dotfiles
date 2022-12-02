@@ -7,9 +7,13 @@ git submodule init
 git submodule update
 ```
 
+Symlink dotfiles.
+
 ```none
 dotbot -c ./install.conf.yaml
 ```
+
+To bootstrap a complete system please see [rolandwarburton/ansible-configs](https://github.com/RolandWarburton/ansible-configs).
 
 ## Resources
 
