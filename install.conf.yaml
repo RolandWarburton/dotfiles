@@ -8,6 +8,11 @@
     ~/.local/scripts:
         path: .local/scripts
 
+##───- link:
+- link:
+    ~/.config/sway:
+        path: .config/sway
+
 ##──── misc ──────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.tmux.conf:
