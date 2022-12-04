@@ -1,4 +1,4 @@
-![heading](.local/Media/heading2.png)
+![heading](.local/media/heading2.png)
 
 # Rolands Dotfiles
 
