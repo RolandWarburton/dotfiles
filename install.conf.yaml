@@ -16,6 +16,8 @@
         path: .gitconfig
     ~/.xinitrc:
         path: .xinitrc
+    ~/.local/media:
+        path: .local/media
 
 ##──── programming ───────────────────────────────────────────────────────────────────────
 - link:
