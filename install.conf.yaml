@@ -13,7 +13,7 @@
     ~/.local/scripts:
         path: .local/scripts
 
-##───- link:
+##──── sway ──────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.config/sway:
         path: .config/sway
