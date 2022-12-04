@@ -3,6 +3,11 @@
 - create:
   - ~/.config
 
+# How to create a new link:
+# - link:
+#     /path/on/filesystem:
+#         path: path/in/repo
+
 ##──── bin ───────────────────────────────────────────────────────────────────────────────
 - link:
     ~/.local/scripts:
