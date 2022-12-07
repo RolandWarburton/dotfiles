@@ -10,15 +10,4 @@
 	<startup-notify/>
 	<directories/>
 </action>
-<action>
-	<icon>visual-studio-code</icon>
-	<name>Code</name>
-	<unique-id>1610081166490126-1</unique-id>
-	<command>code %f</command>
-	<description>VS Code open</description>
-	<patterns>*</patterns>
-	<directories/>
-	<other-files/>
-	<text-files/>
-</action>
 </actions>
