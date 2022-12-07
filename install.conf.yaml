@@ -24,8 +24,6 @@
         path: .config/tmux/.tmux.conf
     ~/.gitconfig:
         path: .gitconfig
-    ~/.xinitrc:
-        path: .xinitrc
     ~/.local/media:
         path: .local/media
 
