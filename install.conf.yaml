@@ -32,7 +32,6 @@
 ##──── programming ───────────────────────────────────────────────────────────────────────
 - link:
     ~/.prettierrc:
-        if: '[`$XDG_CURRENT_DESKTOP` -eq `XFCE` ]'
         path: .config/prettier/.prettierrc
 
 ##──── terminal ──────────────────────────────────────────────────────────────────────────
