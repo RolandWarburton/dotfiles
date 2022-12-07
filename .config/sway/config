@@ -79,6 +79,9 @@ bindsym $mod+c exec clipman pick --tool="rofi"
 # The window gets a H[name] or V[name] based on what split is about to happen.
 # The below bind adds the ability to exit the split mode and remove the V[] or H[]
 bindsym $mod+u split none
+# Change window focus
+bindsym alt+Tab          focus child
+bindsym alt+Shift+Tab    focus parent
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
