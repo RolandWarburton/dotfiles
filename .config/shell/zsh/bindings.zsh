@@ -3,6 +3,10 @@ function hello_function { echo "hello" }
 zle -N hello_widget hello_function
 #bindkey '^E' hello_widget
 
+# edit the current command in the default $EDITOR
+# use alt+v to enter visual mode
+bindkey -v
+
 # Bind "control + arrow" to fwd and back word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word

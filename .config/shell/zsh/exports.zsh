@@ -4,6 +4,9 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
 export XDG_CONFIG_HOME=$HOME/.config
 
+# export default editor
+export EDITOR=nvim
+
 # Starship config
 export STARSHIP_CONFIG=$HOME/.config/starship.toml
 
