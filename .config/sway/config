@@ -252,4 +252,8 @@ input type:keyboard {
   repeat_rate 35
 }
 
+input "1739:0:Synaptics_TM3289-002" {
+  scroll_factor 0.3
+}
+
 include @sysconfdir@/sway/config.d/*
