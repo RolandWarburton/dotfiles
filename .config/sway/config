@@ -231,4 +231,26 @@ bar {
     }
 }
 
+# input configuration
+#
+# Logitech MX Master 3 - For X1 Carbon
+input "1133:16514:Logitech_MX_Master_3" {
+  pointer_accel -0.9
+}
+
+# Builtin track point - For X1 Carbon
+input "2:10:TPPS/2_Elan_TrackPoint" {
+  pointer_accel -0.5
+}
+
+# All generic keyboards
+input type:keyboard {
+  # caps lock should work like the escape key
+  xkb_options caps:escape
+
+  # key repeat and delay
+  repeat_delay 250
+  repeat_rate 35
+}
+
 include @sysconfdir@/sway/config.d/*
