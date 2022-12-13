@@ -31,6 +31,3 @@ export CHROME_EXECUTABLE=`which chromium`
 # Install from https://dart.dev/get-dart
 export PATH="$PATH:/usr/lib/dart/bin"
 
-# vivi
-export ADB_VENDOR_KEYS="$HOME/.ssh/adb" # chmod 600 this
-
