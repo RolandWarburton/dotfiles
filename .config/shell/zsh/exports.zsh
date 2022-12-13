@@ -29,5 +29,6 @@ export CHROME_EXECUTABLE=`which chromium`
 
 # Dart
 # Install from https://dart.dev/get-dart
-export PATH="$PATH:/usr/lib/dart/bin"
-
+if [[ -e /usr/lib/dart/bin ]]; then
+  export PATH="$PATH:/usr/lib/dart/bin"
+fi
