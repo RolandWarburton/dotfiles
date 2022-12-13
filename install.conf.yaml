@@ -43,3 +43,5 @@
     ~/.config/starship.toml:
         if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
         path: .config/shell/starship/starship.toml
+    ~/.config/alacritty:
+        path: .config/alacritty
