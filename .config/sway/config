@@ -247,7 +247,6 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
 input type:keyboard {
   # caps lock should work like the escape key
   xkb_options caps:escape
-
   # key repeat and delay
   repeat_delay 250
   repeat_rate 35
