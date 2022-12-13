@@ -235,7 +235,8 @@ bar {
 #
 # Logitech MX Master 3 - For X1 Carbon
 input "1133:16514:Logitech_MX_Master_3" {
-  pointer_accel -0.9
+  pointer_accel -0.6
+  accel_profile "flat"
 }
 
 # Builtin track point - For X1 Carbon
