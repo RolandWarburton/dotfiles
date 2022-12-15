@@ -126,9 +126,14 @@ bindsym $mod+Shift+Right move right
 
 # Workspaces:
 #
+# variables for workspace names
+# make sure to include the number for alphabetical ordering,
+# which will be stripped in the bar configuration
+set $ws1 1terminal
+set $ws2 2browser
 # Switch to workspace
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace number 3
 bindsym $mod+4 workspace number 4
 bindsym $mod+5 workspace number 5
@@ -138,8 +143,8 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace number 3
 bindsym $mod+Shift+4 move container to workspace number 4
 bindsym $mod+Shift+5 move container to workspace number 5
@@ -224,6 +229,7 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
+    strip_workspace_numbers yes
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
