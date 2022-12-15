@@ -2,11 +2,6 @@
 
 # Rolands Dotfiles
 
-```none
-git submodule init
-git submodule update
-```
-
 Symlink dotfiles.
 
 ```none
