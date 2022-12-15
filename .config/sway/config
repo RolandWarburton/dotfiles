@@ -33,9 +33,9 @@ set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 exec_always @sysconfdir@/configure-laptop-display.sh
-# In the default config it uses @datadir@ but i cannot determine where this points to
-# Instead it hard codes to roland with a background that's installed in rolandwarburton/dotfiles
-# output * bg /home/roland/.local/media/Catlesstail_1_black.png fill
+
+# desktop picture
+exec_always swww init && swww img $HOME/.local/media/background.png
 #
 # Example configuration:
 #
