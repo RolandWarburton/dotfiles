@@ -30,12 +30,10 @@ exec wl-paste -t text --watch clipman store
 #
 # clamshell switching
 set $laptop eDP-1
-bindswitch --reload --locked lid:on output $laptop disable
-bindswitch --reload --locked lid:off output $laptop enable
-exec_always @sysconfdir@/configure-laptop-display.sh
+bindswitch --reload --locked lid:on exec "/usr/local/etc/sway/configure-laptop-display.sh"
+bindswitch --reload --locked lid:off exec "/usr/local/etc/sway/configure-laptop-display.sh"
+exec_always /usr/local/etc/sway/configure-laptop-display.sh
 
-# desktop picture
-exec_always swww init && swww img $HOME/.local/media/background.png
 #
 # Example configuration:
 #
