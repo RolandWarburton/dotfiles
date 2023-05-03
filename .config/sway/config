@@ -185,6 +185,12 @@ bindsym $mod+Control+Shift+$left move workspace to output left
 bindsym $mod+Control+Shift+$down move workspace to output down
 bindsym $mod+Control+Shift+$up move workspace to output up
 
+# Layout Settings For Specific Application
+#
+# put caprine messenger into the open scratchpad when it opens
+for_window [title="Caprine"] move scratchpad
+for_window [title="Caprine"] scratchpad show
+
 # Scratchpad:
 #
 # Sway has a "scratchpad", which is a bag of holding for windows.
