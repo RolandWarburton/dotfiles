@@ -2,3 +2,4 @@
 /xfce4/**/thunar.xml
 node_modules
 tags
+/.config/shell/zsh/secrets.zsh
