@@ -37,7 +37,7 @@ source ~/.zsh/environment.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/plugins.zsh
 source ~/.zsh/ssh.zsh
-[[ -f secrets.zsh ]] && source secrets.zsh
+[[ -f ~/.zsh/secrets.zsh ]] && source ~/.zsh/secrets.zsh
 
 # If we are runnign graphically then run startx
 # [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
