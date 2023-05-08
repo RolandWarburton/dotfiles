@@ -2,7 +2,7 @@
 # which creates this socket
 
 # check if the ssh-agent.socket file exists in the user runtime directory
-if [[ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
-  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+if [[ -e "$XDG_RUNTIME_DIR/openssh_agent" ]]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
 fi
 
