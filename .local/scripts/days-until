@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Check if the target date is provided as an argument
+if [[ -z $1 ]]; then
+  echo "Please provide a target date in YYYY-MM-DD format."
+  exit 1
+fi
+
+# Get the target date from the first command-line argument
+target_date=$1
+
+# Get the current date (YYYY-MM-DD HH:MM:SS format)
+current_date=$(date +"%Y-%m-%d %H:%M:%S")
+
+# Calculate the difference in seconds between target and current date
+diff_seconds=$(($(date -d "$target_date" +%s) - $(date -d "$current_date" +%s)))
+
+# Calculate the number of days and hours until the target date
+days_until=$((diff_seconds / 86400))
+hours_until=$((diff_seconds / 3600 % 24))
+
+# Print the result
+echo "Time until $target_date: $days_until days and $hours_until hours"
