@@ -24,7 +24,7 @@ set $term alacritty
 set $menu rofi -show-icons -show drun
 
 # clipboard configuration
-exec wl-paste -t text --watch clipman store
+exec wl-paste -t text --watch clipman store --max-items=100
 
 ### Output configuration
 #
