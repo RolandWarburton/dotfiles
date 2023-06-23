@@ -1,47 +1,33 @@
-- clean: ['~', '~/.config']
-
-- create:
+create:
   - ~/.config
+  - ~/.local
 
-# How to create a new link:
-# - link:
-#     /path/on/filesystem:
-#         path: path/in/repo
-
-##──── bin ───────────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.local/scripts:
-        path: .local/scripts
-
-##──── sway ──────────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.config/sway:
-        path: .config/sway
-
-##──── misc ──────────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.tmux.conf:
-        path: .config/tmux/.tmux.conf
-    ~/.gitconfig:
-        path: .gitconfig
-    ~/.local/media:
-        path: .local/media
-
-##──── programming ───────────────────────────────────────────────────────────────────────
-- link:
-    ~/.prettierrc:
-        path: .config/prettier/.prettierrc
-
-##──── terminal ──────────────────────────────────────────────────────────────────────────
-- link:
-    ~/.zshrc:
-        if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-        path: .config/shell/zsh/zshrc
-    ~/.zsh:
-        if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-        path: .config/shell/zsh
-    ~/.config/starship.toml:
-        if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-        path: .config/shell/starship/starship.toml
-    ~/.config/alacritty:
-        path: .config/alacritty
+link:
+  # scripts
+  - destination: ~/.local/scripts
+    path: .local/scripts
+  # sway
+  - destination: ~/.config/sway
+    path: .config/sway
+  # misc
+  - destination: ~/.tmux.conf
+    path: .config/tmux/.tmux.conf
+  - destination: ~/.gitconfig
+    path: .gitconfig
+  - destination: ~/.local/media
+    path: .local/media
+  # programming
+  - destination: ~/.prettierrc
+    path: .config/prettier/.prettierrc
+  # terminal
+  - destination: ~/.zshrc
+    path: .config/shell/zsh/zshrc
+    if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
+  - destination: ~/.zsh
+    path: .config/shell/zsh
+    if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
+  - destination: ~/.config/starship.toml
+    path: .config/shell/starship/starship.toml
+    if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
+  - destination: ~/.config/alacritty
+    path: .config/alacritty
