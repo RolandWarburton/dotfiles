@@ -33,7 +33,9 @@ alias viviInspect='cat $(cat ~/.vivi_tools.json | jq -r ".tmp.inspectFile") | fx
 alias vim='nvim'
 alias prunebranches='git remote prune origin'
 alias hibernate='systemctl hibernate'
-alias lineCount='count_lines'
+alias dbusps='ps -o pid,ppid,command -C dbus-daemon'
+alias imv='imv-wayland'
+alias wcall='count_lines'
 
 # If LSD is installed then use those
 if which lsd >/dev/null
