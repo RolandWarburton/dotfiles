@@ -35,6 +35,7 @@ source ~/.zsh/autocomplete.zsh
 source ~/.zsh/bindings.zsh
 source ~/.zsh/environment.zsh
 source ~/.zsh/exports.zsh
+source ~/.zsh/functions.zsh
 source ~/.zsh/plugins.zsh
 source ~/.zsh/ssh.zsh
 [[ -f ~/.zsh/secrets.zsh ]] && source ~/.zsh/secrets.zsh
