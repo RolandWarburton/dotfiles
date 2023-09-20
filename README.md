@@ -10,4 +10,4 @@ casa -c install.config.yaml
 ```
 
 Pairs with [rolandwarburton/ansible-configs](https://github.com/RolandWarburton/ansible-configs)
-for configuring a system from scratch.
+to configure a system from scratch.
