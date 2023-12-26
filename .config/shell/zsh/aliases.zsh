@@ -36,6 +36,8 @@ alias hibernate='systemctl hibernate'
 alias dbusps='ps -o pid,ppid,command -C dbus-daemon'
 alias imv='imv-wayland'
 alias wcall='count_lines'
+alias weather=curl "wttr.in/melbourne"
+alias weather='curl "wttr.in/melbourne"'
 
 # If LSD is installed then use those
 if which lsd >/dev/null
