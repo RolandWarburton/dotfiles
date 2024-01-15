@@ -273,3 +273,7 @@ input "1739:0:Synaptics_TM3289-002" {
 }
 
 include @sysconfdir@/sway/config.d/*
+
+# start fresh ssh agent
+exec killall ssh-agent
+exec /usr/bin/ssh-agent | head -n 2 > /home/roland/.ssh-agent

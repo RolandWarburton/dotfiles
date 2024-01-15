@@ -1,8 +1,7 @@
-# Refer to /usr/lib/systemd/user/ssh-agent.service
-# which creates this socket
-
-# check if the ssh-agent.socket file exists in the user runtime directory
-if [[ -e "$XDG_RUNTIME_DIR/openssh_agent" ]]; then
-  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
+ssh_agent_file="$HOME/.ssh-agent"
+if [ -e $HOME/.ssh/id_github ] && [ -f "$ssh_agent_file" ]; then
+  eval "$(cat "$ssh_agent_file")" 2>&1
+  ssh-add ~/.ssh/id_github >/dev/null 2>&1
+else
+  echo "SSH agent file does not exist!"
 fi
-
