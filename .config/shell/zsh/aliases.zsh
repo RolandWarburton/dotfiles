@@ -37,7 +37,25 @@ alias dbusps='ps -o pid,ppid,command -C dbus-daemon'
 alias imv='imv-wayland'
 alias wcall='count_lines'
 alias weather='curl "wttr.in/melbourne"'
-alias wifi='nmcli dev wifi show-password'
+alias sgpt="sgpt --role=programmer"
+
+# # generic function for wifi stuff using nmcli
+wifi() {
+  if [[ $1 != "list" && $1 != "rescan" && $1 != "show-password" && $1 != "connect" ]]; then
+    echo "Invalid parameter. Usage: wifi [list | rescan | show-password]"
+    return 1
+  fi
+
+# auto complete not working for this yet
+# need to use "nmcli device wifi connect 'NAME'"
+if [[ $1 == "connect" && -n $2 ]]; then
+  nmcli device wifi $1 $2
+else
+  nmcli device wifi $1
+fi
+}
+# tab-completion for the wifi function
+compctl -k '(list rescan show-password connect)' wifi
 
 # If LSD is installed then use those
 if which lsd >/dev/null
