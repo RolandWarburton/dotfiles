@@ -237,7 +237,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command $HOME/.config/sway/statusBar.sh
+    status_command STATUS_SHOW_WIFI=1 STATUS_SHOW_BATTERY=1 $HOME/.config/sway/statusBar
 
     colors {
         statusline #ffffff
