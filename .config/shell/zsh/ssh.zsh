@@ -8,8 +8,11 @@
 
 ssh_agent_file="$HOME/.ssh-agent"
 if [ -f $HOME/.ssh/id_github ] && [ -f "$ssh_agent_file" ]; then
-  eval "$(cat "$ssh_agent_file")" 2>&1
+  eval "$(cat "$ssh_agent_file")" > /dev/null 2>&1
   ssh-add ~/.ssh/id_github >/dev/null 2>&1
 else
-  echo "SSH agent file does not exist!"
+  echo "Writing SSH agent information to $HOME/.ssh-agent"
+  ssh-agent > $HOME/.ssh-agent
+  eval "$(cat "$ssh_agent_file")" 2>&1
+  ssh-add ~/.ssh/id_github >/dev/null 2>&1
 fi

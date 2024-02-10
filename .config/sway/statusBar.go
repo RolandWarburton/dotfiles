@@ -114,9 +114,12 @@ func printStatus(networkState *NetworkState) {
 }
 
 func main() {
-	// on occasion check the wifi
 	var networkState NetworkState
-	go pollActiveWifiDevice(10*time.Second, &networkState)
+
+	// on occasion check the wifi
+	if os.Getenv("STATUS_SHOW_WIFI") != "" {
+		go pollActiveWifiDevice(10*time.Second, &networkState)
+	}
 
 	go printStatus(&networkState)
 	select {}
