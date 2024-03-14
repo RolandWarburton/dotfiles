@@ -237,7 +237,8 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command STATUS_SHOW_WIFI=1 STATUS_SHOW_BATTERY=1 $HOME/.config/sway/statusBar
+    # Find valid flags for the status bar here https://github.com/RolandWarburton/sway-bar-status-line
+    status_command PTV_DEVID=NOT_SET PTV_KEY=NOT_SET STATUS_SHOW_TIME=1 STATUS_SHOW_PTV=1 STATUS_SHOW_WIFI=1 STATUS_SHOW_BATTERY=1 $HOME/.config/sway/statusBar
 
     colors {
         statusline #ffffff
