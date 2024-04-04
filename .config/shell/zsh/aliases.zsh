@@ -38,6 +38,7 @@ alias imv='imv-wayland'
 alias wcall='count_lines'
 alias weather='curl "wttr.in/melbourne"'
 alias sgpt="sgpt --role=programmer"
+alias lf="lfcd"
 
 # # generic function for wifi stuff using nmcli
 wifi() {

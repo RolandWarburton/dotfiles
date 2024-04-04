@@ -1,0 +1,82 @@
+# unmap comma
+map ,
+
+
+# use bash for commands
+set shell zsh
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-eu'
+
+# draw lines around the folders like in ranger
+set drawbox true
+
+# draw vim like relative numbers
+set relativenumber
+
+# Use the `dim` attribute instead of underline for the cursor in the preview pane
+set cursorpreviewfmt "\033[7;2m"
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$fx";;
+        *) for f in "$fx"; do xdg-open "$f"> /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+
+cmd fzf_search ${{
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    res="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
+    )"
+    [ -n "$res" ] && lf -remote "send $id select \"$res\""
+}}
+
+cmd git_branch ${{
+    git branch | fzf | xargs git checkout
+    pwd_shell=$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')
+    lf -remote "send $id updir"
+    lf -remote "send $id cd \"$pwd_shell\""
+}}
+
+cmd cd_and_quit &{{
+  export LAST_LF_DIR="$PWD"
+  # lf -remote "send :quit"
+}}
+
+cmd on-cd &{{
+    export STARSHIP_SHELL=
+    fmt="$(starship prompt)"
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+# vim quit
+cmd q :quit
+
+# enter to run a shell command
+map <enter> shell
+# toggle hidden files
+map . set hidden!
+# fuzzy file search for file names
+map <c-p> $lf -remote "send $id select '$(fzf)'"
+# activate ripgrep search of text within files
+map ,g :fzf_search
+# copy my quit key bind in vim
+map ,q :quit
+
+# show the result of execution of previous commands
+map ` !true
+
+# git keys
+map gb :git_branch
+map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
+map gs ${{clear; git status; echo "press ENTER"; read ENTER}}

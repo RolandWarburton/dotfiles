@@ -10,3 +10,8 @@ zgen load "zsh-users/zsh-syntax-highlighting"
 
 # interative git commands
 zgen load 'wfxr/forgit'
+
+LFCD="$HOME/.config/lf/lfcd.sh"
+if [ -f "$LFCD" ]; then
+  source "$LFCD"
+fi
