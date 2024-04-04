@@ -1,5 +1,7 @@
 count_lines() {
   find "$1" -type f -exec cat {} + | wc -l
+}
+
 dockersh() {
   if [ $# -eq 0 ]; then
     echo "Usage: dockersh <container_name>"
