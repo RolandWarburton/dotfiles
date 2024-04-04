@@ -16,6 +16,8 @@ link:
     path: .gitconfig
   - destination: ~/.local/media
     path: .local/media
+  - destination: ~/.config/lf
+    path: .config/lf
   # programming
   - destination: ~/.prettierrc
     path: .config/prettier/.prettierrc
