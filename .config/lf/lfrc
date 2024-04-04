@@ -1,7 +1,6 @@
 # unmap comma
 map ,
 
-
 # use bash for commands
 set shell zsh
 
@@ -28,7 +27,6 @@ cmd open ${{
         *) for f in "$fx"; do xdg-open "$f"> /dev/null 2> /dev/null & done;;
     esac
 }}
-
 
 cmd fzf_search ${{
     RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
