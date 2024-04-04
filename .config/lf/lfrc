@@ -80,3 +80,4 @@ map ` !true
 map gb :git_branch
 map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
 map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
+
