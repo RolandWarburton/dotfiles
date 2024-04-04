@@ -59,7 +59,6 @@ cmd on-cd &{{
 
 # vim quit
 cmd q :quit
-
 # open a file
 map <enter> open
 # run a shell command
@@ -80,4 +79,3 @@ map ` !true
 map gb :git_branch
 map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
 map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
-
