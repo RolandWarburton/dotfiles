@@ -62,8 +62,10 @@ cmd on-cd &{{
 # vim quit
 cmd q :quit
 
-# enter to run a shell command
-map <enter> shell
+# open a file
+map <enter> open
+# run a shell command
+map <c-s> :shell
 # toggle hidden files
 map . set hidden!
 # fuzzy file search for file names
