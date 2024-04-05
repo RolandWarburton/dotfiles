@@ -3,3 +3,4 @@
 node_modules
 tags
 /.config/shell/zsh/secrets.zsh
+/.local/scripts/ripdrag-wrapper
