@@ -1,5 +1,7 @@
-# unmap comma
+# unmap stuff
 map ,
+map <c-d>
+map <backspace>
 
 # use bash for commands
 set shell zsh
@@ -66,7 +68,7 @@ map <enter> open
 # run a shell command
 map <c-s> :shell
 # toggle hidden files
-map . set hidden!
+map <backspace> set hidden!
 # fuzzy file search for file names
 map <c-p> $lf -remote "send $id select '$(fzf)'"
 # activate ripgrep search of text within files
