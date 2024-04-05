@@ -90,6 +90,7 @@ map ,g :fzf_search
 map ,q :quit
 # ripdrag
 map ,d ripdrag-wrapper
+map ,c ${{pwd | tr -d '\n' | wl-copy}}
 
 # show the result of execution of previous commands
 map ` !true
