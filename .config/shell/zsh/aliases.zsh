@@ -40,6 +40,13 @@ alias weather='curl "wttr.in/melbourne"'
 alias sgpt="sgpt --role=programmer"
 alias lf="lfcd"
 
+lf_select_cwd() {
+  lf -remote "send $id select $(pwd)" >/dev/null 2>&1
+}
+
+# Bind Ctrl+S to call the function
+bindkey -s '^S' 'lf_select_cwd\n'
+
 # # generic function for wifi stuff using nmcli
 wifi() {
   if [[ $1 != "list" && $1 != "rescan" && $1 != "show-password" && $1 != "connect" ]]; then
