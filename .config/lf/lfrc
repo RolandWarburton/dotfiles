@@ -18,6 +18,9 @@ set shellopts '-eu'
 # draw lines around the folders like in ranger
 set drawbox true
 
+# two column layout
+set ratios 1:2
+
 # draw vim like relative numbers
 set relativenumber
 
