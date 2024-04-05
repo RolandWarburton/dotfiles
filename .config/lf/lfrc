@@ -64,6 +64,15 @@ cmd on-cd &{{
 
 cmd ripdrag-wrapper $ripdrag $(ripdrag-wrapper $fx)
 
+cmd find_directory ${{
+  if [ "$lf_hidden" ]; then
+    lf -remote "send $id select '$(fdfind --type d --exclude .git --exclude git --exclude .cargo --exclude node_modules --hidden | fzf)'"
+    else 
+    lf -remote "send $id select '$(fdfind --type d --exclude .git --exclude git --exclude .cargo --exclude node_modules | fzf)'"
+  fi
+}}
+
+
 # vim quit
 cmd q :quit
 # open a file
@@ -74,6 +83,7 @@ map <c-s> :shell
 map <backspace> set hidden!
 # fuzzy file search for file names
 map <c-p> $lf -remote "send $id select '$(fzf)'"
+map <c-d> :find_directory
 # activate ripgrep search of text within files
 map ,g :fzf_search
 # copy my quit key bind in vim
