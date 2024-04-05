@@ -57,6 +57,8 @@ cmd on-cd &{{
     lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
+cmd ripdrag-wrapper $ripdrag $(ripdrag-wrapper $fx)
+
 # vim quit
 cmd q :quit
 # open a file
@@ -71,6 +73,8 @@ map <c-p> $lf -remote "send $id select '$(fzf)'"
 map ,g :fzf_search
 # copy my quit key bind in vim
 map ,q :quit
+# ripdrag
+map ,d ripdrag-wrapper
 
 # show the result of execution of previous commands
 map ` !true
