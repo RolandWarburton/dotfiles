@@ -227,6 +227,14 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# window decorations
+set $windowBackground "#285577"
+set $windowBorder $windowBackground
+set $windowTextColor "#ffffff"
+set $windowIndicatorPassive "#383C4A"
+set $windowIndicatorActive $windowBackground
+client.focused $windowBorder $windowBackground $windowTextColor $windowIndicatorActive $windowIndicatorPassive
+
 #
 # Status Bar:
 #
@@ -241,7 +249,7 @@ bar {
     status_command PTV_DEVID=NOT_SET PTV_KEY=NOT_SET STATUS_SHOW_TIME=1 STATUS_SHOW_PTV=1 STATUS_SHOW_WIFI=1 STATUS_SHOW_BATTERY=1 $HOME/.config/sway/statusBar
 
     colors {
-        statusline #ffffff
+        focused_workspace #323232 #285577 #ffffff
         background #323232
         inactive_workspace #323232 #5c5c5c #ffffff
     }
