@@ -3,6 +3,9 @@ map ,
 map <c-d>
 map <backspace>
 
+# automatically quit the when there are no clients left
+set autoquit true
+
 # use bash for commands
 set shell zsh
 
