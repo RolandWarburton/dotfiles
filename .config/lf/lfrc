@@ -78,6 +78,10 @@ cmd find_directory ${{
   fi
 }}
 
+cmd find_file ${{
+  lf -remote "send $id select '$(fdfind --type f --exclude .git --exclude git --exclude .cargo --exclude node_modules --hidden | fzf)'"
+}}
+
 
 # vim quit
 cmd q :quit
@@ -89,8 +93,8 @@ map <c-s> :shell
 map <backspace> set hidden!
 # toggle preview
 map ,p set preview!
-# fuzzy file search for file names
-map <c-p> $lf -remote "send $id select '$(fzf)'"
+# fuzzy file search for file and directory names
+map <c-p> :find_file
 map <c-d> :find_directory
 # activate ripgrep search of text within files
 map ,g :fzf_search
