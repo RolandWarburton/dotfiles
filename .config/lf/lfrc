@@ -66,9 +66,9 @@ cmd ripdrag-wrapper $ripdrag $(ripdrag-wrapper $fx)
 
 cmd find_directory ${{
   if [ "$lf_hidden" ]; then
-    lf -remote "send $id select '$(fdfind --type d --exclude .git --exclude git --exclude .cargo --exclude node_modules --hidden | fzf)'"
+    lf -remote "send $id cd '$(fdfind --type d --exclude .git --exclude git --exclude .cargo --exclude node_modules --hidden | fzf)'"
     else 
-    lf -remote "send $id select '$(fdfind --type d --exclude .git --exclude git --exclude .cargo --exclude node_modules | fzf)'"
+    lf -remote "send $id cd '$(fdfind --type d --exclude .git --exclude git --exclude .cargo --exclude node_modules | fzf)'"
   fi
 }}
 
