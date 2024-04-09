@@ -100,6 +100,7 @@ map ,p set preview!
 # fuzzy file search for file and directory names
 map <c-p> :find_file
 map <c-d> :find_directory
+map <c-c> ${{wl-copy "$fx"}}
 # activate ripgrep search of text within files
 map ,g :fzf_search
 # copy my quit key bind in vim
