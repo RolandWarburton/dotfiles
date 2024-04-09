@@ -10,6 +10,9 @@ set autoquit true
 # set preview to false by default
 set preview false
 
+# set hidden to true (show hidden)
+set hidden true
+
 # use bash for commands
 set shell zsh
 
