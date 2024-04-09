@@ -2,6 +2,7 @@
 map ,
 map <c-d>
 map <backspace>
+map d
 
 # automatically quit the when there are no clients left
 set autoquit true
