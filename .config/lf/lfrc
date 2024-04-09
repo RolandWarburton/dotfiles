@@ -4,6 +4,9 @@ map <c-d>
 map <backspace>
 map d
 
+# set preview to false by default
+set preview false
+
 # automatically quit the when there are no clients left
 set autoquit true
 
