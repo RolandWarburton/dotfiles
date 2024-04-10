@@ -8,6 +8,7 @@ map d
 ${{
   pane_index=$(tmux display-message -p '#{pane_index}')
   pane_count=$(tmux list-panes -F '#{pane_index}' | wc -l)
+  window_column_count=$(tmux display-message -p '#{window_width}')
 
   # if there are not multiple panes then we do not want to resize lf
   if [ "$pane_count" -eq 1 ]; then
@@ -15,7 +16,9 @@ ${{
   fi
 
   if [ "$pane_index" -eq 0 ]; then
-    tmux resize-pane -t 0 -x 100
+    resize_width=$(($window_column_count/4))
+    echo $resize_width
+    tmux resize-pane -t 0 -x $resize_width
   fi
 }}
 
@@ -125,7 +128,7 @@ map ,c ${{pwd | tr -d '\n' | wl-copy}}
 map gh ${{  lf -remote "send $id cd /home/$USERNAME"}}
 map gd ${{  lf -remote "send $id cd /home/$USERNAME/dotfiles"; lf -remote "send $id set hidden true"}}
 map ,1 set ratios 1
-map ,1 set ratios 1:2
+map ,2 set ratios 1:2
 
 # show the result of execution of previous commands
 map ` !true
