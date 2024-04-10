@@ -4,6 +4,21 @@ map <c-d>
 map <backspace>
 map d
 
+# resize the lf pane to be a sidecar
+${{
+  pane_index=$(tmux display-message -p '#{pane_index}')
+  pane_count=$(tmux list-panes -F '#{pane_index}' | wc -l)
+
+  # if there are not multiple panes then we do not want to resize lf
+  if [ "$pane_count" -eq 1 ]; then
+    return 0
+  fi
+
+  if [ "$pane_index" -eq 0 ]; then
+    tmux resize-pane -t 0 -x 100
+  fi
+}}
+
 # set preview to false by default
 set preview false
 
