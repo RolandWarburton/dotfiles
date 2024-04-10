@@ -84,11 +84,6 @@ cmd cd_and_quit &{{
   # lf -remote "send :quit"
 }}
 
-cmd on-cd &{{
-    export STARSHIP_SHELL=
-    fmt="$(starship prompt)"
-    lf -remote "send $id set promptfmt \"$fmt\""
-}}
 
 cmd ripdrag-wrapper $ripdrag $(ripdrag-wrapper $fx)
 
