@@ -87,7 +87,6 @@ cmd cd_and_quit &{{
   # lf -remote "send :quit"
 }}
 
-
 cmd ripdrag-wrapper $ripdrag $(ripdrag-wrapper $fx)
 
 cmd find_directory ${{
