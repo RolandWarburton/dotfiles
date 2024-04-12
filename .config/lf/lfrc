@@ -17,7 +17,6 @@ ${{
 
   if [ "$pane_index" -eq 0 ]; then
     resize_width=$(($window_column_count/4))
-    echo $resize_width
     tmux resize-pane -t 0 -x $resize_width
   fi
 }}
