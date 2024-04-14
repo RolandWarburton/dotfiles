@@ -108,13 +108,27 @@ cmd split_to_nvim ${{
   last_pane=$(tail -n 2 ~/.tmux-pane-id | head -n 1)
   # check that we are not sending the open command to a neovim pane
   pane_pid=$(tmux list-panes -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
+  # try not to open the window in lf
+  if $(pstree -p "$pane_pid" | grep -qE 'lf\(.*\)'); then
+    echo "refusing to open in lf"
+    return 0
+  fi
   if $(pstree -p "$pane_pid" | grep -qE 'nvim\(.*\)'); then
     # open the file path in a vim split
     tmux send-keys -t "$last_pane" ":vsp $fx" Enter
     return 0
   fi
   # open the file in a new instance of vim
-  tmux send-keys -t "$last_pane" "nvim $fx" C-m
+  git_root=$(git -C "$(dirname "$fx")" rev-parse --show-toplevel 2>/dev/null)
+  echo $git_root
+  if [ -n "$git_root" ]; then
+    # inside a git repository, we should change the root directory
+    tmux send-keys -t "$last_pane" "cd $git_root" C-m
+    tmux send-keys -t "$last_pane" "nvim $fx" C-m
+  else
+      # not within a git repository
+    tmux send-keys -t "$last_pane" "nvim $fx" C-m
+  fi
 }}
 
 
