@@ -116,6 +116,7 @@ cmd split_to_nvim ${{
   if $(pstree -p "$pane_pid" | grep -qE 'nvim\(.*\)'); then
     # open the file path in a vim split
     tmux send-keys -t "$last_pane" ":vsp $fx" Enter
+    tmux select-pane -t "$last_pane"
     return 0
   fi
   # open the file in a new instance of vim
@@ -125,9 +126,11 @@ cmd split_to_nvim ${{
     # inside a git repository, we should change the root directory
     tmux send-keys -t "$last_pane" "cd $git_root" C-m
     tmux send-keys -t "$last_pane" "nvim $fx" C-m
+    tmux select-pane -t "$last_pane"
   else
       # not within a git repository
     tmux send-keys -t "$last_pane" "nvim $fx" C-m
+    tmux select-pane -t "$last_pane"
   fi
 }}
 
