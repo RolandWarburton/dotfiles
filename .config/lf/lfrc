@@ -175,7 +175,6 @@ map ,g :fzf_search
 map ,q :quit
 # ripdrag
 map ,d ripdrag-wrapper
-map ,c ${{pwd | tr -d '\n' | wl-copy}}
 # folder shortcuts
 map gh ${{  lf -remote "send $id cd /home/$USERNAME"}}
 map gd ${{  lf -remote "send $id cd /home/$USERNAME/dotfiles"; lf -remote "send $id set hidden true"}}
