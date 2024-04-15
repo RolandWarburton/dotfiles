@@ -115,7 +115,7 @@ cmd split_to_nvim ${{
     return 0
   fi
   # open the file path in a vim split
-  if $(pstree -p "$pane_pid" | grep -qE 'nvim\([0-9+]\)'); then
+  if $(pstree -p "$pane_pid" | grep -qE 'nvim\([0-9]+\)'); then
     tmux send-keys -t "$last_pane" ":vsp $fx" Enter
     tmux select-pane -t "$last_pane"
     return 0
