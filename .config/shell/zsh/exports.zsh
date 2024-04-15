@@ -7,6 +7,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 # export default editor
 export EDITOR=nvim
 
+# node version manager (NVM)
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # Starship config
 export STARSHIP_CONFIG=$HOME/.config/starship.toml
 
