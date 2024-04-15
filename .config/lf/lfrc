@@ -109,12 +109,12 @@ cmd split_to_nvim ${{
   # check that we are not sending the open command to a neovim or lf pane
   pane_pid=$(tmux list-panes -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
   # try not to open the window in lf
-  if $(pstree -p "$pane_pid" | grep -qE 'lf\(.*\)'); then
+  if $(pstree -p "$pane_pid" | grep -qE 'lf\([0-9]+\)'); then
     echo "refusing to open in lf"
     return 0
   fi
   # open the file path in a vim split
-  if $(pstree -p "$pane_pid" | grep -qE 'nvim\(.*\)'); then
+  if $(pstree -p "$pane_pid" | grep -qE 'nvim\([0-9+]\)'); then
     tmux send-keys -t "$last_pane" ":vsp $fx" Enter
     tmux select-pane -t "$last_pane"
     return 0
