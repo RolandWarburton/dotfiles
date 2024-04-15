@@ -111,7 +111,7 @@ cmd split_to_nvim ${{
   # get the last pane index
   last_pane=$(tail -n 2 ~/.tmux-pane-id | head -n 1)
   # check that we are not sending the open command to a neovim or lf pane
-  pane_pid=$(tmux list-panes -t $current_window -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 | head -n 1 )
+  pane_pid=$(tmux list-panes -t $current_window -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 | head -n 1 )
   # try not to open the window in lf
   if $(pstree -p "$pane_pid" | grep -qE 'lf\([0-9]+\)'); then
     echo "refusing to open in lf"
@@ -152,7 +152,7 @@ cmd cd_sync ${{
     echo "last_pane not found"
     return 0
   fi
-  pane_pid=$(tmux list-panes -t $current_window -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
+  pane_pid=$(tmux list-panes -t $current_window -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
   if [ -z "$pane_pid" ]; then
     echo "pane_pid not found"
     return 0
