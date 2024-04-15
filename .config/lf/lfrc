@@ -180,7 +180,8 @@ map gh ${{  lf -remote "send $id cd /home/$USERNAME"}}
 map gd ${{  lf -remote "send $id cd /home/$USERNAME/dotfiles"; lf -remote "send $id set hidden true"}}
 map ,1 set ratios 1
 map ,2 set ratios 1:2
-map <c-s> :split_to_nvim
+map <c-s> :cd_sync
+map <c-o> :split_to_nvim
 
 # show the result of execution of previous commands
 map ` !true
