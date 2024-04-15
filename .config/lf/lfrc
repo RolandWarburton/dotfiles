@@ -7,8 +7,9 @@ map d
 
 # resize the lf pane to be a sidecar
 ${{
+  current_window=$(tmux display-message -p '#I')
   pane_index=$(tmux display-message -p '#{pane_index}')
-  pane_count=$(tmux list-panes -F '#{pane_index}' | wc -l)
+  pane_count=$(tmux list-panes -t $current_window -F '#{pane_index}' | wc -l)
   window_column_count=$(tmux display-message -p '#{window_width}')
 
   # if there are not multiple panes then we do not want to resize lf
@@ -105,10 +106,12 @@ cmd split_to_nvim ${{
   if [ ! -f "$HOME/.tmux-pane-id" ]; then
     return 0
    fi
+   # get the current window
+   current_window=$(tmux display-message -p '#I')
   # get the last pane index
   last_pane=$(tail -n 2 ~/.tmux-pane-id | head -n 1)
   # check that we are not sending the open command to a neovim or lf pane
-  pane_pid=$(tmux list-panes -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
+  pane_pid=$(tmux list-panes -t $current_window -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 | head -n 1 )
   # try not to open the window in lf
   if $(pstree -p "$pane_pid" | grep -qE 'lf\([0-9]+\)'); then
     echo "refusing to open in lf"
@@ -116,6 +119,7 @@ cmd split_to_nvim ${{
   fi
   # open the file path in a vim split
   if $(pstree -p "$pane_pid" | grep -qE 'nvim\([0-9]+\)'); then
+    echo "opening $fx in a new pane"
     tmux send-keys -t "$last_pane" ":vsp $fx" Enter
     tmux select-pane -t "$last_pane"
     return 0
@@ -139,14 +143,16 @@ cmd cd_sync ${{
   if [ ! -f "$HOME/.tmux-pane-id" ]; then
     echo "no tmux pane history"
     return 0
-   fi
+  fi
+  # get the current window
+  current_window=$(tmux display-message -p '#I')
   # get the last pane index
   last_pane=$(tail -n 2 ~/.tmux-pane-id | head -n 1)
   if [ -z "$last_pane" ]; then
     echo "last_pane not found"
     return 0
   fi
-  pane_pid=$(tmux list-panes -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
+  pane_pid=$(tmux list-panes -t $current_window -a -F '#{pane_index} #{pane_pid}' | grep "$last_pane " | cut -d ' ' -f2 )
   if [ -z "$pane_pid" ]; then
     echo "pane_pid not found"
     return 0
