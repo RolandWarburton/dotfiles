@@ -136,6 +136,7 @@ cmd split_to_nvim ${{
 
 cmd cd_sync ${{
   if [ ! -f "$HOME/.tmux-pane-id" ]; then
+    echo "no tmux pane history"
     return 0
    fi
   # get the last pane index
@@ -149,9 +150,12 @@ cmd cd_sync ${{
     echo "pane_pid not found"
     return 0
   fi
-  if ! $(pstree -p "$pane_pid" | grep -qE 'zsh\(.*\)$'); then
+  # check we are not running anything in this pane
+  if $(pstree -p "$pane_pid" | grep -qE '^zsh\([0-9]+\)$'); then
     tmux send-keys -t "$last_pane" "cd $PWD" C-m
+    return 0
   fi
+  echo "refusing to open in $last_pane"
 }}
 
 
