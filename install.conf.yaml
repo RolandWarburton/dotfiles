@@ -18,6 +18,8 @@ link:
     path: .local/media
   - destination: ~/.config/lf
     path: .config/lf
+  - destination: ~/.nvmrc
+    path: .config/nvm/.nvmrc
   # programming
   - destination: ~/.prettierrc
     path: .config/prettier/.prettierrc
