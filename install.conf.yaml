@@ -23,6 +23,8 @@ link:
   # programming
   - destination: ~/.prettierrc
     path: .config/prettier/.prettierrc
+  - destination: ~/.config/vale
+    path: .config/vale
   # terminal
   - destination: ~/.zshrc
     path: .config/shell/zsh/zshrc
