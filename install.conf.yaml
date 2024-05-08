@@ -9,6 +9,8 @@ link:
   # sway
   - destination: ~/.config/sway
     path: .config/sway
+  - destination: ~/.config/swaybar
+    path: .config/swaybar
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf

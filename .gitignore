@@ -3,4 +3,5 @@
 node_modules
 tags
 /.config/shell/zsh/secrets.zsh
+/.config/swaybar/config.yml
 /.local/scripts/ripdrag-wrapper

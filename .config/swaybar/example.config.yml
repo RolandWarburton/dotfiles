@@ -1,0 +1,8 @@
+secrets:
+  PTV_DEVID: NOT PROVIDED
+  PTV_KEY: NOT PROVIDED
+modules:
+  TIME: true
+  PTV: false
+  WIFI: true
+  BATTERY: true

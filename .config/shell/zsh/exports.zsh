@@ -36,3 +36,6 @@ export CHROME_EXECUTABLE=`which chromium`
 if [[ -e /usr/lib/dart/bin ]]; then
   export PATH="$PATH:/usr/lib/dart/bin"
 fi
+
+# sway options
+export SWAYBAR_CONFIG_LOCATION="$HOME/.config/swaybar/config.yml"
