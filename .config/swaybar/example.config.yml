@@ -2,7 +2,14 @@ secrets:
   PTV_DEVID: NOT PROVIDED
   PTV_KEY: NOT PROVIDED
 modules:
-  TIME: true
-  PTV: false
-  WIFI: true
-  BATTERY: true
+  TIME:
+    enabled: true
+  PTV:
+    enabled: true
+    routeName: 'Lillydale'
+    stopName: 'Southern Cross'
+    directionName: 'Lillydale'
+  WIFI:
+    enabled: true
+  BATTERY:
+    enabled: true
