@@ -14,6 +14,8 @@ link:
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf
+  - destination: ~/.config/tmux
+    path: .config/tmux
   - destination: ~/.gitconfig
     path: .gitconfig
   - destination: ~/.local/media
