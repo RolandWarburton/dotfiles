@@ -1,0 +1,27 @@
+# Font configuration
+font:
+  size: 12.0
+  normal:
+    family: 'Hack Nerd Font'
+    style: 'Regular'
+  bold:
+    family: 'Hack Nerd Font'
+    style: 'Bold'
+  italic:
+    family: 'Hack Nerd Font'
+    style: 'Italic'
+  bold_italic:
+    family: 'Hack Nerd Font'
+    style: 'Bold Italic'
+
+# Colors
+colors:
+  primary:
+    background: '#F6F5F4'
+    foreground: '#000000'
+
+# Window Size
+window:
+  dimensions:
+    columns: 130
+    lines: 40
