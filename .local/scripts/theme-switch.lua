@@ -2,12 +2,14 @@
 
 local lfs = require("lfs")
 local yaml = require("lyaml")
+local tablex = require('pl.tablex')
 
 local home = os.getenv("HOME")
 local theme = "dark"
 
+-- toggles the theme variable stored in the theme file
 local function toggle_env_var()
-  local theme_file = home .. "/.current-theme"
+  local theme_file = home .. "/.theme-current"
 
   -- Read the current theme from the file, or set a default value
   local file = io.open(theme_file, "r")
@@ -57,8 +59,7 @@ local function read_yaml(file_path)
   local content = file:read("*all")
   file:close()
   local yaml_content = yaml.load(content)
-  -- print(yaml_content.font.size)
-  return yaml_content
+  return yaml_content, nil
 end
 
 local function write_yaml(file_path, content)
@@ -74,30 +75,34 @@ local function write_yaml(file_path, content)
   return true
 end
 
+local function toggle_alacritty_theme()
+  local alacritty_dir = home .. "/.config/alacritty"
+  local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme .. ".yml"
+  local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
+
+  -- read and parse alacritty_theme_target
+  local alacritty_config, err = read_yaml(alacritty_theme_target)
+  if not alacritty_config then
+    print("Error reading:", err)
+    return os.exit(1, true)
+  end
+  local alacritty_theme, err = read_yaml(alacritty_theme_source)
+  if not alacritty_theme then
+    print("Error reading:", err)
+    return os.exit(1, true)
+  end
+  local alacritty_merged_config = tablex.merge(alacritty_config, alacritty_theme, true)
+  local success, err = write_yaml(alacritty_dir .. "/alacritty.yml", { alacritty_merged_config })
+  if not success then
+    print("Error writing:", err)
+    return os.exit(1, true)
+  end
+end
+
 toggle_env_var()
+toggle_alacritty_theme()
 
--- alacritty
-local alacritty_dir = home .. "/.config/alacritty"
-local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme .. ".yml"
-local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
--- os.execute("rm " .. alacritty_theme_target)
--- local success, err = lfs.link(alacritty_theme_source, alacritty_theme_target, true)
 
--- read and parse alacritty_theme_target
-local parsed_yaml, err = read_yaml(alacritty_theme_source)
-if not parsed_yaml then
-  print("Error reading:", err)
-  return os.exit(1, true)
-end
-parsed_yaml.colors = parsed_yaml.colors or {}
-parsed_yaml.colors.primary = parsed_yaml.colors.primary or {}
-parsed_yaml.colors.primary.background = '#383C4A'
-parsed_yaml.colors.primary.foreground = '#ffffff'
-local success, err = write_yaml(alacritty_dir .. "/alacritty.yml", { parsed_yaml })
-if not success then
-  print("Error writing:", err)
-  return os.exit(1, true)
-end
 
 -- -- tmux
 -- local tmux_theme_dir = home .. "/.config/tmux/themes"
