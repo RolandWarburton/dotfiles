@@ -80,17 +80,19 @@ local function toggle_alacritty_theme()
   local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme .. ".yml"
   local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
 
-  -- read and parse alacritty_theme_target
+  -- read and parse alacritty template
   local alacritty_config, err = read_yaml(alacritty_theme_target)
   if not alacritty_config then
     print("Error reading:", err)
     return os.exit(1, true)
   end
+  -- read and parse the alacritty theme
   local alacritty_theme, err = read_yaml(alacritty_theme_source)
   if not alacritty_theme then
     print("Error reading:", err)
     return os.exit(1, true)
   end
+  -- merge the theme into the config
   local alacritty_merged_config = tablex.merge(alacritty_config, alacritty_theme, true)
   local success, err = write_yaml(alacritty_dir .. "/alacritty.yml", { alacritty_merged_config })
   if not success then
