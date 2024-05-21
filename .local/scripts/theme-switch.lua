@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
 local tablex = require('pl.tablex')
+local lfs = require('lfs')
 local util = require('util')
 
 local home = os.getenv("HOME")
@@ -60,17 +61,39 @@ local function toggle_alacritty_theme()
   end
 end
 
+
+local function toggle_tmux_theme()
+  -- +----------+    +-----------+
+  -- |dark theme|    |light theme|
+  -- +----------+    +-----------+
+  --     |                |
+  --     |                |
+  --     |symlink         |symlink
+  --     |                |
+  --     |  +----------+  |
+  --     +->|theme.conf|<-+
+  --        +----------+
+  --             ^
+  --             |reads the symlinked theme
+  --           +----+
+  --           |tmux|
+  --           +----+
+  local tmux_theme_dir = home .. "/.config/tmux/themes"
+  local tmux_theme_source = tmux_theme_dir .. "/" .. theme .. ".conf"
+  local tmux_theme_target = tmux_theme_dir .. "/theme.conf"
+
+  -- remove the old theme symlink
+  os.execute("rm " .. tmux_theme_target)
+
+  -- link the theme source to the theme target
+  local success, err = lfs.link(tmux_theme_source, tmux_theme_target, true)
+  if success then
+    os.execute("tmux source-file " .. home .. "/.tmux.conf")
+  end
+end
+
 toggle_env_var()
 toggle_alacritty_theme()
-
-
-
--- -- tmux
--- local tmux_theme_dir = home .. "/.config/tmux/themes"
--- local tmux_theme_source = tmux_theme_dir .. "/" .. theme .. ".conf"
--- local tmux_theme_target = tmux_theme_dir .. "/theme.conf"
--- os.execute("rm " .. tmux_theme_target)
--- local success, err = lfs.link(tmux_theme_source, tmux_theme_target, true)
--- os.execute("tmux source-file " .. home .. "/.tmux.conf")
+toggle_tmux_theme()
 
 -- TODO sway
