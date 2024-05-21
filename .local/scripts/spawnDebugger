@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-PID=$(pgrep -n "node")
-echo "PID: $PID"
-kill -SIGUSR1 $PID;
-node inspect -p $PID;
