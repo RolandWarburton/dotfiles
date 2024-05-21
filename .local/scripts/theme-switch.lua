@@ -35,7 +35,25 @@ local function toggle_env_var()
   end
 end
 
+-- combines the {theme}.yaml file with the alacritty template
+-- to create the alacritty.yml file that alacritty can read
 local function toggle_alacritty_theme()
+  -- +---------+ +----------+
+  -- |dark.yaml| |light.yaml|
+  -- +--+------+ +-----+----+
+  --    |              |
+  --    +----+     +---+
+  --         v     v
+  --     +-------------+     +----------------------------+
+  --     |alacritty.yml|<----|   alacritty.template.yml   |
+  --     | (compiled)  |     |(basic theme without colors)|
+  --     +------+------+     +----------------------------+
+  --            |
+  --            |reads compiled yaml
+  --            |
+  --   +--------+-----------+
+  --   |alacritty (terminal)|
+  --   +--------------------+
   local alacritty_dir = home .. "/.config/alacritty"
   local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme .. ".yml"
   local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
