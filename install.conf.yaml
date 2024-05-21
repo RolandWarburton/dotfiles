@@ -6,6 +6,8 @@ link:
   # scripts
   - destination: ~/.local/scripts
     path: .local/scripts
+  - destination: ~/.local/luarocks
+    path: .local/luarocks
   # sway
   - destination: ~/.config/sway
     path: .config/sway
