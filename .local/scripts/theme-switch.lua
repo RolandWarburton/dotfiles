@@ -1,8 +1,7 @@
 #!/usr/bin/env lua
 
-local lfs = require("lfs")
-local yaml = require("lyaml")
 local tablex = require('pl.tablex')
+local util = require('util')
 
 local home = os.getenv("HOME")
 local theme = "dark"
@@ -35,66 +34,26 @@ local function toggle_env_var()
   end
 end
 
-local function removePrefix(str, prefix)
-  if str:sub(1, #prefix) == prefix then
-    return str:sub(#prefix + 1)
-  else
-    return str
-  end
-end
-
-local function removeSuffix(str, suffix)
-  if str:sub(- #suffix) == suffix then
-    return str:sub(1, -(#suffix + 1))
-  else
-    return str
-  end
-end
-
-local function read_yaml(file_path)
-  local file = io.open(file_path, "r")
-  if not file then
-    return nil, "File not found: " .. file_path
-  end
-  local content = file:read("*all")
-  file:close()
-  local yaml_content = yaml.load(content)
-  return yaml_content, nil
-end
-
-local function write_yaml(file_path, content)
-  local file = io.open(file_path, "w")
-  if not file then
-    return false, "Failed to open file for writing: " .. file_path
-  end
-  local str = yaml.dump(content)
-  str = removePrefix(str, "---\n")
-  str = removeSuffix(str, "...\n")
-  file:write(str)
-  file:close()
-  return true
-end
-
 local function toggle_alacritty_theme()
   local alacritty_dir = home .. "/.config/alacritty"
   local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme .. ".yml"
   local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
 
   -- read and parse alacritty template
-  local alacritty_config, err = read_yaml(alacritty_theme_target)
+  local alacritty_config, err = util.read_yaml(alacritty_theme_target)
   if not alacritty_config then
     print("Error reading:", err)
     return os.exit(1, true)
   end
   -- read and parse the alacritty theme
-  local alacritty_theme, err = read_yaml(alacritty_theme_source)
+  local alacritty_theme, err = util.read_yaml(alacritty_theme_source)
   if not alacritty_theme then
     print("Error reading:", err)
     return os.exit(1, true)
   end
   -- merge the theme into the config
   local alacritty_merged_config = tablex.merge(alacritty_config, alacritty_theme, true)
-  local success, err = write_yaml(alacritty_dir .. "/alacritty.yml", { alacritty_merged_config })
+  local success, err = util.write_yaml(alacritty_dir .. "/alacritty.yml", { alacritty_merged_config })
   if not success then
     print("Error writing:", err)
     return os.exit(1, true)
