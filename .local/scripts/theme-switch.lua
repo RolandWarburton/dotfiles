@@ -117,8 +117,9 @@ local function toggle_sway_theme()
 end
 
 toggle_env_var()
--- toggle_alacritty_theme()
--- toggle_tmux_theme()
+toggle_alacritty_theme()
+toggle_tmux_theme()
 toggle_sway_theme()
+os.execute('zsh -i -c "/usr/local/bin/swaymsg reload"')
 
 -- TODO sway

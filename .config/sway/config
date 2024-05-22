@@ -227,19 +227,14 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# window decorations
-set $windowBackground "#285577"
-set $windowBorder $windowBackground
-set $windowTextColor "#ffffff"
-set $windowIndicatorPassive "#383C4A"
-set $windowIndicatorActive $windowBackground
-client.focused $windowBorder $windowBackground $windowTextColor $windowIndicatorActive $windowIndicatorPassive
-
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 include ./modules/bar.conf
+
+# window colors
+include ./modules/theme.conf
 
 # input configuration
 #
