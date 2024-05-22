@@ -239,21 +239,7 @@ client.focused $windowBorder $windowBackground $windowTextColor $windowIndicator
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-    strip_workspace_numbers yes
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    # Find valid flags for the status bar here https://github.com/RolandWarburton/sway-bar-status-line
-    status_command $HOME/.config/sway/statusBar
-
-    colors {
-        focused_workspace #323232 #285577 #ffffff
-        background #323232
-        inactive_workspace #323232 #5c5c5c #ffffff
-    }
-}
+include ./modules/bar.conf
 
 # input configuration
 #

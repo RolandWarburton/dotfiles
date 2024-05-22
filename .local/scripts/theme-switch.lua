@@ -110,8 +110,15 @@ local function toggle_tmux_theme()
   end
 end
 
+local function toggle_sway_theme()
+  local module_path = home .. '/.config/sway/?.lua'
+  package.path = package.path .. ';' .. module_path
+  require('build-sway-theme')
+end
+
 toggle_env_var()
-toggle_alacritty_theme()
-toggle_tmux_theme()
+-- toggle_alacritty_theme()
+-- toggle_tmux_theme()
+toggle_sway_theme()
 
 -- TODO sway
