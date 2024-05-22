@@ -1,6 +1,6 @@
 #!/usr/bin/lua5.1
 
-local theme = require('theme-switcher')
+local theme = require('theme')
 local bar = require('lua.bar-theme')
 local client = require('lua.client-theme')
 

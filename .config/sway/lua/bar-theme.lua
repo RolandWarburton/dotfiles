@@ -1,4 +1,4 @@
-local theme = require('theme-switcher')
+local theme = require('theme')
 
 local script_path = arg[0]
 local c = theme.get_colors()
