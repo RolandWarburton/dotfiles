@@ -1,11 +1,7 @@
 #!/usr/bin/env lua
 
-local lfs = require('lfs')
 local theme = require('theme')
-
 local home = os.getenv("HOME")
-local current_theme = "dark"
-
 theme.toggle_env_var()
 
 local function toggle_sway_theme()
