@@ -6,3 +6,4 @@ tags
 /.config/swaybar/config.yml
 /.local/scripts/ripdrag-wrapper
 /.config/alacritty/alacritty.yml
+/.config/tmux/themes/theme.conf
