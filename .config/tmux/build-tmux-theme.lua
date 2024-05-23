@@ -6,7 +6,6 @@ local M = {}
 
 function M.build()
   local home = os.getenv("HOME")
-  local theme_current = theme.get_theme_value()
   --   +-----------------------------+
   --   |       tmux-theme.lua        |
   --   |+----------+    +-----------+|
@@ -26,7 +25,7 @@ function M.build()
   --            |theme.conf|
   --            +----------+
   --                 ^
-  --                 |reads the theme file
+  --                 |reads the theme config file
   --               +----+
   --               |tmux|
   --               +----+
@@ -41,7 +40,6 @@ function M.build()
     print("Failed to write to file: " .. file_path)
     os.exit(1)
   end
-
 end
 
 function M.source()
