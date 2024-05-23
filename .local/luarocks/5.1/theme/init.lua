@@ -98,4 +98,34 @@ function M.write_yaml(file_path, content)
   return true
 end
 
+-- toggles the theme variable stored in the theme file
+function M.toggle_env_var()
+  local home = os.getenv("HOME")
+  local theme_file = home .. "/.theme-current"
+  local theme = "dark"
+
+  -- Read the current theme from the file, or set a default value
+  local file = io.open(theme_file, "r")
+  if file then
+    theme = file:read("*line")
+    file:close()
+  end
+
+  -- Toggle the theme
+  if theme == "dark" then
+    theme = "light"
+  else
+    theme = "dark"
+  end
+
+  -- Save the new theme to the file
+  file = io.open(theme_file, "w")
+  if file then
+    file:write(theme)
+    file:close()
+  else
+    print("Error: Unable to open file " .. theme_file .. " for writing.")
+  end
+end
+
 return M
