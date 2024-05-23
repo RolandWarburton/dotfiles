@@ -30,9 +30,12 @@ function M.build()
 
   -- link the theme source to the theme target
   local success, err = lfs.link(tmux_theme_source, tmux_theme_target, true)
-  if success then
-    os.execute("tmux source-file " .. home .. "/.tmux.conf")
-  end
+  return success
+end
+
+function M.source()
+  local home = os.getenv("HOME")
+  os.execute("tmux source-file " .. home .. "/.tmux.conf")
 end
 
 return M

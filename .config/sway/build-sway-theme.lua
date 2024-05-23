@@ -1,11 +1,12 @@
 #!/usr/bin/lua5.1
 
+local M = {}
+
 local theme = require('theme')
 local bar = require('lua.bar-theme')
 local client = require('lua.client-theme')
 
 local home = os.getenv("HOME")
-
 
 local theme_current = theme.get_theme_value()
 
@@ -51,5 +52,13 @@ local make_client_theme = function(config)
   end
 end
 
-make_bar_theme(bar.get_bar_config())
-make_client_theme(client.get_client_config())
+M.build = function()
+  make_bar_theme(bar.get_bar_config())
+  make_client_theme(client.get_client_config())
+end
+
+M.source = function()
+  os.execute('zsh -i -c "/usr/local/bin/swaymsg reload"')
+end
+
+return M
