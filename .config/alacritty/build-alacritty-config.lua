@@ -1,9 +1,10 @@
 local tablex = require('pl.tablex')
-local lfs = require('lfs')
+-- local lfs = require('lfs')
 local theme = require('theme')
+local config = require('lua.alacritty-theme')
 
 local home = os.getenv("HOME")
-local theme_current = theme.get_theme_value()
+-- local theme_current = theme.get_theme_value()
 
 local M = {}
 
@@ -27,7 +28,6 @@ M.build = function()
   --   |alacritty (terminal)|
   --   +--------------------+
   local alacritty_dir = home .. "/.config/alacritty"
-  local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme_current .. ".yml"
   local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
 
   -- read and parse alacritty template
@@ -36,12 +36,10 @@ M.build = function()
     print("Error reading:", err)
     return os.exit(1, true)
   end
-  -- read and parse the alacritty theme
-  local alacritty_theme, err = theme.read_yaml(alacritty_theme_source)
-  if not alacritty_theme then
-    print("Error reading:", err)
-    return os.exit(1, true)
-  end
+
+  -- read the alacritty theme
+  local alacritty_theme = config.get_config()
+
   -- merge the theme into the config
   local alacritty_merged_config = tablex.merge(alacritty_config, alacritty_theme, true)
   local success, err = theme.write_yaml(alacritty_dir .. "/alacritty.yml", { alacritty_merged_config })

@@ -33,7 +33,7 @@ local clientThemeLight = string.format(
   c.accent1,
   c.accent1,
   c.accent2,
-  c.accent1
+  c.accent2
 )
 
 local clientThemeDark = string.format(
@@ -43,8 +43,8 @@ local clientThemeDark = string.format(
   c.base1,
   c.accent1,
   c.accent1,
-  c.base2,
-  c.base2
+  c.accent3,
+  c.accent3
 )
 
 M.get_client_config = function()

@@ -39,7 +39,7 @@ barDarkTheme = string.format(
   c.accent3,
   c.base1,
   c.base1,
-  c.base3,
+  c.base2,
   c.accent3
 )
 

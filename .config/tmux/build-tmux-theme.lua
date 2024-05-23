@@ -1,5 +1,3 @@
-local theme = require('theme')
-local lfs = require('lfs')
 local config = require('lua.tmux-theme')
 
 local M = {}
