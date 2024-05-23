@@ -35,51 +35,6 @@ local function toggle_env_var()
   end
 end
 
--- combines the {theme}.yaml file with the alacritty template
--- to create the alacritty.yml file that alacritty can read
-local function toggle_alacritty_theme()
-  -- +---------+ +----------+
-  -- |dark.yaml| |light.yaml|
-  -- +--+------+ +-----+----+
-  --    |              |
-  --    +----+     +---+
-  --         v     v
-  --     +-------------+     +----------------------------+
-  --     |alacritty.yml|<----|   alacritty.template.yml   |
-  --     | (compiled)  |     |(basic theme without colors)|
-  --     +------+------+     +----------------------------+
-  --            |
-  --            |reads compiled yaml
-  --            |
-  --   +--------+-----------+
-  --   |alacritty (terminal)|
-  --   +--------------------+
-  local alacritty_dir = home .. "/.config/alacritty"
-  local alacritty_theme_source = alacritty_dir .. "/alacritty-" .. theme .. ".yml"
-  local alacritty_theme_target = alacritty_dir .. "/alacritty.template.yml"
-
-  -- read and parse alacritty template
-  local alacritty_config, err = util.read_yaml(alacritty_theme_target)
-  if not alacritty_config then
-    print("Error reading:", err)
-    return os.exit(1, true)
-  end
-  -- read and parse the alacritty theme
-  local alacritty_theme, err = util.read_yaml(alacritty_theme_source)
-  if not alacritty_theme then
-    print("Error reading:", err)
-    return os.exit(1, true)
-  end
-  -- merge the theme into the config
-  local alacritty_merged_config = tablex.merge(alacritty_config, alacritty_theme, true)
-  local success, err = util.write_yaml(alacritty_dir .. "/alacritty.yml", { alacritty_merged_config })
-  if not success then
-    print("Error writing:", err)
-    return os.exit(1, true)
-  end
-end
-
-
 local function toggle_tmux_theme()
   -- +----------+    +-----------+
   -- |dark theme|    |light theme|
@@ -114,6 +69,12 @@ local function toggle_sway_theme()
   local module_path = home .. '/.config/sway/?.lua'
   package.path = package.path .. ';' .. module_path
   require('build-sway-theme')
+end
+
+local function toggle_alacritty_theme()
+  local module_path = home .. '/.config/alacritty/?.lua'
+  package.path = package.path .. ';' .. module_path
+  require('build-alacritty-config').build()
 end
 
 toggle_env_var()

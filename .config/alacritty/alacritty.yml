@@ -1,1 +1,22 @@
-/home/roland/.config/alacritty/alacritty-dark.yml
+window:
+  dimensions:
+    columns: 130
+    lines: 40
+colors:
+  primary:
+    foreground: '#ffffff'
+    background: '#383C4A'
+font:
+  normal:
+    family: Hack Nerd Font
+    style: Regular
+  italic:
+    family: Hack Nerd Font
+    style: Italic
+  bold:
+    family: Hack Nerd Font
+    style: Bold
+  bold_italic:
+    family: Hack Nerd Font
+    style: Bold Italic
+  size: 12
