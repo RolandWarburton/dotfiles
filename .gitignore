@@ -5,3 +5,4 @@ tags
 /.config/shell/zsh/secrets.zsh
 /.config/swaybar/config.yml
 /.local/scripts/ripdrag-wrapper
+/.config/alacritty/alacritty.yml
