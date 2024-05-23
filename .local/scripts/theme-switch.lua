@@ -50,8 +50,7 @@ local function toggle_alacritty_theme()
   require('build-alacritty-config').build()
 end
 
-toggle_env_var()
-toggle_alacritty_theme()
-toggle_tmux_theme()
 toggle_sway_theme()
 os.execute('zsh -i -c "/usr/local/bin/swaymsg reload"')
+toggle_alacritty_theme()
+toggle_tmux_theme()
