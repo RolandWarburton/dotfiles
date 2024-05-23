@@ -39,7 +39,7 @@ M.colors = {
     accent3 = "#ffffff"
   },
   dark = {
-    base1 = "#323232",
+    base1 = "#2f333e",
     base2 = "#F6F5F4",
     base3 = "#5c5c5c",
     accent1 = "#285577",

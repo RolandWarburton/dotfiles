@@ -1,36 +1,47 @@
 local theme = require('theme')
 local lfs = require('lfs')
+local config = require('lua.tmux-theme')
 
 local M = {}
 
 function M.build()
   local home = os.getenv("HOME")
   local theme_current = theme.get_theme_value()
-  -- +----------+    +-----------+
-  -- |dark theme|    |light theme|
-  -- +----------+    +-----------+
-  --     |                |
-  --     |                |
-  --     |symlink         |symlink
-  --     |                |
-  --     |  +----------+  |
-  --     +->|theme.conf|<-+
-  --        +----------+
-  --             ^
-  --             |reads the symlinked theme
-  --           +----+
-  --           |tmux|
-  --           +----+
-  local tmux_theme_dir = home .. "/.config/tmux/themes"
-  local tmux_theme_source = tmux_theme_dir .. "/" .. theme_current .. ".conf"
-  local tmux_theme_target = tmux_theme_dir .. "/theme.conf"
+  --   +-----------------------------+
+  --   |       tmux-theme.lua        |
+  --   |+----------+    +-----------+|
+  --   ||dark theme|    |light theme||
+  --   |+----------+    +-----------+|
+  --   +-----------------------------+
+  --                 |
+  --                 |
+  --                 v
+  --        +--------------------+
+  --        |build-tmux-theme.lua|
+  --        +--------------------+
+  --                 |
+  --                 |writes the theme file
+  --                 v
+  --            +----------+
+  --            |theme.conf|
+  --            +----------+
+  --                 ^
+  --                 |reads the theme file
+  --               +----+
+  --               |tmux|
+  --               +----+
 
-  -- remove the old theme symlink
-  os.execute("rm " .. tmux_theme_target)
+  local file_path = home .. "/.config/tmux/themes/theme.conf"
+  local file = io.open(file_path, "w")
 
-  -- link the theme source to the theme target
-  local success, err = lfs.link(tmux_theme_source, tmux_theme_target, true)
-  return success
+  if file then
+    file:write(config.get_bar_config())
+    file:close()
+  else
+    print("Failed to write to file: " .. file_path)
+    os.exit(1)
+  end
+
 end
 
 function M.source()
