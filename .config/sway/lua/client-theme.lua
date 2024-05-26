@@ -28,7 +28,7 @@ client.placeholder      $bg-inactive  $bg-inactive  $text-inactive  $bg-inactive
 local clientThemeLight = string.format(
   clientTheme,
   arg[0],
-  c.base2,
+  c.base3,
   c.base1,
   c.accent1,
   c.accent1,
