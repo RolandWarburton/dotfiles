@@ -26,21 +26,11 @@ export GOPATH=$HOME/.local/go/pkg
 export PATH=$PATH:/$HOME/.local/go/bin
 export PATH=$PATH:/$HOME/.local/go/pkg/bin
 
-# Android Studio
-export ANDROID_HOME=/home/roland/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Flutter
-export PATH="$PATH:/opt/flutter/bin"
-export CHROME_EXECUTABLE=`which chromium`
-
-# Dart
+# Flutter & Dart
 # Install from https://dart.dev/get-dart
 if [[ -e /usr/lib/dart/bin ]]; then
-  export PATH="$PATH:/usr/lib/dart/bin"
+  export PATH="$PATH:/opt/flutter/bin:/usr/lib/dart/bin"
+  export CHROME_EXECUTABLE=`which chromium`
 fi
 
 # sway options
