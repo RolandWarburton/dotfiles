@@ -39,6 +39,7 @@ alias wcall='count_lines'
 alias weather='curl "wttr.in/melbourne"'
 alias sgpt="sgpt --role=programmer"
 alias lf="lfcd"
+alias path="echo \$PATH | awk -F':' '{for(i=1; i<=NF; i++) print \$i} END {print \"\"}'"
 
 lf_select_cwd() {
   lf -remote "send $id select $(pwd)" >/dev/null 2>&1
