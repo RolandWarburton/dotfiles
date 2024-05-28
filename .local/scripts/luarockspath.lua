@@ -32,7 +32,6 @@ function Parser.printParts(t)
 end
 
 local pathString = io.read("*all")
-print(pathString)
 if pathString == "" or not pathString then
   os.exit(1, true)
 end
@@ -40,10 +39,10 @@ end
 pathString = pathString:gsub("\n", "")
 local parts = Parser.parsePath(pathString, "export")
 
-for _, part in ipairs(parts) do
+for i, part in ipairs(parts) do
   local key, value = splitKeyValue(part)
   if not key or not value then return end
-  print("\n" .. key)
+  if i == 1 then print(key) else print("\n" .. key) end
   if key == "LUA_PATH" or key == "LUA_CPATH" then
     local values = Parser.parsePath(value, ";")
     Parser.printParts(values)
