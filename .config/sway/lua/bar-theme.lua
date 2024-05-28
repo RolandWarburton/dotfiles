@@ -53,13 +53,13 @@ colors {
 
 barLightTheme = string.format(
   barLightTheme,
-  c.base1,   -- active tab border
-  c.base1,   -- active tab background
+  c.base3,   -- active tab border
+  c.base3,   -- active tab background
   c.accent2, -- active tab text
   c.base1,   -- bar background
-  c.base1,
-  c.base1,
-  c.base2
+  c.base2,
+  c.base2,
+  c.base3
 )
 
 M.get_bar_config = function()

@@ -67,7 +67,7 @@ lightTheme = string.format(
   c.base2,
   c.base2,
   c.accent1,
-  c.base1,
+  c.base2,
   c.base1
 )
 
