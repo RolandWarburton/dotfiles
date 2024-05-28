@@ -5,9 +5,9 @@ export PATH=$PATH:$HOME/.local/scripts
 export XDG_CONFIG_HOME=$HOME/.config
 
 # add custom lua modules if its exists
-if command -v luarocks > /dev/null 2>&1 && [ -d "$HOME/.local/luarocks/5.4" ]; then
+if command -v luarocks > /dev/null 2>&1 && [ -d "$HOME/.local/luarocks/5.1" ]; then
   eval $(luarocks path)
-  export LUA_PATH="$LUA_PATH;$HOME/.local/luarocks/5.4/?/init.lua"
+  export LUA_PATH="$LUA_PATH;$HOME/.local/luarocks/5.1/?/init.lua"
 fi
 
 # export default editor
