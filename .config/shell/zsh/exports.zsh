@@ -23,8 +23,8 @@ export STARSHIP_CONFIG=$HOME/.config/starship.toml
 # Go exports
 # https://go.dev/doc/install
 export GOPATH=$HOME/.local/go/pkg
-export PATH=$PATH:/$HOME/.local/go/bin
-export PATH=$PATH:/$HOME/.local/go/pkg/bin
+export PATH=$PATH:$HOME/.local/go/bin
+export PATH=$PATH:$HOME/.local/go/pkg/bin
 
 # Flutter & Dart
 # Install from https://dart.dev/get-dart
