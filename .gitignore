@@ -7,3 +7,4 @@ tags
 /.local/scripts/ripdrag-wrapper
 /.config/alacritty/alacritty.yml
 /.config/tmux/themes/theme.conf
+/.config/sway/modules
