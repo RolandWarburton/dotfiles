@@ -1,14 +1,35 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+# WIP LIGHT THEME
+# TODO create a dark theme with color1, color2 etc that use the current default theme colors
+# TODO will need to take screenshots and extract the colors to use them in the theme
+
 # format prompt
+# format = "$directory$character(color1)"
 format = "$directory$character"
-right_format = "$all"
+
+# TODO part of light/dark theme - change this later
+# palette = 'dark'
+
+# [palettes.dark]
+# theme goes here
+
+
+[palettes.light]
+color1 = 'black'
+color2 = 'red'
 
 # configure directory module
 [directory]
 truncation_length = 8
 truncate_to_repo = true
+# style = 'color1' # ! PART OF LIGHT THEME
+
+# ! PART OF LIGHT THEME
+# [character]
+# success_symbol = '❯(color1)'
+# error_symbol = '❯(color2)'
 
 # this only show up when in SSH (ssh_only)
 [hostname]
