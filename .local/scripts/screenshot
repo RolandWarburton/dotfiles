@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-zparseopts -D -E - -edit=edit_flag -copy=copy_flag
+zparseopts -D -E - -edit=edit_flag -copy=copy_flag -open=open_flag
 
 screenshot_dir=$(mktemp -d)
 screenshot_file="$screenshot_dir/screenshot-$(date +%Y%m%d-%H%M%S).png"
@@ -22,4 +22,15 @@ fi
 if [[ -n "$copy_flag" ]]; then
   wl-copy < "$screenshot_file"
   return 0
+fi
+
+# open in image viewer
+if [[ -n "$open_flag" ]]; then
+  if [[ $( command -v imv-wayland ) ]]; then
+    imv-wayland "$screenshot_file"
+    return 0
+  fi
+  echo "no image viewer installed"
+  return 1
+  # TODO add some more image viewers here
 fi
