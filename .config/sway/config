@@ -85,6 +85,8 @@ bindsym $mod+u split none
 # Change window focus
 bindsym alt+Tab          focus child
 bindsym alt+Shift+Tab    focus parent
+# screenshot
+bindsym $mod+Shift+s exec screenshot --copy
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
