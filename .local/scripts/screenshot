@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+zparseopts -D -E - -edit=edit_flag
+
+screenshot_dir=$(mktemp -d)
+screenshot_file="$screenshot_dir/screenshot-$(date +%Y%m%d-%H%M%S).png"
+
+# Take a screenshot
+grim -g "$(slurp)" "$screenshot_file"
+echo "$screenshot_file"
+
+echo "$edit_flag"
+if [[ -n "$edit_flag" ]]; then
+  echo "asd"
+  # Open the screenshot in GIMP
+  gimp "$screenshot_file" >/dev/null 2>&1 &
+fi
