@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-zparseopts -D -E - -edit=edit_flag
+zparseopts -D -E - -edit=edit_flag -copy=copy_flag
 
 screenshot_dir=$(mktemp -d)
 screenshot_file="$screenshot_dir/screenshot-$(date +%Y%m%d-%H%M%S).png"
@@ -9,9 +9,14 @@ screenshot_file="$screenshot_dir/screenshot-$(date +%Y%m%d-%H%M%S).png"
 grim -g "$(slurp)" "$screenshot_file"
 echo "$screenshot_file"
 
-echo "$edit_flag"
-if [[ -n "$edit_flag" ]]; then
-  echo "asd"
-  # Open the screenshot in GIMP
+# Open the screenshot in GIMP
+if [[ -n "$edit_flag" && $(command -v gimp) ]]; then
   gimp "$screenshot_file" >/dev/null 2>&1 &
+  return 0
+fi
+
+# copy to clipboard
+if [[ -n "$copy_flag" ]]; then
+  wl-copy < "$screenshot_file"
+  return 0
 fi
