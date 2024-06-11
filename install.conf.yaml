@@ -1,6 +1,7 @@
 create:
   - ~/.config
   - ~/.local
+  - ~/.gnupg
 
 link:
   # scripts
@@ -26,6 +27,9 @@ link:
     path: .config/lf
   - destination: ~/.nvmrc
     path: .config/nvm/.nvmrc
+  # gpg
+  - destination: ~/.gnupg/gpg-agent.conf
+    path: .config/gnupg/gpg-agent.conf
   # programming
   - destination: ~/.prettierrc
     path: .config/prettier/.prettierrc
