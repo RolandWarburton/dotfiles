@@ -7,6 +7,9 @@ screenshot_file="$screenshot_dir/screenshot-$(date +%Y%m%d-%H%M%S).png"
 
 # Take a screenshot
 grim -g "$(slurp)" "$screenshot_file"
+if [[ $? -ne 0 ]]; then
+  return 1
+fi
 echo "$screenshot_file"
 
 # Open the screenshot in GIMP
