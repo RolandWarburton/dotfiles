@@ -1,0 +1,112 @@
+#!/usr/bin/lua
+
+local lfs = require("lfs")
+
+local home = os.getenv("HOME")
+local colors_dir = home .. "/.local/share/icons/colors/"
+local history_file = home .. "/.color-picker-history"
+
+-- creates the files color-picker-history files and color icons folder
+local function create_files_and_folders()
+  if not lfs.attributes(colors_dir, "mode") then
+    lfs.mkdir(colors_dir)
+  end
+
+  if not lfs.attributes(history_file, "mode") then
+    local file, err = io.open(history_file, "w")
+    if not file then
+      print("error creating file: " .. err)
+      os.exit(1)
+    end
+    file:close()
+  end
+end
+
+-- runs grim and captures a pixel value from a single point
+local function run_color_picker()
+  local command = [[
+grim -g "$(slurp -p)" -t ppm - | \
+convert - -format "%[pixel:p{0,0}]" txt:- | \
+awk -F' ' 'NR==2 {print $3}'
+]]
+
+  local handle = io.popen(command)
+  if handle == nil then
+    print("Failed to run command")
+    os.exit(1)
+  end
+  local color_code = handle:read("*a")
+  handle:close()
+  -- trim white space
+  color_code = string.gsub(color_code, "^%s*(.-)%s*$", "%1")
+
+  -- remove the hash from the start of the string
+  color_code = color_code:sub(2)
+  return color_code
+end
+
+-- generate ANSI escape sequence for a given hex color
+local function hex_to_ansi(hex_color)
+  -- Remove the '#' symbol from the hex color if present
+  hex_color = hex_color:gsub("#", "")
+
+  -- Convert the hex color to RGB values
+  local r = tonumber(hex_color:sub(1, 2), 16)
+  local g = tonumber(hex_color:sub(3, 4), 16)
+  local b = tonumber(hex_color:sub(5, 6), 16)
+
+  -- Generate the ANSI escape sequence for the RGB color
+  return string.format("\27[38;2;%d;%d;%dm", r, g, b)
+end
+
+-- reads the entire contents of the color-picker-history file
+local function get_color_entries(filename)
+  local color_entries = {}
+
+  local file = io.open(filename, "r")
+  if not file then
+    print("Failed to open file:", filename)
+    return color_entries
+  end
+
+  for line in file:lines() do
+    table.insert(color_entries, line)
+  end
+  file:close()
+
+  return color_entries
+end
+
+local function color_entry_exists(color, color_entries)
+  for _, entry in ipairs(color_entries) do
+    if entry == color then
+      return true
+    end
+  end
+  return false
+end
+
+----------------------
+-- start here
+----------------------
+create_files_and_folders()
+local color_code = run_color_picker()
+local color_entries = get_color_entries(history_file)
+
+if not color_entry_exists(color_code, color_entries) then
+  local file = io.open(history_file, "a")
+  if file == nil then
+    os.exit(1)
+  end
+  file:write(color_code .. "\n")
+
+  -- create an icon for the color
+  os.execute(string.format("convert -size 16x16 xc:'#%s' '%s%s.png'", color_code, colors_dir, color_code))
+end
+
+-- print the result as that color
+print(hex_to_ansi("#" .. color_code) .. color_code .. "\27[0m")
+
+
+-- copy it to the clipboard
+os.execute("wl-copy " .. color_code)
