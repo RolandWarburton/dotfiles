@@ -107,6 +107,5 @@ end
 -- print the result as that color
 print(hex_to_ansi("#" .. color_code) .. color_code .. "\27[0m")
 
-
 -- copy it to the clipboard
 os.execute("wl-copy " .. color_code)
