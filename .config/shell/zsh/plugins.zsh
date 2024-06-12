@@ -9,17 +9,11 @@ bindkey '^@' autosuggest-accept
 zgen load "zsh-users/zsh-syntax-highlighting"
 
 if [[ -f ~/.theme-current && $(cat ~/.theme-current) == "light" ]]; then
-  echo "light theme"
   # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
-  export "ZSH_HIGHLIGHT_STYLES[bracket-level-1]"='fg=black,bold'
-  export "ZSH_HIGHLIGHT_STYLES[bracket-level-2]"='fg=black,bold'
-  export "ZSH_HIGHLIGHT_STYLES[bracket-level-3]"='fg=black,bold'
-  export "ZSH_HIGHLIGHT_STYLES[bracket-level-4]"='fg=black,bold'
-  export ZSH_HIGHLIGHT_STYLES[path]='fg=black'
-  export ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=black'
-  export ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=black'
-  export ZSH_HIGHLIGHT_STYLES[command]='fg=black'
-  export ZSH_HIGHLIGHT_STYLES[builtin]='fg=#034b03'
+  export ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#9D6BCD'
+  export ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#9D6BCD'
+  export ZSH_HIGHLIGHT_STYLES[command]='fg=#3B8239'
+  export ZSH_HIGHLIGHT_STYLES[builtin]='fg=#3B8239'
 fi
 
 

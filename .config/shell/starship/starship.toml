@@ -7,29 +7,42 @@ add_newline = false
 
 # format prompt
 # format = "$directory$character(color1)"
-format = "$directory$character"
+format = "$directory$character(color1)"
 
 # TODO part of light/dark theme - change this later
-# palette = 'dark'
+palette = 'dark'
 
-# [palettes.dark]
-# theme goes here
+[palettes.dark]
+# basic prompt
+color1 = '#FFFFFF' # white
+# quotes
+color2 = '#F0C674' # yellow
+# incorrect command
+color3 = '#CC6666' # red
+# cursor prompt, and correct command
+color4 = '#B5BD68' # green
+# directory
+color5 = '#8ABEB7' # cyan
 
 
 [palettes.light]
-color1 = 'black'
-color2 = 'red'
+color1 = '#000000'
+color2 = '#F5C936'
+color3 = '#CC6666'
+# color4 = '#3B8239'
+color4 = '#000000'
+# color5 = '#5A5598'
+color5 = '#000000'
 
 # configure directory module
 [directory]
 truncation_length = 8
 truncate_to_repo = true
-# style = 'color1' # ! PART OF LIGHT THEME
+style = 'bold color5'
 
-# ! PART OF LIGHT THEME
-# [character]
-# success_symbol = '❯(color1)'
-# error_symbol = '❯(color2)'
+[character]
+success_symbol = '[❯](color4)'
+error_symbol = '[❯](color3)'
 
 # this only show up when in SSH (ssh_only)
 [hostname]
