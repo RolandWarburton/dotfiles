@@ -32,8 +32,8 @@ end
 M.colors = {
   light = {
     base1 = "#CCC6C2",
-    base2 = "#B4B0AD",
-    base3 = "#969696",
+    base2 = "#BFB7B2",
+    base3 = "#323232",
     accent1 = "#285577",
     accent2 = "#000000",
     accent3 = "#ffffff"

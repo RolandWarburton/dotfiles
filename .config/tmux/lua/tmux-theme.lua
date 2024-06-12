@@ -29,28 +29,32 @@ set-window-option -g window-status-current-style "bg=$color_base03"
 ]]
 
 local lightTheme = [[
-color_base03=%s
-color_base0=%s
-color_base1=%s
-color_bar_inactive=%s
-color_bar_active=%s
+inactive_pane_background=%s
+window_bar_background=%s
+inactive_pane_border=%s
+active_pane_border=%s
 
 # Set window status colors
-setw -g window-status-current-style "fg=$color_yellow bg=$color_base03 bold"
+setw -g window-status-current-style "fg=$window_bar_background bg=$inactive_pane_background bold"
+setw -g window-status-style "fg=$inactive_pane_background bg=$window_bar_background bold"
 
 # Status line colors
-set -g status-style "fg=terminal,bg=$color_base1"
+set -g status-style "fg=terminal,bg=$window_bar_background"
 
 # Pane colors
-set -g pane-border-style "fg=$color_bar_inactive,bg=$color_bar_inactive"
-set -g pane-active-border-style "fg=$color_bar_active,bg=$color_bar_active"
+set -g pane-border-style "fg=$inactive_pane_border,bg=$inactive_pane_border"
+set -g pane-active-border-style "fg=$active_pane_border,bg=$active_pane_border"
 
 # Window colors
 set-window-option -g window-active-style "bg=terminal"
-set-window-option -g window-style "bg=$color_base03"
+set-window-option -g window-style "bg=$inactive_pane_background"
 
 # Tab colors
-set-window-option -g window-status-current-style "bg=$color_base03"
+#set-window-option -g window-status-current-style "bg=$inactive_pane_background"
+
+# right status
+# required to hard code color255 here because it doesnt like hex color codes
+set -g status-right "#[fg=color255,bg=default] #(whoami) "
 ]]
 
 darkTheme = string.format(
@@ -64,11 +68,10 @@ darkTheme = string.format(
 
 lightTheme = string.format(
   lightTheme,
-  c.base2,
-  c.base2,
-  c.accent1,
-  c.base2,
-  c.base1
+  c.base2, -- inactive pane background
+  c.base3, -- window bar background
+  c.base2, -- inactive pane border
+  c.base1  -- active pane border
 )
 
 M.get_bar_config = function()

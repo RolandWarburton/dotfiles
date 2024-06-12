@@ -55,11 +55,11 @@ barLightTheme = string.format(
   barLightTheme,
   c.base3,   -- active tab border
   c.base3,   -- active tab background
-  c.accent2, -- active tab text
+  c.accent3, -- active tab text
   c.base1,   -- bar background
-  c.base2,
-  c.base2,
-  c.base3
+  c.base2,   -- tab inactive border
+  c.base2,   -- tab inactive background
+  c.base3    -- tab inactive text
 )
 
 M.get_bar_config = function()

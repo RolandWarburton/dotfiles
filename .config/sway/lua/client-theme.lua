@@ -28,12 +28,12 @@ client.placeholder      $bg-inactive  $bg-inactive  $text-inactive  $bg-inactive
 local clientThemeLight = string.format(
   clientTheme,
   arg[0],
-  c.base3,
-  c.base1,
+  c.base3, -- active tab background
+  c.base1, -- inactive tab background
   c.accent1,
   c.accent1,
-  c.accent2,
-  c.accent2
+  c.accent3, -- active tab text
+  c.accent2  -- inactive tab text
 )
 
 local clientThemeDark = string.format(
