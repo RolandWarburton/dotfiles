@@ -89,6 +89,8 @@ bindsym alt+Shift+Tab    focus parent
 bindsym $mod+Shift+s exec screenshot --copy
 bindsym $mod+Shift+g exec screenshot --edit
 bindsym $mod+Shift+p exec screenshot --open
+# color picker
+bindsym $mod+Shift+i exec colorpicker
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
