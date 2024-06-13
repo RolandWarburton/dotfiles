@@ -29,9 +29,7 @@ color5 = '#8ABEB7' # cyan
 color1 = '#000000'
 color2 = '#F5C936'
 color3 = '#CC6666'
-# color4 = '#3B8239'
-color4 = '#000000'
-# color5 = '#5A5598'
+color4 = '#3B8239'
 color5 = '#000000'
 
 # configure directory module

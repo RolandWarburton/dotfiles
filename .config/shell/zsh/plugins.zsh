@@ -14,6 +14,7 @@ if [[ -f ~/.theme-current && $(cat ~/.theme-current) == "light" ]]; then
   export ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#9D6BCD'
   export ZSH_HIGHLIGHT_STYLES[command]='fg=#3B8239'
   export ZSH_HIGHLIGHT_STYLES[builtin]='fg=#3B8239'
+  export ZSH_HIGHLIGHT_STYLES[alias]='fg=#3B8239'
 fi
 
 
