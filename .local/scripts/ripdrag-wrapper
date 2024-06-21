@@ -1,0 +1,21 @@
+#!/usr/bin/lua
+
+-- RIPDRAG WRAPPER
+-- Wraps ripdrag for use with lf
+-- lf outputs multiple files as $1\n$2...
+-- this script converts them to $1 $2, stripping the newline
+
+-- Check if at least one argument is provided
+if #arg < 1 then
+  print("Usage: ripdrag-wrapper <string1> [<string2> <string3> ...]")
+  os.exit(1)
+end
+
+-- Concatenate all strings into one line with spaces between each string
+local combinedString = string.gsub(arg[1], "\n", " ")
+for i = 2, #arg do
+  combinedString = combinedString .. " " .. string.gsub(arg[i], "\n", " ")
+end
+
+-- Print the combined string
+print(combinedString)
