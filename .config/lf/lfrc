@@ -195,7 +195,6 @@ cmd new_file ${{
   fi
 }}
 
-
 # vim quit
 cmd q :quit
 # open a file
@@ -224,6 +223,8 @@ map ,2 set ratios 1:2
 map <c-s> :cd_sync
 map <c-o> :split_to_nvim
 map <c-n> :new_file
+map oo ${{sway-open --id $id $f}}
+map op ${{sway-open --prompt $f}}
 
 # show the result of execution of previous commands
 map ` !true
