@@ -45,8 +45,3 @@ if [[ -a ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
   [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
   [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
 fi
-
-# Retired these configs because i rebinded them to history search
-#[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" up-line-or-history
-#[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" down-line-or-history
-

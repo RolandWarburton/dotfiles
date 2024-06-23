@@ -33,7 +33,6 @@ setopt SHARE_HISTORY
 source ~/.zsh/aliases.zsh
 source ~/.zsh/autocomplete.zsh
 source ~/.zsh/bindings.zsh
-source ~/.zsh/environment.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/plugins.zsh
