@@ -1,0 +1,71 @@
+#!/usr/bin/lua
+
+-- CROP AVATAR v1
+-- Takes a collection of PNGs and JPGs
+-- and converts them into 1000x1000 thumbnails.
+--
+-- Run once to generate the queue and processed folders.
+-- Then move your photos to the queue folder.
+--
+-- This script is very hacked together
+-- to do some common tasks at my job that require
+-- this specific use case.
+-- Consider that it will re-generate photos in the
+-- queue folder even if they already exist in the
+-- processed folder.
+-- It also does not take any command line arguments.
+-- It does not clean up after itself
+
+local lfs = require("lfs")
+
+local function makeDirectories()
+  local attr = lfs.attributes("./queue")
+  if attr == nil then
+    lfs.mkdir("./queue")
+    print("created queue directory as it did not exist")
+  end
+  attr = lfs.attributes("./processed")
+  if attr == nil then
+    lfs.mkdir("./processed")
+    print("created processed directory as it did not exist")
+  end
+end
+
+local validExtensions = { ".jpg", ".png" }
+local function isValidExtension(extension)
+  for _, validExtension in ipairs(validExtensions) do
+    if extension:match("^.+(%..+)$") == validExtension then
+      return true
+    end
+  end
+  return false
+end
+
+local function process(file)
+  if file == "." or file == ".." then
+    return
+  end
+  if not isValidExtension(file) then
+    print(file .. " is not valid")
+    return
+  end
+  print('processing file ' .. file)
+  os.execute(
+    "convert " ..
+    "./queue/" .. file ..
+    " -gravity center -crop 1:1 +repage -resize '1000x1000^' " ..
+    "./processed/" .. file:match("^[^.]*") .. "-center-resized" .. file:match("^.+(%..+)$")
+  )
+  os.execute(
+    "convert " ..
+    "./queue/" .. file ..
+    " -gravity south -crop 1:1 +repage -resize '1000x1000^' " ..
+    "./processed/" .. file:match("^[^.]*") .. "-south-resized" .. file:match("^.+(%..+)$")
+  )
+end
+
+makeDirectories()
+
+for file in lfs.dir('./queue') do
+  process(file)
+end
