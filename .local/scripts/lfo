@@ -1,0 +1,10 @@
+#!/usr/bin/lua
+local lfs = require('lfs')
+local tmpFile = "/tmp/lf-target-file"
+
+local attr = lfs.attributes(tmpFile)
+
+if attr then
+  local filePath = io.open(tmpFile, "r"):read("*a")
+  os.execute("nvim " .. filePath)
+end

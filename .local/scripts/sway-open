@@ -1,0 +1,70 @@
+#!/usr/bin/lua
+
+if #arg < 1 then
+  print('please provide a file as the first argument')
+  os.exit(1, true)
+end
+
+local prompt = false
+local lfID = ""
+for i = 1, #arg do
+  if arg[i] == '--prompt' then
+    prompt = true
+  elseif arg[i] == '--id' then
+    lfID = arg[i + 1]
+  end
+end
+
+-- path to file
+local filePath = arg[#arg]
+
+-- split on the first period (.)
+local parts = {}
+for part in string.gmatch(filePath, "[^.]+") do
+  table.insert(parts, part)
+end
+
+-- check if there is a period in the path
+if #parts < 2 then
+  print('no file extension found')
+end
+
+local extension = parts[#parts]
+
+local audio_video_extensions = { 'mp4', 'wav' }
+local image_extensions = { 'png', 'jpg', 'jpeg', 'gif', 'bmp' }
+
+local function contains(table, value)
+  for _, v in pairs(table) do
+    if v == value then
+      return true
+    end
+  end
+  return false
+end
+
+if contains(audio_video_extensions, extension) then
+  os.execute("mpv " .. filePath)
+elseif contains(image_extensions, extension) then
+  if not prompt then
+    os.execute("imv-wayland " .. filePath)
+  else
+    print('Open in:')
+    print('1. Image Viewer')
+    print('2. GIMP')
+    print('3. exit')
+
+    local choice = tonumber(io.read())
+    if choice == 1 then
+      os.execute("imv-wayland " .. filePath)
+    elseif choice == 2 then
+      os.execute("gimp " .. filePath .. " &")
+    end
+  end
+else
+  local file = io.open("/tmp/lf-target-file", "w")
+  if file ~= nil then
+    file:write(filePath)
+    file:close()
+  end
+end
