@@ -4,6 +4,7 @@
 -- Wraps ripdrag for use with lf
 -- lf outputs multiple files as $1\n$2...
 -- this script converts them to $1 $2, stripping the newline
+-- then it calls ripdrag with the corrected arguments
 
 -- Check if at least one argument is provided
 if #arg < 1 then
@@ -11,11 +12,23 @@ if #arg < 1 then
   os.exit(1)
 end
 
--- Concatenate all strings into one line with spaces between each string
-local combinedString = string.gsub(arg[1], "\n", " ")
-for i = 2, #arg do
-  combinedString = combinedString .. " " .. string.gsub(arg[i], "\n", " ")
+local function split_by_newlines(str)
+  local lines = {}
+  for line in string.gmatch(str, "([^\n]*)\n?") do
+    if line ~= "" then
+      table.insert(lines, line)
+    end
+  end
+  return lines
 end
 
--- Print the combined string
-print(combinedString)
+local t = split_by_newlines(arg[1])
+
+-- modify each table entry so its surrounded by quotes
+for i, line in ipairs(t) do
+  t[i] = "\"" .. line .. "\""
+end
+
+local combinedString = table.concat(t, " ")
+
+os.execute("ripdrag " .. combinedString)

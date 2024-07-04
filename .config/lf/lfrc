@@ -88,7 +88,7 @@ cmd cd_and_quit &{{
   # lf -remote "send :quit"
 }}
 
-cmd ripdrag-wrapper $ripdrag $(ripdrag-wrapper $fx)
+cmd ripdrag-wrapper ${{ripdrag-wrapper $fx}}
 
 cmd find_directory ${{
   if [ "$lf_hidden" ]; then
