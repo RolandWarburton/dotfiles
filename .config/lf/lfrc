@@ -103,7 +103,7 @@ map <backspace> set hidden!
 map ,p set preview!
 # fuzzy file search for file and directory names
 map <c-p> :find_file
-map <c-d> ${{~/.config/lf/find-directory.sh --hidden}}
+map <c-d> ${{~/.config/lf/find-directory.lua --hidden}}
 map <c-c> ${{pwd | tr -d '\n' | wl-copy}}
 # activate ripgrep search of text within files
 map ,g ${{~/.config/lf/grep.sh}}
