@@ -1,5 +1,7 @@
+################################################################################
 # Synchronizes the current lf folder with the last tmux pane
-
+# This is experimental and has some issues
+################################################################################
 
 if [ ! -f "$HOME/.tmux-pane-id" ]; then
   echo "no tmux pane history"

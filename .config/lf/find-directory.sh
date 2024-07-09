@@ -1,3 +1,7 @@
+################################################################################
+# Integrates fdfind with lf to allow searching for files and directories
+################################################################################
+
 hidden_flag=0
 
 for arg in "$@"; do

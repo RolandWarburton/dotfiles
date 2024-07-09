@@ -1,8 +1,10 @@
+################################################################################
 # Creates a new file or folder
 #
 # Suffix your path with a / to create a folder, otherwise a file will be created
 # Example: foo/bar will touch bar in foo
 # Example: foo/bar/ will mkdir bar in foo
+################################################################################
 
 # read user input
 clear

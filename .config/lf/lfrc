@@ -6,8 +6,14 @@ map <backspace>
 map d
 map f
 
+################################################################################
+# LAUNCH SCRIPTS
+################################################################################
 $~/.config/lf/sidecar.sh
 
+################################################################################
+# Settings
+################################################################################
 # set preview to false by default
 set preview false
 
@@ -43,6 +49,11 @@ set relativenumber
 
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;2m"
+
+################################################################################
+# COMMANDS
+################################################################################
+
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$fx";;
@@ -73,8 +84,15 @@ cmd filter_file %{{
     fi
 }}
 
+################################################################################
+# COMMANDS
+################################################################################
 # vim quit
 cmd q :quit
+
+################################################################################
+# KEYBINDS
+################################################################################
 # open a file
 map <enter> open
 # run a shell command
@@ -96,17 +114,19 @@ map ,d ripdrag-wrapper
 # folder shortcuts
 map gh ${{  lf -remote "send $id cd /home/$USERNAME"}}
 map gd ${{  lf -remote "send $id cd /home/$USERNAME/dotfiles"; lf -remote "send $id set hidden true"}}
+# column layouts
 map ,1 set ratios 1
 map ,2 set ratios 1:2
+# tmux intergrations
 map <c-s> ${{~/.config/lf/cd-sync.sh}}
 map <c-o> ${{~/.config/lf/split-to-nvim.sh}}
 map <c-n> ${{~/.config/lf/new-file.sh}}
+# file opening
 map oo ${{sway-open --id $id $f}}
 map op ${{sway-open --prompt $f}}
 map F :filter_file
 # show the result of execution of previous commands
 map ` !true
-
 # git keys
 map gb :git_branch
 map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}

@@ -1,3 +1,10 @@
+################################################################################
+# Opens a file in the previous selected tmux pane
+# If the last pane contains an instance of neovim it opens it in a split
+#
+# This is experimental and has some issues
+################################################################################
+
 if [ ! -f "$HOME/.tmux-pane-id" ]; then
   return 0
  fi

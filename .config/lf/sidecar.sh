@@ -1,4 +1,16 @@
-# resize the lf pane to be a sidecar
+################################################################################
+# Resizes the lf pane to be a sidecar
+# Will trigger only inside tmux windows when the layout looks like below
+#
+# +-----------------+
+# |        |        |
+# |   lf   |  N+1   |
+# | window | panes  |
+# |        |        |
+# +-----------------+
+#      \-will be resized automatically to be less wide than a 50/50 split
+################################################################################
+
 current_window=$(tmux display-message -p '#I')
 pane_index=$(tmux display-message -p '#{pane_index}')
 pane_count=$(tmux list-panes -t $current_window -F '#{pane_index}' | wc -l)
