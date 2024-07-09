@@ -50,17 +50,6 @@ cmd open ${{
     esac
 }}
 
-cmd fzf_search ${{
-    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-    res="$(
-        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
-            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
-            --ansi --layout=reverse --header 'Search in files' \
-            | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
-    )"
-    [ -n "$res" ] && lf -remote "send $id select \"$res\""
-}}
-
 cmd git_branch ${{
     git branch | fzf | xargs git checkout
     pwd_shell=$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')
@@ -205,7 +194,7 @@ map <c-p> :find_file
 map <c-d> :find_directory
 map <c-c> ${{pwd | tr -d '\n' | wl-copy}}
 # activate ripgrep search of text within files
-map ,g :fzf_search
+map ,g ${{~/.config/lf/grep.sh}}
 # copy my quit key bind in vim
 map ,q :quit
 # ripdrag
