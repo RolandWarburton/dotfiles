@@ -57,11 +57,6 @@ cmd git_branch ${{
     lf -remote "send $id cd \"$pwd_shell\""
 }}
 
-cmd cd_and_quit &{{
-  export LAST_LF_DIR="$PWD"
-  # lf -remote "send :quit"
-}}
-
 cmd ripdrag-wrapper ${{ripdrag-wrapper $fx}}
 
 cmd find_directory ${{
