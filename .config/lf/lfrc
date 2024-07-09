@@ -4,6 +4,7 @@ map <c-d>
 map <c-n>
 map <backspace>
 map d
+map f
 
 # resize the lf pane to be a sidecar
 ${{
@@ -195,6 +196,16 @@ cmd new_file ${{
   fi
 }}
 
+cmd filter_file %{{
+    echo "Filter for: "
+    read filter
+    if [ -z "$filter" ]; then
+      lf -remote "send setfilter"
+    else
+      lf -remote "send setfilter $filter"
+    fi
+}}
+
 # vim quit
 cmd q :quit
 # open a file
@@ -225,7 +236,7 @@ map <c-o> :split_to_nvim
 map <c-n> :new_file
 map oo ${{sway-open --id $id $f}}
 map op ${{sway-open --prompt $f}}
-
+map F :filter_file
 # show the result of execution of previous commands
 map ` !true
 
