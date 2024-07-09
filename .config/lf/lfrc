@@ -192,7 +192,7 @@ map gd ${{  lf -remote "send $id cd /home/$USERNAME/dotfiles"; lf -remote "send 
 map ,1 set ratios 1
 map ,2 set ratios 1:2
 map <c-s> :cd_sync
-map <c-o> :split_to_nvim
+map <c-o> ${{~/.config/lf/split-to-nvim.sh}}
 map <c-n> :new_file
 map oo ${{sway-open --id $id $f}}
 map op ${{sway-open --prompt $f}}
