@@ -120,7 +120,7 @@ map ,2 set ratios 1:2
 # tmux intergrations
 map <c-s> ${{~/.config/lf/cd-sync.sh}}
 map <c-o> ${{~/.config/lf/split-to-nvim.sh}}
-map <c-n> ${{~/.config/lf/new-file.sh}}
+map <c-n> ${{~/.config/lf/new-file.lua}}
 # file opening
 map oo ${{sway-open --id $id $f}}
 map op ${{sway-open --prompt $f}}
