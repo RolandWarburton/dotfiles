@@ -43,7 +43,7 @@ alias path="echo \$PATH | awk -F':' '{for(i=1; i<=NF; i++) print \$i} END {print
 alias luarockspath="luarocks path | luarockspath.lua"
 
 lf_select_cwd() {
-  lf -remote "send $id select $(pwd)" >/dev/null 2>&1
+  lf -remote "send select $(pwd)" >/dev/null 2>&1
 }
 
 # Bind Ctrl+S to call the function

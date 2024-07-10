@@ -6,7 +6,7 @@
 # You can also go the other direction (send current working directory from your shell to lf)
 #
 # lf_select_cwd() {
-#   lf -remote "send $id select $(pwd)" >/dev/null 2>&1
+#   lf -remote "send select $(pwd)" >/dev/null 2>&1
 # }
 # Bind Ctrl+S to call the function
 # bindkey -s '^S' 'lf_select_cwd\n'
