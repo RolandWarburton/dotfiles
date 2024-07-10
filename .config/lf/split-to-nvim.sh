@@ -1,8 +1,15 @@
 ################################################################################
 # Opens a file in the previous selected tmux pane
 # If the last pane contains an instance of neovim it opens it in a split
+# Please note this is experimental and has some issues.
 #
-# This is experimental and has some issues
+# You can also go the other direction (send current working directory from your shell to lf)
+#
+# lf_select_cwd() {
+#   lf -remote "send $id select $(pwd)" >/dev/null 2>&1
+# }
+# Bind Ctrl+S to call the function
+# bindkey -s '^S' 'lf_select_cwd\n'
 ################################################################################
 
 if [ ! -f "$HOME/.tmux-pane-id" ]; then
