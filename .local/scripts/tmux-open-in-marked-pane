@@ -45,9 +45,18 @@ local function getMarkedPane()
   end
 end
 
+local fx = arg[1] -- the path provided in the argument
+
+-- if no file path was provided then fail
+if fx == nil then
+  print('path argument not provided')
+  os.exit(1, true)
+end
+
 local panePID = getMarkedPane()
 if not panePID then
-  print('no marked pane')
+  print('no marked pane, opening in the current LF window')
+  os.execute("nvim " .. arg[1])
   os.exit(0, true);
 end
 
@@ -80,14 +89,7 @@ if utils.pidHasChildren(panePID) then
   end
 end
 
-local fx = arg[1]             -- the path provided in the argument
 local paneID = pane.paneIndex -- the ID of the marked pane
-
--- if no file path was provided then fail
-if fx == nil then
-  print('path argument not provided')
-  os.exit(1, true)
-end
 
 -- if a neovim pane is marked then open it in a vertical split
 if paneContainsNvim then
