@@ -55,10 +55,16 @@ set cursorpreviewfmt "\033[7;2m"
 ################################################################################
 
 cmd open ${{
-    case $(file --mime-type "$f" -bL) in
-        text/*|application/json) $EDITOR "$fx";;
-        *) for f in "$fx"; do xdg-open "$f"> /dev/null 2> /dev/null & done;;
-    esac
+  case $(file --mime-type "$f" -bL) in
+    text/*|application/json)
+        tmux-open-in-marked-pane "$fx"
+        ;;
+    *)
+        for f in "$fx"; do
+          xdg-open "$f" &
+        done
+        ;;
+  esac
 }}
 
 cmd git_branch ${{
