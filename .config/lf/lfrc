@@ -41,8 +41,11 @@ set shellopts '-eu'
 # draw lines around the folders like in ranger
 set drawbox true
 
+# one column layout
+set ratios 1
+
 # two column layout
-set ratios 1:2
+# set ratios 1:2
 
 # draw vim like relative numbers
 set relativenumber
@@ -128,8 +131,6 @@ map <c-s> ${{~/.config/lf/cd-sync.sh}}
 map <c-o> ${{~/.config/lf/split-to-nvim.sh}}
 map <c-n> ${{~/.config/lf/new-file.lua}}
 # file opening
-map oo ${{sway-open --id $id $f}}
-map op ${{sway-open --prompt $f}}
 map F :filter_file
 # show the result of execution of previous commands
 map ` !true
