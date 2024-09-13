@@ -27,6 +27,8 @@ link:
     path: .config/lf
   - destination: ~/.nvmrc
     path: .config/nvm/.nvmrc
+  - destination: ~/.config/imv
+    path: .config/imv
   # gpg
   - destination: ~/.gnupg/gpg-agent.conf
     path: .config/gnupg/gpg-agent.conf

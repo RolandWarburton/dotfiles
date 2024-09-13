@@ -1,0 +1,13 @@
+[binds]
+
+# copy path
+c = exec basename $imv_current_file | wl-copy
+<Shift+C> = exec echo "$imv_current_file" | wl-copy
+
+# navigation
+l = next
+h = prev
+<Shift+H> = pan 20 0
+<Shift+L> = pan -20 0
+<Shift+J> = pan 0 -20
+<Shift+K> = pan 0 20
