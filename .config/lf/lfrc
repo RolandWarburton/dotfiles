@@ -5,6 +5,7 @@ map <c-n>
 map <backspace>
 map d
 map f
+map y
 
 ################################################################################
 # LAUNCH SCRIPTS
@@ -108,6 +109,12 @@ map <enter> open
 map <c-s> :shell
 # toggle hidden files
 map <backspace> set hidden!
+# copy file path
+map y ${{wl-copy "$fx"}}
+# cut file
+map x cut
+# delete a file
+map dd ${{rm -rf $fx && lf -remote "send echo deleted $(basename $fx)"}}
 # toggle preview
 map ,p set preview!
 # fuzzy file search for file and directory names
