@@ -65,7 +65,7 @@ cmd open ${{
         ;;
     *)
         for f in "$fx"; do
-          xdg-open "$f" &
+          sway-open "$fx"
         done
         ;;
   esac
