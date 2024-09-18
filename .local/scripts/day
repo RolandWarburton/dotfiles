@@ -1,0 +1,21 @@
+#!/usr/bin/lua
+
+local day_argument = arg[1]
+
+local function get_current_day(day)
+  local days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" }
+  local dayNumber = nil
+
+  if day == nil then
+    -- use the current date
+    dayNumber = os.date("*t").wday - 1
+  else
+    -- use the argument
+    dayNumber = tonumber(day)
+  end
+  if dayNumber == nil or dayNumber < 1 or dayNumber > 7 then return "invalid day" end
+  return days[dayNumber]
+end
+
+-- Example usage:
+print(get_current_day(day_argument))

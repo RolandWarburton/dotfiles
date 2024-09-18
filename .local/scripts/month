@@ -1,0 +1,22 @@
+#!/usr/bin/lua
+
+local month_argument = arg[1]
+
+local function get_current_month(month)
+  local months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+    "November", "December" }
+  local monthNumber = nil
+
+  if month == nil then
+    -- use the current date
+    monthNumber = os.date("*t").month
+  else
+    -- use the argument
+    monthNumber = tonumber(month)
+  end
+  if monthNumber == nil or monthNumber < 1 or monthNumber > 12 then return "invalid month" end
+  return months[monthNumber]
+end
+
+-- Example usage:
+print(get_current_month(month_argument))
