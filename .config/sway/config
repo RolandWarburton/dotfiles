@@ -129,7 +129,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # sticky floating window mode
-bindsym $mod+Shift+f [con_id=__focused__] sticky toggle
+bindsym $mod+Shift+F [con_id=__focused__] sticky toggle
 
 # Workspaces:
 #
