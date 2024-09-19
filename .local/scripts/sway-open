@@ -1,70 +1,40 @@
 #!/usr/bin/lua
+local utils = require("script-utils")
 
 if #arg < 1 then
   print('please provide a file as the first argument')
   os.exit(1, true)
 end
 
-local prompt = false
-local lfID = ""
+-- List of valid image extensions
+local image_extensions = {
+  ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"
+}
+
 for i = 1, #arg do
-  if arg[i] == '--prompt' then
-    prompt = true
-  elseif arg[i] == '--id' then
-    lfID = arg[i + 1]
-  end
-end
+  local file_path = arg[i]
 
--- path to file
-local filePath = arg[#arg]
-
--- split on the first period (.)
-local parts = {}
-for part in string.gmatch(filePath, "[^.]+") do
-  table.insert(parts, part)
-end
-
--- check if there is a period in the path
-if #parts < 2 then
-  print('no file extension found')
-end
-
-local extension = parts[#parts]
-
-local audio_video_extensions = { 'mp4', 'wav' }
-local image_extensions = { 'png', 'jpg', 'jpeg', 'gif', 'bmp' }
-
-local function contains(table, value)
-  for _, v in pairs(table) do
-    if v == value then
-      return true
+  -- if the file is an image then ask the user to either
+  -- OPEN, COPY, or EDIT it
+  if utils.path_has_extension(file_path, image_extensions) then
+    local choice = utils.exec(
+      'echo "Preview\\nPreview whole directory\\nCopy\\nEdit" | rofi -dmenu -i -p "Select action"')
+    if choice == "Preview" then
+      os.execute('imv-wayland "' .. file_path .. '"')
+    elseif choice == "Preview whole directory" then
+      local dirname = file_path:match("(.*/)")
+      print(dirname)
+      os.execute('imv-wayland -r ' .. dirname)
+    elseif choice == "Copy" then
+      os.execute('wl-copy < "' .. file_path .. '" --type image/png')
+    elseif choice == "Edit" then
+      os.execute('gimp "' .. file_path .. '" &')
+    else
+      print("No valid choice selected.")
     end
+    os.exit(0, true)
   end
-  return false
-end
 
-if contains(audio_video_extensions, extension) then
-  os.execute("mpv " .. filePath)
-elseif contains(image_extensions, extension) then
-  if not prompt then
-    os.execute("imv-wayland " .. filePath)
-  else
-    print('Open in:')
-    print('1. Image Viewer')
-    print('2. GIMP')
-    print('3. exit')
-
-    local choice = tonumber(io.read())
-    if choice == 1 then
-      os.execute("imv-wayland " .. filePath)
-    elseif choice == 2 then
-      os.execute("gimp " .. filePath .. " &")
-    end
-  end
-else
-  local file = io.open("/tmp/lf-target-file", "w")
-  if file ~= nil then
-    file:write(filePath)
-    file:close()
-  end
+  -- open the file with the default file handler
+  os.execute("xdg-open " .. file_path)
 end

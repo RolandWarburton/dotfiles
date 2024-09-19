@@ -29,6 +29,9 @@ link:
     path: .config/nvm/.nvmrc
   - destination: ~/.config/imv
     path: .config/imv
+    # xdg
+  - destination: ~/.config/mimeapps.list
+    path: .config/xdg/mimeapps.list
   # gpg
   - destination: ~/.gnupg/gpg-agent.conf
     path: .config/gnupg/gpg-agent.conf

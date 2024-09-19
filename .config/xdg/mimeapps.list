@@ -1,0 +1,10 @@
+
+[Default Applications]
+# web
+x-scheme-handler/webcal=chromium.desktop
+x-scheme-handler/mailto=chromium.desktop
+# videos
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/avi=mpv.desktop
+video/mpeg=mpv.desktop
