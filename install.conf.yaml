@@ -29,7 +29,10 @@ link:
     path: .config/nvm/.nvmrc
   - destination: ~/.config/imv
     path: .config/imv
-    # xdg
+  # restic
+  - destination: ~/.config/restic
+    path: .config/restic
+  # xdg
   - destination: ~/.config/mimeapps.list
     path: .config/xdg/mimeapps.list
   # gpg
