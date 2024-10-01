@@ -61,8 +61,12 @@ M.path_has_extension = function(file_path, test_extensions)
   return false
 end
 
+M.two_col = function(s1, s2)
+  print(string.format("%-32s %-32s", s1, s2))
+end
+
 function dirname(file_path)
-    return (file_path:gsub("/*$", "")):match("(.*/)") or "."
+  return (file_path:gsub("/*$", "")):match("(.*/)") or "."
 end
 
 return M
