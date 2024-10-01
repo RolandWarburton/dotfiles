@@ -1,11 +1,20 @@
 local M = {}
 
 M.exec = function(command)
-  local handle = io.popen(command)
+  local handle = nil
+
+  command = command .. " ; echo $?"
+  handle = io.popen(command, "r")
   if handle == nil then os.exit(1, true) end
-  local result = handle:read("*a")
+  local result = handle:read("*a"):match("^%s*(.-)%s*$")
   handle:close()
-  return result:match("^%s*(.-)%s*$")
+
+  -- get the exit code
+  local exit_code = tonumber(result:match("(%d+)$"))
+  -- remove the exit code from the result
+  result = result:gsub("(%d+)$", ""):match("^%s*(.-)%s*$")
+
+  return result, exit_code
 end
 
 -- returns T/F if a pid contains child processes
