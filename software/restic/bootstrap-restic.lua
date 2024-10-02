@@ -81,6 +81,8 @@ if err or not repository_secret then
 else
   print("[OK] read repository password from password store")
 end
+
+-- create the repository
 local command = string.format(
   "cd %s; RESTIC_PASSWORD='%s' restic -r %s init",
   restic_backup_dir,
