@@ -70,6 +70,9 @@ if not file then
 end
 file:write(lyaml.dump(aws_secrets_data))
 file:close()
+print("Settings permissions for " .. aws_secrets_path)
+os.execute("sudo chown root:root " .. aws_secrets_path)
+os.execute("sudo chmod 600 " .. aws_secrets_path)
 util.two_col("[OK] written aws secrets", aws_secrets_path)
 
 -- get the repository secret
