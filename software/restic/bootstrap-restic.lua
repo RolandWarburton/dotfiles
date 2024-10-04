@@ -46,8 +46,8 @@ if err ~= nil then
 end
 
 -- get the restic AWS keys
-local secrets, errmsg = restic.extract_aws_secrets()
-if errmsg ~= nil or secrets == nil then
+local aws_secrets, errmsg = restic.extract_aws_secrets()
+if errmsg ~= nil or aws_secrets == nil then
   print(errmsg)
   os.exit(1, true)
 end
@@ -56,8 +56,8 @@ end
 local aws_secrets_data = {
   {
     aws = {
-      access_key = secrets.access_key,
-      secret_access_key = secrets.secret_access_key
+      access_key = aws_secrets.access_key,
+      secret_access_key = aws_secrets.secret_access_key
     }
   }
 }
