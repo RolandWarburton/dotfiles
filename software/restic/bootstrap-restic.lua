@@ -34,7 +34,7 @@ if err ~= nil then
   os.exit(1, true)
 end
 
--- ensure that the restic backup repository location exists
+-- create the restic backup repository location exists
 os.execute("mkdir -p " .. restic_backup_dir)
 util.two_col("[OK] created backup dir ", restic_backup_dir)
 
