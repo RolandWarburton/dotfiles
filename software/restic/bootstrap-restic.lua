@@ -19,20 +19,21 @@ util.two_col("[INFO] RESTIC BACKUP DIRECTORY", restic_backup_dir)
 util.two_col("[INFO] AWS SECRETS PATH ", aws_secrets_path)
 util.two_col("[INFO] AWS BUCKET ", aws_s3_url)
 
+local exit_if_error = function(err)
+  if err ~= nil then
+    print(err)
+    os.exit(1, true)
+  end
+end
+
 local err = nil
 
 -- ensure that the restic backup repository is empty to avoid overwriting any files
 err = restic.restic_folder_exists(restic_backup_dir)
-if err ~= nil then
-  print(err)
-  os.exit(1, true)
-end
+exit_if_error(err)
 
 err = restic.restic_folder_is_empty(restic_backup_dir)
-if err ~= nil then
-  print(err)
-  os.exit(1, true)
-end
+exit_if_error(err)
 
 -- create the restic backup repository location exists
 os.execute("mkdir -p " .. restic_backup_dir)
