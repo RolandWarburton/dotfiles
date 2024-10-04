@@ -85,13 +85,19 @@ else
   print("[OK] read repository password from password store")
 end
 
+local restic_repository = restic_backup_dir .. "/" .. aws_s3_url
+local environment = "RESTIC_PASSWORD=" .. repository_secret .. " " ..
+    "AWS_ACCESS_KEY_ID=" .. aws_secrets.access_key .. " " ..
+    "AWS_SECRET_ACCESS_KEY=" .. aws_secrets.secret_access_key .. " " ..
+    "RESTIC_REPOSITORY=" .. restic_repository
+
 -- create the repository
 local command = string.format(
-  "cd %s; RESTIC_PASSWORD='%s' restic -r %s init",
+  "cd %s; %s restic init",
   restic_backup_dir,
-  repository_secret,
-  aws_s3_url
+  environment
 )
+print(command)
 local result, exit_code = util.exec(command)
 if exit_code ~= 0 then
   print("something went wrong creating the repository")
