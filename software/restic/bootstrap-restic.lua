@@ -12,7 +12,7 @@ local home_dir = os.getenv("HOME")
 local restic_backup_dir = home_dir .. "/.restic"        -- location for restic repository
 local aws_secrets_path = home_dir .. "/.restic/secrets" -- aws secrets location
 local restic_config_dir = home_dir .. "/.config/restic" -- config files about restic
-local aws_s3_url = "ap-southeast-2.console.aws.amazon.com/s3/buckets/aws-restic-archive"
+local aws_s3_url = "s3:s3.ap-southeast-2.amazonaws.com/aws-restic-archive"
 ---------------------------------------------------------------------------------------------------
 
 util.two_col("[INFO] RESTIC BACKUP DIRECTORY", restic_backup_dir)
