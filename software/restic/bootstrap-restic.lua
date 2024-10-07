@@ -60,10 +60,8 @@ end
 -- wrap the data in an AWS object
 local aws_secrets_data = {
   {
-    aws = {
-      access_key = aws_secrets.access_key,
-      secret_access_key = aws_secrets.secret_access_key
-    }
+    aws_access_key = aws_secrets.access_key,
+    aws_secret_access_key = aws_secrets.secret_access_key
   }
 }
 
