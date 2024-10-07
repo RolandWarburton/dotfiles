@@ -4,16 +4,20 @@ local lyaml = require("lyaml")
 local util = require("script-utils")
 local restic = require("restic-utils")
 
--- home directory
-local home_dir = os.getenv("HOME")
+local err = nil
+local config = nil
 
----------------------------------------------------------------------------------------------------
--- ATTENTION: SCRIPT VARIABLES
-local restic_backup_dir = home_dir .. "/.restic"        -- location for restic repository
-local aws_secrets_path = home_dir .. "/.restic/secrets" -- aws secrets location
-local restic_config_dir = home_dir .. "/.config/restic" -- config files about restic
-local aws_s3_url = "s3:s3.ap-southeast-2.amazonaws.com/aws-restic-archive"
----------------------------------------------------------------------------------------------------
+config, err = restic.restic_read_config()
+if err ~= nil or config == nil then
+  print(err)
+  os.exit(1, true)
+end
+
+-- set these script variables based on the restic config file
+local restic_backup_dir = config.restic_backup_dir              -- location for restic repository
+local restic_config_dir = config.restic_config_dir              -- config files about restic
+local aws_s3_url = config.aws_s3_url
+local aws_secrets_path = config.restic_backup_dir .. "/secrets" -- aws secrets location
 
 util.two_col("[INFO] RESTIC BACKUP DIRECTORY", restic_backup_dir)
 util.two_col("[INFO] AWS SECRETS PATH ", aws_secrets_path)

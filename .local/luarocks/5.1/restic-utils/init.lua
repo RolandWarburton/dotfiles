@@ -70,4 +70,31 @@ M.restic_config_exists = function(restic_config_dir)
   end
 end
 
+---@class ResticConfig
+---@field restic_backup_dir string
+---@field restic_config_dir string
+---@field aws_s3_url string
+
+--- Reads the Restic configuration file.
+--- @return ResticConfig|nil config The loaded configuration, or nil if an error occurs.
+--- @return string|nil err An error message, or nil if no error occurred.
+M.restic_read_config = function()
+  local home = os.getenv("HOME")
+  if home == "" or home == nil then
+    return nil, "failed to get home from environment"
+  end
+  local filepath = home .. "/.config/restic/config.yaml"
+  local file = io.open(filepath)
+  if file == nil then return nil, "failed to read file" end
+  local file_contents = file:read("*a")
+
+  local config = lyaml.load(file_contents)
+
+  if config then
+    return config, nil
+  else
+    return nil, "failed to parse config"
+  end
+end
+
 return M
