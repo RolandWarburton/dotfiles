@@ -85,7 +85,7 @@ M.restic_read_config = function()
   end
   local filepath = home .. "/.config/restic/config.yaml"
   local file = io.open(filepath)
-  if file == nil then return nil, "failed to read file" end
+  if file == nil then return nil, "failed to read config file" end
   local file_contents = file:read("*a")
 
   local config = lyaml.load(file_contents)

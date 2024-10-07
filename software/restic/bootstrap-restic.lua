@@ -30,8 +30,6 @@ local exit_if_error = function(err)
   end
 end
 
-local err = nil
-
 -- ensure that the restic backup repository is empty to avoid overwriting any files
 err = restic.restic_folder_exists(restic_backup_dir)
 exit_if_error(err)
@@ -42,13 +40,6 @@ exit_if_error(err)
 -- create the restic backup repository location exists
 os.execute("mkdir -p " .. restic_backup_dir)
 util.two_col("[OK] created backup dir ", restic_backup_dir)
-
--- ensure that the restic config exists
-err = restic.restic_config_exists(restic_config_dir)
-if err ~= nil then
-  print(err)
-  os.exit(1, true)
-end
 
 -- get the restic AWS keys
 local aws_secrets, errmsg = restic.extract_aws_secrets()
