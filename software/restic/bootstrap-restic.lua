@@ -15,7 +15,6 @@ end
 
 -- set these script variables based on the restic config file
 local restic_backup_dir = config.restic_backup_dir              -- location for restic repository
-local restic_config_dir = config.restic_config_dir              -- config files about restic
 local aws_s3_url = config.aws_s3_url
 local aws_secrets_path = config.restic_backup_dir .. "/secrets" -- aws secrets location
 
