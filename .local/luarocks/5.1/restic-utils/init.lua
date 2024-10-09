@@ -5,7 +5,7 @@ local M = {}
 
 M.extract_aws_secrets = function()
   -- Run the `pass` command and capture the output
-  local result, exit_code = util.exec("pass restic/aws")
+  local result, exit_code = util.exec("pass restic/minio")
   if exit_code ~= 0 then
     return nil, "[FAIL] failed to get aws secrets from password store"
   end
@@ -18,7 +18,16 @@ M.extract_aws_secrets = function()
       access_key = parsed_yaml.secrets.access_key,
       secret_access_key = parsed_yaml.secrets.secret_access_key
     }
-    return aws_secrets, nil
+    if aws_secrets.access_key == "null" or
+        aws_secrets.access_key == nil or
+        aws_secrets.access_key == "" or
+        aws_secrets.secret_access_key == "null" or
+        aws_secrets.secret_access_key == nil or
+        aws_secrets.secret_access_key == "" then
+      return nil, "aws secrets were not defined correctly"
+    else
+      return aws_secrets, nil
+    end
   else
     return nil, "[FAIL] failed parse aws secrets"
   end
@@ -27,7 +36,7 @@ end
 M.extract_repository_secret = function()
   local host = util.exec("/bin/hostname")
   local secret, exit_code = util.exec("pass restic/" .. host)
-  if exit_code ~= 0 then
+  if exit_code ~= 0 or secret == "" or secret == nil then
     return nil, "failed to get repository secret"
   else
     return secret, nil
