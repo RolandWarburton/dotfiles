@@ -7,7 +7,7 @@ The purpose of this document is to explain the different parts for future refere
 
 Variables are read in from `~/.config/restic/config.yaml`.
 
-- `restic_backup_dir` location separate to .config to store generated secrets and logs
+- `restic_backup_dir` location separate to `.config` to store generated secrets and logs
 - `aws_s3_url` location to backup to, example `s3:http://localhost:9000/`. The hostname is appended
 
 ## Secrets
@@ -75,6 +75,8 @@ I use these access keys with the below policy.
 ```
 
 </details>
+
+A bucket should pre-exist for each restic repository named `restic-archive-%HOSTNAME%`.
 
 ### Bootstrapping script
 
