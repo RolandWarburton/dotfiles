@@ -41,36 +41,24 @@ mysecret
 
 I back up most of my things to a MINIO instance in a VPS.
 
-I use these access keys with the below policy.
-
 <details>
 <summary>Click to expand policy</summary>
 
 ```json
 {
- "Version": "2012-10-17",
- "Statement": [
-  {
-   "Effect": "Allow",
-   "Action": [
-    "s3:ListBucket"
-   ],
-   "Resource": [
-    "arn:aws:s3:::*"
-   ]
-  },
-  {
-   "Effect": "Allow",
-   "Action": [
-    "s3:DeleteObject",
-    "s3:GetObject",
-    "s3:PutObject"
-   ],
-   "Resource": [
-    "arn:aws:s3:::restic-archive*/*"
-   ]
-  }
- ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": ["arn:aws:s3:::*"]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["s3:DeleteObject", "s3:GetObject", "s3:PutObject"],
+      "Resource": ["arn:aws:s3:::restic-archive*/*"]
+    }
+  ]
 }
 ```
 
@@ -78,7 +66,7 @@ I use these access keys with the below policy.
 
 A bucket should pre-exist for each restic repository named `restic-archive-%HOSTNAME%`.
 
-### Bootstrapping script
+### Bootstrapping Script
 
 This section details the `bootstrap.lua` script.
 
