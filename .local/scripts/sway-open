@@ -24,7 +24,7 @@ for i = 1, #arg do
     elseif choice == "Preview whole directory" then
       local dirname = file_path:match("(.*/)")
       print(dirname)
-      os.execute('imv-wayland -r ' .. dirname)
+      os.execute('imv-wayland -r ' .. "\"" .. dirname .. "\"")
     elseif choice == "Copy" then
       os.execute('wl-copy < "' .. file_path .. '" --type image/png')
     elseif choice == "Edit" then
@@ -36,5 +36,5 @@ for i = 1, #arg do
   end
 
   -- open the file with the default file handler
-  os.execute("xdg-open " .. file_path)
+  os.execute("xdg-open " .. "\"" .. file_path .. "\"")
 end
