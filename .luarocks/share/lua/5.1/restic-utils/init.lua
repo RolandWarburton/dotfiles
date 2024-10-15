@@ -81,7 +81,10 @@ end
 
 ---@class ResticConfig
 ---@field restic_backup_dir string
----@field restic_config_dir string
+---@field restic_secrets_path string
+---@field restic_backup_shell_script_path string
+---@field restic_backup_targets string
+---@field restic_exclude_file string
 ---@field aws_s3_url string
 
 --- Reads the Restic configuration file.
@@ -104,6 +107,25 @@ M.restic_read_config = function()
   else
     return nil, "failed to parse config"
   end
+end
+
+-- Returns the full S3 repository name including the bucket name
+M.restic_get_repository_name = function()
+  local hostname = util.exec("/bin/hostname")
+  if hostname == "" or hostname == nil then
+    print("failed to get hostname")
+    os.exit(1, true)
+  end
+
+  local config, err = M.restic_read_config()
+  if err ~= nil or config == nil then
+    print(err)
+    return os.exit(1)
+  end
+  if config.aws_s3_url == nil then return nil, "aws_s3_url not defined in config file" end
+
+  local aws_s3_url = config.aws_s3_url .. "restic-archive-" .. hostname
+  return aws_s3_url, nil
 end
 
 return M

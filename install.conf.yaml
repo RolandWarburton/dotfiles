@@ -7,8 +7,11 @@ link:
   # scripts
   - destination: ~/.local/scripts
     path: .local/scripts
-  - destination: ~/.local/luarocks
-    path: .local/luarocks
+    # lua
+  - destination: ~/.luarocks
+    path: .luarocks
+  - destination: ~/.local/bin/lua-language-server
+    path: .local/bin/lua-language-server
   # sway
   - destination: ~/.config/sway
     path: .config/sway

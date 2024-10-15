@@ -1,0 +1,2 @@
+#!/bin/bash
+exec "/home/roland/.local/lsp/lua-language-server/bin/lua-language-server" "$@"
