@@ -1,2 +1,13 @@
 #!/bin/bash
-exec "/home/roland/.local/lsp/lua-language-server/bin/lua-language-server" "$@"
+
+# Define the path to the language server using the HOME environment variable
+LSP_PATH="$HOME/.local/lsp/lua-language-server/bin/lua-language-server"
+
+# Check if the Lua Language Server exists at the specified path
+if [ -x "$LSP_PATH" ]; then
+    # If the path exists and is executable, run the language server with passed arguments
+    exec "$LSP_PATH" "$@"
+else
+    echo "Error: Lua Language Server not found or not executable at $LSP_PATH"
+    exit 1
+fi
