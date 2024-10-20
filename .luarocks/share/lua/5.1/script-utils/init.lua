@@ -34,6 +34,7 @@ M.exit_if_error = function(...)
   return unpack(values)
 end
 
+-- executes a command synchronously returning the output and exit code
 M.exec = function(command)
   local handle = nil
 
@@ -78,7 +79,7 @@ M.get_children = function(ppid)
   return children
 end
 
--- returns true i the provided path is an image
+-- returns true if the provided path ends with any of the provided extensions
 M.path_has_extension = function(file_path, test_extensions)
   -- Extract the extension from the file path (only considering the last period)
   local extension = file_path:match("^.+(%.[^%.]+)$")
@@ -99,7 +100,8 @@ M.two_col = function(s1, s2)
   print(string.format("%-32s %-32s", s1, s2))
 end
 
-function dirname(file_path)
+-- returns the directory name with an appending slash
+M.dirname = function(file_path)
   return (file_path:gsub("/*$", "")):match("(.*/)") or "."
 end
 

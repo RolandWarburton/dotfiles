@@ -22,7 +22,9 @@ local get_pass_secret = function(credential_path)
   end
 end
 
--- returns the repository password and aws keys
+-- Returns the repository secrets in the order:
+-- aws_access_key, aws_secret_access_key,
+-- repository_secret, error message (if any).
 M.get_repository_secrets = function()
   local err                   = nil
   local secrets               = nil
@@ -32,8 +34,7 @@ M.get_repository_secrets = function()
 
   local hostname              = util.exec("/bin/hostname")
   if hostname == "" or hostname == nil then
-    print("failed to get hostname")
-    os.exit(1, true)
+    return nil, nil, nil, "failed to get hostname"
   end
   -- get repository secrets
   secrets, err = get_pass_secret("restic/secrets")
@@ -48,6 +49,11 @@ M.get_repository_secrets = function()
   if not (repository_secret or aws_access_key or aws_secret_access_key) then
     err = "failed to read an secret value"
   end
+
+  -- cast these all to strings to make type checking nicer
+  repository_secret = tostring(repository_secret)
+  aws_access_key = tostring(aws_access_key)
+  aws_secret_access_key = tostring(aws_secret_access_key)
 
   return aws_access_key, aws_secret_access_key, repository_secret, err
 end
