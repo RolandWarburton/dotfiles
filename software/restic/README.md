@@ -3,36 +3,55 @@
 Documentation for my restic backup solution about how it is assembled.
 The purpose of this document is to explain the different parts for future reference & maintenance.
 
+TLDR: run `bootstrap-restic.lua` and then run the generated backup script.
+
+```bash
+# Create a new repository
+sudo -E LUA_PATH="$LUA_PATH;$HOME/.luarocks/share/lua/5.1/?/init.lua" \
+lua bootstrap-restic.lua
+
+# Run generate-backup-script
+sudo -E LUA_PATH="$LUA_PATH;$HOME/.luarocks/share/lua/5.1/?/init.lua" \
+lua make-backup-script.lua
+
+# Run backup script
+sudo /usr/local/bin/restic-backup.sh
+```
+
+Running restic commands can be done by evaluating `restic-env.lua`
+which will populate your command with the required environment variables.
+
+```bash
+eval $(lua restic-env.lua) restic stats
+```
+
 ## Configuration
 
 Variables are read in from `~/.config/restic/config.yaml`.
 
-- `restic_backup_dir` location separate to `.config` to store generated secrets and logs
-- `aws_s3_url` location to backup to, example `s3:http://localhost:9000/`. The hostname is appended
+```yaml
+restic_backup_dir: /home/roland/.restic
+restic_secrets_path: /home/roland/.restic/secrets
+restic_backup_shell_script_path: /usr/local/bin/restic-backup.sh
+restic_backup_targets: '/home /etc /opt /root /usr'
+restic_exclude_file: /home/roland/.config/restic/exclude
+aws_s3_url: 's3:https://PLACEHOLDER.net/'
+bucket_name: restic-archive-PLACEHOLDER
+```
 
 ## Secrets
 
-We require three secrets.
-Secrets are read from [pass](https://www.passwordstore.org/) in `restic/*`.
+Secrets are read from [pass](https://www.passwordstore.org/) in `restic/secrets` in a YAML format.
 
-- AWS access key
-- AWS secret access key
-- Repository password
-
-There should be a `minio` entry containing yaml for the AWS secrets.
+The minimum required secrets are below. Be sure to replace `_HOSTNAME_` with a real hostname.
 
 ```yaml
-# shell$ pass restic/minio
-secrets:
+hosts:
+  _HOSTNAME_:
+    password: PLACEHOLDER
+aws:
   access_key: PLACEHOLDER
   secret_access_key: PLACEHOLDER
-```
-
-There should also be an entry for each repository secret under the device hostname
-
-```bash
-# shell$ pass restic/my_host_name
-mysecret
 ```
 
 ## Creating New Restic Archives

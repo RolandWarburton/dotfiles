@@ -3,9 +3,9 @@ local lyaml = require("lyaml")
 
 local M = {}
 
-M.extract_aws_secrets = function()
+local get_pass_secret = function(credential_path)
   -- Run the `pass` command and capture the output
-  local result, exit_code = util.exec("pass restic/minio")
+  local result, exit_code = util.exec("pass " .. credential_path)
   if exit_code ~= 0 then
     return nil, "[FAIL] failed to get aws secrets from password store"
   end
@@ -13,70 +13,43 @@ M.extract_aws_secrets = function()
   -- Parse the YAML output using lyaml
   local parsed_yaml = lyaml.load(result)
 
-  if parsed_yaml then
-    local aws_secrets = {
-      access_key = parsed_yaml.secrets.access_key,
-      secret_access_key = parsed_yaml.secrets.secret_access_key
-    }
-    if aws_secrets.access_key == "null" or
-        aws_secrets.access_key == nil or
-        aws_secrets.access_key == "" or
-        aws_secrets.secret_access_key == "null" or
-        aws_secrets.secret_access_key == nil or
-        aws_secrets.secret_access_key == "" then
-      return nil, "aws secrets were not defined correctly"
-    else
-      return aws_secrets, nil
-    end
+  if type(parsed_yaml) == "table" then
+    return parsed_yaml, nil
+  elseif not parsed_yaml then
+    return nil, "[FAIL] failed to parse secret (nil result)"
   else
-    return nil, "[FAIL] failed parse aws secrets"
+    return nil, "[FAIL] failed parse aws secret"
   end
 end
 
-M.extract_repository_secret = function()
-  local host = util.exec("/bin/hostname")
-  local secret, exit_code = util.exec("pass restic/" .. host)
-  if exit_code ~= 0 or secret == "" or secret == nil then
-    return nil, "failed to get repository secret"
-  else
-    return secret, nil
+-- returns the repository password and aws keys
+M.get_repository_secrets = function()
+  local err                   = nil
+  local secrets               = nil
+  local repository_secret     = nil
+  local aws_access_key        = nil
+  local aws_secret_access_key = nil
+
+  local hostname              = util.exec("/bin/hostname")
+  if hostname == "" or hostname == nil then
+    print("failed to get hostname")
+    os.exit(1, true)
   end
-end
-
-M.restic_folder_exists = function(restic_backup_dir_path)
-  local exit_code, folder_exists = nil, nil
-  exit_code = os.execute("[ -d " .. restic_backup_dir_path .. " ]")
-  if exit_code == 0 then folder_exists = true end
-
-  if folder_exists then
-    return "restic directory already exists"
-  else
-    return nil
+  -- get repository secrets
+  secrets, err = get_pass_secret("restic/secrets")
+  if err ~= nil or secrets == nil then
+    return nil, err
   end
-end
 
-M.restic_folder_is_empty = function(restic_backup_dir_path)
-  local d = restic_backup_dir_path
-  local exit_code, folder_is_empty = nil, nil
-  exit_code = os.execute("find " .. d .. " -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null | grep -q .")
-  if exit_code == 0 then folder_is_empty = false end
+  repository_secret     = secrets.hosts[hostname].password and secrets.hosts[hostname].password or nil
+  aws_access_key        = secrets.aws.access_key and secrets.aws.access_key or nil
+  aws_secret_access_key = secrets.aws.secret_access_key and secrets.aws.secret_access_key or nil
 
-  if folder_is_empty == false then
-    return "restic directory already has contents"
-  else
-    return nil
+  if not (repository_secret or aws_access_key or aws_secret_access_key) then
+    err = "failed to read an secret value"
   end
-end
 
-M.restic_config_exists = function(restic_config_dir)
-  local restic_config_stat = util.exec("stat " .. restic_config_dir)
-
-  if restic_config_stat == "" then
-    return "[FAIL] restic config does not exist"
-  else
-    util.two_col("[OK] restic config exists", restic_config_dir)
-    return nil
-  end
+  return aws_access_key, aws_secret_access_key, repository_secret, err
 end
 
 ---@class ResticConfig
@@ -110,22 +83,30 @@ M.restic_read_config = function()
 end
 
 -- Returns the full S3 repository name including the bucket name
-M.restic_get_repository_name = function()
-  local hostname = util.exec("/bin/hostname")
-  if hostname == "" or hostname == nil then
-    print("failed to get hostname")
-    os.exit(1, true)
+M.restic_get_repository_path = function(config)
+  local bucket_name = nil
+  local err = nil
+
+  if config.aws_s3_url == nil then
+    err = "aws_s3_url not defined in config file"
+    return nil, err
   end
 
-  local config, err = M.restic_read_config()
-  if err ~= nil or config == nil then
-    print(err)
-    return os.exit(1)
+  if config.bucket_name then
+    bucket_name = config.bucket_name
+  else
+    local hostname = util.exec("/bin/hostname")
+    if hostname == "" or hostname == nil then
+      err = "failed to get hostname"
+    end
+    bucket_name = "restic-archive-" .. hostname
   end
-  if config.aws_s3_url == nil then return nil, "aws_s3_url not defined in config file" end
 
-  local aws_s3_url = config.aws_s3_url .. "restic-archive-" .. hostname
-  return aws_s3_url, nil
+  if err ~= nil then
+    return nil, err
+  else
+    return config.aws_s3_url .. bucket_name, nil
+  end
 end
 
 return M

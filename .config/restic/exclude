@@ -1,0 +1,16 @@
+# exclude temporary directories
+/tmp
+/var/tmp
+/var/cache
+
+# exclude system directories that don't need backup
+/sys
+/proc
+/dev
+/run
+/mnt
+/media
+
+# exclude some misc things
+*.iso
+node_modules/*

@@ -1,5 +1,39 @@
 local M = {}
 
+-- implements table.pack from lua 5.2
+local function pack(...)
+  return { n = select("#", ...), ... }
+end
+
+--- Exit the program if an error occurs.
+-- This function checks for an error (non-nil `err`) and prints an error message.
+-- If an error is found, it exits the program with status code 1.
+-- If no error is found, it returns the value.
+--
+-- @return any: Returns the value if no error is detected.
+-- @example
+-- foo = function()
+--   return "value", nil
+-- end
+-- local value = M.exit_if_error(foo())
+--
+-- If `restic_read_config()` returns a non-nil error, the program will exit, otherwise, it will assign `config`.
+M.exit_if_error = function(...)
+  local args = pack(...)
+  local values = {}
+  for i = 1, args.n - 1 do
+    table.insert(values, args[i])
+  end
+
+  -- the error will be the last argument
+  local err = select(-1, ...)
+  if err ~= nil then
+    print(string.format("ERROR: %s", err))
+    os.exit(1)
+  end
+  return unpack(values)
+end
+
 M.exec = function(command)
   local handle = nil
 

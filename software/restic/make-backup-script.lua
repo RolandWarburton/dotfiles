@@ -1,11 +1,8 @@
 #!/usr/bin/lua
 local util     = require("script-utils")
 local restic   = require("restic-utils")
-local home_dir = os.getenv("HOME")
 
-local home     = function(p)
-  return home_dir .. p
-end
+local config   = nil
 
 local hostname = util.exec("/bin/hostname")
 if hostname == "" or hostname == nil then
@@ -13,53 +10,61 @@ if hostname == "" or hostname == nil then
   os.exit(1, true)
 end
 
-local config, err = restic.restic_read_config()
-if err ~= nil or config == nil then
-  print(err)
-  return os.exit(1)
-end
-if config.aws_s3_url == nil then return os.exit(1) end
+config                   = util.exit_if_error(restic.restic_read_config())
 
----------------------------------------------------------------------------------------------------
--- SCRIPT VARIABLES
-local aws_s3_url             = config.aws_s3_url .. "restic-archive-" .. hostname
-local backup_targets         = { "/home", "/etc", "/opt", "/root" }
-local backup_script_path     = home_dir .. "/.local/bin/restic-backup.sh"
----------------------------------------------------------------------------------------------------
+-- get repository information
+local exclude_file       = config.restic_exclude_file
+local aws_s3_url         = util.exit_if_error(restic.restic_get_repository_path(config))
 
--- create a string of targets to give to restic
-local backup_target          = table.concat(backup_targets, " ")
+-- get repository secrets
+local aws_access_key,
+aws_secret_access_key,
+repository_secret        = util.exit_if_error(restic.get_repository_secrets())
 
--- location of the exclude file
-local exclude_file           = home("/.config/restic/exclude")
+local environment_table  = {
+  "RESTIC_PASSWORD=" .. repository_secret .. " \\",
+  "AWS_ACCESS_KEY_ID=" .. aws_access_key .. " \\",
+  "AWS_SECRET_ACCESS_KEY=" .. aws_secret_access_key .. " \\",
+  "RESTIC_REPOSITORY=" .. aws_s3_url .. " \\"
+}
+local environment        = table.concat(environment_table, "\n")
 
--- get AWS secrets
-local aws_access_key_id      = util.exec("sudo cat ~/.restic/secrets | yq -r '.aws_access_key'")
-local aws_secret_access_key  = util.exec("sudo cat ~/.restic/secrets | yq -r '.aws_secret_access_key'")
-
--- get repository secret
-local repository_secret, err = restic.extract_repository_secret()
-if err ~= nil or repository_secret == nil then os.exit(1, true) end
-
-local environment =
-    "RESTIC_PASSWORD=" .. repository_secret .. " \\ \n" ..
-    "AWS_ACCESS_KEY_ID=" .. aws_access_key_id .. " \\ \n" ..
-    "AWS_SECRET_ACCESS_KEY=" .. aws_secret_access_key .. " \\ \n" ..
-    "RESTIC_REPOSITORY=" .. aws_s3_url .. " \\ \n"
-
-local restic_flags = {
+local restic_flags_table = {
   "--verbose",
   "backup",
   "--exclude-file=" .. exclude_file,
-  "--exclude-if-present .resticignore " -- append space intentional
+  "--one-file-system",
+  "--exclude-if-present .resticignore " -- append space intentional for last flag
 }
+local restic_flags       = table.concat(restic_flags_table, " ")
 
-local command = environment .. "restic " .. table.concat(restic_flags, " ") .. backup_target
+local function write_script(command_string)
+  local file, err = io.open(config.restic_backup_shell_script_path, "w")
+  if err ~= nil then
+    print(err)
+    os.exit(1, true)
+  end
 
-local file = io.open(backup_script_path, "w")
-if file then
-  file:write(command)
-  file:close()
+  if file then
+    file:write(command_string)
+    file:close()
+    print("wrote file to " .. config.restic_backup_shell_script_path)
+  end
+
+  -- Change the file permissions to make it executable
+  local success, chmod_err = os.execute("chmod 700 " .. config.restic_backup_shell_script_path)
+  if not success then
+    print("Error making file executable: " .. chmod_err)
+    os.exit(1, true)
+  end
+
+  -- Change the ownership to 'root:root'
+  local success_chown, chown_err = os.execute("chown root:root " .. config.restic_backup_shell_script_path)
+  if not success_chown then
+    print("Error changing ownership: " .. chown_err)
+    os.exit(1, true)
+  end
 end
 
-print()
+local command = environment .. "restic " .. restic_flags .. config.restic_backup_targets
+write_script(command)
