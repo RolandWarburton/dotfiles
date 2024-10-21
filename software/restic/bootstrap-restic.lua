@@ -6,19 +6,7 @@ local restic = require("restic-utils")
 local config = nil
 config = util.exit_if_error(restic.restic_read_config())
 
-local hostname = util.exec("/bin/hostname")
-if hostname == "" or hostname == nil then
-  print("failed to get hostname")
-  os.exit(1, true)
-end
-
--- set these script variables based on the restic config file
-local restic_backup_dir = config.restic_backup_dir              -- location for restic repository
 local aws_s3_url = util.exit_if_error(restic.restic_get_repository_path(config))
-local aws_secrets_path = config.restic_backup_dir .. "/secrets" -- aws secrets location
-
-util.two_col("[INFO] RESTIC BACKUP DIRECTORY", restic_backup_dir)
-util.two_col("[INFO] AWS SECRETS PATH ", aws_secrets_path)
 util.two_col("[INFO] REPOSITORY PATH ", aws_s3_url)
 
 -- get repository secrets

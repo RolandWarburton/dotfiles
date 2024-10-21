@@ -1,15 +1,8 @@
 #!/usr/bin/lua
-local util     = require("script-utils")
-local restic   = require("restic-utils")
+local util               = require("script-utils")
+local restic             = require("restic-utils")
 
-local config   = nil
-
-local hostname = util.exec("/bin/hostname")
-if hostname == "" or hostname == nil then
-  print("failed to get hostname")
-  os.exit(1, true)
-end
-
+local config             = nil
 config                   = util.exit_if_error(restic.restic_read_config())
 
 -- get repository information
