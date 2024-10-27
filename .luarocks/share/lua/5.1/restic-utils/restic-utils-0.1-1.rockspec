@@ -1,5 +1,5 @@
 package = "restic-utils"
-version = "0.1-1"
+version = "0.1-2"
 source = {
   url = "none", -- Local installation, no URL source
   dir = "."
@@ -17,6 +17,6 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["restic-utils"] = "/home/roland/.local/luarocks/5.1/restic-utils/restic-utils.lua"   -- Full path to the Lua file
+    ["restic-utils"] = "/home/roland/.luarocks/share/lua/restic-utils/init.lua"   -- Full path to the Lua file
   }
 }
