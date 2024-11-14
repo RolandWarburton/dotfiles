@@ -1,12 +1,12 @@
 source "${HOME}/.zgen/zgen.zsh"
 
 # make command auto suggestion based on history
-zgen load "zsh-users/zsh-autosuggestions"
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # control space
 bindkey '^@' autosuggest-accept 
 
 # command line syntax highlight
-zgen load "zsh-users/zsh-syntax-highlighting"
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if [[ -f ~/.theme-current && $(cat ~/.theme-current) == "light" ]]; then
   # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
@@ -19,7 +19,7 @@ fi
 
 
 # interative git commands
-zgen load 'wfxr/forgit'
+source ~/.zsh/plugins/forgit/forgit.plugin.zsh
 
 export ZSH_SELECT_WITH_LF_DIR_BIND="^g"
 export ZSH_SELECT_WITH_LF_FILE_BIND="^p"

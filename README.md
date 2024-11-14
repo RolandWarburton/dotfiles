@@ -2,6 +2,12 @@
 
 # Rolands Dotfiles
 
+Once cloned remember to run.
+
+```none
+git submodule update --init --recursive
+```
+
 Symlink dotfiles using rolandwarburton/casa.
 
 ```none
