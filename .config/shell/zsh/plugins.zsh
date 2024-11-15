@@ -1,5 +1,3 @@
-source "${HOME}/.zgen/zgen.zsh"
-
 # make command auto suggestion based on history
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # control space
