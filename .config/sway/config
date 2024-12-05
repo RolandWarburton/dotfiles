@@ -21,7 +21,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu rofi -show-icons -show drun
+set $menu wofi --show drun --allow-images --no-actions --sort-order default --insensitive
 
 # clipboard configuration
 exec wl-paste -t text --watch clipman store --max-items=100

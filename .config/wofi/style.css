@@ -1,0 +1,64 @@
+*{
+  font-family: monospace;
+  font-size: 1.02em;
+}
+
+#window{
+  background-color: #FDF6E3;
+}
+
+/* input search bar */
+#input {
+  margin: 3px;
+  border-radius: 0px;
+  border: none;
+  border-bottom: 3px dashed grey;
+  background-color: #FDF6E3;
+  color: black;
+  font-size: 1.4em;
+}
+
+/* input search bar focused */
+#input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* outside box of the entire window */
+#outer-box {
+  margin: 5px;
+  padding:0px;
+  background-color: #FDF6E3;
+}
+
+/* mostly all text except the inpux box */
+#text {
+  padding: 5px;
+  color: black;
+}
+
+/* an entry (application) of the list */
+#entry {
+  padding: 0px;
+  margin: 0px;
+  background-color: @base00;
+}
+
+#entry:nth-child(odd) {
+  background-color: #EEE8D5;
+}
+
+#entry:nth-child(even) {
+  background-color: #FDF6E3;
+}
+
+#entry:selected {
+  background-color: #586875;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+#text:selected {
+  color: #FDF6E3;
+}

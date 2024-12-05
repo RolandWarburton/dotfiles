@@ -4,6 +4,3 @@ node_modules
 tags
 /.config/shell/zsh/secrets.zsh
 /.config/swaybar/config.yml
-/.config/alacritty/alacritty.yml
-/.config/tmux/themes/theme.conf
-/.config/sway/modules
