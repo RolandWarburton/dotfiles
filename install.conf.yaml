@@ -17,6 +17,8 @@ link:
     path: .config/sway
   - destination: ~/.config/swaybar
     path: .config/swaybar
+  - destination: ~/.config/wofi
+    path: .config/wofi
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf
