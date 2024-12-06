@@ -12,11 +12,6 @@ if command -v luarocks > /dev/null 2>&1 && [ -d "$HOME/.local/luarocks/$LUA_VERS
   export LUA_PATH="$LUA_PATH;$HOME/.local/luarocks/$LUA_VERSION/?/init.lua"
 fi
 
-# Add completions
-if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then
-  export FPATH="$HOME/.zsh/completions:$FPATH";
-fi
-
   # . "/home/roland/.deno/env"
 [ -s "$HOME/.deno/env" ] && \. "$HOME/.deno/env" # this loads deno
 

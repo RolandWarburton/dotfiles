@@ -39,4 +39,14 @@ source ~/.zsh/plugins.zsh
 source ~/.zsh/ssh.zsh
 [[ -f ~/.zsh/secrets.zsh ]] && source ~/.zsh/secrets.zsh
 
+# Add completions
+if [[ $fpath[(r)$HOME/.zsh/completions] == "" ]]; then
+  fpath+=($HOME/.zsh/completions)
+fi
+
+# load completions from cache with -C
+# refer to autocomplete.zsh for cache management
+autoload -U compinit
+compinit -C
+
 eval "$(starship init zsh)"
