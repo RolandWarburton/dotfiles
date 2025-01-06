@@ -30,7 +30,6 @@ alias fcd='f() {cd $(find . -maxdepth 1 -type d | fzf)};f'
 alias pkill="pkill -i" # ignore case
 alias dockerbuild='docker-compose build'
 alias viviInspect='cat $(cat ~/.vivi_tools.json | jq -r ".tmp.inspectFile") | fx'
-alias vim='nvim'
 alias prunebranches='git remote prune origin'
 alias hibernate='systemctl hibernate'
 alias dbusps='ps -o pid,ppid,command -C dbus-daemon'
