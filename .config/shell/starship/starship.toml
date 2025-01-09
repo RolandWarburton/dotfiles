@@ -7,7 +7,7 @@ add_newline = false
 
 # format prompt
 # format = "$directory$character(color1)"
-format = "$directory$character(color1)"
+format = "$hostname$directory$character(color1)"
 
 # TODO part of light/dark theme - change this later
 palette = 'dark'
@@ -45,7 +45,7 @@ error_symbol = '[❯](color3)'
 # this only show up when in SSH (ssh_only)
 [hostname]
 ssh_only = true
-format = "[$hostname](red) "
+format = "[$hostname](color4) "
 
 # this only show up when in SSH (show_always)
 [username]
