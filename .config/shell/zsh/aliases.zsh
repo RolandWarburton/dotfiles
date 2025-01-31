@@ -40,6 +40,7 @@ alias sgpt="sgpt --role=programmer"
 alias lf="lfcd"
 alias path="echo \$PATH | awk -F':' '{for(i=1; i<=NF; i++) print \$i} END {print \"\"}'"
 alias luarockspath="luarocks path | luarockspath.lua"
+alias printlabel="lprint submit -o media=om_address-label_36x89mm -o print-content-optimize=monochrome -o print-quality=high -o print-color-mode=bi-level -o printer-resolution=300dpi"
 
 lf_select_cwd() {
   lf -remote "send select $(pwd)" >/dev/null 2>&1
