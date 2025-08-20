@@ -278,3 +278,5 @@ include @sysconfdir@/sway/config.d/*
 # start fresh ssh agent
 exec killall ssh-agent
 exec /usr/bin/ssh-agent | head -n 2 > /home/roland/.ssh-agent
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
