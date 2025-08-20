@@ -30,9 +30,9 @@ exec wl-paste -t text --watch clipman store --max-items=100
 #
 # clamshell switching
 set $laptop eDP-1
-bindswitch --reload --locked lid:on exec "/usr/local/etc/sway/configure-laptop-display.sh"
-bindswitch --reload --locked lid:off exec "/usr/local/etc/sway/configure-laptop-display.sh"
-exec_always /usr/local/etc/sway/configure-laptop-display.sh
+bindswitch --reload --locked lid:on exec "/usr/local/bin/sway-laptop-display.sh"
+bindswitch --reload --locked lid:off exec "/usr/local/bin/sway-laptop-display.sh"
+exec_always /usr/local/bin/sway-laptop-display.sh
 
 #
 # Example configuration:
