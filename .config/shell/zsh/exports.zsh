@@ -29,11 +29,8 @@ export NVM_DIR="$HOME/.config/nvm"
 # Starship config
 export STARSHIP_CONFIG=$HOME/.config/starship.toml
 
-# Go exports
-# https://go.dev/doc/install
-export GOPATH=$HOME/.local/go/pkg
-export PATH=$PATH:$HOME/.local/go/bin
-export PATH=$PATH:$HOME/.local/go/pkg/bin
+# Golang
+[[ -f "/etc/profile.d/golang.sh" ]] && source /etc/profile.d/golang.sh
 
 # Flutter & Dart
 # Install from https://dart.dev/get-dart
