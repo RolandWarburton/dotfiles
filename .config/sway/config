@@ -77,7 +77,7 @@ bindsym $mod+Shift+q kill
 # Start your launcher
 bindsym $mod+d exec $menu
 # start Clipboard picker
-bindsym $mod+c exec clipman pick --tool="rofi"
+bindsym $mod+c exec clipman pick --tool="wofi"
 # when a window is in an "about to split mode" using mod+v or mod+b.
 # The window gets a H[name] or V[name] based on what split is about to happen.
 # The below bind adds the ability to exit the split mode and remove the V[] or H[]
