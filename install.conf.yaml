@@ -58,5 +58,5 @@ link:
   - destination: ~/.config/starship.toml
     path: .config/shell/starship/starship.toml
     if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
-  - destination: ~/.config/alacritty
-    path: .config/alacritty
+  - destination: ~/.config/foot
+    path: .config/foot
