@@ -8,8 +8,8 @@ link:
   - destination: ~/.local/scripts
     path: .local/scripts
     # lua
-  - destination: ~/.luarocks
-    path: .luarocks
+  - destination: ~/.local/luarocks
+    path: .local/luarocks
   # sway
   - destination: ~/.config/sway
     path: .config/sway
