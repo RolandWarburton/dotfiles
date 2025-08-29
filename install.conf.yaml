@@ -17,6 +17,9 @@ link:
     path: .config/swaybar
   - destination: ~/.config/wofi
     path: .config/wofi
+  - destination: ~/start-sway
+    path: .local/scripts/start-sway.sh
+    if: 'dpkg-query --show sway'
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf
