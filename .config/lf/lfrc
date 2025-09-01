@@ -69,6 +69,26 @@ set relativenumber
 ################################################################################
 # COMMANDS
 ################################################################################
+# change columns if at home directory, in the root, or in a git repo root to be 1 col
+# otherwise set to 2 columns
+cmd on-cd ${{
+    case "$PWD" in
+        /home/$USER|/)
+            lf -remote "send $id set ratios 1"
+            ;;
+        *)
+            # Check if current directory is a git repo root (has .git folder)
+            if [ -d ".git" ]; then
+                # At git repo root - hide parent
+                lf -remote "send $id set ratios 1"
+            else
+                # Not at git repo root - show parent
+                lf -remote "send $id set ratios 1:2"
+            fi
+            ;;
+    esac
+}}
+on-cd
 
 cmd open ${{
   case $(file --mime-type "$f" -bL) in
