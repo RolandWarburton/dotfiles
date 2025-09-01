@@ -15,7 +15,7 @@ $~/.config/lf/sidecar.sh
 ################################################################################
 # Settings
 ################################################################################
-# set preview to false by default
+# set preview (preview files)
 set preview false
 
 # automatically quit the when there are no clients left
@@ -42,17 +42,29 @@ set shellopts '-eu'
 # draw lines around the folders like in ranger
 set drawbox true
 
-# one column layout
-set ratios 1
-
 # two column layout
-# set ratios 1:2
+set ratios 1:2
+
+# focused item color
+set cursoractivefmt "\033[7;38;2;36;172;212m" # 24acd4
+
+# parent selected item color
+set cursorparentfmt "\033[100m"
+
+# preview (sibling) selected item color
+set cursorpreviewfmt "\033[100m"
+
+# show directories above files
+set dirfirst true
+
+# show the number of items inside instead of the total size of a directory
+set dircounts true
+
+# enable icons
+set icons true
 
 # draw vim like relative numbers
 set relativenumber
-
-# Use the `dim` attribute instead of underline for the cursor in the preview pane
-set cursorpreviewfmt "\033[7;2m"
 
 ################################################################################
 # COMMANDS
