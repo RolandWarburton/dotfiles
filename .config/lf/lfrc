@@ -133,6 +133,7 @@ map gd ${{  lf -remote "send $id cd /home/$USERNAME/dotfiles"; lf -remote "send 
 # column layouts
 map ,1 set ratios 1
 map ,2 set ratios 1:2
+map ,3 set ratios 1:2:3
 # tmux intergrations
 map <c-s> ${{~/.config/lf/cd-sync.sh}}
 map <c-o> ${{~/.config/lf/split-to-nvim.sh}}
