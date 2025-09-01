@@ -71,6 +71,10 @@ cmd open ${{
   esac
 }}
 
+cmd Git ${{
+  nvim -c Git
+}}
+
 cmd git_branch ${{
     git branch | fzf | xargs git checkout
     pwd_shell=$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')
