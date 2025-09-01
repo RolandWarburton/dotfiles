@@ -1,5 +1,6 @@
 # export PATH=/usr/bin/pip3:$PATH export LC_ALL="en_US.UTF-8"
 export EDITOR=nvim
+export VISUAL=nvim
 
 # when using the mv command include hidden .files
 setopt glob_dots
