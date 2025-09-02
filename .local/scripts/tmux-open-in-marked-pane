@@ -66,7 +66,7 @@ tmux list-panes -F \
 "#{pane_index} #{pane_pid} #{pane_at_left} \
 #{pane_current_command} #{pane_current_path}" | grep %s
   ]]
-local cmd = string.format(fmt, panePID)
+local cmd = string.format(fmt, panePID):gsub("\n", " ")
 local paneInfoString = utils.exec(cmd)
 local pane = parseRow(paneInfoString)
 if not pane then os.exit(1, true) end
@@ -93,7 +93,7 @@ local paneID = pane.paneIndex -- the ID of the marked pane
 
 -- if a neovim pane is marked then open it in a vertical split
 if paneContainsNvim then
-  print("opening in nvim instance " .. paneID)
+  -- opening in nvim instance using its paneID)
   local cmd = [[tmux send-keys -t %s ":vsp %s" Enter]]
   os.execute(string.format(cmd, paneID, fx))
   os.execute("tmux select-pane -t " .. paneID)
