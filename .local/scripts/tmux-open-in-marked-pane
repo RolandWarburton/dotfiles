@@ -55,9 +55,9 @@ end
 
 local panePID = getMarkedPane()
 if not panePID then
-  print('no marked pane, opening in the current LF window')
+  -- no marked pane, opening in the current LF window
   os.execute("nvim " .. arg[1])
-  os.exit(0, true);
+  os.exit(0, true)
 end
 
 -- get information about the pane
