@@ -42,8 +42,8 @@ set shellopts '-eu'
 # draw lines around the folders like in ranger
 set drawbox true
 
-# two column layout
-set ratios 1:2
+# one column layout by default
+set ratios 1
 
 # focused item color
 set cursoractivefmt "\033[7;38;2;36;172;212m" # 24acd4
