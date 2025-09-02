@@ -10,7 +10,7 @@
 --
 -- Created and intended for use with the LF file manager
 
-local utils = require("script-utils")
+local utils = require("scriptutils")
 
 local function parseRow(line)
   local paneIndex,
