@@ -78,16 +78,8 @@ cmd on-cd ${{
 }}
 
 cmd open ${{
-  case $(file --mime-type "$f" -bL) in
-    text/*|application/json)
-        tmux-open-in-marked-pane "$fx"
-        ;;
-    *)
-        for f in "$fx"; do
-          sway-open "$fx"
-        done
-        ;;
-  esac
+script="/home/roland/.config/lf/scripts/open.lua"
+lua "$script"
 }}
 
 cmd Git ${{
