@@ -92,6 +92,10 @@ cmd git_branch ${{
     lf -remote "send $id cd \"$pwd_shell\""
 }}
 
+cmd nvim ${{
+  nvim "$PWD"
+}}
+
 cmd ripdrag-wrapper ${{ripdrag-wrapper $fx}}
 
 cmd find_file ${{
