@@ -76,9 +76,9 @@ else
 fi
 
 # If bat is installed then use those
-if which bat >/dev/null
+if which batcat >/dev/null
 then
-	alias cat=bat
+	alias cat="batcat -p"
 fi
 
 
