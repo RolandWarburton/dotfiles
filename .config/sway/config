@@ -93,6 +93,8 @@ bindsym $mod+Shift+g exec screenshot --edit
 bindsym $mod+Shift+p exec screenshot --open
 # color picker
 bindsym $mod+Shift+i exec colorpicker
+# wooz zoom utility
+bindsym $mod+z exec /usr/local/bin/wooz --mouse-track
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
