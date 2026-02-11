@@ -87,14 +87,26 @@ bindsym $mod+alt+l exec  swaylock --indicator-radius 300 --indicator-thickness 3
 # Change window focus
 bindsym alt+Tab          focus child
 bindsym alt+Shift+Tab    focus parent
-# screenshot
-bindsym $mod+Shift+s exec screenshot --copy
-bindsym $mod+Shift+g exec screenshot --edit
-bindsym $mod+Shift+p exec screenshot --open
 # color picker
 bindsym $mod+Shift+i exec colorpicker
 # wooz zoom utility
 bindsym $mod+z exec /usr/local/bin/wooz --mouse-track
+
+# satty
+# location of satty executable
+set $satty $HOME/.cargo/bin/satty --filename - --initial-tool=arrow
+# location of screenshot script
+set $screenshot-tool exec screenshot --copy
+# open annotation tool (satty)
+set $annotate-tool exec sh -c 'grim -t ppm -g "$(slurp -d)" - | $satty'
+
+#screenshot
+bindsym $mod+Shift+s $screenshot-tool
+bindsym $mod+Shift+a $annotate-tool
+# other ways to screenshot (old method)
+# bindsym $mod+Shift+s exec screenshot --copy
+# bindsym $mod+Shift+g exec screenshot --edit
+# bindsym $mod+Shift+p exec screenshot --open
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
