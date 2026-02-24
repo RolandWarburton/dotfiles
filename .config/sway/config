@@ -94,7 +94,7 @@ bindsym $mod+z exec /usr/local/bin/wooz --mouse-track
 
 # satty
 # location of satty executable
-set $satty $HOME/.cargo/bin/satty --filename -
+set $satty /usr/bin/satty --filename -
 # location of screenshot script
 set $screenshot-tool exec screenshot --copy
 # open annotation tool (satty)
