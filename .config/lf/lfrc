@@ -122,7 +122,10 @@ map y ${{wl-copy "$fx"}}
 # cut file
 map x cut
 # delete a file
-map dd ${{rm -rf $fx && lf -remote "send echo deleted $(basename $fx)"}}
+map dd ${{
+  files=("${(f)fx}")
+  rm -rf "${files[@]}" && lf -remote "send echo deleted ${#files[@]} file(s)"
+}}
 # toggle preview
 map ,p set preview!
 # fuzzy file search for file and directory names
