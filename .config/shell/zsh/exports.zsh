@@ -24,7 +24,7 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # rust toolchain
-if [ -d /usr/local/cargo ]; then
+if [ -d /usr/local/cargo ] || [ -f /usr/bin/cargo ]; then
   # if installed via ansible role (global install)
   export RUSTUP_HOME=/usr/local/rustup
   export CARGO_HOME="$HOME/.cargo"
