@@ -3,7 +3,7 @@
 local lfs = require("lfs")
 
 local home = os.getenv("HOME")
-local colors_dir = home .. "/.local/share/icons/colors/"
+local colors_dir = home .. "/tmp"
 local history_file = home .. "/.color-picker-history"
 
 -- creates the files color-picker-history files and color icons folder
