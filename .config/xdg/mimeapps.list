@@ -24,3 +24,4 @@ video/mp4=mpv.desktop
 video/x-matroska=mpv.desktop
 video/avi=mpv.desktop
 video/mpeg=mpv.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
