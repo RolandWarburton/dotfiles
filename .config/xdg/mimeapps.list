@@ -19,6 +19,8 @@ image/x-portable-pixmap=imv.desktop
 image/x-tga=imv.desktop
 image/x-bmp=imv.desktop
 image/x-png=imv.desktop
+# pdf
+application/pdf=org.pwmt.zathura.desktop
 # videos
 video/mp4=mpv.desktop
 video/x-matroska=mpv.desktop
