@@ -1,0 +1,23 @@
+[general]
+# Filename to use for saving action. Omit to disable saving to file.
+output-filename = "~/Pictures/screenshot-%Y-%m-%d-%H-%M-%S.png"
+annotation-size-factor = 1
+# Actions to trigger on Enter key (order is important)
+# [possible values: save-to-clipboard, save-to-file, save-to-file-as, copy-filepath-to-clipboard, exit]
+#actions-on-enter = ["save-to-clipboard"]
+# The command to copy the screenshot to the clipboard.
+# You can use `{}` as a placeholder for the file name.
+#copy-command = "wl-copy < {}"
+# The command to open the screenshot in an editor.
+# You can use `{}` as a placeholder for the file name.
+#editor-command = "gimp {}"
+
+#[flags]
+# Whether to copy the screenshot to the clipboard after saving.
+#copy = true
+# Whether to open the screenshot in an editor after saving.
+#edit = false
+# Whether to grab a fullscreen screenshot.
+#fullscreen = false
+# Whether to grab the current window as a screenshot.
+#window = false

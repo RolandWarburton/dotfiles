@@ -98,7 +98,7 @@ set $satty /usr/bin/satty --filename -
 # location of screenshot script
 set $screenshot-tool exec screenshot --copy
 # open annotation tool (satty)
-set $annotate-tool exec sh -c 'grim -t ppm -g "$(slurp -d)" - | $satty'
+set $annotate-tool exec sh -c 'grim -g "$(slurp -d)" - | $satty'
 
 #screenshot
 bindsym $mod+Shift+s $screenshot-tool
