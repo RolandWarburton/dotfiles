@@ -23,8 +23,16 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# cargo for rust
-[ -f ~/.cargo/env ] && source $HOME/.cargo/env
+# rust toolchain
+if [ -d /usr/local/cargo ] || [ -f /usr/bin/cargo ]; then
+  # if installed via ansible role (global install)
+  export RUSTUP_HOME=/usr/local/rustup
+  export CARGO_HOME="$HOME/.cargo"
+  export PATH="/usr/local/cargo/bin:$HOME/.cargo/bin:$PATH"
+elif [ -f ~/.cargo/env ]; then
+  # local user install (fallback)
+  source ~/.cargo/env
+fi
 
 # Starship config
 export STARSHIP_CONFIG=$HOME/.config/starship.toml

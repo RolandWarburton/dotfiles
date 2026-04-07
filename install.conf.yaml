@@ -20,6 +20,9 @@ link:
   - destination: ~/start-sway
     path: .local/scripts/start-sway.sh
     if: 'dpkg-query --show sway'
+  # sway tools
+  - destination: ~/.config/satty
+    path: .config/satty
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf
