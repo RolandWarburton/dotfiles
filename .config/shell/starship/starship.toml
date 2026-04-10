@@ -7,7 +7,7 @@ add_newline = false
 
 # format prompt
 # format = "$directory$character(color1)"
-format = "$hostname$directory$character(color1)"
+format = "$hostname$directory$python$character(color1)"
 
 # TODO part of light/dark theme - change this later
 palette = 'dark'
@@ -65,6 +65,12 @@ disabled = true
 
 [lua]
 disabled = true
+
+[python]
+format = '[\($virtualenv ${version}\)](color2) '
+detect_extensions = []
+detect_files = []
+detect_folders = []
 
 # disable package versions
 [package]
