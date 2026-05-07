@@ -26,7 +26,7 @@ export NVM_DIR="$HOME/.config/nvm"
 # rust toolchain
 if [ -d /usr/local/cargo ] || [ -f /usr/bin/cargo ]; then
   # if installed via ansible role (global install)
-  export RUSTUP_HOME=/usr/local/rustup
+  export RUSTUP_HOME="$HOME/.rustup"
   export CARGO_HOME="$HOME/.cargo"
   export PATH="/usr/local/cargo/bin:$HOME/.cargo/bin:$PATH"
 elif [ -f ~/.cargo/env ]; then
