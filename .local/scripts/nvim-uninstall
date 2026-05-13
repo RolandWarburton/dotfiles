@@ -1,6 +1,17 @@
 #!/bin/bash
+
+# global install
 sudo rm -rf /usr/bin/nvim-linux-x86_64
+sudo rm -rf /usr/bin/nvim-linux-arm64
 sudo rm -f /usr/bin/nvim
+# user local
 rm -rf ~/.local/share/nvim
 rm -rf ~/.cache/nvim
 rm -rf ~/.local/state/nvim
+# temp
+sudo rm -rf /tmp/nvim-linux-x86_64.tar.gz
+sudo rm -rf /tmp/nvim-linux-arm64.tar.gz
+sudo rm -rf /tmp/nvim-linux-x86_64
+sudo rm -rf /tmp/nvim-linux-arm64
+# misc
+sudo rm -rf /usr/local/bin/tree-sitter
