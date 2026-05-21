@@ -2,6 +2,7 @@ create:
   - ~/.config
   - ~/.local
   - ~/.local/share/applications
+  - ~/.claude
   - ~/.gnupg
 
 link:
@@ -74,3 +75,6 @@ link:
     if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
   - destination: ~/.config/foot
     path: .config/foot
+  # claude code
+  - destination: ~/.claude/settings.json
+    path: .config/claude/settings.json

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# !! ---------------------------
+# Claude Code Stop hook
+# sends a desktop notification when Claude finishes a response
+
+# Notify args: app_name replaces_id app_icon summary body actions hints expire_timeout
+#   app_name     "claude"
+#   replaces_id  0           create a new notification
+#   app_icon     ""          no icon
+#   summary      "Claude Code"
+#   body         "Done."
+#   actions      "@as []"    no action buttons
+#   hints        "@a{sv} {}" no extra hints
+#   timeout      -1          use mako default-timeout
+
+gdbus call --session \
+    --dest org.freedesktop.Notifications \
+    --object-path /org/freedesktop/Notifications \
+    --method org.freedesktop.Notifications.Notify \
+    -- "claude" 0 "" "Claude Code" "Done." "@as []" "@a{sv} {}" -1
