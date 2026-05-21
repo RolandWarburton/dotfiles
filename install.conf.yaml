@@ -23,6 +23,8 @@ link:
   # sway tools
   - destination: ~/.config/satty
     path: .config/satty
+  - destination: ~/.config/mako
+    path: .config/mako
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf
@@ -38,6 +40,9 @@ link:
     path: .config/nvm/.nvmrc
   - destination: ~/.config/imv
     path: .config/imv
+  # mpv
+  - destination: ~/.config/mpv
+    path: .config/mpv
   # restic
   - destination: ~/.config/restic
     path: .config/restic

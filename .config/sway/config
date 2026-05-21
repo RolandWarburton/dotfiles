@@ -25,6 +25,7 @@ set $menu wofi --show drun --allow-images --no-actions --sort-order default --in
 
 # clipboard configuration
 exec wl-paste -t text --watch clipman store --max-items=100
+exec bash -c 'command -v mako >/dev/null && mako'
 
 ### Output configuration
 #

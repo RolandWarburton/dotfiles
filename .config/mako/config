@@ -1,0 +1,32 @@
+# Layout
+width=380
+height=130
+margin=10
+padding=16
+border-size=0
+border-radius=0
+icons=1
+max-icon-size=48
+
+# Font
+font=Hack Nerd Font Mono 14
+
+# Colors
+background-color=#e8e8e8ff
+text-color=#2f333eff
+border-color=#000000ff
+
+# Timing
+default-timeout=5000
+ignore-timeout=0
+
+# Position
+anchor=top-right
+
+[urgency=low]
+border-color=#2f333eff
+default-timeout=3000
+
+[urgency=high]
+border-color=#f62b5aff
+default-timeout=0
