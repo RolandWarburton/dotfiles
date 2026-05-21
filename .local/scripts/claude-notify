@@ -14,6 +14,10 @@
 #   hints        "@a{sv} {}" no extra hints
 #   timeout      -1          use mako default-timeout
 
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+    exit 0
+fi
+
 if command -v paplay &>/dev/null; then
     paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga &
 fi
