@@ -23,6 +23,10 @@ ignore-timeout=0
 # Position
 anchor=top-right
 
+[app-name=claude]
+background-color=#e8820cff
+text-color=#1a1a1aff
+
 [urgency=low]
 border-color=#2f333eff
 default-timeout=3000
