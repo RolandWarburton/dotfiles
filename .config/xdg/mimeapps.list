@@ -1,5 +1,23 @@
 
 [Default Applications]
+# text
+text/plain=nvim.desktop
+text/markdown=nvim.desktop
+text/x-lua=nvim.desktop
+text/x-shellscript=nvim.desktop
+text/x-python=nvim.desktop
+text/x-c=nvim.desktop
+text/x-c++=nvim.desktop
+text/x-go=nvim.desktop
+text/x-rust=nvim.desktop
+text/x-php=nvim.desktop
+text/x-java=nvim.desktop
+text/css=nvim.desktop
+text/html=nvim.desktop
+application/json=nvim.desktop
+application/xml=nvim.desktop
+application/x-yaml=nvim.desktop
+application/toml=nvim.desktop
 # web
 x-scheme-handler/webcal=chromium.desktop
 x-scheme-handler/mailto=chromium.desktop
