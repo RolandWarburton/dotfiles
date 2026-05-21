@@ -1,13 +1,18 @@
 create:
   - ~/.config
   - ~/.local
+  - ~/.local/share/applications
   - ~/.gnupg
 
 link:
   # scripts
   - destination: ~/.local/scripts
     path: .local/scripts
-    # lua
+  # applications
+  - destination: ~/.local/share/applications/nvim.desktop
+    path: .local/share/applications/nvim.desktop
+    if: '[ -f /usr/bin/nvim ]'
+  # lua
   - destination: ~/.local/luarocks
     path: .local/luarocks
   # sway
