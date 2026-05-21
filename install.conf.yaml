@@ -75,6 +75,10 @@ link:
     if: '[ `$SHELL` -eq `/usr/bin/zsh` ]'
   - destination: ~/.config/foot
     path: .config/foot
+  # wireplumber
+  - destination: ~/.config/wireplumber
+    path: .config/wireplumber
+    if: 'dpkg-query --show sway'
   # claude code
   - destination: ~/.claude/settings.json
     path: .config/claude/settings.json

@@ -14,6 +14,10 @@
 #   hints        "@a{sv} {}" no extra hints
 #   timeout      -1          use mako default-timeout
 
+if command -v paplay &>/dev/null; then
+    paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga &
+fi
+
 gdbus call --session \
     --dest org.freedesktop.Notifications \
     --object-path /org/freedesktop/Notifications \
