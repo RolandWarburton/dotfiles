@@ -22,8 +22,7 @@ if command -v paplay &>/dev/null; then
     paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga &
 fi
 
-gdbus call --session \
-    --dest org.freedesktop.Notifications \
-    --object-path /org/freedesktop/Notifications \
-    --method org.freedesktop.Notifications.Notify \
-    -- "claude" 0 "" "Claude Code" "Done." "@as []" "@a{sv} {}" -1
+# notify-send is provided by the libnotify-bin package
+if command -v notify-send &>/dev/null; then
+    notify-send --app-name="claude" "Claude Code" "Done."
+fi
