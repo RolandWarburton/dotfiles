@@ -49,6 +49,13 @@ if [[ -n "$FLUTTER_DIR" ]]; then
   export CHROME_EXECUTABLE=$(which chromium)
 fi
 
+# Android SDK
+ANDROID_SDK_DIR="$HOME/.android-sdk"
+if [[ -d "$ANDROID_SDK_DIR" ]]; then
+  export ANDROID_HOME="$ANDROID_SDK_DIR"
+  export ANDROID_SDK_ROOT="$ANDROID_SDK_DIR"
+fi
+
 # sway options
 export SWAYBAR_CONFIG_LOCATION="$HOME/.config/swaybar/config.yml"
 
