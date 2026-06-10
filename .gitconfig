@@ -12,3 +12,5 @@
 [pull]
   rebase = false
 
+[safe]
+	directory = /home/roland/projects/kvmcv/pico-firmware/lib/pico-sdk

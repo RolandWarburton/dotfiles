@@ -7,7 +7,7 @@ alias ls="ls -h --color" # (-h human readable): print things like 1mb, 2gb, 1tb.
 alias gut="git" # muh smol hands
 alias r="ranger"
 alias s="sudo"
-alias ssh="TERM=xterm-256color ssh"
+# alias ssh="TERM=xterm-256color ssh"
 alias c="xclip -selection clipboard"
 alias df="df -h"
 alias swinvpn="sudo openconnect vpn.swin.edu.au --user=102106751 --passwd-on-stdin < /home/roland/passwords/swinburne.txt"

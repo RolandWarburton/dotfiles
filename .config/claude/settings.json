@@ -25,10 +25,5 @@
     "lua-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true
   },
-  "effortLevel": "medium",
-  "permissions": {
-    "allow": [
-      "Bash(*)"
-    ]
-  }
+  "effortLevel": "medium"
 }

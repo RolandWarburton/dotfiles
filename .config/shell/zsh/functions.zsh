@@ -11,3 +11,7 @@ dockersh() {
   local container_name="$1"
   docker exec -it "$container_name" /bin/bash
 }
+
+docker_find_container_name() {
+  docker ps -a --filter "name=$1" --format "{{.Names}}"
+}

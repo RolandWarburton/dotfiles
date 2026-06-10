@@ -56,6 +56,13 @@ if [[ -d "$ANDROID_SDK_DIR" ]]; then
   export ANDROID_SDK_ROOT="$ANDROID_SDK_DIR"
 fi
 
+# pico-sdk
+if [ -d "/usr/local/share/pico-sdk" ]; then
+    export PICO_SDK_PATH=/usr/local/share/pico-sdk
+    export PATH=$PATH:/usr/local/share/pico-sdk/tools
+    export PICOTOOL_FETCH_FROM_GIT_PATH=/usr/local/share/pico-sdk
+fi
+
 # sway options
 export SWAYBAR_CONFIG_LOCATION="$HOME/.config/swaybar/config.yml"
 
