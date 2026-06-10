@@ -1,4 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Read(*)"
+    ]
+  },
   "hooks": {
     "Stop": [
       {
