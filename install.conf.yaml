@@ -13,6 +13,9 @@ link:
   - destination: ~/.local/share/applications/nvim.desktop
     path: .local/share/applications/nvim.desktop
     if: '[ -f /usr/bin/nvim ]'
+  # icons
+  - destination: ~/.local/share/icons
+    path: .local/share/icons
   # lua
   - destination: ~/.local/luarocks
     path: .local/luarocks
