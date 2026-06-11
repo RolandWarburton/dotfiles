@@ -11,6 +11,7 @@
   defaultBranch = master
 [pull]
   rebase = false
-
 [safe]
-	directory = /home/roland/projects/kvmcv/pico-firmware/lib/pico-sdk
+	directory = /opt/flutter/*
+	directory = /home/roland/.flutter
+	directory = /home/roland/.flutter

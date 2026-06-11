@@ -33,7 +33,10 @@ exec bash -c 'command -v mako >/dev/null && mako'
 set $laptop eDP-1
 bindswitch --reload --locked lid:on exec "/usr/local/bin/sway-laptop-display.sh"
 bindswitch --reload --locked lid:off exec "/usr/local/bin/sway-laptop-display.sh"
-exec_always /usr/local/bin/sway-laptop-display.sh
+exec swww-daemon
+# exec swaymsg -t subscribe -m '["output"]' | while read line; do /usr/local/bin/sway-laptop-display.sh; done
+# exec /usr/local/bin/sway-laptop-display.sh
+# exec_always /usr/local/bin/sway-laptop-display.sh
 
 #
 # Example configuration:
