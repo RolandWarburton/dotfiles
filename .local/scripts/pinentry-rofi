@@ -1,0 +1,55 @@
+#!/bin/bash
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ]; then
+    exec /usr/bin/pinentry-curses "$@"
+fi
+
+prompt="Passphrase"
+error=""
+
+echo "OK Pleased to meet you"
+
+while IFS= read -r line; do
+    cmd="${line%% *}"
+    args="${line#* }"
+    [[ "$args" == "$cmd" ]] && args=""
+
+    case "$cmd" in
+        SETERROR)
+            error="$args"
+            echo "OK"
+            ;;
+        SETDESC|SETTITLE|SETOK|SETCANCEL|SETNOTOK|OPTION|RESET|MESSAGE)
+            echo "OK"
+            ;;
+        SETPROMPT)
+            prompt="${args%:}"
+            echo "OK"
+            ;;
+        GETPIN)
+            display_prompt="$prompt"
+            [[ -n "$error" ]] && display_prompt="$prompt ($error)"
+            error=""
+            pin=$(echo -n | rofi -dmenu -password -p "$display_prompt" -l 0 \
+                -theme-str '* { font: "monospace 20"; }' \
+                -theme-str 'inputbar { padding: 16px; border: 0px; }' \
+                -theme-str 'entry { placeholder: "enter passphrase..."; font: "monospace italic 20"; }')
+            if [[ $? -eq 0 ]]; then
+                echo "D $pin"
+                echo "OK"
+            else
+                echo "ERR 83886179 Operation cancelled"
+            fi
+            ;;
+        CONFIRM)
+            echo "OK"
+            ;;
+        BYE)
+            echo "OK closing connection"
+            exit 0
+            ;;
+        *)
+            echo "OK"
+            ;;
+    esac
+done
