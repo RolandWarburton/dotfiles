@@ -1,13 +1,12 @@
-#!/usr/bin/sh
+#!/bin/bash
 
-# Loop through arguments and process them
-for arg in "$@"; do
-	case $arg in
+while [[ $# -gt 0 ]]; do
+	case $1 in
 	-w | --word)
 		WORD="$2"
-		shift # Remove argument name from processing
+		shift 2
 		;;
-	*) ;;
+	*) shift ;;
 	esac
 done
 
@@ -24,12 +23,6 @@ STRLEN=$(echo -n $WORD | wc -m)
 STRSPACE=$(($STRLEN / "2"))
 [[ "$STRSPACE" -gt "5" ]] && STRSPACE=5
 
-PADSPACE=0
-
-# If the word is ODD then it needs a pad to make it even
-ISODD=$(($STRLEN % 2))
-[[ "$ISODD" == "0" ]] && ODDPADD=1 || ODDPADD=0
-
 # ########################
 padBorder $(($STRSPACE + $STRLEN + $STRSPACE)) "#"
 printf "\n"
@@ -38,7 +31,7 @@ printf "\n"
 [[ "$STRLEN" -gt "2" ]] && printf "#" || printf ""
 
 padBorder $(($STRSPACE - 1)) " " # space the border out
-printf "$WORD"                   # print the word
+printf "%s" "$WORD"              # print the word
 padBorder $(($STRSPACE - 1)) " " # space the border out
 
 # Dont print the end of the pad border if the string is short
