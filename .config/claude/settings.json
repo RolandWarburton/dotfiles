@@ -26,4 +26,7 @@
     "gopls-lsp@claude-plugins-official": true
   },
   "effortLevel": "medium"
+  "env": {
+    "CLAUDE_CODE_SCROLL_SPEED": "3"
+  }
 }
