@@ -25,7 +25,8 @@
     "lua-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true
   },
-  "effortLevel": "medium"
+  "effortLevel": "medium",
+  "tui": "fullscreen",
   "env": {
     "CLAUDE_CODE_SCROLL_SPEED": "3"
   }
