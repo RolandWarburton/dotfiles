@@ -1,0 +1,45 @@
+/* dedicated style for the gpg pinentry prompt */
+/* invoked via: wofi --style ~/.config/wofi/pinentry.css */
+
+* {
+  font-family: "Hack Nerd Font Mono", monospace;
+  font-size: 20px;
+}
+
+#window {
+  background-color: #434857;
+}
+
+/* outside box of the entire window */
+#outer-box {
+  margin: 0px;
+  padding: 16px;
+  background-color: #434857;
+}
+
+/* the passphrase input bar */
+#input {
+  margin: 0px;
+  padding: 8px;
+  border-radius: 0px;
+  border: none;
+  border-bottom: 3px solid #6eb5d4;
+  background-color: #434857;
+  color: #c8c8c8;
+  caret-color: #d4a72c;
+}
+
+#input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* hide the GtkSearchEntry magnifying-glass (and clear) icon */
+#input image {
+  opacity: 0;
+  -gtk-icon-transform: scale(0);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}

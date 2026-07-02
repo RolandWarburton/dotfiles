@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# Is a usable Wayland display actually reachable? Checking the socket (not
+# just the env var) catches a stale WAYLAND_DISPLAY inherited from gpg-agent
+# when the compositor isn't really there (headless, tty login).
+have_gui() {
+    [ -n "$WAYLAND_DISPLAY" ] || return 1
+    case "$WAYLAND_DISPLAY" in
+        /*) [ -S "$WAYLAND_DISPLAY" ] ;;
+        *)  [ -S "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/$WAYLAND_DISPLAY" ] ;;
+    esac
+}
+
+# No display, or wofi missing -> hand the whole session to the terminal
+# pinentry (it speaks the assuan protocol itself, incl. OPTION ttyname).
+if ! command -v wofi >/dev/null 2>&1 || ! have_gui; then
+    exec /usr/bin/pinentry-curses "$@"
+fi
+
+STYLE="$HOME/.config/wofi/pinentry.css"
+prompt="Passphrase"
+desc=""
+error=""
+
+# decode the assuan percent-encoding gpg uses in SETDESC etc, and flatten
+# newlines so the text fits a single-line wofi prompt.
+assuan_decode() {
+    local s="$1"
+    s="${s//%0A/ }"
+    s="${s//%0D/ }"
+    s="${s//%25/%}"
+    printf '%s' "$s"
+}
+
+# encode a passphrase for the assuan D line (% must come first).
+assuan_encode() {
+    local s="$1"
+    s="${s//%/%25}"
+    s="${s//$'\r'/%0D}"
+    s="${s//$'\n'/%0A}"
+    printf '%s' "$s"
+}
+
+echo "OK Pleased to meet you"
+
+while IFS= read -r line; do
+    cmd="${line%% *}"
+    args="${line#* }"
+    [[ "$args" == "$cmd" ]] && args=""
+
+    case "$cmd" in
+        SETERROR)
+            error="$args"
+            echo "OK"
+            ;;
+        SETDESC)
+            desc="$(assuan_decode "$args")"
+            echo "OK"
+            ;;
+        SETTITLE|SETOK|SETCANCEL|SETNOTOK|OPTION|RESET|MESSAGE)
+            echo "OK"
+            ;;
+        SETPROMPT)
+            prompt="${args%:}"
+            echo "OK"
+            ;;
+        GETPIN)
+            display_prompt="$prompt"
+            [[ -n "$error" ]] && display_prompt="$prompt ($error)"
+            error=""
+            if pin=$(echo -n | wofi --dmenu --password --prompt "$display_prompt" \
+                --lines 0 --hide-scroll --width 500 --height 70 \
+                --style "$STYLE"); then
+                echo "D $(assuan_encode "$pin")"
+                echo "OK"
+            else
+                echo "ERR 83886179 Operation cancelled"
+            fi
+            ;;
+        CONFIRM)
+            # --one-button is informational (OK only); anything else is yes/no.
+            if [[ "$args" == *"--one-button"* ]]; then
+                echo "OK"
+            else
+                choice=$(printf 'No\nYes' | wofi --dmenu \
+                    --prompt "${desc:-Confirm}" --lines 2 --hide-scroll \
+                    --width 500 --style "$STYLE")
+                if [[ "$choice" == "Yes" ]]; then
+                    echo "OK"
+                else
+                    echo "ERR 83886194 Not confirmed"
+                fi
+            fi
+            ;;
+        BYE)
+            echo "OK closing connection"
+            exit 0
+            ;;
+        *)
+            echo "OK"
+            ;;
+    esac
+done
