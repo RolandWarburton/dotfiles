@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_SCROLL_SPEED": "3"
+  },
   "permissions": {
     "allow": [
       "Bash(*)",
@@ -27,7 +30,5 @@
   },
   "effortLevel": "medium",
   "tui": "fullscreen",
-  "env": {
-    "CLAUDE_CODE_SCROLL_SPEED": "3"
-  }
+  "model": "opus"
 }
