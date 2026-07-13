@@ -96,6 +96,30 @@ bindsym $mod+Shift+i exec colorpicker
 # wooz zoom utility
 bindsym $mod+z exec /usr/local/bin/wooz --mouse-track
 
+# Keyboard-driven mouse: move the cursor with hjkl (sway native)
+mode Mouse {
+    # Move (hjkl) - small steps; Shift for big steps
+    bindsym h seat seat0 cursor move -20 0
+    bindsym j seat seat0 cursor move 0 20
+    bindsym k seat seat0 cursor move 0 -20
+    bindsym l seat seat0 cursor move 20 0
+    bindsym Shift+h seat seat0 cursor move -80 0
+    bindsym Shift+j seat seat0 cursor move 0 80
+    bindsym Shift+k seat seat0 cursor move 0 -80
+    bindsym Shift+l seat seat0 cursor move 80 0
+    # Clicks: s = left, d = middle, f = right
+    bindsym s seat seat0 cursor press button1
+    bindsym --release s seat seat0 cursor release button1
+    bindsym d seat seat0 cursor press button2
+    bindsym --release d seat seat0 cursor release button2
+    bindsym f seat seat0 cursor press button3
+    bindsym --release f seat seat0 cursor release button3
+
+    bindsym Escape mode default
+    bindsym Return mode default
+}
+bindsym $mod+m mode Mouse
+
 # satty
 # location of satty executable
 set $satty /usr/bin/satty --filename -
