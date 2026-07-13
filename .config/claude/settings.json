@@ -10,6 +10,7 @@
       "Read(*)"
     ]
   },
+  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -30,5 +31,5 @@
   },
   "effortLevel": "medium",
   "tui": "fullscreen",
-  "model": "opus"
+  "agentPushNotifEnabled": true
 }
