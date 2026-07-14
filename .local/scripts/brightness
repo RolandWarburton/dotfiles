@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# brightness - adjust the display backlight and show an on-screen bar via wob.
+#
+# Usage: brightness up | down
+#
+# Uses brightnessctl (writes via the video-group udev rule, no root), then
+# pushes the resulting level (0-100) into the same wob fifo the `volume`
+# script uses, so a progress-bar OSD appears. Keys identified with `wev`.
+
+set -euo pipefail
+
+step="5%"
+fifo="${XDG_RUNTIME_DIR:-/tmp}/wob.sock"
+
+case "${1:-}" in
+  up)
+    brightnessctl set "${step}+" >/dev/null
+    ;;
+  down)
+    # keep a small floor so the screen never goes fully black
+    cur=$(brightnessctl -m | cut -d, -f4 | tr -d '%')
+    if (( cur <= 5 )); then
+      brightnessctl set 1% >/dev/null
+    else
+      brightnessctl set "${step}-" >/dev/null
+    fi
+    ;;
+  *)
+    echo "usage: ${0##*/} {up|down}" >&2; exit 1 ;;
+esac
+
+# brightnessctl -m => "intel_backlight,backlight,45000,50%,90000"; field 4 = %.
+percent=$(brightnessctl -m | cut -d, -f4 | tr -d '%')
+
+if [[ -p "$fifo" ]]; then
+  printf '%s\n' "$percent" > "$fifo"
+fi

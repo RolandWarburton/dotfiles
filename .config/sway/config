@@ -289,6 +289,9 @@ include ./modules/bar.conf
 # window colors
 include ./modules/theme.conf
 
+# on-screen bar (wob): volume + brightness keys
+include ./modules/osd.conf
+
 # input configuration
 #
 # Logitech MX Master 3 - For X1 Carbon

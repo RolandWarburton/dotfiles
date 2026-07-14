@@ -34,6 +34,8 @@ link:
     path: .config/satty
   - destination: ~/.config/mako
     path: .config/mako
+  - destination: ~/.config/wob
+    path: .config/wob
   # misc
   - destination: ~/.tmux.conf
     path: .config/tmux/.tmux.conf

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# volume - adjust the default PipeWire sink and show an on-screen bar via wob.
+#
+# Usage: volume up | down | mute
+#
+# Changes volume/mute with wpctl, then pushes the resulting level (0-100)
+# into the wob fifo so a progress-bar OSD appears. Muting shows an empty bar.
+# The fifo is created and read by a `tail -f | wob` started from sway
+# (see ~/.config/sway/modules/audio.conf). Keys identified with `wev`.
+
+set -euo pipefail
+
+sink="@DEFAULT_AUDIO_SINK@"
+step="5%"
+fifo="${XDG_RUNTIME_DIR:-/tmp}/wob.sock"
+
+case "${1:-}" in
+  up)   wpctl set-volume -l 1.0 "$sink" "${step}+" ;;  # -l 1.0 caps at 100%
+  down) wpctl set-volume       "$sink" "${step}-" ;;
+  mute) wpctl set-mute         "$sink" toggle     ;;
+  *)    echo "usage: ${0##*/} {up|down|mute}" >&2; exit 1 ;;
+esac
+
+# wpctl get-volume prints "Volume: 0.42" or "Volume: 0.42 [MUTED]"
+read -r _ level state < <(wpctl get-volume "$sink")
+
+if [[ "$state" == "[MUTED]" ]]; then
+  percent=0
+else
+  percent=$(awk -v v="$level" 'BEGIN { printf "%d", v * 100 + 0.5 }')
+fi
+
+# Push to the bar. A persistent `tail -f` keeps a reader on the fifo, so this
+# won't block even if wob itself has died.
+if [[ -p "$fifo" ]]; then
+  printf '%s\n' "$percent" > "$fifo"
+fi
