@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+# scrcpy-wifi - mirror an Android device over Wi-Fi, pairing by QR code if needed.
+#
+# Usage: scrcpy-wifi [scrcpy args...]
+#
+# Handles the wireless-debugging pairing dance: show a QR for the phone's 'Pair
+# device with QR code', wait for it to advertise its pairing service over mDNS,
+# `adb pair`, connect, then launch scrcpy. A phone this host has already paired
+# with skips the QR entirely and goes straight to connect, so the usual case is
+# a bare `scrcpy-wifi`. Any extra args pass through to scrcpy (Wi-Fi likes a
+# trimmed stream: --video-bit-rate=4M --max-size=1024).
+
+set -euo pipefail
+
+pair_scan_timeout=90
+probe_timeout=5
+connect_timeout=20
+qr_name="scrcpy-wifi"
+
+# True while any device reports state "device" (online, authorized).
+device_online() {
+  adb devices | awk 'NR>1 && $2=="device"{f=1} END{exit !f}'
+}
+
+# `adb mdns services` prints: <name>\t<service>\t<ip:port>
+mdns_addr() {
+  adb mdns services 2>/dev/null \
+    | awk -v s="$1" -v n="${2:-}" '$2==s && (n=="" || $1==n){print $3; exit}'
+}
+
+# Nudge adb at the advertised connect service until a device comes online, for
+# up to $1 wall-clock seconds. Paired hosts connect within a second or two;
+# unpaired ones fail the TLS handshake every time, so the caller probes briefly
+# before falling back to the QR, and waits longer once pairing has actually
+# happened. The handshake itself can block, hence the wall-clock deadline: a
+# sleep counter would overshoot these timeouts by whatever adb spends failing.
+wait_online() {
+  local deadline=$((SECONDS + $1)) addr=""
+  while [ "$SECONDS" -lt "$deadline" ]; do
+    device_online && return 0
+    addr="$(mdns_addr _adb-tls-connect._tcp)"
+    [ -n "$addr" ] && adb connect "$addr" >/dev/null 2>&1 || true
+    sleep 1
+  done
+  device_online
+}
+
+# True if the caller already named a device, in any form scrcpy accepts.
+serial_in_args() {
+  local arg
+  for arg in "$@"; do
+    case "$arg" in
+      -s | -s?* | --serial | --serial=*) return 0 ;;
+    esac
+  done
+  return 1
+}
+
+# Show a pairing QR and wait for the phone to scan it. The phone advertises the
+# pairing service under the QR's S: field, which is how we learn its port.
+pair_qr() {
+  local pass="scrcpy${RANDOM}${RANDOM}" addr="" deadline=$((SECONDS + pair_scan_timeout))
+
+  echo "==> Not paired with this host yet."
+  echo "    On the phone: Developer options -> Wireless debugging"
+  echo "    Choose 'Pair device with QR code', then scan this:"
+  echo
+  qrencode -t ANSIUTF8 "WIFI:T:ADB;S:${qr_name};P:${pass};;"
+  echo
+  printf '    Waiting for the scan (up to %ss)' "$pair_scan_timeout"
+  while [ "$SECONDS" -lt "$deadline" ]; do
+    addr="$(mdns_addr _adb-tls-pairing._tcp "$qr_name")"
+    [ -n "$addr" ] && break
+    printf '.'
+    sleep 1
+  done
+  echo
+
+  if [ -z "$addr" ]; then
+    echo "error: timed out waiting for the QR scan." >&2
+    return 1
+  fi
+
+  echo "==> Pairing with $addr ..."
+  adb pair "$addr" "$pass"
+}
+
+# Check everything up front: a missing scrcpy is worth knowing about now, not
+# after the QR dance has already cost the user a phone unlock.
+missing=()
+command -v adb >/dev/null 2>&1 || missing+=("adb (android-tools-adb)")
+command -v scrcpy >/dev/null 2>&1 || missing+=("scrcpy")
+command -v qrencode >/dev/null 2>&1 || missing+=("qrencode (draws the pairing QR)")
+if [ "${#missing[@]}" -gt 0 ]; then
+  echo "error: missing required commands:" >&2
+  printf '  %s\n' "${missing[@]}" >&2
+  exit 1
+fi
+
+# Fast path: a device is already online, or we're paired and just need to dial.
+if ! device_online && ! wait_online "$probe_timeout"; then
+  pair_qr || exit 1
+  wait_online "$connect_timeout" || {
+    echo "error: paired, but the device never came online." >&2
+    exit 1
+  }
+fi
+
+# Pin the serial so scrcpy doesn't guess when several devices are attached,
+# but never override a choice the caller already made.
+if [ -z "${ANDROID_SERIAL:-}" ] && ! serial_in_args "$@"; then
+  mapfile -t devices < <(adb devices | awk 'NR>1 && $2=="device"{print $1}')
+  case "${#devices[@]}" in
+    0)
+      echo "error: the device went offline before scrcpy could start." >&2
+      exit 1
+      ;;
+    1) export ANDROID_SERIAL="${devices[0]}" ;;
+    *)
+      echo "error: multiple devices connected; pass one with -s <serial>:" >&2
+      printf '  %s\n' "${devices[@]}" >&2
+      exit 1
+      ;;
+  esac
+fi
+
+# Best-effort: with -s left to scrcpy, adb here may still see several devices.
+model="$(adb shell getprop ro.product.model 2>/dev/null | tr -d '\r')" || true
+echo "==> Mirroring ${model:-unknown} (${ANDROID_SERIAL:-serial from args})"
+exec scrcpy "$@"
