@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+# adb-wifi-debugging - bring an Android device online over Wi-Fi, pairing by QR
+# code if needed.
+#
+# Usage: adb-wifi-debugging
+#
+# Handles the wireless-debugging pairing dance: show a QR for the phone's 'Pair
+# device with QR code', wait for it to advertise its pairing service over mDNS,
+# `adb pair`, then connect. A phone this host has already paired with skips the
+# QR entirely and goes straight to connect, so the usual case is a bare
+# `adb-wifi-debugging`. On success it leaves the device authorized and reachable
+# for any later `adb` command (shell, install, logcat, ...).
+
+set -euo pipefail
+
+pair_scan_timeout=90
+probe_timeout=5
+connect_timeout=20
+qr_name="adb-wifi-debugging"
+
+# True while any device reports state "device" (online, authorized).
+device_online() {
+  adb devices | awk 'NR>1 && $2=="device"{f=1} END{exit !f}'
+}
+
+# `adb mdns services` prints: <name>\t<service>\t<ip:port>
+mdns_addr() {
+  adb mdns services 2>/dev/null \
+    | awk -v s="$1" -v n="${2:-}" '$2==s && (n=="" || $1==n){print $3; exit}'
+}
+
+# Nudge adb at the advertised connect service until a device comes online, for
+# up to $1 wall-clock seconds. Paired hosts connect within a second or two;
+# unpaired ones fail the TLS handshake every time, so the caller probes briefly
+# before falling back to the QR, and waits longer once pairing has actually
+# happened. The handshake itself can block, hence the wall-clock deadline: a
+# sleep counter would overshoot these timeouts by whatever adb spends failing.
+wait_online() {
+  local deadline=$((SECONDS + $1)) addr=""
+  while [ "$SECONDS" -lt "$deadline" ]; do
+    device_online && return 0
+    addr="$(mdns_addr _adb-tls-connect._tcp)"
+    [ -n "$addr" ] && adb connect "$addr" >/dev/null 2>&1 || true
+    sleep 1
+  done
+  device_online
+}
+
+# Show a pairing QR and wait for the phone to scan it. The phone advertises the
+# pairing service under the QR's S: field, which is how we learn its port.
+pair_qr() {
+  local pass="adbwifi${RANDOM}${RANDOM}" addr="" deadline=$((SECONDS + pair_scan_timeout))
+
+  echo "==> Not paired with this host yet."
+  echo "    On the phone: Developer options -> Wireless debugging"
+  echo "    Choose 'Pair device with QR code', then scan this:"
+  echo
+  qrencode -t ANSIUTF8 "WIFI:T:ADB;S:${qr_name};P:${pass};;"
+  echo
+  printf '    Waiting for the scan (up to %ss)' "$pair_scan_timeout"
+  while [ "$SECONDS" -lt "$deadline" ]; do
+    addr="$(mdns_addr _adb-tls-pairing._tcp "$qr_name")"
+    [ -n "$addr" ] && break
+    printf '.'
+    sleep 1
+  done
+  echo
+
+  if [ -z "$addr" ]; then
+    echo "error: timed out waiting for the QR scan." >&2
+    return 1
+  fi
+
+  echo "==> Pairing with $addr ..."
+  adb pair "$addr" "$pass"
+}
+
+# Check everything up front: a missing tool is worth knowing about now, not
+# after the QR dance has already cost the user a phone unlock.
+missing=()
+command -v adb >/dev/null 2>&1 || missing+=("adb (android-tools-adb)")
+command -v qrencode >/dev/null 2>&1 || missing+=("qrencode (draws the pairing QR)")
+if [ "${#missing[@]}" -gt 0 ]; then
+  echo "error: missing required commands:" >&2
+  printf '  %s\n' "${missing[@]}" >&2
+  exit 1
+fi
+
+# Fast path: a device is already online, or we're paired and just need to dial.
+if ! device_online && ! wait_online "$probe_timeout"; then
+  pair_qr || exit 1
+  wait_online "$connect_timeout" || {
+    echo "error: paired, but the device never came online." >&2
+    exit 1
+  }
+fi
+
+# Report what came online so the user knows which device later `adb` calls hit.
+adb devices | awk 'NR>1 && $2=="device"{print "==> Online: "$1}'
+model="$(adb shell getprop ro.product.model 2>/dev/null | tr -d '\r')" || true
+[ -n "${model:-}" ] && echo "==> Device: $model"
+echo "==> Ready. Use adb as usual (adb shell, adb install, adb logcat, ...)."
