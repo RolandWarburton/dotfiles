@@ -82,6 +82,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 # start Clipboard picker
 bindsym $mod+c exec clipman pick --tool="wofi"
+# copy a common snippet (name, email, ...) to the clipboard
+bindsym $mod+Shift+v exec ~/.local/scripts/snippets
 # when a window is in an "about to split mode" using mod+v or mod+b.
 # The window gets a H[name] or V[name] based on what split is about to happen.
 # The below bind adds the ability to exit the split mode and remove the V[] or H[]

@@ -3,4 +3,5 @@
 node_modules
 tags
 /.config/shell/zsh/secrets.zsh
+/.config/snippets/snippets.conf
 /.config/swaybar/config.yml

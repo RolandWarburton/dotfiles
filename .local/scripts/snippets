@@ -1,0 +1,138 @@
+#!/usr/bin/env lua
+-- snippets - pick a common string (name, email, ...) and copy it to the clipboard.
+-- Usage: snippets        pick and copy
+--        snippets sync   refresh from OpenBao (needs sudo, run from a terminal)
+--
+-- Read ~/.config/snippets/snippets.conf as "Label = value" lines.
+-- OpenBao writes to this file with snippets data, do not edit it.
+
+local HOME = os.getenv("HOME")
+local CONFIG_DIR = (os.getenv("XDG_CONFIG_HOME") or HOME .. "/.config") .. "/snippets"
+local CONF = CONFIG_DIR .. "/snippets.conf"
+local STYLE = HOME .. "/.config/wofi/style.css"
+local BAO_PATH = os.getenv("SNIPPETS_BAO_PATH") or "kv/data/common/snippets"
+local PREVIEW_MAX = 48
+
+local function die(msg)
+  io.stderr:write("snippets: " .. msg .. "\n")
+  os.exit(1)
+end
+
+-- Single-quote for the shell: everything is literal inside '...', so the only
+-- escape needed is for ' itself. Values come from OpenBao and can hold anything.
+-- EXAMPLE:
+-- O'Brien becomes: 'O'\''Brien'
+local function shq(s)
+  return "'" .. (tostring(s):gsub("'", "'\\''")) .. "'"
+end
+
+local function run(cmd)
+  local ok = os.execute(cmd)
+  return ok == 0 or ok == true -- lua 5.1 returns a status, 5.4 a boolean
+end
+
+-- openbao-get-secret prints KEY=VALUE, which is already snippets.conf's format,
+-- so the fetched file is installed as-is with no rewriting.
+-- It reads the root-only token, hence sudo. umask keeps the secret out of
+-- other users' reach while it sits in /tmp.
+local function sync()
+  local tmp = os.tmpname()
+  io.stderr:write("fetching " .. BAO_PATH .. " from OpenBao...\n")
+  local cmd = string.format("(umask 077; sudo openbao-get-secret %s > %s)",
+    shq(BAO_PATH), shq(tmp))
+  if not run(cmd) then
+    os.remove(tmp)
+    -- A 403 usually means the token expired or was issued for the wrong user.
+    -- openbao-fetch-token lives in sbin, so it resolves via sudo but is not on $PATH.
+    io.stderr:write("hint: token may be stale - refresh it with:\n"
+      .. "  sudo openbao-fetch-token   (authenticate as "
+      .. (io.popen("hostname"):read("*l") or "your hostname") .. ")\n")
+    die("fetch failed - " .. CONF .. " left untouched")
+  end
+
+  local count = 0
+  for line in io.lines(tmp) do
+    if line:find("=") then count = count + 1 end
+  end
+  if count == 0 then
+    os.remove(tmp)
+    die("no snippets at " .. BAO_PATH .. " - " .. CONF .. " left untouched")
+  end
+
+  if not run("mkdir -p -m 700 " .. shq(CONFIG_DIR)) then
+    os.remove(tmp)
+    die("could not create " .. CONFIG_DIR)
+  end
+  if not run(string.format("install -m 600 %s %s", shq(tmp), shq(CONF))) then
+    os.remove(tmp)
+    die("could not write " .. CONF)
+  end
+  os.remove(tmp)
+  io.stderr:write(string.format("fetched %s -> %s (%d snippets)\n",
+    BAO_PATH, CONF, count))
+end
+
+local a = arg[1]
+if a == "sync" or a == "-s" or a == "--sync" then
+  sync()
+  os.exit(0)
+elseif a ~= nil then
+  die("unknown option '" .. a .. "' - usage: snippets [sync]")
+end
+
+local labels, values = {}, {}
+
+local function read_file(path)
+  local fh = io.open(path, "r")
+  if not fh then return end
+  for line in fh:lines() do
+    -- split on the first "=" so values may contain it; trim both halves
+    local k, v = line:match("^%s*(.-)%s*=%s*(.-)%s*$")
+    if k and k ~= "" and not line:match("^%s*#") then
+      if values[k] == nil then labels[#labels + 1] = k end
+      values[k] = v
+    end
+  end
+  fh:close()
+end
+
+read_file(CONF)
+
+if #labels == 0 then
+  die("no snippets in " .. CONF .. " - run 'snippets sync' to fetch them")
+end
+
+-- Rows are "label   value-preview", padded so previews line up. Only the label
+-- is looked up afterwards, so the preview can be lossy: keep every row to one
+-- line and cut anything long.
+local width = 0
+for _, label in ipairs(labels) do
+  if #label > width then width = #label end
+end
+
+local rows, row_label = {}, {}
+for _, label in ipairs(labels) do
+  local preview = values[label]:gsub("\\n", " "):gsub("\\t", " ")
+  if #preview > PREVIEW_MAX then preview = preview:sub(1, PREVIEW_MAX) .. "..." end
+  local row = string.format("%-" .. width .. "s  %s", label, preview)
+  rows[#rows + 1] = shq(row)
+  row_label[row] = label
+end
+
+local menu = string.format("printf '%%s\\n' %s | wofi --dmenu --insensitive "
+  .. "--prompt Copy --width 700 --style %s",
+  table.concat(rows, " "), shq(STYLE))
+
+local fh = io.popen(menu)
+if fh == nil then return die("failed to open file handler") end
+local choice = fh:read("*l")
+fh:close()
+if not choice or not row_label[choice] then os.exit(0) end
+
+-- "\n"/"\t" in a value become real whitespace. Piping to wl-copy rather than
+-- passing the value as an argument keeps it away from the shell entirely.
+local value = values[row_label[choice]]:gsub("\\n", "\n"):gsub("\\t", "\t")
+local copy = io.popen("wl-copy", "w")
+if copy == nil then return die("failed to copy value") end
+copy:write(value)
+copy:close()
