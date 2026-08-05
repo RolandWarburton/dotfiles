@@ -6,3 +6,4 @@ tags
 /.config/snippets/snippets.conf
 /.config/swaybar/config.yml
 /.config/mpv/persistent_config.json
+/.config/mpv/history.log
