@@ -1,6 +1,3 @@
-secrets:
-  PTV_DEVID: NOT PROVIDED
-  PTV_KEY: NOT PROVIDED
 modules:
   TIME:
     enabled: true
@@ -13,3 +10,12 @@ modules:
     enabled: true
   BATTERY:
     enabled: true
+  CPU:
+    enabled: true
+  MEMORY:
+    enabled: true
+  DISK:
+    enabled: true
+    partitions:
+      - path: '/'
+        label: 'disk'
