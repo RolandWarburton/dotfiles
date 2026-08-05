@@ -6,6 +6,8 @@ modules:
     routeName: 'Lillydale'
     stopName: 'Southern Cross'
     directionName: 'Lillydale'
+    ptv_devid: ''
+    ptv_key: ''
   WIFI:
     enabled: true
   BATTERY:
