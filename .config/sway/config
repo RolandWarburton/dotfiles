@@ -23,6 +23,8 @@ set $term foot
 # on the original workspace that the command was run on.
 set $menu wofi --show drun --allow-images --no-actions --sort-order default --insensitive
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 # clipboard configuration
 exec wl-paste -t text --watch clipman store --max-items=100
 exec bash -c 'command -v mako >/dev/null && mako'
@@ -326,4 +328,3 @@ include @sysconfdir@/sway/config.d/*
 exec killall ssh-agent
 exec /usr/bin/ssh-agent | head -n 2 > /home/roland/.ssh-agent
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
