@@ -3,9 +3,9 @@ modules:
     enabled: true
   PTV:
     enabled: true
-    routeName: 'Lillydale'
+    routeName: 'Lilydale'
     stopName: 'Southern Cross'
-    directionName: 'Lillydale'
+    directionName: 'Lilydale'
     ptv_devid: ''
     ptv_key: ''
   WIFI:
