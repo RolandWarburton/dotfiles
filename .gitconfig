@@ -8,7 +8,7 @@
 [core]
 	autocrlf = input
 [init]
-  defaultBranch = master
+	defaultBranch = master
 [pull]
   rebase = false
 [safe]
