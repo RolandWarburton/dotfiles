@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Move every sway workspace to the focused output, then return to the workspace you were on.
+
+out=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.focused) | .name')
+current=$(swaymsg -t get_workspaces -r | jq -r '.[] | select(.focused) | .name')
+
+swaymsg -t get_workspaces -r | jq -r '.[].name' | while IFS= read -r ws; do
+    swaymsg -q "workspace \"$ws\"; move workspace to output $out"
+done
+
+swaymsg -q "workspace \"$current\""

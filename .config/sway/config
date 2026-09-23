@@ -179,6 +179,12 @@ bindsym $mod+Shift+Right move right
 # sticky floating window mode
 bindsym $mod+Shift+F [con_id=__focused__] sticky toggle
 
+# move all workspaces to the focused output
+bindsym $mod+Shift+o exec ~/.local/scripts/summon-workspaces
+
+# toggle the focused output between scale 1 and 2
+bindsym $mod+Shift+z exec ~/.local/scripts/toggle-scale
+
 # Workspaces:
 #
 # variables for workspace names
