@@ -13,7 +13,7 @@ have_gui() {
 
 # No display, or wofi missing -> hand the whole session to the terminal
 # pinentry (it speaks the assuan protocol itself, incl. OPTION ttyname).
-if ! command -v wofi >/dev/null 2>&1 || ! have_gui; then
+if [ "$PINENTRY_USER_DATA" = tty ] || ! command -v wofi >/dev/null 2>&1 || ! have_gui; then
     exec /usr/bin/pinentry-curses "$@"
 fi
 
