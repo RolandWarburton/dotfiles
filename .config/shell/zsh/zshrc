@@ -2,10 +2,9 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
-# gpg: pinentry draws on this terminal; over SSH, tell pinentry-wofi to skip
-# the GUI (the agent may still hold the desktop's WAYLAND_DISPLAY).
+# gpg: pinentry draws on this terminal. pinentry-wofi uses it to tell whether
+# you are on the desktop or over SSH (including through tmux).
 export GPG_TTY=$(tty)
-[[ -n $SSH_CONNECTION ]] && export PINENTRY_USER_DATA=tty
 
 # when using the mv command include hidden .files
 setopt glob_dots

@@ -11,11 +11,74 @@ have_gui() {
     esac
 }
 
+# Is any ancestor of this process sshd (sshd-session on newer OpenSSH)?
+ssh_ancestor() {
+    local pid=$1 comm
+    while [ -n "$pid" ] && [ "$pid" -gt 1 ]; do
+        comm=$(cat "/proc/$pid/comm" 2>/dev/null) || return 1
+        case "$comm" in sshd*) return 0 ;; esac
+        pid=$(ps -o ppid= -p "$pid" | tr -d ' ')
+    done
+    return 1
+}
+
+# Is the terminal gpg was run from ($1, from gpg-agent's OPTION ttyname) being
+# used over SSH right now? Inside tmux, that means the session's most recently
+# active client came in over SSH, so a pane used locally and over SSH gets the
+# right prompt each time.
+over_ssh() {
+    local tty=$1 session client pid
+    [ -n "$tty" ] || return 1
+    session=$(tmux list-panes -a -F '#{pane_tty} #{session_id}' 2>/dev/null |
+        awk -v t="$tty" '$1 == t { print $2; exit }')
+    if [ -n "$session" ]; then
+        client=$(tmux list-clients -t "$session" -F '#{client_activity} #{client_pid}' 2>/dev/null |
+            sort -rn | awk 'NR == 1 { print $2 }')
+        [ -n "$client" ] && ssh_ancestor "$client"
+    else
+        pid=$(ps -t "${tty#/dev/}" -o pid= 2>/dev/null | awk 'NR == 1 { print $1 }')
+        [ -n "$pid" ] && ssh_ancestor "$pid"
+    fi
+}
+
+TTY_PINENTRY=/usr/bin/pinentry-curses
+
 # No display, or wofi missing -> hand the whole session to the terminal
 # pinentry (it speaks the assuan protocol itself, incl. OPTION ttyname).
+# PINENTRY_USER_DATA=tty forces it.
 if [ "$PINENTRY_USER_DATA" = tty ] || ! command -v wofi >/dev/null 2>&1 || ! have_gui; then
-    exec /usr/bin/pinentry-curses "$@"
+    exec "$TTY_PINENTRY" "$@"
 fi
+
+# Over SSH is only known once gpg-agent has sent OPTION ttyname, after we have
+# already answered its setup commands. So those are kept, and if the terminal
+# pinentry is needed they are replayed to it before the prompt command, then
+# the rest of the session is passed straight through.
+answered=()
+hand_to_tty_pinentry() {
+    local line
+    coproc TTYPE { "$TTY_PINENTRY" "${ARGS[@]}"; }
+    exec {tp_out}<&"${TTYPE[0]}" {tp_in}>&"${TTYPE[1]}"
+    IFS= read -r line <&"$tp_out"    # greeting, already sent our own
+    for line in "${answered[@]}"; do
+        printf '%s\n' "$line" >&"$tp_in"
+        while IFS= read -r line <&"$tp_out"; do
+            case "$line" in OK*|ERR*) break ;; esac
+        done
+    done
+    printf '%s\n' "$1" >&"$tp_in"
+    # background jobs get /dev/null as stdin unless it is given explicitly
+    exec {agent_in}<&0
+    cat <&"$agent_in" >&"$tp_in" &
+    local forward=$!
+    cat <&"$tp_out"
+    kill "$forward" 2>/dev/null
+    exit 0
+}
+
+ARGS=("$@")
+ttyname=""
+use_tty=""
 
 STYLE="$HOME/.config/wofi/pinentry.css"
 prompt="Passphrase"
@@ -47,6 +110,19 @@ while IFS= read -r line; do
     cmd="${line%% *}"
     args="${line#* }"
     [[ "$args" == "$cmd" ]] && args=""
+
+    case "$cmd" in
+        GETPIN|CONFIRM)
+            if [ -z "$use_tty" ]; then
+                over_ssh "$ttyname" && use_tty=yes || use_tty=no
+            fi
+            [ "$use_tty" = yes ] && hand_to_tty_pinentry "$line"
+            ;;
+        OPTION)
+            [[ "$args" == ttyname=* ]] && ttyname="${args#ttyname=}"
+            ;;
+    esac
+    [[ "$cmd" != GETPIN && "$cmd" != CONFIRM ]] && answered+=("$line")
 
     case "$cmd" in
         SETERROR)
