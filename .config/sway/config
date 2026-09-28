@@ -21,7 +21,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun --allow-images --no-actions --sort-order default --insensitive
+set $menu wofi --show drun --allow-images --no-actions --sort-order default --insensitive --lines 15
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
