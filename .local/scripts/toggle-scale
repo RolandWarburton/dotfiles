@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Toggle the focused output between scale 1 and 2.
+
+read -r out scale < <(swaymsg -t get_outputs -r | jq -r '.[] | select(.focused) | "\(.name) \(.scale)"')
+
+if [[ "$scale" == "1" || "$scale" == "1.0" ]]; then
+    swaymsg -q output "$out" scale 2
+else
+    swaymsg -q output "$out" scale 1
+fi

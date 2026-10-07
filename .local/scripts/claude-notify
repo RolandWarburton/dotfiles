@@ -14,6 +14,10 @@
 #   hints        "@a{sv} {}" no extra hints
 #   timeout      -1          use mako default-timeout
 
+# A notification is best effort, so never fail the Stop hook: Claude Code
+# reports any non-zero exit as a hook error.
+trap 'exit 0' EXIT
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
     exit 0
 fi
@@ -22,7 +26,19 @@ if command -v paplay &>/dev/null; then
     paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga &
 fi
 
+# Only notify when a daemon already owns the bus name. Sending otherwise makes
+# dbus auto-activate mako, and an activated mako has no WAYLAND_DISPLAY (see
+# fr.emersion.mako.service): it exits with "failed to create display" without
+# replying, and notify-send fails with GDBus NoReply.
+notifications_running() {
+    command -v busctl &>/dev/null || return 0
+    [ "$(busctl --user call org.freedesktop.DBus /org/freedesktop/DBus \
+        org.freedesktop.DBus NameHasOwner s org.freedesktop.Notifications 2>/dev/null)" = "b true" ]
+}
+
 # notify-send is provided by the libnotify-bin package
-if command -v notify-send &>/dev/null; then
-    notify-send --app-name="claude" "Claude Code" "Done."
+if command -v notify-send &>/dev/null && notifications_running; then
+    timeout 5 notify-send --app-name="claude" "Claude Code" "Done." 2>/dev/null || true
 fi
+
+exit 0

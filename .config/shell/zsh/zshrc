@@ -2,6 +2,10 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
+# gpg: pinentry draws on this terminal. pinentry-wofi uses it to tell whether
+# you are on the desktop or over SSH (including through tmux).
+export GPG_TTY=$(tty)
+
 # when using the mv command include hidden .files
 setopt glob_dots
 

@@ -13,6 +13,15 @@ link:
   - destination: ~/.local/share/applications/nvim.desktop
     path: .local/share/applications/nvim.desktop
     if: '[ -f /usr/bin/nvim ]'
+  - destination: ~/.local/share/applications/htop.desktop
+    path: .local/share/applications/htop.desktop
+    if: '[ -f /usr/bin/htop ]'
+  - destination: ~/.local/share/applications/footclient.desktop
+    path: .local/share/applications/footclient.desktop
+    if: '[ -f /usr/bin/foot ]'
+  - destination: ~/.local/share/applications/foot-server.desktop
+    path: .local/share/applications/foot-server.desktop
+    if: '[ -f /usr/bin/foot ]'
   # icons
   - destination: ~/.local/share/icons
     path: .local/share/icons
