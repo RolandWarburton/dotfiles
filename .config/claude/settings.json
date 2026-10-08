@@ -33,5 +33,6 @@
   "effortLevel": "medium",
   "tui": "fullscreen",
   "theme": "dark",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "cleanupPeriodDays": 365
 }
