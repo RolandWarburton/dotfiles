@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Flip gpg's passphrase prompt between wofi (default) and the terminal.
+# Optionally pass `wofi` or `tty` to set it directly.
+state="${XDG_STATE_HOME:-$HOME/.local/state}/pinentry-mode"
+
+mode="$1"
+if [ -z "$mode" ]; then
+    [ "$(cat "$state" 2>/dev/null)" = tty ] && mode=wofi || mode=tty
+fi
+
+mkdir -p "$(dirname "$state")"
+echo "$mode" > "$state"
+echo "pinentry: $mode"
