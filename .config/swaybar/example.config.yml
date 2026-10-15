@@ -14,6 +14,8 @@ modules:
     enabled: true
   CPU:
     enabled: true
+  LID:
+    enabled: true
   MEMORY:
     enabled: true
   DISK:
