@@ -23,8 +23,6 @@ set $term foot
 # on the original workspace that the command was run on.
 set $menu wofi --show drun --allow-images --no-actions --sort-order default --insensitive --lines 15
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 # clipboard configuration
 exec wl-paste -t text --watch clipman store --max-items=100
 exec bash -c 'command -v mako >/dev/null && mako'
@@ -328,7 +326,7 @@ input "1739:0:Synaptics_TM3289-002" {
   scroll_factor 0.3
 }
 
-include @sysconfdir@/sway/config.d/*
+include /etc/sway/config.d/*
 
 # start fresh ssh agent
 exec killall ssh-agent
